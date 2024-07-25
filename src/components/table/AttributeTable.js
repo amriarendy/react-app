@@ -1,12 +1,12 @@
 import { FaPlus } from "react-icons/fa";
 import { InputSearch } from "../ui/Input";
-import Button from "../ui/Button";
+import { Button } from "../ui/Button";
 import { Href } from "../ui/Href";
 
 const AttributeTable = ({ attribute, toggleModal }) => {
   return (
     <>
-      <div className="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 bg-white dark:bg-gray-900">
+      <div className="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 bg-white dark:bg-gray-800">
         {attribute.add &&
           (attribute.add.route === "toggleAddModal" ? (
             <Button

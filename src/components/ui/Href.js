@@ -28,4 +28,18 @@ const HrefText = ({ label, color, route }) => {
   );
 };
 
-export { Href, HrefText };
+const HrefProfile = ({ route, label }) => {
+  return (
+    <>
+      <Link
+        to={route}
+        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+        role="menuitem"
+      >
+        {label}
+      </Link>
+    </>
+  );
+};
+
+export { Href, HrefText, HrefProfile };

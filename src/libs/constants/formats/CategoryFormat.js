@@ -1,4 +1,4 @@
-import Button from "../../../components/ui/Button";
+import { Button } from "../../../components/ui/Button";
 import { FaSave } from "react-icons/fa";
 import { Input } from "../../../components/ui/Input";
 

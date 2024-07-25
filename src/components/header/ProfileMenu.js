@@ -1,10 +1,17 @@
 import React, { useState } from "react";
+import { HrefProfile } from "../ui/Href";
 
 const ProfileMenu = () => {
   const [useOpen, setOpen] = useState(false);
   const toggleProfileMenu = () => {
     setOpen(!useOpen);
   };
+  const menuItems = [
+    { label: "Dashboard", route: "/dashboard" },
+    { label: "Settings", route: "/setting" },
+    { label: "Earnings", route: "/earning" },
+    { label: "Sign out", route: "/signout" },
+  ];
   return (
     <>
       <div>
@@ -44,42 +51,11 @@ const ProfileMenu = () => {
           </p>
         </div>
         <ul className="py-1" role="none">
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-              role="menuitem"
-            >
-              Dashboard
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-              role="menuitem"
-            >
-              Settings
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-              role="menuitem"
-            >
-              Earnings
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-              role="menuitem"
-            >
-              Sign out
-            </a>
-          </li>
+          {menuItems.map((item, index) => (
+            <li key={index}>
+              <HrefProfile route={item.route} label={item.label} />
+            </li>
+          ))}
         </ul>
       </div>
     </>

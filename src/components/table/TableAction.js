@@ -1,4 +1,4 @@
-import Button from "../ui/Button";
+import { Button } from "../ui/Button";
 import { FaRegTrashAlt, FaEdit } from "react-icons/fa";
 import { Href } from "../ui/Href";
 
