@@ -1,5 +1,5 @@
-import React from "react";
 import ApexCharts from "apexcharts";
+import { HiArrowNarrowUp } from "react-icons/hi";
 
 const getMainChartOptions = () => {
   let mainChartColors = {};
@@ -661,7 +661,94 @@ if (document.getElementById("traffic-by-device")) {
 }
 
 const Chart = () => {
-  return <div id="main-chart"></div>;
+  return (
+    <>
+      <div className="col-span-2">
+        <div className="mb-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex-shrink-0">
+              <span className="text-xl font-bold leading-none text-gray-900 sm:text-2xl dark:text-white">
+                $45,385
+              </span>
+              <h3 className="text-base font-light text-gray-500 dark:text-gray-400">
+                Sales this week
+              </h3>
+            </div>
+            <div className="flex items-center justify-end flex-1 text-base font-medium text-green-500 dark:text-green-400">
+              12.5%
+              <HiArrowNarrowUp className="w-5 h-5" fill="currentColor" />
+            </div>
+          </div>
+          <div id="main-chart"></div>
+        </div>
+      </div>
+      <div className="col-span-full xl:col-auto">
+        <div className="grid grid-rows-1 grid-flow-col gap-4">
+          {" "}
+          <div class="items-center justify-between mb-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            <div class="w-full">
+              <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">
+                New products
+              </h3>
+              <span class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">
+                2,340
+              </span>
+              <p class="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
+                <span class="flex items-center mr-1.5 text-sm text-green-500 dark:text-green-400">
+                  <HiArrowNarrowUp className="w-4 h-4" fill="currentColor" />
+                  12.5%
+                </span>
+                Since last month
+              </p>
+            </div>
+            {/* <div class="w-full" id="new-products-chart"></div> */}
+          </div>
+        </div>
+        <div className="grid grid-rows-1 grid-flow-col gap-4">
+          {" "}
+          <div class="items-center justify-between mb-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            <div class="w-full">
+              <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">
+                New products
+              </h3>
+              <span class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">
+                2,340
+              </span>
+              <p class="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
+                <span class="flex items-center mr-1.5 text-sm text-green-500 dark:text-green-400">
+                  <HiArrowNarrowUp className="w-4 h-4" fill="currentColor" />
+                  12.5%
+                </span>
+                Since last month
+              </p>
+            </div>
+            {/* <div class="w-full" id="new-products-chart"></div> */}
+          </div>
+        </div>
+        <div className="grid grid-rows-1 grid-flow-col gap-4">
+          {" "}
+          <div class="items-center justify-between mb-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            <div class="w-full">
+              <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">
+                New products
+              </h3>
+              <span class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">
+                2,340
+              </span>
+              <p class="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
+                <span class="flex items-center mr-1.5 text-sm text-green-500 dark:text-green-400">
+                  <HiArrowNarrowUp className="w-4 h-4" fill="currentColor" />
+                  12.5%
+                </span>
+                Since last month
+              </p>
+            </div>
+            {/* <div class="w-full" id="new-products-chart"></div> */}
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Chart;

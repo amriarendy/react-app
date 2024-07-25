@@ -7,9 +7,5 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [
-    require("flowbite/plugin")({
-      charts: true,
-    }),
-  ],
+  plugins: [require("flowbite/plugin")],
 };
