@@ -28,10 +28,7 @@ const MenuList = ({ item }) => {
             onClick={toggleSidebar}
             aria-expanded={useOpen ? "true" : "false"}
           >
-            <RiLayout6Fill
-              fill="currentColor"
-              className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-            />
+            {item.icon}
             <span className="flex-1 ml-3 text-left whitespace-nowrap">
               {item.label}
             </span>

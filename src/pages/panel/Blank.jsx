@@ -1,6 +1,8 @@
 import PanelLayout from "./PanelLayout";
 import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
 import Card from "../../components/card/Card";
+import {AlertAditionalContent, AlertBorder, AlertList, Alerts} from "../../components/alerts/Alerts";
+import { FaInfoCircle } from "react-icons/fa";
 
 const Blank = () => {
   const breadCrumbs = {
@@ -34,6 +36,16 @@ const Blank = () => {
             </div>
             <div className="col-span-1 bg-blue-100 dark:text-gray-300">
               col-span-3
+            </div>
+          </Card>
+        </div>
+        <div className="col-span-2">
+          <Card header={"Alert"}>
+            <div className="col-span-1">
+              <Alerts color={'blue'} icon={<FaInfoCircle className="flex-shrink-0 w-4 h-4" />} message={'Info alert! Change a few things up and try submitting again.'} />
+              <AlertList />
+              <AlertBorder />
+              <AlertAditionalContent />
             </div>
           </Card>
         </div>
