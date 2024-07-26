@@ -1042,5 +1042,57 @@
             "id": "codeigniter4",
             "tag": "codeigniter"
         }
+    ],
+    "notifications": [
+        {
+            "id": "1",
+            "type": "inbox",
+            "read": true,
+            "timeStamp": "a few moments ago",
+            "data" : {
+                "email": "bonnie.green@flowbite.com",
+                "message": "Hey, what's up? All set for the presentation?"
+            }
+        },
+        {
+            "id": "2",
+            "type": "follow",
+            "read": true,
+            "timeStamp": "10 minutes ago",
+            "data" : {
+                "email": "jese.leos@flowbite.com",
+                "message": "5 Others"
+            }
+        },
+        {
+            "id": "3",
+            "type": "like",
+            "read": true,
+            "timeStamp": "44 minutes ago",
+            "data" : {
+                "email": "jese.leos@flowbite.com",
+                "message": "141 others"
+            }
+        },
+        {
+            "id": "4",
+            "type": "mention",
+            "read": true,
+            "timeStamp": "1 hour ago",
+            "data" : {
+                "email": "leslie.livingston@flowbite.com",
+                "message": "what do you say"
+            }
+        },
+        {
+            "id": "5",
+            "type": "activity",
+            "read": true,
+            "timeStamp": "3 hour ago",
+            "data" : {
+                "email": "robert.brown@flowbite.com",
+                "message": "Glassmorphism - learn how to implement the new design trend"
+            }
+        }
     ]
 }

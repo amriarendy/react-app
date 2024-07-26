@@ -16,8 +16,6 @@ const AddBlog = () => {
       { page: "Add", route: "/blog/add" },
     ],
   };
-  const imageClass =
-    "mb-4 rounded-lg h-auto max-w-full sm:mb-0 xl:mb-4 2xl:mb-0";
   return (
     <>
       <PanelLayout>

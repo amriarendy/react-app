@@ -19,7 +19,6 @@ const ButtonIcon = ({ children, id, type, color, onClick }) => {
     <>
       <button
         id={id}
-        data-tooltip-target="tooltip-toggle"
         type={type}
         onClick={onClick}
         className={`text-${color}-500 dark:text-${color}-400 hover:bg-${color}-100 dark:hover:bg-${color}-700 focus:outline-none focus:ring-4 focus:ring-${color}-200 dark:focus:ring-${color}-700 rounded-lg text-sm p-2.5`}

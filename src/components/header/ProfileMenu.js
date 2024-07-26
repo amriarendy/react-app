@@ -8,8 +8,8 @@ const ProfileMenu = () => {
   };
   const menuItems = [
     { label: "Dashboard", route: "/dashboard" },
+    { label: "Inbox", route: "/inbox" },
     { label: "Settings", route: "/setting" },
-    { label: "Earnings", route: "/earning" },
     { label: "Sign out", route: "/signout" },
   ];
   return (
