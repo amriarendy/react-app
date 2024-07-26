@@ -1,6 +1,6 @@
 import { FaPlus } from "react-icons/fa";
 import { InputSearch } from "../ui/Input";
-import Button from "../ui/Button";
+import { Button } from "../ui/Button";
 import { Href } from "../ui/Href";
 
 const AttributeTable = ({ attribute, toggleModal }) => {

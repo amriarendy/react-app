@@ -4,7 +4,7 @@ const TabsWidget = () => {
   return (
     <>
       <div className="px-4 pt-6">
-        <div class="grid w-full grid-cols-1 gap-4 mt-4 xl:grid-cols-2 2xl:grid-cols-3">
+        <div className="grid w-full grid-cols-1 gap-4 mt-4 xl:grid-cols-2 2xl:grid-cols-3">
           <div className="items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
             <div className="w-full">
               <h3 className="text-base font-normal text-gray-500 dark:text-gray-400">

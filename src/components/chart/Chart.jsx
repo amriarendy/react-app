@@ -685,65 +685,65 @@ const Chart = () => {
       <div className="col-span-full xl:col-auto">
         <div className="grid grid-rows-1 grid-flow-col gap-4">
           {" "}
-          <div class="items-center justify-between mb-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
-            <div class="w-full">
-              <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">
+          <div className="items-center justify-between mb-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            <div className="w-full">
+              <h3 className="text-base font-normal text-gray-500 dark:text-gray-400">
                 New products
               </h3>
-              <span class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">
+              <span className="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">
                 2,340
               </span>
-              <p class="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
-                <span class="flex items-center mr-1.5 text-sm text-green-500 dark:text-green-400">
+              <p className="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
+                <span className="flex items-center mr-1.5 text-sm text-green-500 dark:text-green-400">
                   <HiArrowNarrowUp className="w-4 h-4" fill="currentColor" />
                   12.5%
                 </span>
                 Since last month
               </p>
             </div>
-            {/* <div class="w-full" id="new-products-chart"></div> */}
+            {/* <div className="w-full" id="new-products-chart"></div> */}
           </div>
         </div>
         <div className="grid grid-rows-1 grid-flow-col gap-4">
           {" "}
-          <div class="items-center justify-between mb-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
-            <div class="w-full">
-              <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">
+          <div className="items-center justify-between mb-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            <div className="w-full">
+              <h3 className="text-base font-normal text-gray-500 dark:text-gray-400">
                 New products
               </h3>
-              <span class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">
+              <span className="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">
                 2,340
               </span>
-              <p class="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
-                <span class="flex items-center mr-1.5 text-sm text-green-500 dark:text-green-400">
+              <p className="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
+                <span className="flex items-center mr-1.5 text-sm text-green-500 dark:text-green-400">
                   <HiArrowNarrowUp className="w-4 h-4" fill="currentColor" />
                   12.5%
                 </span>
                 Since last month
               </p>
             </div>
-            {/* <div class="w-full" id="new-products-chart"></div> */}
+            {/* <div className="w-full" id="new-products-chart"></div> */}
           </div>
         </div>
         <div className="grid grid-rows-1 grid-flow-col gap-4">
           {" "}
-          <div class="items-center justify-between mb-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
-            <div class="w-full">
-              <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">
+          <div className="items-center justify-between mb-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            <div className="w-full">
+              <h3 className="text-base font-normal text-gray-500 dark:text-gray-400">
                 New products
               </h3>
-              <span class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">
+              <span className="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">
                 2,340
               </span>
-              <p class="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
-                <span class="flex items-center mr-1.5 text-sm text-green-500 dark:text-green-400">
+              <p className="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
+                <span className="flex items-center mr-1.5 text-sm text-green-500 dark:text-green-400">
                   <HiArrowNarrowUp className="w-4 h-4" fill="currentColor" />
                   12.5%
                 </span>
                 Since last month
               </p>
             </div>
-            {/* <div class="w-full" id="new-products-chart"></div> */}
+            {/* <div className="w-full" id="new-products-chart"></div> */}
           </div>
         </div>
       </div>

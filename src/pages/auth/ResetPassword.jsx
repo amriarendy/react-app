@@ -1,7 +1,7 @@
 import CheckBox from "../../components/ui/CheckBox";
 import { HrefText } from "../../components/ui/Href";
 import { Input } from "../../components/ui/Input";
-import Button from "../../components/ui/Button";
+import { Button } from "../../components/ui/Button";
 import AuthLayout from "./AuthLayout";
 
 const ResetPassword = () => {

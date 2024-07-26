@@ -7,7 +7,7 @@ const Test = () => {
     <>
       <PanelLayout>
         <Breadcrumbs />
-        <div class="col-span-full xl:col-auto">
+        <div className="col-span-full xl:col-auto">
           <Card header={"Card Header"} footer={"Card Footer"} cols={1}>
             <p>Lorem Ipsum</p>
           </Card>

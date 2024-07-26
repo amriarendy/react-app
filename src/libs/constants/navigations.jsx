@@ -1,4 +1,4 @@
-import { RiPieChartFill, RiLayout6Fill } from "react-icons/ri";
+import { RiPieChartFill } from "react-icons/ri";
 import { ImNewspaper } from "react-icons/im";
 import { FaCogs, FaBorderNone, FaSignOutAlt, FaUser } from "react-icons/fa";
 

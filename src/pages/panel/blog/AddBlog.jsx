@@ -1,7 +1,7 @@
 import PanelLayout from "../PanelLayout";
 import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
 import Card from "../../../components/card/Card";
-import Button from "../../../components/ui/Button";
+import { Button } from "../../../components/ui/Button";
 import { FaSave } from "react-icons/fa";
 import { Input, InputFile } from "../../../components/ui/Input";
 import Option from "../../../components/ui/Option";

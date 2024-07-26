@@ -1,11 +1,11 @@
 import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
-import Button from "../../components/ui/Button";
+import { Button } from "../../components/ui/Button";
 import { Input } from "../../components/ui/Input";
 import Option from "../../components/ui/Option";
 import TextArea from "../../components/ui/TextArea";
 import PanelLayout from "./PanelLayout";
 import Radio from "../../components/ui/Radio";
-import { Image } from "../../components/ui/Image";
+import { ImageRounded } from "../../components/ui/Image";
 import Card from "../../components/card/Card";
 import {
   FaFacebookF,
@@ -20,7 +20,6 @@ const Setting = () => {
     page: "Setting",
     data: [{ page: "Setting", route: "/setting" }],
   };
-  const imageClass = "mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0";
   return (
     <>
       <PanelLayout>
@@ -28,13 +27,7 @@ const Setting = () => {
         <div className="col-span-full xl:col-auto">
           <Card>
             <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
-              <Image
-                src={
-                  "https://flowbite-admin-dashboard.vercel.app/images/logo.svg"
-                }
-                alt={"Jese picture"}
-                className={imageClass}
-              />
+              <ImageRounded id={'icon'} src={"https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png"} alt={'icon'} rounded={'lg'} widht={28} height={28} />
               <div>
                 <h3 className="mb-1 text-xl font-bold text-gray-900 dark:text-white">
                   Website Icon

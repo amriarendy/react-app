@@ -5,7 +5,7 @@ import Option from "../../../components/ui/Option";
 import TextArea from "../../../components/ui/TextArea";
 import { Image } from "../../../components/ui/Image";
 import Card from "../../../components/card/Card";
-import Button from "../../../components/ui/Button";
+import { Button } from "../../../components/ui/Button";
 import { FaSave, FaRegTrashAlt } from "react-icons/fa";
 
 const EditUser = () => {
