@@ -1,0 +1,34 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend App",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amriarendy/react-app.git"
+  },
+  "keywords": [
+    "react",
+    "flowbite",
+    "nodejs",
+    "starter-pack-node-app"
+  ],
+  "author": "amriarendy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amriarendy/react-app/issues"
+  },
+  "homepage": "https://github.com/amriarendy/react-app#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mysql2": "^3.10.3",
+    "sequelize": "^6.37.3"
+  }
+}
