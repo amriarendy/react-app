@@ -1,0 +1,28 @@
+{
+  "name": "data",
+  "version": "1.0.0",
+  "description": "use JSON Web Server: data dummy.json.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "json-server --watch dummy.json --port 3001"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amriarendy/react-app.git"
+  },
+  "keywords": [
+    "reactjs",
+    "flowbite",
+    "json-web-server"
+  ],
+  "author": "amriarendy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amriarendy/react-app/issues"
+  },
+  "homepage": "https://github.com/amriarendy/react-app#readme",
+  "dependencies": {
+    "json-server": "^1.0.0-beta.1"
+  }
+}
