@@ -1,6 +1,6 @@
 # DATA DUMMY JSON SERVER
 
-![App Screenshot](https://github.com/amriarendy/react-app/blob/main/public/json-server.png)
+![App Screenshot](https://raw.githubusercontent.com/amriarendy/react-app/data-json-server/json-server.png)
 
 ## Installation
 
