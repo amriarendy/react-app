@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amriarendy/react-app.git"
+    "url": "https://github.com/amriarendy/react-app.git"
   },
   "keywords": [
     "reactjs",
