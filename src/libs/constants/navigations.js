@@ -1,6 +1,14 @@
 import { RiPieChartFill, RiLayout6Fill } from "react-icons/ri";
 import { ImNewspaper } from "react-icons/im";
-import { FaCogs, FaBorderNone, FaSignOutAlt, FaUser, FaDatabase } from "react-icons/fa";
+import {
+  FaCogs,
+  FaBorderNone,
+  FaSignOutAlt,
+  FaUser,
+  FaDatabase,
+  FaServer,
+  FaInfoCircle,
+} from "react-icons/fa";
 
 export const SIDEBAR_MENU_ITEMS = [
   {
@@ -32,9 +40,11 @@ export const SIDEBAR_MENU_ITEMS = [
     label: "Master",
     route: "collapse",
     icon: (
-      <FaDatabase className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-      aria-hidden="true"
-      fill="currentColor" />
+      <FaDatabase
+        className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+        aria-hidden="true"
+        fill="currentColor"
+      />
     ),
     subMenu: [
       {
@@ -62,11 +72,11 @@ export const SIDEBAR_MENU_ITEMS = [
     ),
   },
   {
-    key: "setting",
-    label: "Setting",
-    route: "/setting",
+    key: "information",
+    label: "Information",
+    route: "/information",
     icon: (
-      <FaCogs
+      <FaInfoCircle
         className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
         aria-hidden="true"
         fill="currentColor"

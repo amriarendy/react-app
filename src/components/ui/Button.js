@@ -29,4 +29,14 @@ const ButtonIcon = ({ children, id, type, color, onClick }) => {
   );
 };
 
-export { Button, ButtonIcon };
+const ButtonDynamic = ({ children, id, type, className, onClick }) => {
+  return (
+    <>
+      <button id={id} type={type} onClick={onClick} className={className}>
+        {children}
+      </button>
+    </>
+  );
+};
+
+export { Button, ButtonIcon, ButtonDynamic };

@@ -15,6 +15,7 @@ import EditUser from "./pages/panel/user/EditUser";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import ResetPassword from "./pages/auth/ResetPassword";
+import Information from "./pages/panel/Information";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/user" element={<User />} />
           <Route path="/user/add" element={<AddUser />} />
           <Route path="/user/edit" element={<EditUser />} />
+          <Route path="/information" element={<Information />} />
           <Route path="/setting" element={<Setting />} />
           <Route path="/blank" element={<Blank />} />
           <Route path="/test" element={<Test />} />

@@ -7,6 +7,8 @@ import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
 import Card from "../../../components/card/Card";
 import { BLOG_FORMAT_TABLE } from "../../../libs/constants/formats/BlogFormat";
 import DataTable from "../../../dummy.json";
+import { useEffect } from "react";
+import useFetch from "../../../hooks/useFetch";
 
 const Blog = () => {
   const breadCrumbs = {
@@ -16,6 +18,16 @@ const Blog = () => {
       { page: "List", route: "/blog" },
     ],
   };
+
+  const { data, loading, error } = useFetch("/blogs");
+  useEffect(() => {
+    if (data) {
+      console.log("Data loaded:", data);
+    }
+  }, [data]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
   return (
     <>
       <PanelLayout>
@@ -32,7 +44,7 @@ const Blog = () => {
                 tbody={BLOG_FORMAT_TABLE.attribute}
                 tdata={DataTable.blogs}
               >
-                {DataTable.blogs.map((item, index) => (
+                {data.map((item, index) => (
                   <tr
                     className="hover:bg-gray-100 dark:hover:bg-gray-700"
                     key={index}

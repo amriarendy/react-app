@@ -7,6 +7,8 @@ import AttributeTable from "../../../components/table/AttributeTable";
 import DataTable from "../../../dummy.json";
 import TableFeature from "../../../components/table/TableFeature";
 import TableAction from "../../../components/table/TableAction";
+import useFetch from "../../../hooks/useFetch";
+import { useEffect } from "react";
 
 const User = () => {
   const breadCrumbs = {
@@ -16,6 +18,18 @@ const User = () => {
       { page: "List", route: "/Users" },
     ],
   };
+
+  const { data, loading, error } = useFetch("/users");
+  useEffect(() => {
+    if (data) {
+      console.log("Data loaded:", data);
+    }
+  }, [data]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+  // Ensure data.users is defined before mapping
+  // if (!data || !data.users) return <div>No users found.</div>;
 
   return (
     <>
@@ -35,10 +49,10 @@ const User = () => {
                 attribute={USER_FORMAT_TABLE.attribute}
                 thead={USER_FORMAT_TABLE.th}
               >
-                {DataTable.users.map((item, index) => (
+                {data.map((item, index) => (
                   <tr
                     className="hover:bg-gray-100 dark:hover:bg-gray-700"
-                    key={index}
+                    key={item.id}
                   >
                     <TableFeature
                       attribute={USER_FORMAT_TABLE.attribute}
@@ -48,7 +62,7 @@ const User = () => {
                       <img
                         className="w-10 h-10 rounded-full"
                         src={`https://flowbite-admin-dashboard.vercel.app/images/users/${item.avatar}`}
-                        alt="{{ .name }} avatar"
+                        alt={`${item.name}`}
                       />
                       <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
                         <div className="text-base font-semibold text-gray-900 dark:text-white">
