@@ -7,6 +7,7 @@ import { Image } from "../../../components/ui/Image";
 import Card from "../../../components/card/Card";
 import { Button } from "../../../components/ui/Button";
 import { FaSave, FaRegTrashAlt } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 
 const EditUser = () => {
   const breadCrumbs = {
@@ -16,6 +17,8 @@ const EditUser = () => {
       { page: "Edit", route: "/user/edit" },
     ],
   };
+
+  const { param } = useParams();
   const imageClass = "mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0";
   return (
     <>
@@ -72,6 +75,16 @@ const EditUser = () => {
             }
             cols={6}
           >
+            <div className="col-span-6 sm:col-span-3">
+              <Input
+                id={"id"}
+                name={"id"}
+                type={"text"}
+                label={"ID"}
+                value={param}
+                required={true}
+              />
+            </div>
             <div className="col-span-6 sm:col-span-3">
               <Input
                 id={"name"}

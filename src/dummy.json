@@ -3,7 +3,7 @@
         {
         "id": 1,
         "name": "Neil Sims",
-        "avatar": "neil-sims.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/neil-sims.png",
         "email": "neil.sims@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "Front-end developer",
@@ -13,7 +13,7 @@
         {
         "id": 2,
         "name": "Roberta Casas",
-        "avatar": "roberta-casas.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/roberta-casas.png",
         "email": "roberta.casas@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "Designer",
@@ -23,7 +23,7 @@
         {
         "id": 3,
         "name": "Michael Gough",
-        "avatar": "michael-gough.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/michael-gough.png",
         "email": "michael.gough@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "React developer",
@@ -33,7 +33,7 @@
         {
         "id": 4,
         "name": "Jese Leos",
-        "avatar": "jese-leos.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/jese-leos.png",
         "email": "jese.leos@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "Marketing",
@@ -43,7 +43,7 @@
         {
         "id": 5,
         "name": "Bonnie Green",
-        "avatar": "bonnie-green.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green.png",
         "email": "bonnie.green@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "UI/UX Engineer",
@@ -53,7 +53,7 @@
         {
         "id": 6,
         "name": "Thomas Lean",
-        "avatar": "thomas-lean.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/thomas-lean.png",
         "email": "thomas.lean@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "Vue developer",
@@ -63,7 +63,7 @@
         {
         "id": 7,
         "name": "Helene Engels",
-        "avatar": "helene-engels.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/helene-engels.png",
         "email": "helene.engels@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "Product owner",
@@ -73,7 +73,7 @@
         {
         "id": 8,
         "name": "Lana Byrd",
-        "avatar": "lana-byrd.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/lana-byrd.png",
         "email": "lana.byrd@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "Designer",
@@ -83,7 +83,7 @@
         {
         "id": 9,
         "name": "Leslie Livingston",
-        "avatar": "leslie-livingston.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/leslie-livingston.png",
         "email": "leslie.livingston@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "Web developer",
@@ -93,7 +93,7 @@
         {
         "id": 10,
         "name": "Robert Brown",
-        "avatar": "robert-brown.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/robert-brown.png",
         "email": "robert.brown@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "Laravel developer",
@@ -103,7 +103,7 @@
         {
         "id": 11,
         "name": "Neil Sims",
-        "avatar": "neil-sims.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/neil-sims.png",
         "email": "neil.sims@flowbite.com",
         "position": "Front-end developer",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
@@ -113,7 +113,7 @@
         {
         "id": 12,
         "name": "Roberta Casas",
-        "avatar": "roberta-casas.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/roberta-casas.png",
         "email": "roberta.casas@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "Designer",
@@ -123,7 +123,7 @@
         {
         "id": 13,
         "name": "Michael Gough",
-        "avatar": "michael-gough.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/michael-gough.png",
         "email": "michael.gough@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "React developer",
@@ -133,7 +133,7 @@
         {
         "id": 14,
         "name": "Jese Leos",
-        "avatar": "jese-leos.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/jese-leos.png",
         "email": "jese.leos@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "Marketing",
@@ -143,7 +143,7 @@
         {
         "id": 15,
         "name": "Bonnie Green",
-        "avatar": "bonnie-green.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green.png",
         "email": "bonnie.green@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "UI/UX Engineer",
@@ -153,7 +153,7 @@
         {
         "id": 16,
         "name": "Thomas Lean",
-        "avatar": "thomas-lean.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/thomas-lean.png",
         "email": "thomas.lean@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "Vue developer",
@@ -163,7 +163,7 @@
         {
         "id": 17,
         "name": "Helene Engels",
-        "avatar": "helene-engels.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/helene-engels.png",
         "email": "helene.engels@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "Product owner",
@@ -173,7 +173,7 @@
         {
         "id": 18,
         "name": "Lana Byrd",
-        "avatar": "lana-byrd.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/lana-byrd.png",
         "email": "lana.byrd@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "Designer",
@@ -183,7 +183,7 @@
         {
         "id": 19,
         "name": "Leslie Livingston",
-        "avatar": "leslie-livingston.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/leslie-livingston.png",
         "email": "leslie.livingston@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "Web developer",
@@ -193,7 +193,7 @@
         {
         "id": 20,
         "name": "Robert Brown",
-        "avatar": "robert-brown.png",
+        "avatar": "https://flowbite-admin-dashboard.vercel.app/images/users/robert-brown.png",
         "email": "robert.brown@flowbite.com",
         "biography": "I love working with React and Flowbites to create efficient and user-friendly interfaces. In my spare time, I enjoys baking, hiking, and spending time with my family.",
         "position": "Laravel developer",

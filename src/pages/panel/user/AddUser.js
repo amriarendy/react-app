@@ -19,21 +19,25 @@ const AddUser = () => {
       { page: "Add", route: "/user/add" },
     ],
   };
-  
-  const { values, handleChange, setValues } = useForm({
-    name: "",
-    email: "",
-    password: "",
-    gender: "",
-    biography: "",
-    position: "",
-    country: "",
-  }, handleSubmit);
+
+  const { values, handleChange, setValues } = useForm(
+    {
+      name: "",
+      email: "",
+      password: "",
+      avatar: "",
+      gender: "",
+      biography: "",
+      position: "",
+      country: "",
+    },
+    handleSubmit
+  );
   const navigate = useNavigate();
 
   async function handleSubmit() {
     try {
-      await store('users', values);
+      await store("users", values);
       navigate("/user");
     } catch (error) {
       console.error(error);

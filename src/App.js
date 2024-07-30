@@ -30,12 +30,12 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/add" element={<AddBlog />} />
-          <Route path="/blog/edit" element={<EditBlog />} />
+          <Route path="/blog/edit/:param" element={<EditBlog />} />
           <Route path="/master/category" element={<Category />} />
           <Route path="/master/hashtag" element={<Hashtag />} />
           <Route path="/user" element={<User />} />
           <Route path="/user/add" element={<AddUser />} />
-          <Route path="/user/edit" element={<EditUser />} />
+          <Route path="/user/edit/:param" element={<EditUser />} />
           <Route path="/information" element={<Information />} />
           <Route path="/setting" element={<Setting />} />
           <Route path="/blank" element={<Blank />} />

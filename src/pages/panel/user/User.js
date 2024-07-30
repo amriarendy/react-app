@@ -9,7 +9,7 @@ import TableFeature from "../../../components/table/TableFeature";
 import TableAction from "../../../components/table/TableAction";
 import useFetch from "../../../hooks/useFetch";
 import { useEffect, useState } from "react";
-import { Image, ImageRounded } from "../../../components/ui/Image";
+import { ImageRounded } from "../../../components/ui/Image";
 import { imageCheck } from "../../../libs/utils";
 
 const User = () => {
@@ -31,10 +31,12 @@ const User = () => {
       setUsers(data);
       const imageChecks = async () => {
         const status = {};
-        await Promise.all(data.map(async (user) => {
-          const result = await imageCheck(`https://flowbite-admin-dashboard.vercel.app/images/users/${user.avatar}`);
-          status[user.id] = result;
-        }));
+        await Promise.all(
+          data.map(async (user) => {
+            const result = await imageCheck(`${user.avatar}`);
+            status[user.id] = result;
+          })
+        );
         setImageStatus(status);
       };
 
@@ -76,16 +78,16 @@ const User = () => {
                       index={index}
                     />
                     <td className="flex items-center p-4 mr-12 space-x-6 whitespace-nowrap">
-                    <ImageRounded
+                      <ImageRounded
                         src={
                           imageStatus[item.id]
-                            ? `https://flowbite-admin-dashboard.vercel.app/images/users/${item.avatar}`
-                            : 'https://placehold.co/150x150?text=Image+Not+Found'
+                            ? `${item.avatar}`
+                            : "https://placehold.co/150x150?text=Image+Not+Found"
                         }
                         alt={item.name}
-                        rounded='full'
-                        width={10}
-                        height={10}
+                        rounded="full"
+                        w={10}
+                        h={10}
                       />
                       <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
                         <div className="text-base font-semibold text-gray-900 dark:text-white">
@@ -115,7 +117,10 @@ const User = () => {
                         {item.status}
                       </div>
                     </td>
-                    <TableAction attribute={USER_FORMAT_TABLE.attribute} />
+                    <TableAction
+                      attribute={USER_FORMAT_TABLE.attribute}
+                      param={item.id}
+                    />
                   </tr>
                 ))}
               </Table>
