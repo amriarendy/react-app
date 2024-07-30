@@ -16,6 +16,7 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import ResetPassword from "./pages/auth/ResetPassword";
 import Information from "./pages/panel/Information";
+import Error from "./pages/panel/Error";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/setting" element={<Setting />} />
           <Route path="/blank" element={<Blank />} />
           <Route path="/test" element={<Test />} />
+          <Route path="/error" element={<Error />} />
         </Routes>
       </BrowserRouter>
     </>

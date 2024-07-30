@@ -5,7 +5,7 @@ import {
   AlertAditionalContent,
   AlertBorder,
   AlertList,
-  Alerts,
+  Alert,
 } from "../../components/alerts/Alert";
 
 const Blank = () => {
@@ -46,7 +46,7 @@ const Blank = () => {
         <div className="col-span-2">
           <Card header={"Alert"}>
             <div className="col-span-1">
-              <Alerts
+              <Alert
                 code={200}
                 message={"Nice Work! Success alert with code 200."}
               />

@@ -24,7 +24,8 @@ function AlertStatus({ code, status }) {
   return { color, icon };
 }
 
-const Alerts = ({ code, status, message }) => {
+const Alert = ({ code, status, message }) => {
+  console.log("alert: ", code);
   const { color, icon } = AlertStatus({ code, status });
   return (
     <>
@@ -119,4 +120,4 @@ const AlertAditionalContent = ({ code, status, label, message, more }) => {
   );
 };
 
-export { Alerts, AlertList, AlertBorder, AlertAditionalContent };
+export { Alert, AlertList, AlertBorder, AlertAditionalContent };

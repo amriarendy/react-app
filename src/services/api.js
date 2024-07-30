@@ -1,14 +1,16 @@
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "http://localhost:3001"; // Corrected the URL
 
 export const SERVER_API = async (endpoint, options = {}) => {
   try {
-    const response = await fetch(`${BASE_URL}${endpoint}`, options);
+    const url = `${BASE_URL}${endpoint}`;
+    const response = await fetch(url, options);
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      const errorMessage = await response.text();
+      throw new Error(`API call error: ${response.status} - ${errorMessage}`);
     }
     return await response.json();
   } catch (error) {
-    console.error("API call error:", error);
+    console.error(`API call failed: ${error.message}`);
     throw error;
   }
 };

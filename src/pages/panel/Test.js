@@ -8,7 +8,8 @@ import { FaSave } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import useFetch from "../../hooks/useFetch";
-import { store } from "../../services/userService";
+import { store } from "../../services/routeService";
+import Loading from "../../components/errors/Loading";
 
 const Test = () => {
   const breadCrumbs = {
@@ -36,7 +37,7 @@ const Test = () => {
     }
   }, [data]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loading/>;
   if (error) return <div>Error: {error.message}</div>;
 
   return (

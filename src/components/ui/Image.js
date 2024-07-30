@@ -9,7 +9,7 @@ export function Image({ id, src, alt, className }) {
 export function ImageRounded({ id, src, alt, rounded, widht, height }) {
   return (
     <>
-      <img id={id} src={src} alt={alt} className={`mb-4 rounded-${rounded} w-${widht} h-${height} sm:mb-0 xl:mb-4 2xl:mb-0 bg-red-300`} />
+      <img id={id} src={src} alt={alt} className={`mb-4 rounded-${rounded} w-${widht} h-${height} sm:mb-0 xl:mb-4 2xl:mb-0`} />
     </>
   );
 }
