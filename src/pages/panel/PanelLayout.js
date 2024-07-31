@@ -12,9 +12,7 @@ const PanelLayout = ({ children }) => {
           className="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900"
         >
           <main>
-            
-              {children}
-
+            <section className="min-h-screen">{children}</section>
           </main>
         </div>
       </div>

@@ -6,7 +6,7 @@ import {
   FaSignOutAlt,
   FaUser,
   FaDatabase,
-  FaServer,
+  FaBook,
   FaInfoCircle,
 } from "react-icons/fa";
 
@@ -84,11 +84,60 @@ export const SIDEBAR_MENU_ITEMS = [
     ),
   },
   {
+    key: "template",
+    label: "Template",
+    route: "collapse",
+    icon: (
+      <RiLayout6Fill
+        className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+        aria-hidden="true"
+        fill="currentColor"
+      />
+    ),
+    subMenu: [
+      {
+        key: "blank",
+        label: "Blank",
+        route: "/template/blank",
+      },
+      {
+        key: "test",
+        label: "Test",
+        route: "/template/test",
+      },
+      {
+        key: "table1",
+        label: "Table 1",
+        route: "/template/table1",
+      },
+      {
+        key: "table2",
+        label: "Table 2",
+        route: "/template/table1",
+      },
+      {
+        key: "form",
+        label: "Form",
+        route: "/template/form",
+      },
+      {
+        key: "grid-cols",
+        label: "Grid and Cols",
+        route: "/template/grid-cols",
+      },
+      {
+        key: "alert",
+        label: "Alert",
+        route: "/template/alert",
+      },
+    ],
+  },
+  {
     key: "blank",
     label: "Blank",
     route: "/blank",
     icon: (
-      <FaBorderNone
+      <FaCogs
         className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
         aria-hidden="true"
         fill="currentColor"
@@ -96,11 +145,11 @@ export const SIDEBAR_MENU_ITEMS = [
     ),
   },
   {
-    key: "test",
-    label: "Test",
-    route: "/test",
+    key: "docs",
+    label: "Docs",
+    route: "/docs",
     icon: (
-      <RiLayout6Fill
+      <FaBook
         className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
         aria-hidden="true"
         fill="currentColor"

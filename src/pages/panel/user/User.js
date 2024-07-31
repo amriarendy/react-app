@@ -52,82 +52,82 @@ const User = () => {
   return (
     <>
       <PanelLayout>
-      <div className="grid grid-cols-1 bg-white px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900">
-        <Breadcrumbs breadCrumbs={breadCrumbs} />
-        <div className="col-span-3">
-          <Card
-            header={
-              <AttributeTable
-                attribute={USER_FORMAT_TABLE.attribute}
-                cols={1}
-              />
-            }
-          >
-            {/* <CheckImage /> */}
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-              <Table
-                attribute={USER_FORMAT_TABLE.attribute}
-                thead={USER_FORMAT_TABLE.th}
-              >
-                {data.map((item, index) => (
-                  <tr
-                    className="hover:bg-gray-100 dark:hover:bg-gray-700"
-                    key={item.id}
-                  >
-                    <TableFeature
-                      attribute={USER_FORMAT_TABLE.attribute}
-                      index={index}
-                    />
-                    <td className="flex items-center p-4 mr-12 space-x-6 whitespace-nowrap">
-                      <ImageRounded
-                        src={
-                          imageStatus[item.id]
-                            ? `${item.avatar}`
-                            : "https://placehold.co/150x150?text=Image+Not+Found"
-                        }
-                        alt={item.name}
-                        rounded="full"
-                        w={10}
-                        h={10}
+        <div className="grid grid-cols-1 bg-white px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900">
+          <Breadcrumbs breadCrumbs={breadCrumbs} />
+          <div className="col-span-3">
+            <Card
+              header={
+                <AttributeTable
+                  attribute={USER_FORMAT_TABLE.attribute}
+                  cols={1}
+                />
+              }
+            >
+              {/* <CheckImage /> */}
+              <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <Table
+                  attribute={USER_FORMAT_TABLE.attribute}
+                  thead={USER_FORMAT_TABLE.th}
+                >
+                  {data.map((item, index) => (
+                    <tr
+                      className="hover:bg-gray-100 dark:hover:bg-gray-700"
+                      key={item.id}
+                    >
+                      <TableFeature
+                        attribute={USER_FORMAT_TABLE.attribute}
+                        index={index}
                       />
-                      <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                        <div className="text-base font-semibold text-gray-900 dark:text-white">
-                          {item.name}
-                        </div>
+                      <td className="flex items-center p-4 mr-12 space-x-6 whitespace-nowrap">
+                        <ImageRounded
+                          src={
+                            imageStatus[item.id]
+                              ? `${item.avatar}`
+                              : "https://placehold.co/150x150?text=Image+Not+Found"
+                          }
+                          alt={item.name}
+                          rounded="full"
+                          w={10}
+                          h={10}
+                        />
                         <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                          {item.email}
+                          <div className="text-base font-semibold text-gray-900 dark:text-white">
+                            {item.name}
+                          </div>
+                          <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                            {item.email}
+                          </div>
                         </div>
-                      </div>
-                    </td>
-                    <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-                      {item.biography}
-                    </td>
-                    <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      {item.position}
-                    </td>
-                    <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      {item.country}
-                    </td>
-                    <td className="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                      <div className="flex items-center">
-                        {item.status === "Active" ? (
-                          <div className="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
-                        ) : (
-                          <div className="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div>
-                        )}
-                        {item.status}
-                      </div>
-                    </td>
-                    <TableAction
-                      attribute={USER_FORMAT_TABLE.attribute}
-                      param={item.id}
-                    />
-                  </tr>
-                ))}
-              </Table>
-            </div>
-          </Card>
-        </div>
+                      </td>
+                      <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
+                        {item.biography}
+                      </td>
+                      <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {item.position}
+                      </td>
+                      <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {item.country}
+                      </td>
+                      <td className="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                        <div className="flex items-center">
+                          {item.status === "Active" ? (
+                            <div className="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
+                          ) : (
+                            <div className="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div>
+                          )}
+                          {item.status}
+                        </div>
+                      </td>
+                      <TableAction
+                        attribute={USER_FORMAT_TABLE.attribute}
+                        param={item.id}
+                      />
+                    </tr>
+                  ))}
+                </Table>
+              </div>
+            </Card>
+          </div>
         </div>
       </PanelLayout>
     </>

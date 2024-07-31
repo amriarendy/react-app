@@ -1,4 +1,4 @@
-import { FaBookmark, FaCog, FaGlobeAsia } from "react-icons/fa";
+import { FaBookmark, FaCog, FaBook } from "react-icons/fa";
 
 const MenuBottom = () => {
   return (
@@ -30,7 +30,7 @@ const MenuBottom = () => {
           data-dropdown-toggle="language-dropdown"
           className="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
         >
-          <FaGlobeAsia className="w-6 h-6" fill="currentColor" />
+          <FaBook className="w-6 h-6" fill="currentColor" />
         </button>
       </div>
     </>
