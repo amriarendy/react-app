@@ -8,6 +8,7 @@ import Card from "../../../components/card/Card";
 import { Button } from "../../../components/ui/Button";
 import { FaSave, FaRegTrashAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
+import useFetch from "../../../hooks/useFetch";
 
 const EditUser = () => {
   const breadCrumbs = {
@@ -19,10 +20,14 @@ const EditUser = () => {
   };
 
   const { param } = useParams();
+  const {data: user, loading, error} = useFetch(`/users/${param}`);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
   const imageClass = "mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0";
   return (
     <>
       <PanelLayout>
+      <div className="grid grid-cols-1 bg-white px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900">
         <Breadcrumbs breadCrumbs={breadCrumbs} />
         <div className="col-span-full xl:col-auto">
           <Card>
@@ -75,22 +80,21 @@ const EditUser = () => {
             }
             cols={6}
           >
-            <div className="col-span-6 sm:col-span-3">
               <Input
                 id={"id"}
                 name={"id"}
-                type={"text"}
+                type={"hidden"}
                 label={"ID"}
-                value={param}
+                value={user.id || ""}
                 required={true}
               />
-            </div>
             <div className="col-span-6 sm:col-span-3">
               <Input
                 id={"name"}
                 name={"name"}
                 type={"text"}
                 label={"Name"}
+                value={user.name || ""}
                 required={true}
               />
             </div>
@@ -100,6 +104,7 @@ const EditUser = () => {
                 name={"email"}
                 type={"email"}
                 label={"Email"}
+                value={user.email || ""}
                 required={true}
               />
             </div>
@@ -109,23 +114,32 @@ const EditUser = () => {
                 name={"password"}
                 type={"password"}
                 label={"Password"}
+                value={user.password || ""}
                 required={true}
               />
             </div>
             <div className="col-span-6 sm:col-span-3">
-              <Input
-                id={"password_confirm"}
-                name={"password_confirm"}
-                type={"password"}
-                label={"Password Confirm"}
-                required={true}
-              />
-            </div>
+                <Option
+                  id={"gender"}
+                  name={"gender"}
+                  label={"Gender"}
+                  value={user.gender}
+                  required={true}
+                  selected={[
+                    { key: "", value: user.gender || "", label: user.gender || "" },
+                  ]}
+                  data={[
+                    { value: "male", label: "Male" },
+                    { value: "female", label: "Female" },
+                  ]}
+                />
+              </div>
             <div className="col-span-6">
               <TextArea
                 id={"biography"}
                 name={"biography"}
                 label={"Biography"}
+                value={user.biography || ""}
                 rows={4}
                 required={false}
               />
@@ -137,7 +151,7 @@ const EditUser = () => {
                 label={"Position"}
                 required={true}
                 selected={[
-                  { key: "", value: "", label: "Choose Your Selected" },
+                  { key: "", value: user.position || "", label: user.position || "" },
                 ]}
                 data={[
                   {
@@ -161,7 +175,7 @@ const EditUser = () => {
                 label={"Country"}
                 required={true}
                 selected={[
-                  { key: "", value: "", label: "Choose Your Selected" },
+                  { key: "", value: user.country || "", label: user.country || "" },
                 ]}
                 data={[
                   { value: "Indonesia", label: "Indonesia" },
@@ -176,6 +190,7 @@ const EditUser = () => {
               />
             </div>
           </Card>
+        </div>
         </div>
       </PanelLayout>
     </>

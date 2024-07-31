@@ -19,6 +19,7 @@ const AddBlog = () => {
   return (
     <>
       <PanelLayout>
+      <div className="grid grid-cols-1 bg-white px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900">
         <Breadcrumbs breadCrumbs={breadCrumbs} />
         <div className="col-span-3">
           <Card cols={6}>
@@ -121,6 +122,7 @@ const AddBlog = () => {
               />
             </div>
           </Card>
+        </div>
         </div>
       </PanelLayout>
     </>

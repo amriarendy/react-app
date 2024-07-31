@@ -43,50 +43,30 @@ const Test = () => {
   return (
     <>
       <PanelLayout>
-        <Breadcrumbs breadCrumbs={breadCrumbs} />
-        <div className="col-span-full xl:col-auto">
-          <form onSubmit={handleSubmit}>
-            <Card
-              header={"Card Header"}
-              footer={
-                <Button
-                  id={"btnSave"}
-                  type={"submit"}
-                  label={"Save"}
-                  color={"blue"}
-                  icon={<FaSave className="w-5 h-5 mr-2 -ml-1" />}
-                />
-              }
-              cols={6}
-            >
-              <div className="col-span-6">
-                <Input
-                  id={"name"}
-                  name={"name"}
-                  type={"text"}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  label={"Name"}
-                  required={true}
-                />
-                <Input
-                  id={"email"}
-                  name={"email"}
-                  type={"email"}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  label={"Email"}
-                  required={true}
-                />
-              </div>
-            </Card>
-          </form>
+        <section className="min-h-screen">
+          <div className="grid grid-cols-1 px-4 pt-6 lg:grid-cols-4 gap-4 mb-4 dark:bg-gray-900">
+          <Breadcrumbs breadCrumbs={breadCrumbs} />
+          <div className="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600 h-32 md:h-64"></div>
+          <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"></div>
+          <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"></div>
+          <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"></div>
         </div>
-        <div className="col-span-2">
-          <Card header={"Card Header"} cols={6}>
-            <div className="col-span-6">{JSON.stringify(data, null, 2)}</div>
-          </Card>
-        </div>
+          <div className="grid grid-cols-2 px-4 pt-6 lg:grid-cols-4 gap-4 mb-4 dark:bg-gray-900">
+        <div
+          class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+        ></div>
+        <div
+          class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+        ></div>
+        <div
+          class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+        ></div>
+        <div
+          class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+        ></div>
+      </div>
+          
+          </section>
       </PanelLayout>
     </>
   );

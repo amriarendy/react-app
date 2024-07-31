@@ -12,9 +12,9 @@ const PanelLayout = ({ children }) => {
           className="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900"
         >
           <main>
-            <div className="grid grid-cols-1 bg-white px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900">
+            
               {children}
-            </div>
+
           </main>
         </div>
       </div>
