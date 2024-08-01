@@ -33,49 +33,51 @@ const Blog = () => {
       <PanelLayout>
         <Breadcrumbs breadCrumbs={breadCrumbs} />
         <div className="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900">
-        <div className="col-span-3">
-          <Card
-            header={<AttributeTable attribute={BLOG_FORMAT_TABLE.attribute} />}
-            cols={1}
-          >
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-              <Table
-                attribute={BLOG_FORMAT_TABLE.attribute}
-                thead={BLOG_FORMAT_TABLE.th}
-                tbody={BLOG_FORMAT_TABLE.attribute}
-                tdata={DataTable.blogs}
-              >
-                {data.map((item, index) => (
-                  <tr
-                    className="hover:bg-gray-100 dark:hover:bg-gray-700"
-                    key={index}
-                  >
-                    <TableFeature
-                      attribute={BLOG_FORMAT_TABLE.attribute}
-                      index={index}
-                    />
-                    <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-                      {item.title}
-                    </td>
-                    <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-                      {item.description}
-                    </td>
-                    <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-                      Bussiness
-                    </td>
-                    <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-                      432
-                    </td>
-                    <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-                      {item.publishedAt}
-                    </td>
-                    <TableAction attribute={BLOG_FORMAT_TABLE.attribute} />
-                  </tr>
-                ))}
-              </Table>
-            </div>
-          </Card>
-        </div>
+          <div className="col-span-3">
+            <Card
+              header={
+                <AttributeTable attribute={BLOG_FORMAT_TABLE.attribute} />
+              }
+              cols={1}
+            >
+              <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <Table
+                  attribute={BLOG_FORMAT_TABLE.attribute}
+                  thead={BLOG_FORMAT_TABLE.th}
+                  tbody={BLOG_FORMAT_TABLE.attribute}
+                  tdata={DataTable.blogs}
+                >
+                  {data.map((item, index) => (
+                    <tr
+                      className="hover:bg-gray-100 dark:hover:bg-gray-700"
+                      key={index}
+                    >
+                      <TableFeature
+                        attribute={BLOG_FORMAT_TABLE.attribute}
+                        index={index}
+                      />
+                      <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
+                        {item.title}
+                      </td>
+                      <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
+                        {item.description}
+                      </td>
+                      <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
+                        Bussiness
+                      </td>
+                      <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
+                        432
+                      </td>
+                      <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
+                        {item.publishedAt}
+                      </td>
+                      <TableAction attribute={BLOG_FORMAT_TABLE.attribute} />
+                    </tr>
+                  ))}
+                </Table>
+              </div>
+            </Card>
+          </div>
         </div>
       </PanelLayout>
     </>

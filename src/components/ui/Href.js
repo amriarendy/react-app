@@ -42,4 +42,14 @@ const HrefProfile = ({ route, label }) => {
   );
 };
 
-export { Href, HrefText, HrefProfile };
+const HrefDynamic = ({ route, label, className }) => {
+  return (
+    <>
+      <Link to={route} className={className}>
+        {label}
+      </Link>
+    </>
+  );
+};
+
+export { Href, HrefText, HrefProfile, HrefDynamic };
