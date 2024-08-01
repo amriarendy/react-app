@@ -98,51 +98,54 @@ export const SIDEBAR_MENU_ITEMS = [
       {
         key: "blank",
         label: "Blank",
-        route: "/template/blank",
+        route: "/templates/blank",
       },
       {
-        key: "test",
-        label: "Test",
-        route: "/template/test",
+        key: "layout",
+        label: "Layouts",
+        route: "/templates/layout",
       },
       {
-        key: "table1",
-        label: "Table 1",
-        route: "/template/table1",
+        key: "alerts",
+        label: "Alerts",
+        route: "/templates/alerts",
       },
       {
-        key: "table2",
-        label: "Table 2",
-        route: "/template/table1",
+        key: "table-default",
+        label: "Table Default",
+        route: "/templates/table-default",
+      },
+      {
+        key: "table-advance",
+        label: "Table Advance",
+        route: "/templates/table-advance",
       },
       {
         key: "form",
         label: "Form",
-        route: "/template/form",
+        route: "/templates/form",
+      },
+      {
+        key: "modal",
+        label: "Modal",
+        route: "/templates/modal",
+      },
+      {
+        key: "popup",
+        label: "Popup",
+        route: "/templates/popup",
       },
       {
         key: "grid-cols",
         label: "Grid and Cols",
-        route: "/template/grid-cols",
+        route: "/templates/grid-cols",
       },
       {
-        key: "alert",
-        label: "Alert",
-        route: "/template/alert",
+        key: "test",
+        label: "Test Page",
+        route: "/templates/test",
       },
     ],
-  },
-  {
-    key: "blank",
-    label: "Blank",
-    route: "/blank",
-    icon: (
-      <FaCogs
-        className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-        aria-hidden="true"
-        fill="currentColor"
-      />
-    ),
   },
   {
     key: "docs",

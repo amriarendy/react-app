@@ -47,8 +47,8 @@ const AddUser = () => {
   return (
     <>
       <PanelLayout>
-        <div className="grid grid-cols-1 bg-white px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900">
         <Breadcrumbs breadCrumbs={breadCrumbs} />
+        <div className="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900">
         <div className="col-span-full xl:col-auto">
           <Card>
             <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
