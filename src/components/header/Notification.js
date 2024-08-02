@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoIosNotifications } from "react-icons/io";
 import { BiMessageDetail } from "react-icons/bi";
 import { FaUserPlus, FaHeart, FaCommentDots, FaCamera, FaEye } from "react-icons/fa";
@@ -6,12 +6,47 @@ import { ImageRounded } from "../ui/Image";
 import DataNotification from "../../dummy.json"
 import { Link } from "react-router-dom";
 import { ButtonIcon } from "../ui/Button";
+import { imageCheck } from "../../libs/utils";
+import useDummy from "../../hooks/useDummy";
 
 const Notification = () => {
+  const [users, setUsers] = useState([]);
+  const [imageStatus, setImageStatus] = useState({});
+
   const [useOpen, setOpen] = useState(false);
   const toggleNotification = () => {
     setOpen(!useOpen);
   };
+
+  const { data, loading, error } = useDummy("notifications");
+
+  useEffect(() => {
+    if (data) {
+      setUsers(data);
+      const imageChecks = async () => {
+        const status = {};
+        await Promise.all(
+          data.map(async (user) => {
+            const result = await imageCheck(`${user.avatar}`);
+            status[user.id] = result;
+          })
+        );
+        setImageStatus(status);
+      };
+
+      imageChecks();
+    }
+  }, [data]);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
+
+  const columns = data && data.length > 0 ? data : <p>Data Not Found..</p>;
   return (
     <>
       <ButtonIcon
@@ -40,7 +75,7 @@ const Notification = () => {
         </div>
         <div>
         {DataNotification.notifications.map((item, index) => (
-          <ListNotification key={item.id} type={item.type} timeStamp={item.timeStamp} data={item.data} />
+          <ListNotification key={item.id} type={item.type} timeStamp={item.timeStamp} data={item.data} imageStatus={imageStatus} />
         ))}
         </div>
         <a
@@ -59,18 +94,28 @@ const Notification = () => {
 
 export default Notification;
 
-function ListNotification({ id, type, timeStamp, data }) {
+function ListNotification({ id, type, timeStamp, data, imageStatus }) {
   const getUserByEmail = (email) => {
     return DataNotification.users.find(user => user.email === email);
   };
   const user = getUserByEmail(data.email);
-  const renderNotificationContent = () => {
+  const renderNotificationContent = ({imageStatus}) => {
     switch (type) {
       case 'inbox':
         return (
           <>
             <div className="flex-shrink-0">
-              <ImageRounded src={`https://flowbite-admin-dashboard.vercel.app/images/users/${user.avatar}`} alt={user.name} rounded={'full'} widht={11} height={11} />
+              <ImageRounded
+                          src={
+                            imageStatus[user.id]
+                              ? `${user.avatar}`
+                              : "https://placehold.co/150x150?text=Image+Not+Found"
+                          }
+                          alt={user.name}
+                          rounded="full"
+                          w={10}
+                          h={10}
+                        />
               <div className="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 border border-white rounded-full bg-blue-700 dark:border-gray-700">
                 <BiMessageDetail className="w-3 h-3 text-white" fill="currentColor" />
               </div>
@@ -89,7 +134,17 @@ function ListNotification({ id, type, timeStamp, data }) {
         return (
           <>
             <div className="flex-shrink-0">
-              <ImageRounded src={`https://flowbite-admin-dashboard.vercel.app/images/users/${user.avatar}`} alt={user.name} rounded={'full'} widht={11} height={11} />
+              <ImageRounded
+                          src={
+                            imageStatus[user.id]
+                              ? `${user.avatar}`
+                              : "https://placehold.co/150x150?text=Image+Not+Found"
+                          }
+                          alt={user.name}
+                          rounded="full"
+                          w={10}
+                          h={10}
+                        />
               <div className="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 bg-gray-900 border border-white rounded-full dark:border-gray-700">
                 <FaUserPlus className="w-3 h-3 text-white" fill="currentColor" />
               </div>
@@ -109,7 +164,17 @@ function ListNotification({ id, type, timeStamp, data }) {
           return (
             <>
                           <div className="flex-shrink-0">
-              <ImageRounded src={`https://flowbite-admin-dashboard.vercel.app/images/users/${user.avatar}`} alt={user.name} rounded={'full'} widht={11} height={11} />
+              <ImageRounded
+                          src={
+                            imageStatus[user.id]
+                              ? `${user.avatar}`
+                              : "https://placehold.co/150x150?text=Image+Not+Found"
+                          }
+                          alt={user.name}
+                          rounded="full"
+                          w={10}
+                          h={10}
+                        />
               <div className="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 bg-red-600 border border-white rounded-full dark:border-gray-700">
                 <FaHeart className="w-3 h-3 text-white" fill="currentColor" />
               </div>
@@ -135,7 +200,17 @@ function ListNotification({ id, type, timeStamp, data }) {
             return (
               <>
               <div className="flex-shrink-0">
-              <ImageRounded src={`https://flowbite-admin-dashboard.vercel.app/images/users/${user.avatar}`} alt={user.name} rounded={'full'} widht={11} height={11} />
+              <ImageRounded
+                          src={
+                            imageStatus[user.id]
+                              ? `${user.avatar}`
+                              : "https://placehold.co/150x150?text=Image+Not+Found"
+                          }
+                          alt={user.name}
+                          rounded="full"
+                          w={10}
+                          h={10}
+                        />
               <div className="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 bg-green-400 border border-white rounded-full dark:border-gray-700">
                 <FaCommentDots className="w-3 h-3 text-white" fill="currentColor" />
               </div>
@@ -161,7 +236,17 @@ function ListNotification({ id, type, timeStamp, data }) {
               return (
                 <>
                 <div className="flex-shrink-0">
-              <ImageRounded src={`https://flowbite-admin-dashboard.vercel.app/images/users/${user.avatar}`} alt={user.name} rounded={'full'} widht={11} height={11} />
+              <ImageRounded
+                          src={
+                            imageStatus[user.id]
+                              ? `${user.avatar}`
+                              : "https://placehold.co/150x150?text=Image+Not+Found"
+                          }
+                          alt={user.name}
+                          rounded="full"
+                          w={10}
+                          h={10}
+                        />
                   <div className="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 bg-purple-500 border border-white rounded-full dark:border-gray-700">
                     <FaCamera className="w-3 h-3 text-white" fill="currentColor" />
                   </div>
@@ -186,7 +271,7 @@ function ListNotification({ id, type, timeStamp, data }) {
 
   return (
     <Link to="#" className="flex px-4 py-3 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600" key={id}>
-      {renderNotificationContent()}
+      {renderNotificationContent({imageStatus})}
     </Link>
   );
 }

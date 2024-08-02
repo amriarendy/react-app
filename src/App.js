@@ -26,6 +26,7 @@ import TableDefault from "./pages/panel/tamplates/TableDefault";
 import TableAdvance from "./pages/panel/tamplates/TableAdvance";
 import Popup from "./pages/panel/tamplates/Popup";
 import Modal from "./pages/panel/tamplates/Modal";
+import Image from "./pages/panel/tamplates/Image";
 
 function App() {
   return (
@@ -64,6 +65,7 @@ function App() {
           <Route path="/templates/modal" element={<Modal />} />
           <Route path="/templates/popup" element={<Popup />} />
           <Route path="/templates/grid-cols" element={<GridCols />} />
+          <Route path="/templates/image" element={<Image />} />
           <Route path="/templates/test" element={<Test />} />
           {/* etc */}
           <Route path="/docs" element={<Docs />} />

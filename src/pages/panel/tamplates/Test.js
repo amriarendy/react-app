@@ -1,11 +1,6 @@
 import React from "react";
 import PanelLayout from "../PanelLayout";
 import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
-import AttributeTable from "../../../components/table/advance/AttributeTable";
-import Table from "../../../components/table/advance/Table";
-import Thead from "../../../components/table/advance/Thead";
-import Tbody from "../../../components/table/advance/Tbody";
-import Tfoot from "../../../components/table/advance/Tfoot";
 
 const Test = () => {
   const breadCrumbs = {
@@ -20,12 +15,8 @@ const Test = () => {
     <>
       <PanelLayout>
         <Breadcrumbs breadCrumbs={breadCrumbs} />
-        <AttributeTable />
-        <Table>
-          <Thead />
-          <Tbody />
-        </Table>
-        <Tfoot />
+        
+        
       </PanelLayout>
     </>
   );

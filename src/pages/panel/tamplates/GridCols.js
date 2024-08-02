@@ -1,6 +1,5 @@
 import PanelLayout from "../PanelLayout";
 import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
-import Card from "../../../components/card/Card";
 
 const GridCols = () => {
   const breadCrumbs = {

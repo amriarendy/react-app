@@ -141,6 +141,11 @@ export const SIDEBAR_MENU_ITEMS = [
         route: "/templates/grid-cols",
       },
       {
+        key: "image",
+        label: "Images",
+        route: "/templates/image",
+      },
+      {
         key: "test",
         label: "Test Page",
         route: "/templates/test",

@@ -1,3 +1,4 @@
+import FooterPanel from "../../components/footer/FooterPanel";
 import Header from "../../components/header/Header";
 import Sidebar from "../../components/sidebar/Sidebar";
 
@@ -14,6 +15,7 @@ const PanelLayout = ({ children }) => {
           <main>
             <section className="min-h-screen">{children}</section>
           </main>
+        <FooterPanel />
         </div>
       </div>
     </>
