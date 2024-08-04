@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { HrefProfile } from "../ui/Href";
+import { ImageCircleSmall } from "../ui/Image";
+import { ButtonDynamic } from "../ui/Button";
 
 const ProfileMenu = () => {
   const [useOpen, setOpen] = useState(false);
@@ -14,23 +16,17 @@ const ProfileMenu = () => {
   ];
   return (
     <>
-      <div>
-        <button
-          onClick={toggleProfileMenu}
-          type="button"
-          className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-          id="user-menu-button-2"
-          aria-expanded="false"
-          data-dropdown-toggle="dropdown-2"
-        >
-          <span className="sr-only">Open user menu</span>
-          <img
-            className="w-8 h-8 rounded-full"
-            src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-            alt="user photo"
-          />
-        </button>
-      </div>
+      <ButtonDynamic
+        type="button"
+        onClick={toggleProfileMenu}
+        className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+      >
+        <span className="sr-only">Open user menu</span>
+        <ImageCircleSmall
+          src={"https://flowbite.com/docs/images/people/profile-picture-5.jpg"}
+          alt="My Profile"
+        />
+      </ButtonDynamic>
       <div
         className={`z-20 z-50 ${
           useOpen ? "block" : "hidden"

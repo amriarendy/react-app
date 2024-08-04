@@ -1,12 +1,13 @@
 import PanelLayout from "../PanelLayout";
 import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
-import { Input } from "../../../components/ui/Input";
+import { Input, InputFile } from "../../../components/ui/Input";
 import Option from "../../../components/ui/Option";
 import TextArea from "../../../components/ui/TextArea";
-import { Image } from "../../../components/ui/Image";
-import Card from "../../../components/card/Card";
 import { Button } from "../../../components/ui/Button";
-import { FaSave, FaRegTrashAlt } from "react-icons/fa";
+import { FaSave } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import useForm from "../../../hooks/useForm";
+import { store } from "../../../services/routeService";
 import { useParams } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
 
@@ -18,119 +19,132 @@ const EditUser = () => {
       { page: "Edit", route: "/user/edit" },
     ],
   };
+  const { values, handleChange, setValues } = useForm(
+    {
+      name: "",
+      email: "",
+      password: "",
+      avatar: "",
+      gender: "",
+      biography: "",
+      position: "",
+      country: "",
+    },
+    handleSubmit
+  );
+  const navigate = useNavigate();
 
-  const { param } = useParams();
-  const { data: user, loading, error } = useFetch(`/users/${param}`);
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-  const imageClass = "mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0";
+  async function handleSubmit() {
+    try {
+      await store("users", values);
+      navigate("/user");
+    } catch (error) {
+      console.error(error);
+    }
+  }
   return (
     <>
       <PanelLayout>
         <Breadcrumbs breadCrumbs={breadCrumbs} />
-        <div className="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900">
-          <div className="col-span-full xl:col-auto">
-            <Card>
-              <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
-                <Image
-                  src={
-                    "https://flowbite-admin-dashboard.vercel.app/images/users/neil-sims.png"
-                  }
-                  alt={"Jese picture"}
-                  className={imageClass}
-                />
-                <div>
-                  <h3 className="mb-1 text-xl font-bold text-gray-900 dark:text-white">
-                    Avatar
-                  </h3>
-                  <div className="mb-4 text-sm text-gray-500 dark:text-gray-400">
-                    JPG, GIF or PNG. Max size of 800K
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <Button
-                      id={"btnSave"}
-                      type={"button"}
-                      label={"Upload File"}
-                      color={"blue"}
-                      icon={<FaSave className="w-5 h-5 mr-2 -ml-1" />}
-                    />
-                    <Button
-                      id={"btnSave"}
-                      type={"button"}
-                      label={"Delete"}
-                      color={"red"}
-                      icon={<FaRegTrashAlt className="w-5 h-5 mr-2 -ml-1" />}
-                    />
-                  </div>
-                </div>
-              </div>
-            </Card>
-          </div>
-          <div className="col-span-2">
-            <Card
-              header={"General Information"}
-              footer={
-                <Button
-                  id={"btnSave"}
-                  type={"button"}
-                  label={"Save"}
-                  color={"blue"}
-                  icon={<FaSave className="w-5 h-5 mr-2 -ml-1" />}
-                />
-              }
-              cols={6}
-            >
-              <Input
-                id={"id"}
-                name={"id"}
-                type={"hidden"}
-                label={"ID"}
-                value={user.id || ""}
-                required={true}
-              />
-              <div className="col-span-6 sm:col-span-3">
+        <div className="py-8 bg-white border border-gray-200 rounded-lg shadow-sm px-4 mx-auto max-w-2xl lg:py-4 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+          <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
+            Edit User
+          </h2>
+          <form onSubmit={handleSubmit}>
+            <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 dark:border-gray-700 dark:bg-gray-800">
+              <div className="sm:col-span-2">
                 <Input
-                  id={"name"}
-                  name={"name"}
+                  value={values.name}
+                  onChange={handleChange}
+                  id={"text"}
+                  name={"text"}
                   type={"text"}
-                  label={"Name"}
-                  value={user.name || ""}
+                  label={"Full Name"}
+                  placeholder={"Full Name"}
                   required={true}
                 />
               </div>
-              <div className="col-span-6 sm:col-span-3">
+              <div className="sm:col-span-2">
                 <Input
+                  value={values.email}
+                  onChange={handleChange}
                   id={"email"}
                   name={"email"}
                   type={"email"}
                   label={"Email"}
-                  value={user.email || ""}
+                  placeholder={"Active Email"}
                   required={true}
                 />
               </div>
-              <div className="col-span-6 sm:col-span-3">
+              <div className="w-full">
                 <Input
+                  value={values.password}
+                  onChange={handleChange}
                   id={"password"}
                   name={"password"}
                   type={"password"}
                   label={"Password"}
-                  value={user.password || ""}
+                  placeholder={"••••••••"}
                   required={true}
                 />
               </div>
-              <div className="col-span-6 sm:col-span-3">
+              <div className="w-full">
+                <Input
+                  value={values.password}
+                  onChange={handleChange}
+                  id={"confirm-password"}
+                  name={"confirm-password"}
+                  type={"password"}
+                  label={"Password Confirm"}
+                  placeholder={"••••••••"}
+                  required={true}
+                />
+              </div>
+              <div className="w-full">
+                <Input
+                  value={values.number}
+                  onChange={handleChange}
+                  id={"phone"}
+                  name={"phone"}
+                  type={"phone"}
+                  label={"Phone Number"}
+                  placeholder={"+628••••••••"}
+                  required={true}
+                />
+              </div>
+              <div className="w-full">
+                <Input
+                  value={values.date}
+                  onChange={handleChange}
+                  id={"date-of-birth"}
+                  name={"date-of-birth"}
+                  type={"date"}
+                  label={"Date of Birth"}
+                  placeholder={"Date of Birth"}
+                  required={true}
+                />
+              </div>
+              <div className="w-full">
+                <InputFile
+                  value={values.file}
+                  onChange={handleChange}
+                  id={"photo"}
+                  name={"photo"}
+                  label={"Upload Photo"}
+                  help={"Ext: jpg, jpeg, png. Max: 1024MB"}
+                  required={false}
+                />
+              </div>
+              <div className="w-full">
                 <Option
+                  value={values.gender}
+                  onChange={handleChange}
                   id={"gender"}
                   name={"gender"}
                   label={"Gender"}
-                  value={user.gender}
                   required={true}
                   selected={[
-                    {
-                      key: "",
-                      value: user.gender || "",
-                      label: user.gender || "",
-                    },
+                    { key: "", value: "", label: "Choose Your Selected" },
                   ]}
                   data={[
                     { value: "male", label: "Male" },
@@ -138,28 +152,16 @@ const EditUser = () => {
                   ]}
                 />
               </div>
-              <div className="col-span-6">
-                <TextArea
-                  id={"biography"}
-                  name={"biography"}
-                  label={"Biography"}
-                  value={user.biography || ""}
-                  rows={4}
-                  required={false}
-                />
-              </div>
-              <div className="col-span-6 sm:col-span-3">
+              <div className="w-full">
                 <Option
+                  value={values.position}
+                  onChange={handleChange}
                   id={"position"}
                   name={"position"}
                   label={"Position"}
                   required={true}
                   selected={[
-                    {
-                      key: "",
-                      value: user.position || "",
-                      label: user.position || "",
-                    },
+                    { key: "", value: "", label: "Choose Your Selected" },
                   ]}
                   data={[
                     {
@@ -170,7 +172,10 @@ const EditUser = () => {
                       value: "Frontend Developer",
                       label: "Frontend Developer",
                     },
-                    { value: "Backend Developer", label: "Backend Developer" },
+                    {
+                      value: "Backend Developer",
+                      label: "Backend Developer",
+                    },
                     { value: "Data Analyts", label: "Data Analyts" },
                     { value: "Data Science", label: "Data Science" },
                     { value: "UI/UX", label: "UI/UX" },
@@ -179,33 +184,49 @@ const EditUser = () => {
                   ]}
                 />
               </div>
-              <div className="col-span-6 sm:col-span-3">
+              <div className="w-full">
                 <Option
+                  value={values.country}
+                  onChange={handleChange}
                   id={"country"}
                   name={"country"}
                   label={"Country"}
                   required={true}
                   selected={[
-                    {
-                      key: "",
-                      value: user.country || "",
-                      label: user.country || "",
-                    },
+                    { key: "", value: "", label: "Choose Your Selected" },
                   ]}
                   data={[
                     { value: "Indonesia", label: "Indonesia" },
+                    { value: "Palestine", label: "Palestine" },
                     { value: "Malaysia", label: "Malaysia" },
                     { value: "China", label: "China" },
                     { value: "Japan", label: "Japan" },
                     { value: "India", label: "India" },
                     { value: "United State", label: "United State" },
                     { value: "Egypt", label: "Egypt" },
-                    { value: "Palestine", label: "Palestine" },
                   ]}
                 />
               </div>
-            </Card>
-          </div>
+              <div className="sm:col-span-2">
+                <TextArea
+                  value={values.biography}
+                  onChange={handleChange}
+                  id={"biography"}
+                  name={"biography"}
+                  label={"Biography"}
+                  rows={4}
+                  required={true}
+                />
+              </div>
+            </div>
+            <Button
+              id={"btnUpdate"}
+              type={"submit"}
+              label={"Submit"}
+              color={"blue"}
+              icon={<FaSave className="w-5 h-5 mr-2 -ml-1" />}
+            />
+          </form>
         </div>
       </PanelLayout>
     </>

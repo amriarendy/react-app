@@ -20,7 +20,7 @@ const HrefText = ({ label, color, route }) => {
     <>
       <Link
         to={route}
-        className={`ml-auto text-sm text-${color}-700 hover:underline dark:text-${color}-500`}
+        className={`ml-auto font-medium text-${color}-700 hover:underline dark:text-${color}-500`}
       >
         {label}
       </Link>

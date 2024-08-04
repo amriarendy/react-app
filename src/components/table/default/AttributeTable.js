@@ -1,7 +1,6 @@
 import { Button } from "../../ui/Button";
 import { Href } from "../../ui/Href";
-import { InputSearchDefault } from "../../ui/Input";
-import { FaPlus } from "react-icons/fa";
+import { InputSearch } from "../../ui/Input";
 
 const AttributeTable = ({ attribute, toggleModal }) => {
   return (
@@ -10,7 +9,7 @@ const AttributeTable = ({ attribute, toggleModal }) => {
         <div className="w-full md:w-1/2">
           {attribute.search && (
             <form className="flex items-center">
-              <InputSearchDefault />
+              <InputSearch />
             </form>
           )}
         </div>
@@ -23,25 +22,9 @@ const AttributeTable = ({ attribute, toggleModal }) => {
                 label="Add Data"
                 color="blue"
                 onClick={toggleModal}
-                icon={
-                  <FaPlus
-                    className="w-3.5 h-3.5 mr-2 mt-1 -ml-1"
-                    fill="currentColor"
-                  />
-                }
               />
             ) : (
-              <Href
-                route={attribute.add.route}
-                label="Add Data"
-                color="blue"
-                icon={
-                  <FaPlus
-                    className="w-3.5 h-3.5 mr-2 mt-1 -ml-1"
-                    fill="currentColor"
-                  />
-                }
-              />
+              <Href route={attribute.add.route} label="Add Data" color="blue" />
             ))}
         </div>
       </div>

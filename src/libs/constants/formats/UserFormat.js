@@ -8,7 +8,7 @@ export const USER_FORMAT_TABLE = {
     { key: "action", label: "Action" },
   ],
   attribute: {
-    no: true,
+    number: true,
     checkbox: true,
     add: {
       route: "/user/add",

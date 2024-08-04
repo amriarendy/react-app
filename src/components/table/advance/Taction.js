@@ -3,9 +3,9 @@ import { FaRegTrashAlt, FaEdit } from "react-icons/fa";
 import { Href } from "../../ui/Href";
 
 const Taction = ({ attribute, toggleModal, param }) => {
-    return (
-        <>
-              <td className="p-4 space-x-2 whitespace-nowrap">
+  return (
+    <>
+      <td className="p-4 space-x-2 whitespace-nowrap">
         {attribute.edit &&
           (attribute.edit.route === "toggleEditModal" ? (
             <Button
@@ -41,8 +41,8 @@ const Taction = ({ attribute, toggleModal, param }) => {
             />
           ))}
       </td>
-        </>
-    )
-}
+    </>
+  );
+};
 
 export default Taction;

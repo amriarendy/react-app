@@ -12,13 +12,13 @@ export const TABLE_DEFAULT_FORMAT = {
     { key: "action", label: "Action" },
   ],
   attribute: {
-    no: true,
+    number: true,
     checkbox: true,
     add: {
       route: "toggleAddModal",
     },
     edit: {
-      route: "toggleEditModal",
+      route: "/template/form",
     },
     delete: {
       route: "/template/form",

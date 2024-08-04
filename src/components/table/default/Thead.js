@@ -3,7 +3,7 @@ const Thead = ({ attribute, thead }) => {
     <>
       <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
-          {attribute.no && (
+          {attribute.number && (
             <th scope="col" className="px-4 py-3">
               No.
             </th>

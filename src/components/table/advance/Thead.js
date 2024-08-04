@@ -13,7 +13,7 @@ const Thead = ({ attribute, thead }) => {
             </th>
           )}
 
-          {attribute.no && (
+          {attribute.number && (
             <th
               scope="col"
               className="p-4 text-xs text-center text-gray-900 uppercase dark:text-gray-400"

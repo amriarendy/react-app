@@ -6,7 +6,10 @@ import Table from "../../../components/table/default/Table";
 import Thead from "../../../components/table/default/Thead";
 import Tfoot from "../../../components/table/default/Tfoot";
 import Taction from "../../../components/table/default/Taction";
-import { TABLE_DEFAULT_FORMAT, ADD_TABLE_DEFAULT_FORMAT } from "../../../libs/constants/formats/TableTemplate";
+import {
+  TABLE_DEFAULT_FORMAT,
+  ADD_TABLE_DEFAULT_FORMAT,
+} from "../../../libs/constants/formats/TableTemplate";
 import useDummy from "../../../hooks/useDummy";
 import Modal from "../../../components/modal/Modal";
 
@@ -24,7 +27,7 @@ const TableDefault = () => {
   const toggleAddModal = () => {
     setIsAddModalOpen(!isAddModalOpen);
   };
-  
+
   const { data, loading, error } = useDummy("products");
 
   if (loading) {
@@ -43,7 +46,10 @@ const TableDefault = () => {
         <Breadcrumbs breadCrumbs={breadCrumbs} />
         <div className="mx-auto max-w-screen-xl mb-4 px-4 lg:px-12">
           <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-            <AttributeTable attribute={TABLE_DEFAULT_FORMAT.attribute} toggleModal={toggleAddModal} />
+            <AttributeTable
+              attribute={TABLE_DEFAULT_FORMAT.attribute}
+              toggleModal={toggleAddModal}
+            />
             <Table>
               <Thead
                 thead={TABLE_DEFAULT_FORMAT.th}
@@ -62,6 +68,7 @@ const TableDefault = () => {
                       </td>
                       <td className="px-4 py-3">${item.price}</td>
                       <Taction
+                        index={index}
                         taction={item}
                         attribute={TABLE_DEFAULT_FORMAT.attribute}
                       />
@@ -80,11 +87,8 @@ const TableDefault = () => {
           </div>
         </div>
         {/* Modal */}
-          {isAddModalOpen && (
-          <Modal
-            body={ADD_TABLE_DEFAULT_FORMAT}
-            toggleModal={toggleAddModal}
-          />
+        {isAddModalOpen && (
+          <Modal body={ADD_TABLE_DEFAULT_FORMAT} toggleModal={toggleAddModal} />
         )}
       </PanelLayout>
     </>
