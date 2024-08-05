@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PanelLayout from "../PanelLayout";
 import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
 import AttributeTable from "../../../components/table/default/AttributeTable";
@@ -45,10 +45,11 @@ const Hashtag = () => {
   );
   const navigate = useNavigate();
 
-  async function handleSubmit() {
+  async function handleSubmit(e) {
+    e.preventDefault();
     try {
       await store("tags", values);
-      navigate("/master/tag");
+      // navigate("/master/tag");
     } catch (error) {
       console.error(error);
     }

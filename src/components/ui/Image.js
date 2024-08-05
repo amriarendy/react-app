@@ -61,7 +61,7 @@ export function ImageSquareSmall({ id, src, alt }) {
 export function ImageRoundedSmall({ id, src, alt }) {
   return (
     <>
-      <img id={id} src={src} alt={alt} title={alt} className="w-9 h-9" />
+      <img id={id} src={src} alt={alt} title={alt} className="rounded-xl w-9 h-9" />
     </>
   );
 }
@@ -111,7 +111,7 @@ export function ImageGray({ id, route, src, alt, caption }) {
         </figcaption>
       </figure>
       <img
-        className="h-auto max-w-full transition-all duration-300 rounded-lg blur-sm hover:blur-none"
+        className="h-auto max-w-full transition-all duration-300 rounded-lg cursor-pointer filter grayscale hover:grayscale-0"
         src={src}
         alt={alt}
         title={alt}
@@ -131,6 +131,20 @@ export function ImageGrayCaption({ id, route, src, alt, caption }) {
           <p>{caption}</p>
         </figcaption>
       </figure>
+    </>
+  );
+}
+
+export function ImageBlur({ id, src, alt }) {
+  return (
+    <>
+    <img
+      id={id}
+      className="h-auto max-w-full transition-all duration-300 rounded-lg blur-sm hover:blur-none"
+      src={src}
+      alt={alt}
+      title={alt}
+    />
     </>
   );
 }

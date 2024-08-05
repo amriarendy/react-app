@@ -1,5 +1,6 @@
 export const BLOG_FORMAT_TABLE = {
   th: [
+    { key: "thumbnail", label: "Thumbnail" },
     { key: "title", label: "Title" },
     { key: "category", label: "Category" },
     { key: "description", label: "Description" },
