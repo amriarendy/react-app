@@ -8,6 +8,8 @@ import { FaSave } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../../hooks/useForm";
 import { store } from "../../../services/routeService";
+import React, { useState } from "react";
+import axios from "axios";
 
 const AddUser = () => {
   const breadCrumbs = {
@@ -17,35 +19,86 @@ const AddUser = () => {
       { page: "Add", route: "/user/add" },
     ],
   };
-
-  const { values, handleChange, setValues } = useForm(
-    {
-      id: 1,
-      email: "",
-      password: "",
-      name: "",
-      dob: "",
-      phone: "",
-      gender: "",
-      photo: "",
-      biography: "",
-      status: "active",
-      position: "",
-      country: "",
-    },
-    handleSubmit
-  );
   const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [dob, setDob] = useState("");
+  const [phone, setPhone] = useState("");
+  const [gender, setGender] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [biography, setBiography] = useState("");
+  const [status, setStatus] = useState("Active");
+  const [position, setPosition] = useState("");
+  const [country, setCountry] = useState("");
 
-  async function handleSubmit() {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("dob", dob);
+    formData.append("phone", phone);
+    formData.append("gender", gender);
+    if (photo) {
+      formData.append("photo", photo); // Pastikan photo adalah objek File
+    }
+    formData.append("biography", biography);
+    formData.append("status", status);
+    formData.append("position", position);
+    formData.append("country", country);
+    console.log("formData: ", formData);
     try {
-      await store("users", values);
+      await axios.post("http://localhost:3001/users", formData, {
+        headers: {
+          "Content-type": "multipart/form-data",
+        },
+      });
       navigate("/user");
     } catch (error) {
-      console.error(error);
+      if (error.response) {
+        // Request made and server responded with a status code outside of 2xx
+        console.error("Server responded with an error:", error.response.data);
+        console.error("Server status code:", error.response.status);
+        console.error("Server headers:", error.response.headers);
+      } else if (error.request) {
+        // Request was made but no response received
+        console.error("No response received:", error.request);
+      } else {
+        // Something else caused the error
+        console.error("Error message:", error.message);
+      }
     }
-  }
-  const imageClass = "mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0";
+  };
+
+  // const { values, handleChange, setValues } = useForm(
+  //   {
+  //     id: 1,
+  //     email: "",
+  //     password: "",
+  //     name: "",
+  //     dob: "",
+  //     phone: "",
+  //     gender: "",
+  //     photo: "",
+  //     biography: "",
+  //     status: "active",
+  //     position: "",
+  //     country: "",
+  //   },
+  //   handleSubmit
+  // );
+
+  // async function handleSubmit(e) {
+  //   e.preventDefault();
+  //   try {
+  //     await store("users", values);
+  //     navigate("/user");
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
   return (
     <>
       <PanelLayout>
@@ -58,8 +111,8 @@ const AddUser = () => {
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 dark:border-gray-700 dark:bg-gray-800">
               <div className="sm:col-span-2">
                 <Input
-                  value={values.name}
-                  onChange={handleChange}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   id={"text"}
                   name={"text"}
                   type={"text"}
@@ -70,8 +123,8 @@ const AddUser = () => {
               </div>
               <div className="sm:col-span-2">
                 <Input
-                  value={values.email}
-                  onChange={handleChange}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   id={"email"}
                   name={"email"}
                   type={"email"}
@@ -82,8 +135,8 @@ const AddUser = () => {
               </div>
               <div className="w-full">
                 <Input
-                  value={values.password}
-                  onChange={handleChange}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   id={"password"}
                   name={"password"}
                   type={"password"}
@@ -94,8 +147,6 @@ const AddUser = () => {
               </div>
               <div className="w-full">
                 <Input
-                  value={values.password}
-                  onChange={handleChange}
                   id={"confirm-password"}
                   name={"confirm-password"}
                   type={"password"}
@@ -106,8 +157,8 @@ const AddUser = () => {
               </div>
               <div className="w-full">
                 <Input
-                  value={values.number}
-                  onChange={handleChange}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   id={"phone"}
                   name={"phone"}
                   type={"phone"}
@@ -118,8 +169,8 @@ const AddUser = () => {
               </div>
               <div className="w-full">
                 <Input
-                  value={values.date}
-                  onChange={handleChange}
+                  value={dob}
+                  onChange={(e) => setDob(e.target.value)}
                   id={"date-of-birth"}
                   name={"date-of-birth"}
                   type={"date"}
@@ -129,20 +180,29 @@ const AddUser = () => {
                 />
               </div>
               <div className="w-full">
-                <InputFile
-                  value={values.file}
-                  onChange={handleChange}
+                <Input
+                  value={photo}
+                  onChange={(e) => setPhoto(e.target.value)}
+                  id={"photo"}
+                  name={"photo"}
+                  type={"text"}
+                  label={"Photo"}
+                  placeholder={"Photo"}
+                  required={true}
+                />
+                {/* <InputFile
+                  onChange={(e) => setPhoto(e.target.value)}
                   id={"photo"}
                   name={"photo"}
                   label={"Upload Photo"}
                   help={"Ext: jpg, jpeg, png. Max: 1024MB"}
                   required={false}
-                />
+                /> */}
               </div>
               <div className="w-full">
                 <Option
-                  value={values.gender}
-                  onChange={handleChange}
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
                   id={"gender"}
                   name={"gender"}
                   label={"Gender"}
@@ -158,8 +218,8 @@ const AddUser = () => {
               </div>
               <div className="w-full">
                 <Option
-                  value={values.position}
-                  onChange={handleChange}
+                  value={position}
+                  onChange={(e) => setPosition(e.target.value)}
                   id={"position"}
                   name={"position"}
                   label={"Position"}
@@ -190,8 +250,8 @@ const AddUser = () => {
               </div>
               <div className="w-full">
                 <Option
-                  value={values.country}
-                  onChange={handleChange}
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
                   id={"country"}
                   name={"country"}
                   label={"Country"}
@@ -213,8 +273,8 @@ const AddUser = () => {
               </div>
               <div className="sm:col-span-2">
                 <TextArea
-                  value={values.biography}
-                  onChange={handleChange}
+                  value={biography}
+                  onChange={(e) => setBiography(e.target.value)}
                   id={"biography"}
                   name={"biography"}
                   label={"Biography"}

@@ -15,7 +15,7 @@ const PanelLayout = ({ children }) => {
           <main>
             <section className="min-h-screen">{children}</section>
           </main>
-        <FooterPanel />
+          <FooterPanel />
         </div>
       </div>
     </>

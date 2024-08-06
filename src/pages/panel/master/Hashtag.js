@@ -49,7 +49,7 @@ const Hashtag = () => {
     e.preventDefault();
     try {
       await store("tags", values);
-      // navigate("/master/tag");
+      navigate("/master/hashtag");
     } catch (error) {
       console.error(error);
     }
