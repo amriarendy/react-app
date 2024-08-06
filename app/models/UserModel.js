@@ -8,9 +8,12 @@ const User = db.define(
   {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
+    password: DataTypes.STRING,
+    dob: DataTypes.STRING,
     gender: DataTypes.STRING,
-    avatar: DataTypes.STRING,
+    photo: DataTypes.STRING,
     biography: DataTypes.STRING,
+    status: DataTypes.STRING,
     position: DataTypes.STRING,
     country: DataTypes.STRING,
   },
