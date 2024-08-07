@@ -120,7 +120,7 @@ const User = () => {
               ))
             ) : (
               <tr>
-                <td colSpan={7} className="px-4 py-3 text-center">
+                <td colSpan={8} className="px-4 py-3 text-center">
                   Data Not Found
                 </td>
               </tr>
