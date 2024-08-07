@@ -7,9 +7,10 @@ import { Button } from "../../../components/ui/Button";
 import { FaSave } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../../hooks/useForm";
-import { store } from "../../../services/routeService";
+import { store, storeForm } from "../../../services/routeService";
 import React, { useState } from "react";
 import axios from "axios";
+import { SERVER_API } from "../../../services/api";
 
 const AddUser = () => {
   const breadCrumbs = {
@@ -20,46 +21,6 @@ const AddUser = () => {
     ],
   };
   const navigate = useNavigate();
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [dob, setDob] = useState("");
-  // const [phone, setPhone] = useState("");
-  // const [gender, setGender] = useState("");
-  // const [photo, setPhoto] = useState("");
-  // const [biography, setBiography] = useState("");
-  // const [status, setStatus] = useState("Active");
-  // const [position, setPosition] = useState("");
-  // const [country, setCountry] = useState("");
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData();
-  //   formData.append("name", name);
-  //   formData.append("email", email);
-  //   formData.append("password", password);
-  //   formData.append("dob", dob);
-  //   formData.append("phone", phone);
-  //   formData.append("gender", gender);
-  //   if (photo) {
-  //     formData.append("photo", photo); // Pastikan photo adalah objek File
-  //   }
-  //   formData.append("biography", biography);
-  //   formData.append("status", status);
-  //   formData.append("position", position);
-  //   formData.append("country", country);
-  //   console.log("formData: ", formData);
-  //   try {
-  //     await axios.post("http://localhost:3001/users", formData, {
-  //       headers: {
-  //         "Content-type": "multipart/form-data",
-  //       },
-  //     });
-  //     navigate("/user");
-  //   } catch (error) {
-  //     console.error("Error message:", error.message);
-  //   }
-  // };
 
   const initialFormValues = {
     name: "",
@@ -74,30 +35,31 @@ const AddUser = () => {
     position: "",
     country: "",
   };
-  
-  const { values, handleChange, resetForm } = useForm(initialFormValues);
 
+  const { values, handleChange, resetForm } = useForm(initialFormValues);
+  console.log(values.dob);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    
-    Object.keys(values).forEach(key => {
+
+    Object.keys(values).forEach((key) => {
       if (values[key]) {
         formData.append(key, values[key]);
       }
     });
-    
+
     try {
-      await axios.post("http://localhost:3001/users", formData, {
-        headers: {
-          "Content-type": "multipart/form-data",
-        },
-      });
+      await store("/users", formData);
+      // await axios.post("http://localhost:3001/users", formData, {
+      //   headers: {
+      //     "Content-type": "multipart/form-data",
+      //   },
+      // });
       navigate("/user");
     } catch (error) {
       console.error("Error message:", error.message);
     }
-  }
+  };
   return (
     <>
       <PanelLayout>
@@ -109,7 +71,7 @@ const AddUser = () => {
           <form onSubmit={handleSubmit}>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 dark:border-gray-700 dark:bg-gray-800">
               <div className="sm:col-span-2">
-              <Input
+                <Input
                   value={values.name}
                   onChange={handleChange}
                   id={"name"}
@@ -170,12 +132,12 @@ const AddUser = () => {
                 <Input
                   value={values.dob}
                   onChange={handleChange}
-                  id={"date-of-birth"}
-                  name={"date-of-birth"}
+                  id={"dob"}
+                  name={"dob"}
                   type={"date"}
                   label={"Date of Birth"}
-                  placeholder={"Date of Birth"}
-                  required={false}
+                  placeholder={"type here"}
+                  required={true}
                 />
               </div>
               <div className="w-full">

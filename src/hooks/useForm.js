@@ -8,7 +8,7 @@ const useForm = (initialValues) => {
     const { name, value, type, files } = e.target;
     setValues({
       ...values,
-      [name]: type === 'file' ? files[0] : value,
+      [name]: type === "file" ? files[0] : value,
     });
   };
 

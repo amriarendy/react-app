@@ -13,6 +13,7 @@ import useForm from "../../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import { store } from "../../../services/routeService";
 import { Input } from "../../../components/ui/Input";
+import axios from "axios";
 
 const Hashtag = () => {
   const breadCrumbs = {
@@ -48,7 +49,7 @@ const Hashtag = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await store("tags", values);
+      await store("/master/tags", values);
       navigate("/master/hashtag");
     } catch (error) {
       console.error(error);
@@ -56,7 +57,7 @@ const Hashtag = () => {
   }
 
   // fetch data
-  const { data, loading, error } = useFetch("/tags");
+  const { data, loading, error } = useFetch("/master/tags");
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
