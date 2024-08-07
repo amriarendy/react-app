@@ -9,10 +9,10 @@ import {
 
 const router = express.Router();
 
-router.get("/tags", getAll);
-router.get("/tags/:id", getWhere);
-router.post("/tags", store);
-router.patch("/tags/:id", update);
-router.delete("/tags/:id", destroy);
+router.get("/master/tags", getAll);
+router.get("/master/tags/:id", getWhere);
+router.post("/master/tags", store);
+router.patch("/master/tags/:id", update);
+router.delete("/master/tags/:id", destroy);
 
 export default router;
