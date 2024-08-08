@@ -87,6 +87,32 @@ export const store = async (req, res) => {
 };
 
 export const update = async (req, res) => {
+  const getWhere = await User.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+  if (!getWhere) return res.status(404).json({code: 404, status: "success", message: "Data not found"});
+  let fileName = "";
+  if (req.files === null) {
+    fileName = getWhere.photo;
+  } else {
+    const file = req.files.file;
+    const fileSize = file.data.length;
+    const ext = path.extname(file.name);
+    fileName = file.md5 + ext;
+    const allowedType = [".jpg", ".jpeg", ".png"];
+
+    if(!allowedType.includes(ext.toLowerCase())) return res.status(422).json({code: 422, status: "error", message: "Invalid image!"});
+    if(fileSize > 5000000) return res.status(422).json({code: 422, status: "error", message: "File must be lower 5mb"});
+
+    const filepath = `./public/uploads/profile/${getWhere.photo}`;
+    fs.unlinkSync(filepath);
+
+    file.mv(`./public/images/${fileName}`, (err)=>{
+        if(err) return res.status(500).json({msg: err.message});
+    });
+  }
   try {
     await User.update(req, body, {
       where: {
