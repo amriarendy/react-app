@@ -11,6 +11,7 @@ import { store, storeForm } from "../../../services/routeService";
 import React, { useState } from "react";
 import axios from "axios";
 import { SERVER_API } from "../../../services/api";
+import { type } from "@testing-library/user-event/dist/type";
 
 const AddUser = () => {
   const breadCrumbs = {
@@ -29,7 +30,7 @@ const AddUser = () => {
     dob: "",
     phone: "",
     gender: "",
-    photo: null, // `null` for file input
+    photo: null,
     biography: "",
     status: "Active",
     position: "",
@@ -47,9 +48,9 @@ const AddUser = () => {
         formData.append(key, values[key]);
       }
     });
-
+    const ContentType = "multipart/form-data";
     try {
-      await store("/users", formData);
+      await store("/users", ContentType, formData);
       // await axios.post("http://localhost:3001/users", formData, {
       //   headers: {
       //     "Content-type": "multipart/form-data",
@@ -60,6 +61,7 @@ const AddUser = () => {
       console.error("Error message:", error.message);
     }
   };
+  
   return (
     <>
       <PanelLayout>

@@ -7,7 +7,7 @@ import { Button } from "../../../components/ui/Button";
 import { FaSave } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../../hooks/useForm";
-import { store } from "../../../services/routeService";
+import { update } from "../../../services/routeService";
 import { useParams } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
 
@@ -19,29 +19,44 @@ const EditUser = () => {
       { page: "Edit", route: "/user/edit" },
     ],
   };
-  const { values, handleChange, setValues } = useForm(
-    {
-      name: "",
-      email: "",
-      password: "",
-      avatar: "",
-      gender: "",
-      biography: "",
-      position: "",
-      country: "",
-    },
-    handleSubmit
-  );
+  const { param } = useParams();
+  const { data, loading, error } = useFetch(`/users/${param}`);
+  
   const navigate = useNavigate();
 
-  async function handleSubmit() {
+  const initialFormValues = {
+    name: "",
+    email: "",
+    password: "",
+    dob: "",
+    phone: "",
+    gender: "",
+    photo: null,
+    biography: "",
+    status: "Active",
+    position: "",
+    country: "",
+  };
+
+  const { values, handleChange, resetForm } = useForm(initialFormValues);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+
+    Object.keys(values).forEach((key) => {
+      if (values[key]) {
+        formData.append(key, values[key]);
+      }
+    });
+    
+    const ContentType = "multipart/form-data";
     try {
-      await store("users", values);
+      await update("/users", ContentType, formData);
       navigate("/user");
     } catch (error) {
-      console.error(error);
+      console.error("Error message:", error.message);
     }
-  }
+  };
   return (
     <>
       <PanelLayout>
@@ -52,9 +67,17 @@ const EditUser = () => {
           </h2>
           <form onSubmit={handleSubmit}>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 dark:border-gray-700 dark:bg-gray-800">
+                <Input
+                  value={param}
+                  onChange={handleChange}
+                  id={"id"}
+                  name={"id"}
+                  type={"hidden"}
+                  required={false}
+                />
               <div className="sm:col-span-2">
                 <Input
-                  value={values.name}
+                  value={data.name}
                   onChange={handleChange}
                   id={"text"}
                   name={"text"}
@@ -66,7 +89,7 @@ const EditUser = () => {
               </div>
               <div className="sm:col-span-2">
                 <Input
-                  value={values.email}
+                  value={data.email}
                   onChange={handleChange}
                   id={"email"}
                   name={"email"}
@@ -78,7 +101,7 @@ const EditUser = () => {
               </div>
               <div className="w-full">
                 <Input
-                  value={values.password}
+                  value={data.password}
                   onChange={handleChange}
                   id={"password"}
                   name={"password"}
@@ -90,7 +113,7 @@ const EditUser = () => {
               </div>
               <div className="w-full">
                 <Input
-                  value={values.password}
+                  value={data.password}
                   onChange={handleChange}
                   id={"confirm-password"}
                   name={"confirm-password"}
@@ -102,7 +125,7 @@ const EditUser = () => {
               </div>
               <div className="w-full">
                 <Input
-                  value={values.number}
+                  value={data.phone}
                   onChange={handleChange}
                   id={"phone"}
                   name={"phone"}
@@ -114,7 +137,7 @@ const EditUser = () => {
               </div>
               <div className="w-full">
                 <Input
-                  value={values.date}
+                  value={data.dob}
                   onChange={handleChange}
                   id={"date-of-birth"}
                   name={"date-of-birth"}
@@ -126,7 +149,7 @@ const EditUser = () => {
               </div>
               <div className="w-full">
                 <InputFile
-                  value={values.file}
+                  value={values.photo}
                   onChange={handleChange}
                   id={"photo"}
                   name={"photo"}
@@ -144,7 +167,7 @@ const EditUser = () => {
                   label={"Gender"}
                   required={true}
                   selected={[
-                    { key: "", value: "", label: "Choose Your Selected" },
+                    { key: "", value: `${data.gender}`, label: `${data.gender}` },
                   ]}
                   data={[
                     { value: "male", label: "Male" },
@@ -161,7 +184,7 @@ const EditUser = () => {
                   label={"Position"}
                   required={true}
                   selected={[
-                    { key: "", value: "", label: "Choose Your Selected" },
+                    { key: "", value: `${data.gender}`, label: `${data.position}` },
                   ]}
                   data={[
                     {
@@ -186,14 +209,14 @@ const EditUser = () => {
               </div>
               <div className="w-full">
                 <Option
-                  value={values.country}
+                  value={data.country}
                   onChange={handleChange}
                   id={"country"}
                   name={"country"}
                   label={"Country"}
                   required={true}
                   selected={[
-                    { key: "", value: "", label: "Choose Your Selected" },
+                    { key: "", value:`${data.country}`, label: `${data.country}` },
                   ]}
                   data={[
                     { value: "Indonesia", label: "Indonesia" },
@@ -209,7 +232,7 @@ const EditUser = () => {
               </div>
               <div className="sm:col-span-2">
                 <TextArea
-                  value={values.biography}
+                  value={data.biography}
                   onChange={handleChange}
                   id={"biography"}
                   name={"biography"}

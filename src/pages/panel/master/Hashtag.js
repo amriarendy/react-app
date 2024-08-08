@@ -49,7 +49,8 @@ const Hashtag = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await store("/master/tags", values);
+      const ContentType = "application/json";
+      await store("/master/tags", ContentType, values);
       navigate("/master/hashtag");
     } catch (error) {
       console.error(error);

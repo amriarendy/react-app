@@ -2,7 +2,7 @@ import { Button } from "../../ui/Button";
 import { FaRegTrashAlt, FaEdit } from "react-icons/fa";
 import { Href } from "../../ui/Href";
 
-const Taction = ({ attribute, toggleModal, param }) => {
+const Taction = ({ attribute, toggleModal, taction }) => {
   return (
     <>
       <td className="p-4 space-x-2 whitespace-nowrap">
@@ -17,7 +17,7 @@ const Taction = ({ attribute, toggleModal, param }) => {
             />
           ) : (
             <Href
-              route={`${attribute.edit.route}/${param}`}
+              route={`${attribute.edit.route}/${taction.id}`}
               label="Edit"
               color="blue"
               icon={<FaEdit className="w-5 h-5 mr-2 -ml-1" />}

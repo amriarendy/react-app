@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import DataDummy from "../dummy.json"; // Ganti dengan path yang sesuai
+import DataDummy from "../dummy.json";
 
 const useDummy = (endpoint) => {
   const [data, setData] = useState(null);
@@ -9,7 +9,6 @@ const useDummy = (endpoint) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Mengambil data sesuai dengan endpoint yang dipilih
         const result = DataDummy[endpoint];
         setData(result);
       } catch (error) {
