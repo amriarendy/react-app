@@ -10,6 +10,9 @@ import useForm from "../../../hooks/useForm";
 import { update } from "../../../services/routeService";
 import { useParams } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { SERVER_API } from "../../../services/api";
 
 const EditUser = () => {
   const breadCrumbs = {
@@ -19,44 +22,70 @@ const EditUser = () => {
       { page: "Edit", route: "/user/edit" },
     ],
   };
-  const { param } = useParams();
-  const { data, loading, error } = useFetch(`/users/${param}`);
-  
   const navigate = useNavigate();
+  const { param } = useParams();
 
-  const initialFormValues = {
-    name: "",
-    email: "",
-    password: "",
-    dob: "",
-    phone: "",
-    gender: "",
-    photo: null,
-    biography: "",
-    status: "Active",
-    position: "",
-    country: "",
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [dob, setDob] = useState("");
+  const [phone, setPhone] = useState("");
+  const [gender, setGender] = useState("");
+  const [photo, setPhoto] = useState(null);
+  const [biography, setBiography] = useState("");
+  const [status, setStatus] = useState("Active");
+  const [position, setPosition] = useState("");
+  const [country, setCountry] = useState("");
+
+  useEffect(() => {
+    getWhere();
+  }, []);
+
+  // const { data, loading, error } = useFetch(`/users/${param}`);
+  const getWhere = async () => {
+    const response = await axios.get(`http://localhost:3001/users/${param}`);
+    setName(response.data.name);
+    setEmail(response.data.email);
+    setPassword(response.data.password);
+    setDob(response.data.dob);
+    setPhone(response.data.phone);
+    setGender(response.data.gender);
+    setBiography(response.data.biography);
+    setStatus(response.data.status);
+    setPosition(response.data.position);
+    setCountry(response.data.country);
   };
 
-  const { values, handleChange, resetForm } = useForm(initialFormValues);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("dob", dob);
+    formData.append("phone", phone);
+    formData.append("gender", gender);
+    if (photo) {
+      formData.append("photo", photo);
+    }
+    formData.append("biography", biography);
+    formData.append("status", status);
+    formData.append("position", position);
+    formData.append("country", country);
+    console.log("formData: ", formData);
 
-    Object.keys(values).forEach((key) => {
-      if (values[key]) {
-        formData.append(key, values[key]);
-      }
-    });
-    
-    const ContentType = "multipart/form-data";
     try {
-      await update("/users", ContentType, formData);
+      await axios.patch(`http://localhost:3001/users/${param}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       navigate("/user");
     } catch (error) {
-      console.error("Error message:", error.message);
+      console.log(error);
     }
   };
+
   return (
     <>
       <PanelLayout>
@@ -67,42 +96,42 @@ const EditUser = () => {
           </h2>
           <form onSubmit={handleSubmit}>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 dark:border-gray-700 dark:bg-gray-800">
-                <Input
-                  value={param}
-                  onChange={handleChange}
-                  id={"id"}
-                  name={"id"}
-                  type={"hidden"}
-                  required={false}
-                />
+              <Input
+                value={param}
+                onChange={(e) => setName(e.target.value)}
+                id={"id"}
+                name={"id"}
+                type={"hidden"}
+                required={false}
+              />
               <div className="sm:col-span-2">
                 <Input
-                  value={data.name}
-                  onChange={handleChange}
-                  id={"text"}
-                  name={"text"}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  id={"name"}
+                  name={"name"}
                   type={"text"}
                   label={"Full Name"}
-                  placeholder={"Full Name"}
+                  placeholder={"full name"}
                   required={true}
                 />
               </div>
               <div className="sm:col-span-2">
                 <Input
-                  value={data.email}
-                  onChange={handleChange}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   id={"email"}
                   name={"email"}
                   type={"email"}
                   label={"Email"}
-                  placeholder={"Active Email"}
+                  placeholder={"active email"}
                   required={true}
                 />
               </div>
               <div className="w-full">
                 <Input
-                  value={data.password}
-                  onChange={handleChange}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   id={"password"}
                   name={"password"}
                   type={"password"}
@@ -113,8 +142,7 @@ const EditUser = () => {
               </div>
               <div className="w-full">
                 <Input
-                  value={data.password}
-                  onChange={handleChange}
+                  value={password}
                   id={"confirm-password"}
                   name={"confirm-password"}
                   type={"password"}
@@ -125,8 +153,8 @@ const EditUser = () => {
               </div>
               <div className="w-full">
                 <Input
-                  value={data.phone}
-                  onChange={handleChange}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   id={"phone"}
                   name={"phone"}
                   type={"phone"}
@@ -137,8 +165,8 @@ const EditUser = () => {
               </div>
               <div className="w-full">
                 <Input
-                  value={data.dob}
-                  onChange={handleChange}
+                  value={dob}
+                  onChange={(e) => setDob(e.target.value)}
                   id={"date-of-birth"}
                   name={"date-of-birth"}
                   type={"date"}
@@ -149,8 +177,7 @@ const EditUser = () => {
               </div>
               <div className="w-full">
                 <InputFile
-                  value={values.photo}
-                  onChange={handleChange}
+                  onChange={(e) => setPhoto(e.target.files[0])}
                   id={"photo"}
                   name={"photo"}
                   label={"Upload Photo"}
@@ -160,14 +187,18 @@ const EditUser = () => {
               </div>
               <div className="w-full">
                 <Option
-                  value={values.gender}
-                  onChange={handleChange}
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
                   id={"gender"}
                   name={"gender"}
                   label={"Gender"}
                   required={true}
                   selected={[
-                    { key: "", value: `${data.gender}`, label: `${data.gender}` },
+                    {
+                      key: "",
+                      value: `${gender}`,
+                      label: `${gender}`,
+                    },
                   ]}
                   data={[
                     { value: "male", label: "Male" },
@@ -177,14 +208,18 @@ const EditUser = () => {
               </div>
               <div className="w-full">
                 <Option
-                  value={values.position}
-                  onChange={handleChange}
+                  value={position}
+                  onChange={(e) => setPosition(e.target.value)}
                   id={"position"}
                   name={"position"}
                   label={"Position"}
                   required={true}
                   selected={[
-                    { key: "", value: `${data.gender}`, label: `${data.position}` },
+                    {
+                      key: "",
+                      value: `${position}`,
+                      label: `${position}`,
+                    },
                   ]}
                   data={[
                     {
@@ -209,14 +244,18 @@ const EditUser = () => {
               </div>
               <div className="w-full">
                 <Option
-                  value={data.country}
-                  onChange={handleChange}
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
                   id={"country"}
                   name={"country"}
                   label={"Country"}
                   required={true}
                   selected={[
-                    { key: "", value:`${data.country}`, label: `${data.country}` },
+                    {
+                      key: "",
+                      value: `${country}`,
+                      label: `${country}`,
+                    },
                   ]}
                   data={[
                     { value: "Indonesia", label: "Indonesia" },
@@ -232,8 +271,8 @@ const EditUser = () => {
               </div>
               <div className="sm:col-span-2">
                 <TextArea
-                  value={data.biography}
-                  onChange={handleChange}
+                  value={biography}
+                  onChange={(e) => setBiography(e.target.value)}
                   id={"biography"}
                   name={"biography"}
                   label={"Biography"}

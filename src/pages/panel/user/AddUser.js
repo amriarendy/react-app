@@ -6,12 +6,9 @@ import TextArea from "../../../components/ui/TextArea";
 import { Button } from "../../../components/ui/Button";
 import { FaSave } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import useForm from "../../../hooks/useForm";
-import { store, storeForm } from "../../../services/routeService";
 import React, { useState } from "react";
 import axios from "axios";
-import { SERVER_API } from "../../../services/api";
-import { type } from "@testing-library/user-event/dist/type";
+import { passwordConfirm, required } from "../../../libs/utils/validate";
 
 const AddUser = () => {
   const breadCrumbs = {
@@ -23,45 +20,53 @@ const AddUser = () => {
   };
   const navigate = useNavigate();
 
-  const initialFormValues = {
-    name: "",
-    email: "",
-    password: "",
-    dob: "",
-    phone: "",
-    gender: "",
-    photo: null,
-    biography: "",
-    status: "Active",
-    position: "",
-    country: "",
-  };
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [dob, setDob] = useState("");
+  const [phone, setPhone] = useState("");
+  const [gender, setGender] = useState("");
+  const [photo, setPhoto] = useState(null);
+  const [biography, setBiography] = useState("");
+  const [status, setStatus] = useState("Active");
+  const [position, setPosition] = useState("");
+  const [country, setCountry] = useState("");
 
-  const { values, handleChange, resetForm } = useForm(initialFormValues);
-  console.log(values.dob);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
+    const passwordValidate = passwordConfirm(password, confirmPassword);
+    const requiredValidate = required(email, "email required");
+    alert(requiredValidate);
 
-    Object.keys(values).forEach((key) => {
-      if (values[key]) {
-        formData.append(key, values[key]);
-      }
-    });
-    const ContentType = "multipart/form-data";
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("dob", dob);
+    formData.append("phone", phone);
+    formData.append("gender", gender);
+    if (photo) {
+      formData.append("photo", photo);
+    }
+    formData.append("biography", biography);
+    formData.append("status", status);
+    formData.append("position", position);
+    formData.append("country", country);
+    console.log("formData: ", formData);
+
     try {
-      await store("/users", ContentType, formData);
-      // await axios.post("http://localhost:3001/users", formData, {
-      //   headers: {
-      //     "Content-type": "multipart/form-data",
-      //   },
-      // });
+      await axios.post(`http://localhost:3001/users/`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       navigate("/user");
     } catch (error) {
-      console.error("Error message:", error.message);
+      console.log(error);
     }
   };
-  
+
   return (
     <>
       <PanelLayout>
@@ -74,77 +79,79 @@ const AddUser = () => {
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 dark:border-gray-700 dark:bg-gray-800">
               <div className="sm:col-span-2">
                 <Input
-                  value={values.name}
-                  onChange={handleChange}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   id={"name"}
                   name={"name"}
                   type={"text"}
                   label={"Full Name"}
                   placeholder={"full name"}
-                  required={true}
+                  required={false}
                 />
               </div>
               <div className="sm:col-span-2">
                 <Input
-                  value={values.email}
-                  onChange={handleChange}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   id={"email"}
                   name={"email"}
                   type={"email"}
                   label={"Email"}
                   placeholder={"active email"}
-                  required={true}
+                  required={false}
                 />
               </div>
               <div className="w-full">
                 <Input
-                  value={values.password}
-                  onChange={handleChange}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   id={"password"}
                   name={"password"}
                   type={"password"}
                   label={"Password"}
                   placeholder={"••••••••"}
-                  required={true}
+                  required={false}
                 />
               </div>
               <div className="w-full">
                 <Input
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                   id={"confirm-password"}
                   name={"confirm-password"}
                   type={"password"}
                   label={"Password Confirm"}
                   placeholder={"••••••••"}
-                  required={true}
+                  required={false}
                 />
               </div>
               <div className="w-full">
                 <Input
-                  value={values.phone}
-                  onChange={handleChange}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   id={"phone"}
                   name={"phone"}
                   type={"number"}
                   label={"Phone Number"}
                   placeholder={"+628••••••••"}
-                  required={true}
+                  required={false}
                 />
               </div>
               <div className="w-full">
                 <Input
-                  value={values.dob}
-                  onChange={handleChange}
+                  value={dob}
+                  onChange={(e) => setDob(e.target.value)}
                   id={"dob"}
                   name={"dob"}
                   type={"date"}
                   label={"Date of Birth"}
                   placeholder={"type here"}
-                  required={true}
+                  required={false}
                 />
               </div>
               <div className="w-full">
                 <InputFile
-                  onChange={handleChange}
+                  onChange={(e) => setPhoto(e.target.files[0])}
                   id={"photo"}
                   name={"photo"}
                   label={"Upload Photo"}
@@ -154,12 +161,12 @@ const AddUser = () => {
               </div>
               <div className="w-full">
                 <Option
-                  value={values.gender}
-                  onChange={handleChange}
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
                   id={"gender"}
                   name={"gender"}
                   label={"Gender"}
-                  required={true}
+                  required={false}
                   selected={[
                     { key: "", value: "", label: "Choose Your Selected" },
                   ]}
@@ -171,12 +178,12 @@ const AddUser = () => {
               </div>
               <div className="w-full">
                 <Option
-                  value={values.position}
-                  onChange={handleChange}
+                  value={position}
+                  onChange={(e) => setPosition(e.target.value)}
                   id={"position"}
                   name={"position"}
                   label={"Position"}
-                  required={true}
+                  required={false}
                   selected={[
                     { key: "", value: "", label: "Choose Your Selected" },
                   ]}
@@ -203,12 +210,12 @@ const AddUser = () => {
               </div>
               <div className="w-full">
                 <Option
-                  value={values.country}
-                  onChange={handleChange}
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
                   id={"country"}
                   name={"country"}
                   label={"Country"}
-                  required={true}
+                  required={false}
                   selected={[
                     { key: "", value: "", label: "Choose Your Selected" },
                   ]}
@@ -226,13 +233,13 @@ const AddUser = () => {
               </div>
               <div className="sm:col-span-2">
                 <TextArea
-                  value={values.biography}
-                  onChange={handleChange}
+                  value={biography}
+                  onChange={(e) => setBiography(e.target.value)}
                   id={"biography"}
                   name={"biography"}
                   label={"Biography"}
                   rows={4}
-                  required={true}
+                  required={false}
                 />
               </div>
             </div>

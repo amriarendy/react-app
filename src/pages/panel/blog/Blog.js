@@ -9,7 +9,7 @@ import { BLOG_FORMAT_TABLE } from "../../../libs/constants/formats/BlogFormat";
 import useFetch from "../../../hooks/useFetch";
 import { useEffect, useState } from "react";
 import { ImageRoundedSmall } from "../../../components/ui/Image";
-import { imageCheck } from "../../../libs/utils";
+import { imageCheck } from "../../../libs/utils/image";
 import CheckBox from "../../../components/ui/CheckBox";
 
 const Blog = () => {

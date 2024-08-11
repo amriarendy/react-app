@@ -12,7 +12,7 @@ import { ImageCircleSmall } from "../ui/Image";
 import DataNotification from "../../dummy.json";
 import { Link } from "react-router-dom";
 import { ButtonIcon } from "../ui/Button";
-import { imageCheck } from "../../libs/utils";
+import { imageCheck } from "../../libs/utils/image";
 import useDummy from "../../hooks/useDummy";
 
 const Notification = () => {

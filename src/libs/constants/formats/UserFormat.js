@@ -17,7 +17,7 @@ export const USER_FORMAT_TABLE = {
       route: "/user/edit",
     },
     delete: {
-      route: "/user/delete",
+      route: false,
     },
     search: {
       route: "/user/search",

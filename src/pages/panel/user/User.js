@@ -9,8 +9,10 @@ import { USER_FORMAT_TABLE } from "../../../libs/constants/formats/UserFormat";
 import useFetch from "../../../hooks/useFetch";
 import { useEffect, useState } from "react";
 import { ImageCircleSmall } from "../../../components/ui/Image";
-import { imageCheck } from "../../../libs/utils";
+import { imageCheck } from "../../../libs/utils/image";
 import CheckBox from "../../../components/ui/CheckBox";
+import axios from "axios";
+import { SERVER_API } from "../../../services/api";
 
 const User = () => {
   const breadCrumbs = {
@@ -33,7 +35,7 @@ const User = () => {
         const status = {};
         await Promise.all(
           data.map(async (item) => {
-            const result = await imageCheck(`${item.photo}`);
+            const result = await imageCheck(`${item.urlPhoto}`);
             status[item.id] = result;
           })
         );
@@ -46,8 +48,14 @@ const User = () => {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
-  // Ensure data.users is defined before mapping
-  // if (!data || !data.users) return <div>No users found.</div>;
+
+  const destroy = async (param) => {
+    try {
+      await axios.delete(`http://localhost:3001/users/${param}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -79,7 +87,7 @@ const User = () => {
                     <ImageCircleSmall
                       src={
                         imageStatus[item.id]
-                          ? `${item.photo}`
+                          ? `${item.urlPhoto}`
                           : "https://placehold.co/150x150?text=Image+Not+Found"
                       }
                       alt={item.name}
@@ -115,6 +123,7 @@ const User = () => {
                   <Taction
                     taction={item}
                     attribute={USER_FORMAT_TABLE.attribute}
+                    destroy={destroy}
                   />
                 </tr>
               ))

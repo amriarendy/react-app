@@ -3,7 +3,7 @@ import { MdClose } from "react-icons/md";
 import Notification from "./Notification";
 import ProfileMenu from "./ProfileMenu";
 import DarkMode from "./DarkMode";
-import {Image} from "../ui/Image"
+import { Image } from "../ui/Image";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -26,8 +26,14 @@ const Header = () => {
                   fill="currentColor"
                 />
               </button>
-              <Link to={'#'} className="flex ml-2 md:mr-24">
-                <Image src={"https://flowbite-admin-dashboard.vercel.app/images/logo.svg"} alt={'logo'} className={"h-8 mr-3"} />
+              <Link to={"#"} className="flex ml-2 md:mr-24">
+                <Image
+                  src={
+                    "https://flowbite-admin-dashboard.vercel.app/images/logo.svg"
+                  }
+                  alt={"logo"}
+                  className={"h-8 mr-3"}
+                />
                 <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
                   Flowbite
                 </span>
