@@ -12,6 +12,8 @@ const User = db.define(
     dob: DataTypes.STRING,
     gender: DataTypes.STRING,
     photo: DataTypes.STRING,
+    urlPhoto: DataTypes.STRING,
+    phone: DataTypes.STRING,
     biography: DataTypes.STRING,
     status: DataTypes.STRING,
     position: DataTypes.STRING,
