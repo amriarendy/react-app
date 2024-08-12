@@ -6,13 +6,11 @@ import Thead from "../../../components/table/advance/Thead";
 import Tfoot from "../../../components/table/advance/Tfoot";
 import Taction from "../../../components/table/advance/Taction";
 import { USER_FORMAT_TABLE } from "../../../libs/constants/formats/UserFormat";
-import useFetch from "../../../hooks/useFetch";
 import { useEffect, useState } from "react";
 import { ImageCircleSmall } from "../../../components/ui/Image";
 import { imageCheck } from "../../../libs/utils/image";
 import CheckBox from "../../../components/ui/CheckBox";
 import axios from "axios";
-import { SERVER_API } from "../../../services/api";
 
 const User = () => {
   const breadCrumbs = {
@@ -26,32 +24,33 @@ const User = () => {
   const [users, setUsers] = useState([]);
   const [imageStatus, setImageStatus] = useState({});
 
-  const { data, loading, error } = useFetch("/users");
-
   useEffect(() => {
-    if (data) {
-      setUsers(data);
+    if (users) {
+      setUsers(users);
       const imageChecks = async () => {
         const status = {};
         await Promise.all(
-          data.map(async (item) => {
+          users.map(async (item) => {
             const result = await imageCheck(`${item.urlPhoto}`);
             status[item.id] = result;
           })
         );
         setImageStatus(status);
       };
-
       imageChecks();
     }
-  }, [data]);
+    getUsers();
+  }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  const getUsers = async () => {
+    const response = await axios.get("http://localhost:3001/users");
+    setUsers(response.data);
+  };
 
   const destroy = async (param) => {
     try {
       await axios.delete(`http://localhost:3001/users/${param}`);
+      getUsers();
     } catch (error) {
       console.log(error);
     }
@@ -68,8 +67,8 @@ const User = () => {
             attribute={USER_FORMAT_TABLE.attribute}
           />
           <tbody>
-            {data.length > 0 ? (
-              data.map((item, index) => (
+            {users.length > 0 ? (
+              users.map((item, index) => (
                 <tr key={item.id} className="border-b dark:border-gray-700">
                   {USER_FORMAT_TABLE.attribute.checkbox && (
                     <td className="w-4 p-4">
