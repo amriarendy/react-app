@@ -57,7 +57,7 @@ export const destroy = async (req, res) => {
     });
     res
       .status(200)
-      .json({ code: 200, status: "error", message: "Data deleted" });
+      .json({ code: 200, status: "success", message: "Data deleted" });
   } catch (error) {
     console.log(error.message);
   }
