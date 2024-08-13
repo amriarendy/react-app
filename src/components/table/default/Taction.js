@@ -1,7 +1,7 @@
 import { ButtonDynamic } from "../../ui/Button";
 import { Href } from "../../ui/Href";
 
-const Taction = ({ attribute, taction, toggleModal }) => {
+const Taction = ({ attribute, taction, toggleModal, destroy }) => {
   return (
     <>
       <td className="px-4 py-3 space-x-2 ">
@@ -21,22 +21,15 @@ const Taction = ({ attribute, taction, toggleModal }) => {
               color="blue"
             />
           ))}
-        {attribute.delete &&
-          (attribute.delete.route === "toggleModal" ? (
-            <ButtonDynamic
-              type="button"
-              className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-              onClick={toggleModal}
-            >
-              Delete
-            </ButtonDynamic>
-          ) : (
-            <Href
-              route={`${attribute.edit.route}/${taction.id}`}
-              label="Delete"
-              color="red"
-            />
-          ))}
+        {attribute.delete && (
+          <ButtonDynamic
+            type="button"
+            onClick={() => destroy(taction.id)}
+            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+          >
+            Delete
+          </ButtonDynamic>
+        )}
       </td>
     </>
   );

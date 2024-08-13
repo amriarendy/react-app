@@ -146,6 +146,16 @@ export const SIDEBAR_MENU_ITEMS = [
         route: "/templates/image",
       },
       {
+        key: "page-error",
+        label: "Page Error",
+        route: "/templates/page-error",
+      },
+      {
+        key: "page-loading",
+        label: "Page Loading",
+        route: "/templates/page-loading",
+      },
+      {
         key: "test",
         label: "Test Page",
         route: "/templates/test",
