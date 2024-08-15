@@ -26,14 +26,14 @@ const Hashtag = () => {
       { page: "List", route: "/master/hashtag" },
     ],
   };
+  const navigate = useNavigate();
 
-  const [tag, setTag] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  // modal add, edit open & close
+  const [tag, setTag] = useState("");
+  const [editTag, setEditTag] = useState({ id: "", tag: "" });
+
+  // state modal add, edit open & close
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  console.log(error);
 
   const toggleAddModal = () => {
     setIsAddModalOpen(!isAddModalOpen);
@@ -43,10 +43,15 @@ const Hashtag = () => {
     setIsEditModalOpen(!isEditModalOpen);
   };
 
-  const getTag = async () => {
+  // state fetch data
+  const [tags, setTags] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const getTags = async () => {
     try {
       const response = await axios.get("http://localhost:3001/master/tags");
-      setTag(response.data);
+      setTags(response.data);
     } catch (error) {
       setError(error);
     } finally {
@@ -55,33 +60,48 @@ const Hashtag = () => {
   };
 
   useEffect(() => {
-    getTag();
+    getTags();
   }, []);
 
-  // submit
-  const { values, handleChange, setValues } = useForm(
-    {
-      tag: "",
-    },
-    handleSubmit
-  );
-  const navigate = useNavigate();
-
-  async function handleSubmit(e) {
+  const handleAddSubmit = async (e) => {
     e.preventDefault();
     try {
-      const ContentType = "application/json";
-      await store("/master/tags", ContentType, values);
-      navigate("/master/hashtag");
+      await axios.post("http://localhost:3001/master/tags", { tag });
+      setTag(""); // Reset input field
+      toggleAddModal(); // Close modal
+      getTags(); // Refresh data
     } catch (error) {
-      console.error(error);
+      console.error("Error adding tag", error);
     }
-  }
+  };
+
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(`http://localhost:3001/master/tags/${editTag.id}`, {
+        tag: editTag.tag,
+      });
+      setEditTag({ id: "", tag: "" }); // Reset input fields
+      toggleEditModal(); // Close modal
+      getTags(); // Refresh data
+    } catch (error) {
+      console.error("Error updating tag", error);
+    }
+  };
+
+  const handleAddChange = (e) => {
+    setTag(e.target.value);
+  };
+
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditTag((prev) => ({ ...prev, [name]: value }));
+  };
 
   const destroy = async (param) => {
     try {
       await axios.delete(`http://localhost:3001/master/tags/${param}`);
-      getTag();
+      getTags();
     } catch (error) {
       console.log(error);
     }
@@ -112,8 +132,8 @@ const Hashtag = () => {
                   attribute={HASHTAG_FORMAT_TABLE.attribute}
                 />
                 <tbody>
-                  {tag.length > 0 ? (
-                    tag.map((item, index) => (
+                  {tags.length > 0 ? (
+                    tags.map((item, index) => (
                       <tr
                         key={item.id}
                         className="border-b dark:border-gray-700"
@@ -145,14 +165,14 @@ const Hashtag = () => {
               <Modal
                 header={"Add Tag"}
                 toggleModal={toggleAddModal}
-                onSubmit={handleSubmit}
+                onSubmit={handleAddSubmit}
               >
                 {" "}
                 <div className="grid gap-4 mb-4 sm:grid-cols-2">
                   <div className="sm:col-span-2">
                     <Input
-                      value={values.tag}
-                      onChange={handleChange}
+                      value={tag}
+                      onChange={handleAddChange}
                       id={"tag"}
                       name={"tag"}
                       type={"text"}
@@ -167,13 +187,13 @@ const Hashtag = () => {
               <Modal
                 header={"Edit Tag"}
                 toggleModal={toggleEditModal}
-                onSubmit={handleSubmit}
+                onSubmit={handleEditSubmit}
               >
                 {" "}
                 <div className="grid gap-4 mb-4 sm:grid-cols-2">
                   <Input
-                    value={values.id}
-                    onChange={handleChange}
+                    value={editTag.id}
+                    onChange={handleEditChange}
                     id={"id"}
                     name={"id"}
                     type={"hidden"}
@@ -182,8 +202,8 @@ const Hashtag = () => {
                   />
                   <div className="sm:col-span-2">
                     <Input
-                      value={values.tag}
-                      onChange={handleChange}
+                      value={editTag.tag}
+                      onChange={handleEditChange}
                       id={"tag"}
                       name={"tag"}
                       type={"text"}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PanelLayout from "../PanelLayout";
 import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
 import AttributeTable from "../../../components/table/default/AttributeTable";
@@ -8,12 +8,12 @@ import Tfoot from "../../../components/table/default/Tfoot";
 import Taction from "../../../components/table/default/Taction";
 import CATEGORY_FORMAT_TABLE from "../../../libs/constants/formats/CategoryFormat";
 import Modal from "../../../components/modal/Modal";
-import useFetch from "../../../hooks/useFetch";
 import useForm from "../../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import { store } from "../../../services/routeService";
 import { Input, InputButton } from "../../../components/ui/Input";
 import { FaCodeBranch, FaRegEye } from "react-icons/fa";
+import axios from "axios";
 
 const Category = () => {
   const breadCrumbs = {
@@ -24,8 +24,13 @@ const Category = () => {
       { page: "List", route: "/master/category" },
     ],
   };
+  const navigate = useNavigate();
 
-  // modal add, edit open & close
+  // state values
+  const [category, setCategory] = useState("");
+  const [slug, setSlug] = useState("");
+
+  // state modal add, edit open & close
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -37,29 +42,55 @@ const Category = () => {
     setIsEditModalOpen(!isEditModalOpen);
   };
 
-  // submit
+  // state fetch data
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const getCategories = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:3001/master/categories"
+      );
+      setCategories(response.data);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  // create data
   const { values, handleChange, setValues } = useForm(
     {
-      category: "",
-      slug: "",
+      tag: "",
     },
     handleSubmit
   );
-  const navigate = useNavigate();
 
-  async function handleSubmit() {
+  async function handleSubmit(e) {
+    e.preventDefault();
     try {
-      await store("categories", values);
-      navigate("/master/categories");
+      const ContentType = "application/json";
+      await store("/master/categories", ContentType, values);
+      navigate("/master/hashtag");
     } catch (error) {
       console.error(error);
     }
   }
 
-  // fetch data
-  const { data, loading, error } = useFetch("/categories");
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  // delete data
+  const destroy = async (param) => {
+    try {
+      await axios.delete(`http://localhost:3001/master/categories/${param}`);
+      getCategories();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -77,8 +108,8 @@ const Category = () => {
                 attribute={CATEGORY_FORMAT_TABLE.attribute}
               />
               <tbody>
-                {data.length > 0 ? (
-                  data.map((item, index) => (
+                {categories.length > 0 ? (
+                  categories.map((item, index) => (
                     <tr key={item.id} className="border-b dark:border-gray-700">
                       <td className="px-4 py-3">{index + 1}</td>
                       <td className="px-4 py-3">{item.category}</td>
