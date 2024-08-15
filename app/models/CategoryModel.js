@@ -3,7 +3,7 @@ import db from "../config/Mysql.js";
 
 const { DataTypes } = Sequelize;
 
-const Tag = db.define(
+const Category = db.define(
   "categories",
   {
     category: DataTypes.STRING,
@@ -14,7 +14,7 @@ const Tag = db.define(
   }
 );
 
-export default Tag;
+export default Category;
 
 (async () => {
   await db.sync();
