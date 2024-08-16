@@ -29,24 +29,21 @@ export const store = async (req, res) => {
     return res
       .status(400)
       .json({ code: 400, status: "error", message: "Invalid image" });
-  const email = req.body.email;
-  const password = req.body.password;
-  const name = req.body.name;
-  const dob = req.body.dob;
-  const gender = req.body.gender;
-  const photo = req.files.photo;
-  const phone = req.body.phone;
-  const biography = req.body.biography;
-  const status = req.body.status;
-  const position = req.body.position;
-  const country = req.body.country;
+  const title = req.body.title;
+  const description = req.body.description;
+  const body = req.body.body;
+  const category = req.body.category;
+  const thumbnail = req.files.thumbnail;
+  const author = req.body.author;
+  const slug = req.body.slug;
+  const publishedAt = req.body.publishedAt;
 
-  const fileSize = photo.data.length;
-  const ext = path.extname(photo.name);
-  const fileName = photo.md5 + ext;
-  const urlPhoto = `${req.protocol}://${req.get(
+  const fileSize = thumbnail.data.length;
+  const ext = path.extname(thumbnail.name);
+  const fileName = thumbnail.md5 + ext;
+  const urlThumbnail = `${req.protocol}://${req.get(
     "host"
-  )}/uploads/profile/${fileName}`;
+  )}/uploads/blogs/${fileName}`;
   const allowedType = [".png", ".jpg", ".jpeg"];
 
   if (!allowedType.includes(ext.toLowerCase()))
@@ -55,25 +52,22 @@ export const store = async (req, res) => {
       .json({ code: 422, status: "error", message: "Invalid image" });
   if (fileSize > 5000000)
     return res.status(422).json({ message: "Image must be less than 5 MB" });
-  photo.mv(`./public/uploads/profile/${fileName}`, async (err) => {
+  thumbnail.mv(`./public/uploads/blogs/${fileName}`, async (err) => {
     if (err)
       return res
         .status(500)
         .json({ code: 500, status: "error", message: err.message });
     try {
       await Blog.create({
-        email: email,
-        password: password,
-        name: name,
-        dob: dob,
-        phone: phone,
-        gender: gender,
-        biography: biography,
-        status: status,
-        position: position,
-        country: country,
-        photo: fileName,
-        urlPhoto: urlPhoto,
+        title: title,
+        description: description,
+        body: body,
+        category: category,
+        author: author,
+        slug: slug,
+        publishedAt: publishedAt,
+        thumbnail: fileName,
+        urlThumbnail: urlThumbnail,
       });
       res
         .status(201)
@@ -101,9 +95,9 @@ export const update = async (req, res) => {
       .json({ code: 404, status: "error", message: "Data not found" });
   let fileName = "";
   if (req.files === null) {
-    fileName = getWhere.photo;
+    fileName = getWhere.thumbnail;
   } else {
-    const file = req.files.photo;
+    const file = req.files.thumbnail;
     const fileSize = file.data.length;
     const ext = path.extname(file.name);
     fileName = file.md5 + ext;
@@ -120,7 +114,7 @@ export const update = async (req, res) => {
         message: "File must be lower 5mb",
       });
 
-    const filepath = `./public/uploads/profile/${getWhere.photo}`;
+    const filepath = `./public/uploads/blogs/${getWhere.thumbnail}`;
     if (fs.existsSync(filepath)) {
       fs.unlinkSync(filepath);
       return res.status(200).json({
@@ -130,7 +124,7 @@ export const update = async (req, res) => {
       });
     }
 
-    file.mv(`./public/uploads/profile/${fileName}`, (err) => {
+    file.mv(`./public/uploads/blogs/${fileName}`, (err) => {
       if (err) return res.status(500).json({ msg: err.message });
     });
   }
@@ -144,9 +138,9 @@ export const update = async (req, res) => {
   const status = req.body.status;
   const position = req.body.position;
   const country = req.body.country;
-  const urlPhoto = `${req.protocol}://${req.get(
+  const urlThumbnail = `${req.protocol}://${req.get(
     "host"
-  )}/uploads/profile/${fileName}`;
+  )}/uploads/blogs/${fileName}`;
   try {
     await Blog.update(
       {
@@ -160,8 +154,8 @@ export const update = async (req, res) => {
         status: status,
         position: position,
         country: country,
-        photo: fileName,
-        urlPhoto: urlPhoto,
+        thumbnail: fileName,
+        urlThumbnail: urlThumbnail,
       },
       {
         where: {
@@ -188,7 +182,7 @@ export const destroy = async (req, res) => {
       .status(404)
       .json({ code: 404, status: "error", message: "Data not found" });
   try {
-    const filepath = `./public/uploads/profile/${getWhere.photo}`;
+    const filepath = `./public/uploads/blogs/${getWhere.thumbnail}`;
     if (fs.existsSync(filepath)) {
       fs.unlinkSync(filepath);
     }

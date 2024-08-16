@@ -1,4 +1,4 @@
 node_modules
-/public/uploads/profile/*
-/public/uploads/blog/*
-/public/uploads/product/*
+/public/uploads/profiles/*
+/public/uploads/blogs/*
+/public/uploads/products/*
