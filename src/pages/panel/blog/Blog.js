@@ -47,7 +47,7 @@ const Blog = () => {
 
   const getblog = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/blog");
+      const response = await axios.get("http://localhost:3001/blogs/");
       setBlog(response.data);
     } catch (error) {
       setError(error);
@@ -58,7 +58,7 @@ const Blog = () => {
 
   const destroy = async (param) => {
     try {
-      await axios.delete(`http://localhost:3001/blog/${param}`);
+      await axios.delete(`http://localhost:3001/blogs/${param}`);
       getblog();
     } catch (error) {
       console.log(error);

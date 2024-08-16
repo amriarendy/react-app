@@ -53,7 +53,6 @@ const AddUser = () => {
     formData.append("status", status);
     formData.append("position", position);
     formData.append("country", country);
-    console.log("formData: ", formData);
 
     try {
       await axios.post(`http://localhost:3001/users/`, formData, {
