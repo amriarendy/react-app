@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { ImageRoundedSmall } from "../../../components/ui/Image";
 import { imageCheck } from "../../../libs/utils/image";
 import CheckBox from "../../../components/ui/CheckBox";
+import axios from "axios";
 
 const Blog = () => {
   const breadCrumbs = {
@@ -21,33 +22,48 @@ const Blog = () => {
     ],
   };
 
-  const [users, setUsers] = useState([]);
+  const [blog, setBlog] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [imageStatus, setImageStatus] = useState({});
 
-  const { data, loading, error } = useFetch("/blogs");
-
   useEffect(() => {
-    if (data) {
-      setUsers(data);
+    if (blog) {
+      setBlog(blog);
       const imageChecks = async () => {
         const status = {};
         await Promise.all(
-          data.map(async (item) => {
-            const result = await imageCheck(`${item.thumbnail}`);
+          blog.map(async (item) => {
+            const result = await imageCheck(`${item.urlPhoto}`);
             status[item.id] = result;
           })
         );
         setImageStatus(status);
       };
-
       imageChecks();
     }
-  }, [data]);
+    getblog();
+  }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-  // Ensure data.users is defined before mapping
-  // if (!data || !data.users) return <div>No users found.</div>;
+  const getblog = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/blog");
+      setBlog(response.data);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const destroy = async (param) => {
+    try {
+      await axios.delete(`http://localhost:3001/blog/${param}`);
+      getblog();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -60,8 +76,8 @@ const Blog = () => {
             attribute={BLOG_FORMAT_TABLE.attribute}
           />
           <tbody>
-            {data.length > 0 ? (
-              data.map((item, index) => (
+            {blog.length > 0 ? (
+              blog.map((item, index) => (
                 <tr key={item.id} className="border-b dark:border-gray-700">
                   {BLOG_FORMAT_TABLE.attribute.checkbox && (
                     <td className="w-4 p-4">

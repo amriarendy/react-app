@@ -8,12 +8,12 @@ import Tfoot from "../../../components/table/default/Tfoot";
 import Taction from "../../../components/table/default/Taction";
 import CATEGORY_FORMAT_TABLE from "../../../libs/constants/formats/CategoryFormat";
 import Modal from "../../../components/modal/Modal";
-import useForm from "../../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
-import { store } from "../../../services/routeService";
 import { Input, InputButton } from "../../../components/ui/Input";
 import { FaCodeBranch, FaRegEye } from "react-icons/fa";
 import axios from "axios";
+import Loading from "../../../components/errors/Loading";
+import Errors from "../../../components/errors/Errors";
 
 const Category = () => {
   const breadCrumbs = {
@@ -29,10 +29,17 @@ const Category = () => {
   // state values
   const [category, setCategory] = useState("");
   const [slug, setSlug] = useState("");
+  const [editCategory, setEditCategory] = useState({
+    id: "",
+    category: "",
+    slug: "",
+  });
 
   // state modal add, edit open & close
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isDelayOver, setIsDelayOver] = useState(true);
 
   const toggleAddModal = () => {
     setIsAddModalOpen(!isAddModalOpen);
@@ -46,6 +53,7 @@ const Category = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   const getCategories = async () => {
     try {
       const response = await axios.get(
@@ -63,24 +71,61 @@ const Category = () => {
     getCategories();
   }, []);
 
-  // create data
-  const { values, handleChange, setValues } = useForm(
-    {
-      tag: "",
-    },
-    handleSubmit
-  );
-
-  async function handleSubmit(e) {
+  // craete function
+  const handleAddSubmit = async (e) => {
     e.preventDefault();
     try {
-      const ContentType = "application/json";
-      await store("/master/categories", ContentType, values);
-      navigate("/master/hashtag");
+      await axios.post("http://localhost:3001/master/categories", {
+        category,
+        slug,
+      });
+      setCategory("");
+      setSlug(""); // Reset input field
+      toggleAddModal(); // Close modal
+      getCategories(); // Refresh data
     } catch (error) {
-      console.error(error);
+      console.error("Error adding tag", error);
+    } finally {
+      // Delay for 5000ms before setting isSubmitting to false
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setIsDelayOver(true); // Indicate that delay is over
+      }, 500000);
     }
-  }
+  };
+
+  // update function
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.patch(
+        `http://localhost:3001/master/categories/${editCategory.id}`,
+        {
+          category: editCategory.category,
+          slug: editCategory.slug,
+        }
+      );
+      setEditCategory({ id: "", category: "", slug: "" }); // Reset input fields
+      toggleEditModal(); // Close modal
+      getCategories(); // Refresh data
+    } catch (error) {
+      console.error("Error updating tag", error);
+    }
+  };
+
+  const handleEditClick = (category) => {
+    setEditCategory({
+      id: category.id,
+      category: category.category,
+      slug: category.slug,
+    });
+    toggleEditModal(); // Open the modal
+  };
+
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditCategory((prev) => ({ ...prev, [name]: value }));
+  };
 
   // delete data
   const destroy = async (param) => {
@@ -96,127 +141,149 @@ const Category = () => {
     <>
       <PanelLayout>
         <Breadcrumbs breadCrumbs={breadCrumbs} />
-        <div className="mx-auto max-w-screen-xl mb-4 px-4 lg:px-12">
-          <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-            <AttributeTable
-              attribute={CATEGORY_FORMAT_TABLE.attribute}
-              toggleModal={toggleAddModal}
-            />
-            <Table>
-              <Thead
-                thead={CATEGORY_FORMAT_TABLE.th}
-                attribute={CATEGORY_FORMAT_TABLE.attribute}
-              />
-              <tbody>
-                {categories.length > 0 ? (
-                  categories.map((item, index) => (
-                    <tr key={item.id} className="border-b dark:border-gray-700">
-                      <td className="px-4 py-3">{index + 1}</td>
-                      <td className="px-4 py-3">{item.category}</td>
-                      <td className="px-4 py-3">{item.slug}</td>
-                      <Taction
-                        index={index}
-                        taction={item}
-                        toggleModal={toggleEditModal}
-                        attribute={CATEGORY_FORMAT_TABLE.attribute}
-                      />
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan={4} className="px-4 py-3 text-center">
-                      Data Not Found
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </Table>
-            <Tfoot />
+        {loading ? (
+          <div className="flex items-center inset-0 sm:h-full">
+            <Loading />
           </div>
-
-          {/* Modal */}
-          {isAddModalOpen && (
-            <Modal
-              header={"Add Category"}
-              toggleModal={toggleAddModal}
-              onSubmit={handleSubmit}
-            >
-              {" "}
-              <div className="grid gap-4 mb-4 sm:grid-cols-2">
-                <div className="sm:col-span-2">
-                  <Input
-                    value={values.category}
-                    onChange={handleChange}
-                    id={"category"}
-                    name={"category"}
-                    type={"text"}
-                    label={"Category"}
-                    required={true}
-                  />
-                </div>
-
-                <div className="sm:col-span-2">
-                  <InputButton
-                    value={values.slug}
-                    onChange={handleChange}
-                    id={"slug"}
-                    name={"slug"}
-                    type={"text"}
-                    label={"Slug"}
-                    icon={
-                      <FaCodeBranch className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-                    }
-                    buttonIcon={<FaRegEye className="w-4 h-4" />}
-                    placeholder={"Search Everything:"}
-                    required={true}
-                  />
-                </div>
-              </div>
-            </Modal>
-          )}
-          {isEditModalOpen && (
-            <Modal
-              header={"Edit Category"}
-              toggleModal={toggleEditModal}
-              onSubmit={handleSubmit}
-            >
-              {" "}
-              <div className="grid gap-4 mb-4 sm:grid-cols-2">
-                <Input
-                  value={values.id}
-                  onChange={handleChange}
-                  id={"id"}
-                  name={"id"}
-                  type={"hidden"}
-                  label={"ID"}
-                  required={true}
+        ) : error ? (
+          <div className="flex items-center inset-0 sm:h-full">
+            <Errors code={500} status={error.code} message={error.message} />
+          </div>
+        ) : (
+          <div className="mx-auto max-w-screen-xl mb-4 px-4 lg:px-12">
+            <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+              <AttributeTable
+                attribute={CATEGORY_FORMAT_TABLE.attribute}
+                toggleModal={toggleAddModal}
+              />
+              <Table>
+                <Thead
+                  thead={CATEGORY_FORMAT_TABLE.th}
+                  attribute={CATEGORY_FORMAT_TABLE.attribute}
                 />
-                <div className="sm:col-span-2">
+                <tbody>
+                  {categories.length > 0 ? (
+                    categories.map((item, index) => (
+                      <tr
+                        key={item.id}
+                        className="border-b dark:border-gray-700"
+                      >
+                        <td className="px-4 py-3">{index + 1}</td>
+                        <td className="px-4 py-3">{item.category}</td>
+                        <td className="px-4 py-3">{item.slug}</td>
+                        <Taction
+                          index={index}
+                          taction={item}
+                          toggleModal={() => handleEditClick(item)}
+                          destroy={destroy}
+                          attribute={CATEGORY_FORMAT_TABLE.attribute}
+                        />
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={4} className="px-4 py-3 text-center">
+                        Data Not Found
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </Table>
+              <Tfoot />
+            </div>
+
+            {/* Modal */}
+            {isAddModalOpen && (
+              <Modal
+                header={"Add Category"}
+                toggleModal={toggleAddModal}
+                onSubmit={handleAddSubmit}
+              >
+                {isSubmitting ? (
+                  <Loading />
+                ) : (
+                  <div className="grid gap-4 mb-4 sm:grid-cols-2">
+                    <div className="sm:col-span-2">
+                      <Input
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
+                        id={"category"}
+                        name={"category"}
+                        type={"text"}
+                        label={"Category"}
+                        required={true}
+                      />
+                    </div>
+
+                    <div className="sm:col-span-2">
+                      <InputButton
+                        value={slug}
+                        onChange={(e) => setSlug(e.target.value)}
+                        id={"slug"}
+                        name={"slug"}
+                        type={"text"}
+                        label={"Slug"}
+                        icon={
+                          <FaCodeBranch className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                        }
+                        buttonIcon={<FaRegEye className="w-4 h-4" />}
+                        placeholder={"Search Everything:"}
+                        required={true}
+                      />
+                    </div>
+                  </div>
+                )}
+              </Modal>
+            )}
+            {isEditModalOpen && (
+              <Modal
+                header={"Edit Category"}
+                toggleModal={toggleEditModal}
+                onSubmit={handleEditSubmit}
+              >
+                {" "}
+                <div className="grid gap-4 mb-4 sm:grid-cols-2">
                   <Input
-                    value={values.category}
-                    onChange={handleChange}
-                    id={"category"}
-                    name={"category"}
-                    type={"text"}
-                    label={"Category"}
+                    value={editCategory.id}
+                    onChange={handleEditChange}
+                    id={"id"}
+                    name={"id"}
+                    type={"hidden"}
+                    label={"ID"}
                     required={true}
                   />
+                  <div className="sm:col-span-2">
+                    <Input
+                      value={editCategory.category}
+                      onChange={handleEditChange}
+                      id={"category"}
+                      name={"category"}
+                      type={"text"}
+                      label={"Category"}
+                      required={true}
+                    />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <InputButton
+                      value={editCategory.slug}
+                      onChange={handleEditChange}
+                      id={"slug"}
+                      name={"slug"}
+                      type={"text"}
+                      label={"Slug"}
+                      icon={
+                        <FaCodeBranch className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                      }
+                      buttonIcon={<FaRegEye className="w-4 h-4" />}
+                      placeholder={"Search Everything:"}
+                      required={true}
+                    />
+                  </div>
                 </div>
-                <div className="sm:col-span-2">
-                  <Input
-                    value={values.slug}
-                    onChange={handleChange}
-                    id={"slug"}
-                    name={"slug"}
-                    type={"text"}
-                    label={"Slug"}
-                    required={true}
-                  />
-                </div>
-              </div>
-            </Modal>
-          )}
-        </div>
+              </Modal>
+            )}
+          </div>
+        )}
       </PanelLayout>
     </>
   );

@@ -8,10 +8,7 @@ import Tfoot from "../../../components/table/default/Tfoot";
 import Taction from "../../../components/table/default/Taction";
 import HASHTAG_FORMAT_TABLE from "../../../libs/constants/formats/TagFormat";
 import Modal from "../../../components/modal/Modal";
-import useFetch from "../../../hooks/useFetch";
-import useForm from "../../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
-import { store } from "../../../services/routeService";
 import { Input } from "../../../components/ui/Input";
 import axios from "axios";
 import Loading from "../../../components/errors/Loading";
@@ -63,6 +60,11 @@ const Hashtag = () => {
     getTags();
   }, []);
 
+  // craete function
+  // const handleAddChange = (e) => {
+  //   setTag(e.target.value);
+  // };
+
   const handleAddSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -75,10 +77,11 @@ const Hashtag = () => {
     }
   };
 
+  // update function
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:3001/master/tags/${editTag.id}`, {
+      await axios.patch(`http://localhost:3001/master/tags/${editTag.id}`, {
         tag: editTag.tag,
       });
       setEditTag({ id: "", tag: "" }); // Reset input fields
@@ -89,8 +92,9 @@ const Hashtag = () => {
     }
   };
 
-  const handleAddChange = (e) => {
-    setTag(e.target.value);
+  const handleEditClick = (tag) => {
+    setEditTag({ id: tag.id, tag: tag.tag });
+    toggleEditModal(); // Open the modal
   };
 
   const handleEditChange = (e) => {
@@ -98,6 +102,7 @@ const Hashtag = () => {
     setEditTag((prev) => ({ ...prev, [name]: value }));
   };
 
+  // delete function
   const destroy = async (param) => {
     try {
       await axios.delete(`http://localhost:3001/master/tags/${param}`);
@@ -143,7 +148,7 @@ const Hashtag = () => {
                         <Taction
                           index={index}
                           taction={item}
-                          toggleModal={toggleEditModal}
+                          toggleModal={() => handleEditClick(item)}
                           destroy={destroy}
                           attribute={HASHTAG_FORMAT_TABLE.attribute}
                         />
@@ -172,7 +177,7 @@ const Hashtag = () => {
                   <div className="sm:col-span-2">
                     <Input
                       value={tag}
-                      onChange={handleAddChange}
+                      onChange={(e) => setTag(e.target.value)}
                       id={"tag"}
                       name={"tag"}
                       type={"text"}
@@ -196,9 +201,9 @@ const Hashtag = () => {
                     onChange={handleEditChange}
                     id={"id"}
                     name={"id"}
-                    type={"hidden"}
+                    type={"text"}
                     label={"ID"}
-                    required={true}
+                    required={false}
                   />
                   <div className="sm:col-span-2">
                     <Input
