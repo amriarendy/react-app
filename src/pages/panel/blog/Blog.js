@@ -8,10 +8,14 @@ import Taction from "../../../components/table/advance/Taction";
 import { BLOG_FORMAT_TABLE } from "../../../libs/constants/formats/BlogFormat";
 import useFetch from "../../../hooks/useFetch";
 import { useEffect, useState } from "react";
-import { ImageRoundedSmall } from "../../../components/ui/Image";
+import {
+  ImageRoundedSmall,
+  ImageSquareSmall,
+} from "../../../components/ui/Image";
 import { imageCheck } from "../../../libs/utils/image";
 import CheckBox from "../../../components/ui/CheckBox";
 import axios from "axios";
+import { DateTime } from "../../../libs/utils/dateTime";
 
 const Blog = () => {
   const breadCrumbs = {
@@ -34,7 +38,7 @@ const Blog = () => {
         const status = {};
         await Promise.all(
           blog.map(async (item) => {
-            const result = await imageCheck(`${item.urlPhoto}`);
+            const result = await imageCheck(`${item.urlThumbnail}`);
             status[item.id] = result;
           })
         );
@@ -91,35 +95,36 @@ const Blog = () => {
                       <div className="flex items-center">{index + 1}.</div>
                     </td>
                   )}
-                  <td className="flex items-center p-4 whitespace-nowrap">
-                    <ImageRoundedSmall
+                  <td className="flex items-center justify-center p-4 whitespace-nowrap">
+                    <ImageSquareSmall
                       src={
                         imageStatus[item.id]
-                          ? `${item.thumbnail}`
+                          ? `${item.urlThumbnail}`
                           : "https://placehold.co/150x150?text=Image+Not+Found"
                       }
                       alt={item.name}
                     />
                   </td>
-                  <td class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-                    <div class="text-base font-semibold text-gray-900 dark:text-white">
+                  <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
+                    <div className="text-base font-semibold text-gray-900 dark:text-white">
                       {item.title}
                     </div>
-                    <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                    <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
                       {item.author}
                     </div>
                   </td>
-                  <td class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-                    {item.author}
+                  <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
+                    {item.category}
                   </td>
-                  <td class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
+                  <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
                     {item.description}
                   </td>
-                  <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {item.publishedAt}
+                  <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {DateTime(item.publishedAt)}
                   </td>
                   <Taction
                     taction={item}
+                    destroy={destroy}
                     attribute={BLOG_FORMAT_TABLE.attribute}
                   />
                 </tr>

@@ -1,4 +1,4 @@
-export const DateTime = () => {
+export const DateTime = (date) => {
   var date = new Date();
 
   var year = date.getFullYear();

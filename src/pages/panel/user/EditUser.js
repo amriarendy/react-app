@@ -41,7 +41,6 @@ const EditUser = () => {
     getWhere();
   }, []);
 
-  // const { data, loading, error } = useFetch(`/users/${param}`);
   const getWhere = async () => {
     const response = await axios.get(`http://localhost:3001/users/${param}`);
     setName(response.data.name);
@@ -72,7 +71,6 @@ const EditUser = () => {
     formData.append("status", status);
     formData.append("position", position);
     formData.append("country", country);
-    console.log("formData: ", formData);
 
     try {
       await axios.patch(`http://localhost:3001/users/${param}`, formData, {
@@ -96,14 +94,6 @@ const EditUser = () => {
           </h2>
           <form onSubmit={handleSubmit}>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 dark:border-gray-700 dark:bg-gray-800">
-              <Input
-                value={param}
-                onChange={(e) => setName(e.target.value)}
-                id={"id"}
-                name={"id"}
-                type={"hidden"}
-                required={false}
-              />
               <div className="sm:col-span-2">
                 <Input
                   value={name}

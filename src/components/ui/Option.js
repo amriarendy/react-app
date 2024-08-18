@@ -27,7 +27,11 @@ const Option = ({
           {...(required ? { required: true } : {})}
         >
           {selected ? (
-            <option key={selected[0].key} value={selected[0].value}>
+            <option
+              key={selected[0].key}
+              value={selected[0].value}
+              defaultValue
+            >
               {selected[0].label}
             </option>
           ) : null}

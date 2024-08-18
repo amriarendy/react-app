@@ -9,7 +9,6 @@ import EditBlog from "./pages/panel/blog/EditBlog";
 import User from "./pages/panel/user/User";
 import Test from "./pages/panel/tamplates/Test";
 import Category from "./pages/panel/master/Category";
-import Hashtag from "./pages/panel/master/Hashtag";
 import AddUser from "./pages/panel/user/AddUser";
 import EditUser from "./pages/panel/user/EditUser";
 import Login from "./pages/auth/Login";
@@ -29,6 +28,7 @@ import Modal from "./pages/panel/tamplates/Modal";
 import Image from "./pages/panel/tamplates/Image";
 import PageError from "./pages/panel/tamplates/PageError";
 import PageLoading from "./pages/panel/tamplates/PageLoading";
+import Tag from "./pages/panel/master/Tag";
 
 function App() {
   return (
@@ -48,7 +48,7 @@ function App() {
           <Route path="/blog/edit/:param" element={<EditBlog />} />
           {/* master */}
           <Route path="/master/category" element={<Category />} />
-          <Route path="/master/hashtag" element={<Hashtag />} />
+          <Route path="/master/tag" element={<Tag />} />
           {/* users */}
           <Route path="/user" element={<User />} />
           <Route path="/user/add" element={<AddUser />} />

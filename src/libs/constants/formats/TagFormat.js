@@ -1,6 +1,6 @@
 const HASHTAG_FORMAT_TABLE = {
   th: [
-    { key: "category", label: "category" },
+    { key: "tag", label: "tag" },
     { key: "action", label: "action" },
   ],
   attribute: {

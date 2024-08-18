@@ -14,19 +14,21 @@ import axios from "axios";
 import Loading from "../../../components/errors/Loading";
 import Errors from "../../../components/errors/Errors";
 
-const Hashtag = () => {
+const Tag = () => {
   const breadCrumbs = {
-    page: "Hashtag",
+    page: "Tag",
     data: [
-      { page: "Master", route: "/master/hashtag" },
-      { page: "Hashtag", route: "/master/hashtag" },
-      { page: "List", route: "/master/hashtag" },
+      { page: "Master", route: "/master/tag" },
+      { page: "Tag", route: "/master/tag" },
+      { page: "List", route: "/master/tag" },
     ],
   };
   const navigate = useNavigate();
 
   const [tag, setTag] = useState("");
   const [editTag, setEditTag] = useState({ id: "", tag: "" });
+  const [validate, setValidate] = useState("");
+  const [editValidate, setEditValidate] = useState("");
 
   // state modal add, edit open & close
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -60,13 +62,16 @@ const Hashtag = () => {
     getTags();
   }, []);
 
-  // craete function
-  // const handleAddChange = (e) => {
-  //   setTag(e.target.value);
-  // };
-
   const handleAddSubmit = async (e) => {
     e.preventDefault();
+    if (!tag.trim()) {
+      setValidate("Tag is required.");
+      return;
+    }
+    if (tag.length > 50) {
+      setValidate("Tag must be less than 50 characters.");
+      return;
+    }
     try {
       await axios.post("http://localhost:3001/master/tags", { tag });
       setTag(""); // Reset input field
@@ -80,6 +85,14 @@ const Hashtag = () => {
   // update function
   const handleEditSubmit = async (e) => {
     e.preventDefault();
+    if (!editTag.tag.trim()) {
+      setEditValidate("Tag is required.");
+      return;
+    }
+    if (editTag.tag.length > 50) {
+      setEditValidate("Tag must be less than 50 characters.");
+      return;
+    }
     try {
       await axios.patch(`http://localhost:3001/master/tags/${editTag.id}`, {
         tag: editTag.tag,
@@ -182,8 +195,13 @@ const Hashtag = () => {
                       name={"tag"}
                       type={"text"}
                       label={"Tag"}
-                      required={true}
+                      required={false}
                     />
+                    {validate && (
+                      <p className="font-semibold text-red-500 text-sm">
+                        {validate}
+                      </p>
+                    )}
                   </div>
                 </div>
               </Modal>
@@ -201,7 +219,7 @@ const Hashtag = () => {
                     onChange={handleEditChange}
                     id={"id"}
                     name={"id"}
-                    type={"text"}
+                    type={"hidden"}
                     label={"ID"}
                     required={false}
                   />
@@ -213,8 +231,13 @@ const Hashtag = () => {
                       name={"tag"}
                       type={"text"}
                       label={"Tag"}
-                      required={true}
+                      required={false}
                     />
+                    {editValidate && (
+                      <p className="font-semibold text-red-500 text-sm">
+                        {editValidate}
+                      </p>
+                    )}
                   </div>
                 </div>
               </Modal>
@@ -226,4 +249,4 @@ const Hashtag = () => {
   );
 };
 
-export default Hashtag;
+export default Tag;

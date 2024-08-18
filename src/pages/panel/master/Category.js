@@ -14,6 +14,8 @@ import { FaCodeBranch, FaRegEye } from "react-icons/fa";
 import axios from "axios";
 import Loading from "../../../components/errors/Loading";
 import Errors from "../../../components/errors/Errors";
+import { slugFormat } from "../../../libs/utils/text";
+import { required, trimRequired } from "../../../libs/utils/validate";
 
 const Category = () => {
   const breadCrumbs = {
@@ -40,6 +42,8 @@ const Category = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDelayOver, setIsDelayOver] = useState(true);
+  const [addValidate, setAddValidate] = useState("");
+  const [editValidate, setEditValidate] = useState("");
 
   const toggleAddModal = () => {
     setIsAddModalOpen(!isAddModalOpen);
@@ -74,6 +78,14 @@ const Category = () => {
   // craete function
   const handleAddSubmit = async (e) => {
     e.preventDefault();
+    // validation
+    const categoryAddError = required(category, "Category");
+    const slugAddError = trimRequired(slug, "Slug");
+    if (categoryAddError || slugAddError) {
+      setAddValidate({ category: categoryAddError, slug: slugAddError });
+      return;
+    }
+    // insert data
     try {
       await axios.post("http://localhost:3001/master/categories", {
         category,
@@ -97,6 +109,14 @@ const Category = () => {
   // update function
   const handleEditSubmit = async (e) => {
     e.preventDefault();
+    // validation
+    const categoryEditError = required(category, "Category");
+    const slugEditError = trimRequired(slug, "Slug");
+    if (categoryEditError || slugEditError) {
+      setEditValidate({ category: categoryEditError, slug: slugEditError });
+      return;
+    }
+    // update data
     try {
       await axios.patch(
         `http://localhost:3001/master/categories/${editCategory.id}`,
@@ -206,13 +226,22 @@ const Category = () => {
                     <div className="sm:col-span-2">
                       <Input
                         value={category}
-                        onChange={(e) => setCategory(e.target.value)}
+                        onChange={(e) => {
+                          const categoryAddSlug = e.target.value;
+                          setCategory(categoryAddSlug);
+                          setSlug(slugFormat(categoryAddSlug));
+                        }}
                         id={"category"}
                         name={"category"}
                         type={"text"}
                         label={"Category"}
-                        required={true}
+                        required={false}
                       />
+                      {addValidate.category && (
+                        <p className="font-semibold text-red-500 text-sm">
+                          {addValidate.category}
+                        </p>
+                      )}
                     </div>
 
                     <div className="sm:col-span-2">
@@ -226,10 +255,14 @@ const Category = () => {
                         icon={
                           <FaCodeBranch className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                         }
-                        buttonIcon={<FaRegEye className="w-4 h-4" />}
-                        placeholder={"Search Everything:"}
-                        required={true}
+                        readonly={true}
+                        required={false}
                       />
+                      {addValidate.slug && (
+                        <p className="font-semibold text-red-500 text-sm">
+                          {addValidate.slug}
+                        </p>
+                      )}
                     </div>
                   </div>
                 )}
@@ -250,18 +283,29 @@ const Category = () => {
                     name={"id"}
                     type={"hidden"}
                     label={"ID"}
-                    required={true}
+                    required={false}
                   />
                   <div className="sm:col-span-2">
                     <Input
                       value={editCategory.category}
-                      onChange={handleEditChange}
+                      onChange={(e) => {
+                        handleEditChange(e);
+                        setEditCategory((prev) => ({
+                          ...prev,
+                          slug: slugFormat(e.target.value),
+                        }));
+                      }}
                       id={"category"}
                       name={"category"}
                       type={"text"}
                       label={"Category"}
-                      required={true}
+                      required={false}
                     />
+                    {editValidate.category && (
+                      <p className="font-semibold text-red-500 text-sm">
+                        {editValidate.category}
+                      </p>
+                    )}
                   </div>
                   <div className="sm:col-span-2">
                     <InputButton
@@ -274,10 +318,14 @@ const Category = () => {
                       icon={
                         <FaCodeBranch className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                       }
-                      buttonIcon={<FaRegEye className="w-4 h-4" />}
-                      placeholder={"Search Everything:"}
-                      required={true}
+                      readonly={true}
+                      required={false}
                     />
+                    {editValidate.slug && (
+                      <p className="font-semibold text-red-500 text-sm">
+                        {editValidate.slug}
+                      </p>
+                    )}
                   </div>
                 </div>
               </Modal>

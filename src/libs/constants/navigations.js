@@ -55,7 +55,7 @@ export const SIDEBAR_MENU_ITEMS = [
       {
         key: "hashtag",
         label: "Hashtag",
-        route: "/master/hashtag",
+        route: "/master/tag",
       },
     ],
   },
