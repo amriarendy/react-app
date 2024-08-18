@@ -128,32 +128,26 @@ export const update = async (req, res) => {
       if (err) return res.status(500).json({ msg: err.message });
     });
   }
-  const email = req.body.email;
-  const password = req.body.password;
-  const name = req.body.name;
-  const dob = req.body.dob;
-  const phone = req.body.phone;
-  const gender = req.body.gender;
-  const biography = req.body.biography;
-  const status = req.body.status;
-  const position = req.body.position;
-  const country = req.body.country;
+  const title = req.body.title;
+  const description = req.body.description;
+  const body = req.body.body;
+  const category = req.body.category;
+  const author = null;
+  const slug = req.body.slug;
+  const publishedAt = req.body.publishedAt;
   const urlThumbnail = `${req.protocol}://${req.get(
     "host"
   )}/uploads/blogs/${fileName}`;
   try {
     await Blog.update(
       {
-        email: email,
-        password: password,
-        name: name,
-        dob: dob,
-        phone: phone,
-        gender: gender,
-        biography: biography,
-        status: status,
-        position: position,
-        country: country,
+        title: title,
+        description: description,
+        body: body,
+        category: category,
+        author: author,
+        slug: slug,
+        publishedAt: publishedAt,
         thumbnail: fileName,
         urlThumbnail: urlThumbnail,
       },

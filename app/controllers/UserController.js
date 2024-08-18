@@ -46,7 +46,7 @@ export const store = async (req, res) => {
   const fileName = photo.md5 + ext;
   const urlPhoto = `${req.protocol}://${req.get(
     "host"
-  )}/uploads/profile/${fileName}`;
+  )}/uploads/profiles/${fileName}`;
   const allowedType = [".png", ".jpg", ".jpeg"];
 
   if (!allowedType.includes(ext.toLowerCase()))
@@ -55,7 +55,7 @@ export const store = async (req, res) => {
       .json({ code: 422, status: "error", message: "Invalid image" });
   if (fileSize > 5000000)
     return res.status(422).json({ message: "Image must be less than 5 MB" });
-  photo.mv(`./public/uploads/profile/${fileName}`, async (err) => {
+  photo.mv(`./public/uploads/profiles/${fileName}`, async (err) => {
     if (err)
       return res
         .status(500)
@@ -120,7 +120,7 @@ export const update = async (req, res) => {
         message: "File must be lower 5mb",
       });
 
-    const filepath = `./public/uploads/profile/${getWhere.photo}`;
+    const filepath = `./public/uploads/profiles/${getWhere.photo}`;
     if (fs.existsSync(filepath)) {
       fs.unlinkSync(filepath);
       return res.status(200).json({
@@ -130,7 +130,7 @@ export const update = async (req, res) => {
       });
     }
 
-    file.mv(`./public/uploads/profile/${fileName}`, (err) => {
+    file.mv(`./public/uploads/profiles/${fileName}`, (err) => {
       if (err) return res.status(500).json({ msg: err.message });
     });
   }
@@ -146,7 +146,7 @@ export const update = async (req, res) => {
   const country = req.body.country;
   const urlPhoto = `${req.protocol}://${req.get(
     "host"
-  )}/uploads/profile/${fileName}`;
+  )}/uploads/profiles/${fileName}`;
   try {
     await User.update(
       {
@@ -188,7 +188,7 @@ export const destroy = async (req, res) => {
       .status(404)
       .json({ code: 404, status: "error", message: "Data not found" });
   try {
-    const filepath = `./public/uploads/profile/${getWhere.photo}`;
+    const filepath = `./public/uploads/profiles/${getWhere.photo}`;
     if (fs.existsSync(filepath)) {
       fs.unlinkSync(filepath);
     }
