@@ -49,7 +49,11 @@ const Login = () => {
             />
             <div className="text-sm font-medium text-gray-500 dark:text-gray-400">
               Not registered?{" "}
-              <HrefText color={"blue"} label={"Lost Password?"} />
+              <HrefText
+                route="/register"
+                color={"blue"}
+                label={"Account Register?"}
+              />
             </div>
           </form>
         </div>

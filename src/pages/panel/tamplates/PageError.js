@@ -14,7 +14,9 @@ const PageError = () => {
     <>
       <PanelLayout>
         <Breadcrumbs breadCrumbs={breadCrumbs} />
-        <Errors />
+        <div className="flex items-center inset-0 sm:h-full">
+          <Errors code={500} status="Errors" message="Internal Server Error" />
+        </div>
       </PanelLayout>
     </>
   );

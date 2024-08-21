@@ -14,7 +14,7 @@ const PageLoading = () => {
     <>
       <PanelLayout>
         <Breadcrumbs breadCrumbs={breadCrumbs} />
-        <div className="fixed flex items-center inset-0 sm:h-full">
+        <div className="flex items-center inset-0 sm:h-full">
           <Loading />
         </div>
       </PanelLayout>

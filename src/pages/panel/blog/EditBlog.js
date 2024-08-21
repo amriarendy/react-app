@@ -53,7 +53,6 @@ const EditBlog = () => {
     setBody(response.data.body);
     setSlug(response.data.slug);
     setPublishedAt(response.data.publishedAt);
-    console.log(response);
   };
 
   const getTags = async () => {
@@ -211,6 +210,7 @@ const EditBlog = () => {
                 </div>
                 <div className="col-span-6 sm:col-span-3">
                   <InputFile
+                    onChange={(e) => setFile(e.target.files[0])}
                     id={"file"}
                     name={"file"}
                     label={"File"}

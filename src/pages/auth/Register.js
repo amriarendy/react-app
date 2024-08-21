@@ -63,7 +63,7 @@ const Register = () => {
             />
             <div className="text-sm font-medium text-gray-500 dark:text-gray-400">
               Already have an account?{" "}
-              <HrefText color={"blue"} label={"Login here"} />
+              <HrefText route="/login" color={"blue"} label={"Login"} />
             </div>
           </form>
         </div>
