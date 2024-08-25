@@ -3,8 +3,36 @@ import { HrefText } from "../../components/ui/Href";
 import { Input } from "../../components/ui/Input";
 import { Button } from "../../components/ui/Button";
 import AuthLayout from "./AuthLayout";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 const Register = () => {
+  const navigate = useNavigate();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password", password);
+    try {
+      await axios.post(`http://localhost:3001/register/`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <AuthLayout>
@@ -12,35 +40,53 @@ const Register = () => {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
             Create a Free Account
           </h2>
-          <form className="mt-8 space-y-6" action="#">
+          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div>
               <Input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 id={"email"}
                 name={"email"}
                 type={"email"}
                 label={"Your Email"}
                 placeholder={"username@domain.com"}
-                required={true}
+                required={false}
               />
             </div>
             <div>
               <Input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                id={"name"}
+                name={"name"}
+                type={"text"}
+                label={"Full Name"}
+                placeholder={"Write your full name"}
+                required={false}
+              />
+            </div>
+            <div>
+              <Input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 id={"password"}
                 name={"password"}
                 type={"password"}
                 label={"Password"}
                 placeholder={"••••••••"}
-                required={true}
+                required={false}
               />
             </div>
             <div>
               <Input
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 id={"password_confirm"}
                 name={"password_confirm"}
                 type={"password"}
                 label={"Password Confirm"}
                 placeholder={"••••••••"}
-                required={true}
+                required={false}
               />
             </div>
             <div className="flex items-start">
@@ -56,8 +102,8 @@ const Register = () => {
               </div>
             </div>
             <Button
-              id={"login"}
-              type={"button"}
+              id={"register"}
+              type={"submit"}
               label={"Create account"}
               color={"blue"}
             />
