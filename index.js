@@ -5,6 +5,7 @@ import UserRoute from "./app/routes/UserRoute.js";
 import TagRoute from "./app/routes/TagRoute.js";
 import CategoryRoute from "./app/routes/CategoryRoute.js";
 import BlogRoute from "./app/routes/BlogRoute.js";
+import AuthRoute from "./app/routes/AuthRoute.js";
 
 const app = express();
 const port = 3001;
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use(FileUpload());
 app.use(express.static("public"));
+app.use(AuthRoute);
 app.use(UserRoute);
 app.use(TagRoute);
 app.use(CategoryRoute);
