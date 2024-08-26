@@ -93,7 +93,6 @@ export const update = async (req, res) => {
       id: req.params.id,
     },
   });
-  console.log(getWhere);
 
   if (!getWhere)
     return res

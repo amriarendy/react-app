@@ -1,10 +1,17 @@
 import Auth from "../models/AuthModel.js";
+import { Jwt } from "jsonwebtoken";
 
 export const signIn = async (req, res) => {
   try {
-    console.log(req);
+    const user = await Auth.findAll({
+      where:{
+        email: req.body.email
+      }
+    });
+    const match = await bcrypt.compare
   } catch (error) {
     console.log(error.message);
+    res.status(404).json({ code: 404, status: "error", message: "Email or password not found!" })
   }
 };
 
