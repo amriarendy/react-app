@@ -10,6 +10,9 @@ const Auth = db.define(
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     status: DataTypes.STRING,
+    photo: DataTypes.STRING,
+    urlPhoto: DataTypes.STRING,
+    tokenRefresh: DataTypes.STRING,
   },
   {
     freezeTableName: true,

@@ -1,4 +1,5 @@
 import express from "express";
+import { verifyToken } from "../middleware/VerifyToken.js";
 import {
   destroy,
   getAll,
@@ -9,10 +10,10 @@ import {
 
 const router = express.Router();
 
-router.get("/master/tags", getAll);
-router.get("/master/tags/:id", getWhere);
-router.post("/master/tags", store);
-router.patch("/master/tags/:id", update);
-router.delete("/master/tags/:id", destroy);
+router.get("/master/tags", verifyToken, getAll);
+router.get("/master/tags/:id", verifyToken, getWhere);
+router.post("/master/tags", verifyToken, store);
+router.patch("/master/tags/:id", verifyToken, update);
+router.delete("/master/tags/:id", verifyToken, destroy);
 
 export default router;

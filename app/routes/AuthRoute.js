@@ -6,13 +6,15 @@ import {
   verifyEmail,
   resetPassword,
 } from "../controllers/AuthController.js";
+import { refreshToken } from "../controllers/RefreshToken.js";
 
 const router = express.Router();
 
 router.post("/login", signIn);
 router.post("/register", register);
-router.post("/email-verify", verifyEmail);
+router.get("/email-verify", verifyEmail);
 router.post("/reset-password", resetPassword);
 router.post("/logout", signOut);
+router.get("/token", refreshToken);
 
 export default router;

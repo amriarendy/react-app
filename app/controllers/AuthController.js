@@ -10,7 +10,7 @@ export const signIn = async (req, res) => {
       },
     });
     const match = await bcrypt.compare(req.body.password, user[0].password);
-    console.log(process.env.ACCESS_TOKEN_SECRET);
+    console.log("password from db: ", user[0].password);
     if (!match)
       return res
         .status(400)
@@ -22,18 +22,18 @@ export const signIn = async (req, res) => {
       { userId, name, email },
       process.env.ACCESS_TOKEN_SECRET,
       {
-        expireIn: "20s",
+        expiresIn: "20s",
       }
     );
     const tokenRefresh = jwt.sign(
       { userId, name, email },
       process.env.ACCESS_TOKEN_SECRET,
       {
-        expireIn: "1d",
+        expiresIn: "1d",
       }
     );
     await Auth.update(
-      { refresh_token: tokenRefresh },
+      { tokenRefresh: tokenRefresh },
       {
         where: {
           id: userId,
@@ -85,7 +85,7 @@ export const register = async (req, res) => {
     });
     res
       .status(201)
-      .json({ code: 201, status: "success", message: "Account registerd" });
+      .json({ code: 201, status: "success", message: "Account registered" });
   } catch (error) {
     console.log(error.message);
   }
@@ -93,7 +93,10 @@ export const register = async (req, res) => {
 
 export const verifyEmail = async (req, res) => {
   try {
-    console.log(req);
+    const user = await Auth.findAll({
+      attributes:['id', 'name', 'email']
+    })
+    res.json(user)
   } catch (error) {
     console.log(error.message);
   }
