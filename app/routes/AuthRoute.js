@@ -14,7 +14,7 @@ router.post("/login", signIn);
 router.post("/register", register);
 router.get("/email-verify", verifyEmail);
 router.post("/reset-password", resetPassword);
-router.post("/logout", signOut);
+router.delete("/logout", signOut);
 router.get("/token", refreshToken);
 
 export default router;

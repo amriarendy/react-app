@@ -1,8 +1,29 @@
-###
-GET http://localhost:3001/register
+### EMAIL VERIFY
+GET http://localhost:3001/email-verify
+Authorization: Bearer
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJKaG9uIERvZSIsImVtYWlsIjoiamhvbkBkb2UuY29tIiwiaWF0IjoxNzI0OTI0NjUwLCJleHAiOjE3MjQ5MjQ2NzB9.RQ0NofdeGssM1Kteu_R0DhaHCLnGcpTPKrQ2Jqu7LZY
+
+### LOGIN
+POST http://localhost:3001/login
 Content-Type: application/json
+
+{
+    "email": "jhon@doe.com",
+    "password": "password123"
+}
+
+### REGISTER ACCOUNT
+POST http://localhost:3001/register
+Content-Type: application/json
+
 {
     "name": "Jhon Doe",
     "email": "jhon@doe.com",
     "password": "password123"
 }
+
+### LOGOUT
+DELETE http://localhost:3001/logout
+
+### GET TOKEN
+GET http://localhost:3001/token

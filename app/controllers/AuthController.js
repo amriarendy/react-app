@@ -57,7 +57,25 @@ export const signIn = async (req, res) => {
 
 export const signOut = async (req, res) => {
   try {
-    console.log(req);
+    const refreshToken = req.cookies.refreshToken;
+    if (!refreshToken) return res.sendStatus(204);
+    const user = await Auth.findAll({
+      where: {
+        tokenRefresh: refreshToken,
+      },
+    });
+    if (!user[0]) return res.sendStatus(204);
+    const userId = user[0].id;
+    await Auth.update(
+      { tokenRefresh: null },
+      {
+        where: {
+          id: userId,
+        },
+      }
+    );
+    res.clearCookie("tokenRefresh");
+    return res.sendStatus(200);
   } catch (error) {
     console.log(error.message);
   }
@@ -94,9 +112,9 @@ export const register = async (req, res) => {
 export const verifyEmail = async (req, res) => {
   try {
     const user = await Auth.findAll({
-      attributes:['id', 'name', 'email']
-    })
-    res.json(user)
+      attributes: ["id", "name", "email"],
+    });
+    res.json(user);
   } catch (error) {
     console.log(error.message);
   }

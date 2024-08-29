@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 21, 2024 at 02:55 AM
+-- Generation Time: Aug 29, 2024 at 05:04 PM
 -- Server version: 8.0.30
 -- PHP Version: 7.4.33
 
@@ -59,10 +59,10 @@ CREATE TABLE `categories` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hashtag`
+-- Table structure for table `hashtags`
 --
 
-CREATE TABLE `hashtag` (
+CREATE TABLE `hashtags` (
   `id` bigint NOT NULL,
   `tag` varchar(100) DEFAULT NULL,
   `blog_id` int DEFAULT NULL,
@@ -86,6 +86,19 @@ CREATE TABLE `products` (
   `discount` int DEFAULT NULL,
   `createdAt` timestamp NULL DEFAULT NULL,
   `updatedAt` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `id` int NOT NULL,
+  `token` text,
+  `dateSession` datetime DEFAULT NULL,
+  `userId` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -121,6 +134,7 @@ CREATE TABLE `users` (
   `status` enum('Active','Offline') DEFAULT NULL,
   `position` varchar(100) DEFAULT NULL,
   `country` varchar(100) DEFAULT NULL,
+  `tokenRefresh` text,
   `createdAt` timestamp NULL DEFAULT NULL,
   `updatedAt` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -142,15 +156,21 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `hashtag`
+-- Indexes for table `hashtags`
 --
-ALTER TABLE `hashtag`
+ALTER TABLE `hashtags`
   ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -182,15 +202,21 @@ ALTER TABLE `categories`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `hashtag`
+-- AUTO_INCREMENT for table `hashtags`
 --
-ALTER TABLE `hashtag`
+ALTER TABLE `hashtags`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sessions`
+--
+ALTER TABLE `sessions`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
