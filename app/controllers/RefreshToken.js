@@ -4,8 +4,6 @@ import jwt from "jsonwebtoken";
 export const refreshToken = async (req, res) => {
   try {
     const tokenRefresh = req.cookies.tokenRefresh;
-    console.log(tokenRefresh);
-
     if (!tokenRefresh) return res.sendStatus(401);
     const user = await Auth.findAll({
       where: {
@@ -17,7 +15,7 @@ export const refreshToken = async (req, res) => {
       tokenRefresh,
       process.env.REFRESH_TOKEN_SECRET,
       (err, decode) => {
-        if (err) return res.sendStatus(403);
+        if (err) return res.sendStatus(403), console.log("err: ", err);
         const userId = user[0].id;
         const name = user[0].name;
         const email = user[0].email;

@@ -1,9 +1,8 @@
-### EMAIL VERIFY
+### Email Varify
 GET http://localhost:3001/email-verify
-Authorization: Bearer
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJKaG9uIERvZSIsImVtYWlsIjoiamhvbkBkb2UuY29tIiwiaWF0IjoxNzI0OTI0NjUwLCJleHAiOjE3MjQ5MjQ2NzB9.RQ0NofdeGssM1Kteu_R0DhaHCLnGcpTPKrQ2Jqu7LZY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJKaG9uIERvZSIsImVtYWlsIjoiamhvbkBkb2UuY29tIiwiaWF0IjoxNzI1MDAyMTUwLCJleHAiOjE3MjUwMDIxNjV9.ZzR9pt0CvFzxSGW1FX0FblmfQEO3JcDCFUf2ZvQoS14
 
-### LOGIN
+### Login
 POST http://localhost:3001/login
 Content-Type: application/json
 
@@ -12,7 +11,7 @@ Content-Type: application/json
     "password": "password123"
 }
 
-### REGISTER ACCOUNT
+### Create Account
 POST http://localhost:3001/register
 Content-Type: application/json
 
@@ -22,8 +21,12 @@ Content-Type: application/json
     "password": "password123"
 }
 
-### LOGOUT
+### Logout
 DELETE http://localhost:3001/logout
 
-### GET TOKEN
+### Get Token
 GET http://localhost:3001/token
+
+### Get Master Tags
+GET http://localhost:3001/master/tags
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJKaG9uIERvZSIsImVtYWlsIjoiamhvbkBkb2UuY29tIiwiaWF0IjoxNzI1MDAyMTUwLCJleHAiOjE3MjUwMDIxNjV9.ZzR9pt0CvFzxSGW1FX0FblmfQEO3JcDCFUf2ZvQoS14

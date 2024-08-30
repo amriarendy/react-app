@@ -10,7 +10,6 @@ export const signIn = async (req, res) => {
       },
     });
     const match = await bcrypt.compare(req.body.password, user[0].password);
-    console.log("password from db: ", user[0].password);
     if (!match)
       return res
         .status(400)
@@ -27,7 +26,7 @@ export const signIn = async (req, res) => {
     );
     const tokenRefresh = jwt.sign(
       { userId, name, email },
-      process.env.ACCESS_TOKEN_SECRET,
+      process.env.REFRESH_TOKEN_SECRET,
       {
         expiresIn: "1d",
       }
@@ -46,7 +45,6 @@ export const signIn = async (req, res) => {
     });
     res.json({ tokenAccess });
   } catch (error) {
-    console.log(error.message);
     res.status(404).json({
       code: 404,
       status: "error",

@@ -1,10 +1,6 @@
-# React.JS App Starter Pack
+# Backend NodeJS MySQL
 
-This project was created Reactjs, Tailwind and Flowbite Panel.
-
-## `Screenshot`
-
-![App Screenshot](https://raw.githubusercontent.com/amriarendy/react-app/main/public/Dashboard.png)
+This project Backend.
 
 ## `Tools Specification`
 
@@ -13,18 +9,28 @@ node and npm version:
 - node v20.14.0
 - npm 10.8.1
 
-## Tech Stack
+## Dependencies
 
-**Client:** React, Redux, TailwindCSS, Flowbite
-
-**Server:** Node, Express, JSON Server
+```json
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-fileupload": "^1.5.1",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.10.3",
+    "sequelize": "^6.37.3"
+  }
+```
 
 ## `Installation`
 
 Download or Clone Project From Github
 
 ```bash
-  git clone https://github.com/amriarendy/react-app.git
+  git clone --branch be-nodejs-mysql https://github.com/amriarendy/react-app.git
 ```
 
 Go to the project directory
@@ -45,11 +51,95 @@ Migrate Database and seeder
 
 To run tests, run the following command
 
-Basic start json server port 3000
+Server **PORT** 3001
 
 ```bash
-  npm run start
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
 ```
+
+Change **PORT** at entrypoint in file index.js:
+```javascript
+  dotenv.config();
+  const app = express();
+  const port = 3001; // <== change port here at line 14
+
+  app.listen(port, () => {
+    console.log(`Server running | app listening at http://127.0.0.1:${port}`);
+  });
+```
+
+## Rest API Reference
+### Authorization
+*endpoint:* Login
+
+```http
+  POST http://localhost:3001/login
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `email` | `string` | **Required**, **Valid Email**, **Trim** |
+| `password` | `string` | **Required**. |
+
+*endpoint:* Register
+
+```http
+  POST http://localhost:3001/register
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `name` | `string` | **Required, Min: 3 char, Max: 50 char**. |
+| `email` | `string` | **Required**, **Valid Email**, **Trim** |
+| `password` | `string` | **Required**. |
+| `passwordConfirm` | `string` | **Required, match: password**. |
+
+*endpoint:* Email Verify
+
+```http
+  GET http://localhost:3001/email-verify
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `email` | `string` | **Required**, **Valid Email**, **Trim** |
+
+*endpoint:* Logout
+
+```http
+  DELETE http://localhost:3001/logout
+```
+
+*endpoint:* Get Token
+
+```http
+  GET http://localhost:3001/token
+```
+
+## Code Response
+
+| Code | Status     | Response                       |
+| :-------- | :------- | :-------------------------------- |
+| 200      | OK | ✅ success |
+| 201      | Created | ✅ success |
+| 204      | No Content | ✅ success |
+| 400      | Bad Request | ❌ errors |
+| 401      | Unathorized | ❌ errors |
+| 402      | Payment Required | ❌ errors |
+| 403      | Forbidden | ❌ errors |
+| 404      | Not Found | ❌ errors |
+| 405      | Method Not Allowed | ❌ errors |
+| 408      | Request Timeout | ❌ errors |
+| 410      | Gone | ❌ errors |
+| 422      | Unprocessable Content | ❌ errors |
+| 500      | Internal Server Error | ❌ errors |
+| 502      | Bad Gateway | ❌ errors |
+| 503      | Service Unvailable | ❌ errors |
+| 504      | Gateway Timeout | ❌ errors |
 
 ## 🔗 Follow Me!!
 
