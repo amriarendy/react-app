@@ -14,6 +14,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errMassage, setErrMassage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,7 +30,9 @@ const Register = () => {
       });
       navigate("/login");
     } catch (error) {
-      console.log(error);
+      if (error.response) {
+        console.log(error.response.data.message);
+      }
     }
   };
 

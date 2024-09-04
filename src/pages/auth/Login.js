@@ -3,18 +3,43 @@ import { HrefText } from "../../components/ui/Href";
 import { Input } from "../../components/ui/Input";
 import { Button } from "../../components/ui/Button";
 import AuthLayout from "./AuthLayout";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errMessage, setErrMessage] = useState(""); // Fixed typo from 'errMassage'
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:3001/login", {
+        email,
+        password,
+      });
+      navigate("/blogs");
+    } catch (error) {
+      if (error.response) {
+        setErrMessage(error.response.data.message || "An error occurred"); // Show server error message
+      } else {
+        setErrMessage("Network error, please try again later"); // Show generic error message
+      }
+    }
+  };
+
   return (
     <>
       <AuthLayout>
         <div className="w-full max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow dark:bg-gray-800">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-            Sign in to platform
-          </h2>
-          <form className="mt-8 space-y-6" action="#">
+          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div>
               <Input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 id={"email"}
                 name={"email"}
                 type={"email"}
@@ -25,6 +50,8 @@ const Login = () => {
             </div>
             <div>
               <Input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 id={"password"}
                 name={"password"}
                 type={"password"}
@@ -43,7 +70,7 @@ const Login = () => {
             </div>
             <Button
               id={"login"}
-              type={"button"}
+              type={"submit"}
               label={"Login to your account"}
               color={"blue"}
             />
