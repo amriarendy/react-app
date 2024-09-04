@@ -53,7 +53,7 @@ To run tests, run the following command
 
 Server **PORT** 3001
 
-```bash
+```json
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
@@ -62,59 +62,62 @@ Server **PORT** 3001
 ```
 
 Change **PORT** at entrypoint in file index.js:
-```javascript
-  dotenv.config();
-  const app = express();
-  const port = 3001; // <== change port here at line 14
 
-  app.listen(port, () => {
-    console.log(`Server running | app listening at http://127.0.0.1:${port}`);
-  });
+```javascript
+dotenv.config();
+const app = express();
+const port = 3001; // <== change port here at line 14
+
+app.listen(port, () => {
+  console.log(`Server running | app listening at http://127.0.0.1:${port}`);
+});
 ```
 
 ## Rest API Reference
+
 ### Authorization
-*endpoint:* Login
+
+_endpoint:_ Login
 
 ```http
   POST http://localhost:3001/login
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `email` | `string` | **Required**, **Valid Email**, **Trim** |
-| `password` | `string` | **Required**. |
+| Parameter  | Type     | Description                             |
+| :--------- | :------- | :-------------------------------------- |
+| `email`    | `string` | **Required**, **Valid Email**, **Trim** |
+| `password` | `string` | **Required**.                           |
 
-*endpoint:* Register
+_endpoint:_ Register
 
 ```http
   POST http://localhost:3001/register
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `name` | `string` | **Required, Min: 3 char, Max: 50 char**. |
-| `email` | `string` | **Required**, **Valid Email**, **Trim** |
-| `password` | `string` | **Required**. |
-| `passwordConfirm` | `string` | **Required, match: password**. |
+| Parameter         | Type     | Description                              |
+| :---------------- | :------- | :--------------------------------------- |
+| `name`            | `string` | **Required, Min: 3 char, Max: 50 char**. |
+| `email`           | `string` | **Required**, **Valid Email**, **Trim**  |
+| `password`        | `string` | **Required**.                            |
+| `passwordConfirm` | `string` | **Required, match: password**.           |
 
-*endpoint:* Email Verify
+_endpoint:_ Email Verify
 
 ```http
   GET http://localhost:3001/email-verify
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `email` | `string` | **Required**, **Valid Email**, **Trim** |
+| Parameter | Type     | Description                             |
+| :-------- | :------- | :-------------------------------------- |
+| `email`   | `string` | **Required**, **Valid Email**, **Trim** |
 
-*endpoint:* Logout
+_endpoint:_ Logout
 
 ```http
   DELETE http://localhost:3001/logout
 ```
 
-*endpoint:* Get Token
+_endpoint:_ Get Token
 
 ```http
   GET http://localhost:3001/token
@@ -122,24 +125,24 @@ Change **PORT** at entrypoint in file index.js:
 
 ## Code Response
 
-| Code | Status     | Response                       |
-| :-------- | :------- | :-------------------------------- |
-| 200      | OK | ✅ success |
-| 201      | Created | ✅ success |
-| 204      | No Content | ✅ success |
-| 400      | Bad Request | ❌ errors |
-| 401      | Unathorized | ❌ errors |
-| 402      | Payment Required | ❌ errors |
-| 403      | Forbidden | ❌ errors |
-| 404      | Not Found | ❌ errors |
-| 405      | Method Not Allowed | ❌ errors |
-| 408      | Request Timeout | ❌ errors |
-| 410      | Gone | ❌ errors |
-| 422      | Unprocessable Content | ❌ errors |
-| 500      | Internal Server Error | ❌ errors |
-| 502      | Bad Gateway | ❌ errors |
-| 503      | Service Unvailable | ❌ errors |
-| 504      | Gateway Timeout | ❌ errors |
+| Code | Status                | Response   |
+| :--- | :-------------------- | :--------- |
+| 200  | OK                    | ✅ success |
+| 201  | Created               | ✅ success |
+| 204  | No Content            | ❌ errors  |
+| 400  | Bad Request           | ❌ errors  |
+| 401  | Unathorized           | ❌ errors  |
+| 402  | Payment Required      | ❌ errors  |
+| 403  | Forbidden             | ❌ errors  |
+| 404  | Not Found             | ❌ errors  |
+| 405  | Method Not Allowed    | ❌ errors  |
+| 408  | Request Timeout       | ❌ errors  |
+| 410  | Gone                  | ❌ errors  |
+| 422  | Unprocessable Content | ❌ errors  |
+| 500  | Internal Server Error | ❌ errors  |
+| 502  | Bad Gateway           | ❌ errors  |
+| 503  | Service Unvailable    | ❌ errors  |
+| 504  | Gateway Timeout       | ❌ errors  |
 
 ## 🔗 Follow Me!!
 

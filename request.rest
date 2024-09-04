@@ -1,7 +1,3 @@
-### Email Varify
-GET http://localhost:3001/email-verify
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJKaG9uIERvZSIsImVtYWlsIjoiamhvbkBkb2UuY29tIiwiaWF0IjoxNzI1MDAyMTUwLCJleHAiOjE3MjUwMDIxNjV9.ZzR9pt0CvFzxSGW1FX0FblmfQEO3JcDCFUf2ZvQoS14
-
 ### Login
 POST http://localhost:3001/login
 Content-Type: application/json
@@ -10,6 +6,9 @@ Content-Type: application/json
     "email": "jhon@doe.com",
     "password": "password123"
 }
+
+### Logout
+DELETE http://localhost:3001/logout
 
 ### Create Account
 POST http://localhost:3001/register
@@ -21,12 +20,9 @@ Content-Type: application/json
     "password": "password123"
 }
 
-### Logout
-DELETE http://localhost:3001/logout
-
 ### Get Token
 GET http://localhost:3001/token
 
 ### Get Master Tags
 GET http://localhost:3001/master/tags
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJKaG9uIERvZSIsImVtYWlsIjoiamhvbkBkb2UuY29tIiwiaWF0IjoxNzI1MDAyMTUwLCJleHAiOjE3MjUwMDIxNjV9.ZzR9pt0CvFzxSGW1FX0FblmfQEO3JcDCFUf2ZvQoS14
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJKaG9uIERvZSIsImVtYWlsIjoiamhvbkBkb2UuY29tIiwiaWF0IjoxNzI1MDI3Njg5LCJleHAiOjE3MjUwMjc3MDR9.xybRsHsc2f7vF3gP8qLnaI5c6CI4N69uU_XbTrXDnwI

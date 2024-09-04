@@ -4,6 +4,8 @@ import bcrypt from "bcrypt";
 
 export const signIn = async (req, res) => {
   try {
+    console.log("request: ", req);
+
     const user = await Auth.findAll({
       where: {
         email: req.body.email,
@@ -55,11 +57,11 @@ export const signIn = async (req, res) => {
 
 export const signOut = async (req, res) => {
   try {
-    const refreshToken = req.cookies.refreshToken;
-    if (!refreshToken) return res.sendStatus(204);
+    const tokenRefresh = req.cookies.tokenRefresh;
+    if (!tokenRefresh) return res.sendStatus(204);
     const user = await Auth.findAll({
       where: {
-        tokenRefresh: refreshToken,
+        tokenRefresh: tokenRefresh,
       },
     });
     if (!user[0]) return res.sendStatus(204);
