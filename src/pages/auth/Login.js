@@ -3,7 +3,7 @@ import { HrefText } from "../../components/ui/Href";
 import { Input } from "../../components/ui/Input";
 import { Button } from "../../components/ui/Button";
 import AuthLayout from "./AuthLayout";
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -21,12 +21,13 @@ const Login = () => {
         email,
         password,
       });
-      navigate("/blogs");
+      navigate("/dashboard");
     } catch (error) {
+      console.error("Errors: ", error); // Log the error for debugging
       if (error.response) {
-        setErrMessage(error.response.data.message || "An error occurred"); // Show server error message
+        setErrMessage(error.response.data.message || "An error occurred");
       } else {
-        setErrMessage("Network error, please try again later"); // Show generic error message
+        setErrMessage("Network error, please try again later");
       }
     }
   };
@@ -45,7 +46,7 @@ const Login = () => {
                 type={"email"}
                 label={"Your Email"}
                 placeholder={"username@domain.com"}
-                required={true}
+                required={false}
               />
             </div>
             <div>
@@ -57,7 +58,7 @@ const Login = () => {
                 type={"password"}
                 label={"Password"}
                 placeholder={"••••••••"}
-                required={true}
+                required={false}
               />
             </div>
             <div className="flex items-start">
