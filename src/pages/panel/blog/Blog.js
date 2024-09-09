@@ -21,8 +21,8 @@ const Blog = () => {
   const breadCrumbs = {
     page: "Blog",
     data: [
-      { page: "Blog", route: "/blog" },
-      { page: "List", route: "/blog" },
+      { page: "Blog", route: "/dashboard/blog" },
+      { page: "List", route: "/dashboard/blog" },
     ],
   };
 

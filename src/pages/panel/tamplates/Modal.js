@@ -5,8 +5,8 @@ const Modal = () => {
   const breadCrumbs = {
     page: "Modal",
     data: [
-      { page: "Templates", route: "/templates/modal" },
-      { page: "Modal", route: "/templates/modal" },
+      { page: "Templates", route: "/dashboard/templates/modal" },
+      { page: "Modal", route: "/dashboard/templates/modal" },
     ],
   };
   return (

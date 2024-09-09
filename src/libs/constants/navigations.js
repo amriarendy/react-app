@@ -175,6 +175,18 @@ export const SIDEBAR_MENU_ITEMS = [
     ),
   },
   {
+    key: "setting",
+    label: "Setting",
+    route: "/dashboard/setting",
+    icon: (
+      <FaBook
+        className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+        aria-hidden="true"
+        fill="currentColor"
+      />
+    ),
+  },
+  {
     key: "signout",
     label: "Sign Out",
     route: "/signout",

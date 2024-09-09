@@ -5,8 +5,8 @@ const Popup = () => {
   const breadCrumbs = {
     page: "Popups",
     data: [
-      { page: "Templates", route: "/templates/popup" },
-      { page: "Popups", route: "/templates/popup" },
+      { page: "Templates", route: "/dashboard/templates/popup" },
+      { page: "Popups", route: "/dashboard/templates/popup" },
     ],
   };
   return (

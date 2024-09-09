@@ -15,8 +15,8 @@ const TableAdvance = () => {
   const breadCrumbs = {
     page: "Table Advance",
     data: [
-      { page: "Templates", route: "/templates/table-advance" },
-      { page: "Table Advance", route: "/templates/table-advance" },
+      { page: "Templates", route: "/dashboard/templates/table-advance" },
+      { page: "Table Advance", route: "/dashboard/templates/table-advance" },
     ],
   };
 

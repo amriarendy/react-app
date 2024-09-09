@@ -21,9 +21,9 @@ const Category = () => {
   const breadCrumbs = {
     page: "Category",
     data: [
-      { page: "Master", route: "/master/category" },
-      { page: "Category", route: "/master/category" },
-      { page: "List", route: "/master/category" },
+      { page: "Master", route: "/dashboard/master/category" },
+      { page: "Category", route: "/dashboard/master/category" },
+      { page: "List", route: "/dashboard/master/category" },
     ],
   };
   const navigate = useNavigate();

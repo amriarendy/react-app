@@ -6,8 +6,8 @@ const PageError = () => {
   const breadCrumbs = {
     page: "Page Error",
     data: [
-      { page: "Templates", route: "/templates/page-error" },
-      { page: "Page Error", route: "/templates/page-error" },
+      { page: "Templates", route: "/dashboard/templates/page-error" },
+      { page: "Page Error", route: "/dashboard/templates/page-error" },
     ],
   };
   return (

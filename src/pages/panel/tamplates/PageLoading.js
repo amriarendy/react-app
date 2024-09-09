@@ -6,8 +6,8 @@ const PageLoading = () => {
   const breadCrumbs = {
     page: "Page Loading",
     data: [
-      { page: "Templates", route: "/templates/page-loading" },
-      { page: "Page Loading", route: "/templates/page-loading" },
+      { page: "Templates", route: "/dashboard/templates/page-loading" },
+      { page: "Page Loading", route: "/dashboard/templates/page-loading" },
     ],
   };
   return (

@@ -18,8 +18,8 @@ const EditUser = () => {
   const breadCrumbs = {
     page: "User Edit",
     data: [
-      { page: "User", route: "/user" },
-      { page: "Edit", route: "/user/edit" },
+      { page: "User", route: "/dashboard/user" },
+      { page: "Edit", route: "/dashboard/user/edit" },
     ],
   };
   const navigate = useNavigate();

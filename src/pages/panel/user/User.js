@@ -18,8 +18,8 @@ const User = () => {
   const breadCrumbs = {
     page: "Users",
     data: [
-      { page: "Users", route: "/Users" },
-      { page: "List", route: "/Users" },
+      { page: "Users", route: "/dashboard/Users" },
+      { page: "List", route: "/dashboard/Users" },
     ],
   };
 

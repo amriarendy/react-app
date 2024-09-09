@@ -5,7 +5,7 @@ import Card from "../../../components/card/Card";
 const Layout = () => {
   const breadCrumbs = {
     page: "Layout",
-    data: [{ page: "Test", route: "/test" }],
+    data: [{ page: "Test", route: "/dashboard/test" }],
   };
   return (
     <>

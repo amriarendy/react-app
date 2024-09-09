@@ -14,8 +14,8 @@ const AddUser = () => {
   const breadCrumbs = {
     page: "User Add",
     data: [
-      { page: "User", route: "/user" },
-      { page: "Add", route: "/user/add" },
+      { page: "User", route: "/dashboard/user" },
+      { page: "Add", route: "/dashboard/user/add" },
     ],
   };
   const navigate = useNavigate();

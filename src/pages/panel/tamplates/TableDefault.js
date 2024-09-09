@@ -17,8 +17,8 @@ const TableDefault = () => {
   const breadCrumbs = {
     page: "Table Default",
     data: [
-      { page: "Templates", route: "/templates/table-default" },
-      { page: "Table Default", route: "/templates/table-default" },
+      { page: "Templates", route: "/dashboard/templates/table-default" },
+      { page: "Table Default", route: "/dashboard/templates/table-default" },
     ],
   };
 

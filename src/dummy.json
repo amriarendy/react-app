@@ -1,4 +1,10 @@
 {
+  "settings": [
+    {
+      "database": "mysql",
+      "serviceAPI": "http://localhost:3001/"
+    }
+  ],
   "users": [
     {
       "id": 1,

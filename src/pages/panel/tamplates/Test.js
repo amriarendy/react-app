@@ -14,8 +14,8 @@ const Test = () => {
   const breadCrumbs = {
     page: "Test Page",
     data: [
-      { page: "Templates", route: "/templates/test" },
-      { page: "Test Page", route: "/templates/test" },
+      { page: "Templates", route: "/dashboard/templates/test" },
+      { page: "Test Page", route: "/dashboard/templates/test" },
     ],
   };
 

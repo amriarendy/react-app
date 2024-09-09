@@ -4,9 +4,64 @@ import Notification from "./Notification";
 import ProfileMenu from "./ProfileMenu";
 import DarkMode from "./DarkMode";
 import { Image } from "../ui/Image";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import { useEffect, useState } from "react";
 
 const Header = () => {
+  const [name, setName] = useState("");
+  const [token, setToken] = useState("");
+  const [expire, setExpire] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    refreshToken();
+  }, []);
+
+  const refreshToken = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/token");
+      setToken(response.data.accessToken);
+      const decode = jwtDecode(response.data.accessToken);
+      setName(decode.name);
+      setExpire(decode.exp);
+    } catch (error) {
+      if (error.response) {
+        navigate("/login");
+      }
+    }
+  };
+
+  const axiosJWT = axios.create();
+
+  axiosJWT.interceptors.request.use(
+    async (config) => {
+      const currentDate = new Date();
+      if (expire * 1000 < currentDate.getTime()) {
+        const response = await axios.get("http://localhost:5000/token");
+        config.headers.Authorization = `Bearer ${response.data.accessToken}`;
+        setToken(response.data.accessToken);
+        const decode = jwtDecode(response.data.accessToken);
+        setName(decode.name);
+        setExpire(decode.exp);
+      }
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
+
+  const Logout = async () => {
+    try {
+      await axios.delete("http://localhost:3001/logout");
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
   return (
     <>
       <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">

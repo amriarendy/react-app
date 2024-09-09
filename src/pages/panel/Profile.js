@@ -4,7 +4,7 @@ import PanelLayout from "./PanelLayout";
 const Profile = () => {
   const breadCrumbs = {
     page: "Profile",
-    data: [{ page: "Profile", route: "/profile" }],
+    data: [{ page: "Profile", route: "/dashboard/profile" }],
   };
   return (
     <>

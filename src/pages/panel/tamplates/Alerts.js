@@ -12,8 +12,8 @@ const Alerts = () => {
   const breadCrumbs = {
     page: "Alerts",
     data: [
-      { page: "Templates", route: "/templates/alerts" },
-      { page: "Alerts", route: "/templates/alerts" },
+      { page: "Templates", route: "/dashboard/templates/alerts" },
+      { page: "Alerts", route: "/dashboard/templates/alerts" },
     ],
   };
   return (

@@ -5,8 +5,8 @@ const GridCols = () => {
   const breadCrumbs = {
     page: "Grid and Cols",
     data: [
-      { page: "Templates", route: "/templates/grid-cols" },
-      { page: "Grid and Cols", route: "/templates/grid-cols" },
+      { page: "Templates", route: "/dashboard/templates/grid-cols" },
+      { page: "Grid and Cols", route: "/dashboard/templates/grid-cols" },
     ],
   };
   return (

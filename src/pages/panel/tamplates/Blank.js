@@ -5,8 +5,8 @@ const Blank = () => {
   const breadCrumbs = {
     page: "Blank",
     data: [
-      { page: "Templates", route: "/templates/blank" },
-      { page: "Blank", route: "/templates/blank" },
+      { page: "Templates", route: "/dashboard/templates/blank" },
+      { page: "Blank", route: "/dashboard/templates/blank" },
     ],
   };
   return (

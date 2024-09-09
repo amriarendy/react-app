@@ -13,14 +13,15 @@ import { Input } from "../../../components/ui/Input";
 import axios from "axios";
 import Loading from "../../../components/errors/Loading";
 import Errors from "../../../components/errors/Errors";
+import { jwtDecode } from "jwt-decode";
 
 const Tag = () => {
   const breadCrumbs = {
     page: "Tag",
     data: [
-      { page: "Master", route: "/master/tag" },
-      { page: "Tag", route: "/master/tag" },
-      { page: "List", route: "/master/tag" },
+      { page: "Master", route: "/dashboard/master/tag" },
+      { page: "Tag", route: "/dashboard/master/tag" },
+      { page: "List", route: "/dashboard/master/tag" },
     ],
   };
   const navigate = useNavigate();
@@ -29,6 +30,8 @@ const Tag = () => {
   const [editTag, setEditTag] = useState({ id: "", tag: "" });
   const [validate, setValidate] = useState("");
   const [editValidate, setEditValidate] = useState("");
+  const [token, setToken] = useState("");
+  const [expire, setExpire] = useState("");
 
   // state modal add, edit open & close
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -46,10 +49,33 @@ const Tag = () => {
   const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
+  const axiosJWT = axios.create();
+
+  axiosJWT.interceptors.request.use(
+    async (config) => {
+      const currentDate = new Date();
+      if (expire * 1000 < currentDate.getTime()) {
+        const response = await axios.get("http://localhost:3001/token");
+        config.headers.Authorization = `Bearer ${response.data.accessToken}`;
+        setToken(response.data.accessToken);
+        const decode = jwtDecode(response.data.accessToken);
+        setExpire(decode.exp);
+      }
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
 
   const getTags = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/master/tags");
+      const response = await axiosJWT.get("http://localhost:3001/master/tags", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setTags(response.data);
     } catch (error) {
       setError(error);

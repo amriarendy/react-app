@@ -1,16 +1,39 @@
-const BASE_URL = "http://localhost:3001"; // Corrected the URL
+import useDummy from "../hooks/useDummy";
+import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 
-export const SERVER_API = async (endpoint, options = {}) => {
-  try {
-    const url = `${BASE_URL}${endpoint}`;
-    const response = await fetch(url, options);
-    if (!response.ok) {
-      const errorMessage = await response.text();
-      throw new Error(`API call error: ${response.status} - ${errorMessage}`);
+const SERVER_API = "http://localhost:3001"; 
+
+// Create an instance of axios
+const axiosCreate = axios.create();
+// Add a request interceptor
+const axiosJWT = axiosCreate.interceptors.request.use(
+  async (config) => {
+    const currentDate = new Date();
+    const token = localStorage.getItem('accessToken'); // Fetch token from local storage or state
+    const expire = localStorage.getItem('expire'); // Fetch expiration time from local storage or state
+
+    if (token && expire * 1000 < currentDate.getTime()) {
+      try {
+        const response = await axios.get("http://localhost:3001/token");
+        config.headers.Authorization = `Bearer ${response.data.accessToken}`;
+        localStorage.setItem('accessToken', response.data.accessToken);
+        const decode = jwtDecode(response.data.accessToken);
+        localStorage.setItem('expire', decode.exp);
+      } catch (error) {
+        console.error("Token refresh error:", error);
+      }
     }
-    return await response.json();
-  } catch (error) {
-    console.error(`API call failed: ${error.message}`);
-    throw error;
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
   }
-};
+);
+
+export {axiosJWT, SERVER_API}

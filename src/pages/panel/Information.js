@@ -18,7 +18,7 @@ import {
 const Information = () => {
   const breadCrumbs = {
     page: "Information",
-    data: [{ page: "Information", route: "/Information" }],
+    data: [{ page: "Information", route: "/dashboard/information" }],
   };
   return (
     <>

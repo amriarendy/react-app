@@ -14,8 +14,8 @@ const Form = () => {
   const breadCrumbs = {
     page: "Form",
     data: [
-      { page: "Templates", route: "/templates/form" },
-      { page: "Form", route: "/templates/form" },
+      { page: "Templates", route: "/dashboard/templates/form" },
+      { page: "Form", route: "/dashboard/templates/form" },
     ],
   };
 

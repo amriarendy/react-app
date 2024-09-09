@@ -17,8 +17,8 @@ const EditBlog = () => {
   const breadCrumbs = {
     page: "Blog Edit",
     data: [
-      { page: "Blog", route: "/blog" },
-      { page: "Edit", route: "/blog/edit" },
+      { page: "Blog", route: "/dashboard/blog" },
+      { page: "Edit", route: "/dashboard/blog/edit" },
     ],
   };
   const navigate = useNavigate();

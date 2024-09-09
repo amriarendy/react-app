@@ -4,7 +4,7 @@ import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
 const Docs = () => {
   const breadCrumbs = {
     page: "Docs",
-    data: [{ page: "Docs", route: "/docs" }],
+    data: [{ page: "Docs", route: "/dashboard/docs" }],
   };
   return (
     <>

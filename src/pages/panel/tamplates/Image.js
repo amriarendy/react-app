@@ -17,8 +17,8 @@ const Image = () => {
   const breadCrumbs = {
     page: "Images",
     data: [
-      { page: "Templates", route: "/templates/image" },
-      { page: "Images", route: "/templates/image" },
+      { page: "Templates", route: "/dashboard/templates/image" },
+      { page: "Images", route: "/dashboard/templates/image" },
     ],
   };
   return (
