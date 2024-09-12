@@ -1,31 +1,26 @@
-import useDummy from "../hooks/useDummy";
-import axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
-const SERVER_API = "http://localhost:3001"; 
+const SERVER_API = "http://localhost:3001";
 
-// Create an instance of axios
 const axiosCreate = axios.create();
-// Add a request interceptor
-const axiosJWT = axiosCreate.interceptors.request.use(
+axiosCreate.interceptors.request.use(
   async (config) => {
     const currentDate = new Date();
-    const token = localStorage.getItem('accessToken'); // Fetch token from local storage or state
-    const expire = localStorage.getItem('expire'); // Fetch expiration time from local storage or state
-
+    const token = localStorage.getItem("accessToken");
+    const expire = localStorage.getItem("expire");
     if (token && expire * 1000 < currentDate.getTime()) {
       try {
-        const response = await axios.get("http://localhost:3001/token");
-        config.headers.Authorization = `Bearer ${response.data.accessToken}`;
-        localStorage.setItem('accessToken', response.data.accessToken);
-        const decode = jwtDecode(response.data.accessToken);
-        localStorage.setItem('expire', decode.exp);
+        const response = await axios.get(`${SERVER_API}/token`);
+        const newToken = response.data.accessToken;
+        config.headers.Authorization = `Bearer ${newToken}`;
+        localStorage.setItem("accessToken", newToken);
+        const decode = jwtDecode(newToken);
+        localStorage.setItem("expire", decode.exp);
       } catch (error) {
         console.error("Token refresh error:", error);
       }
-    }
-
-    if (token) {
+    } else if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
 
@@ -36,4 +31,4 @@ const axiosJWT = axiosCreate.interceptors.request.use(
   }
 );
 
-export {axiosJWT, SERVER_API}
+export { axiosCreate as axiosJWT, SERVER_API };

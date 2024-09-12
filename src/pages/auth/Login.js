@@ -23,7 +23,6 @@ const Login = () => {
       });
       navigate("/dashboard");
     } catch (error) {
-      console.error("Errors: ", error); // Log the error for debugging
       if (error.response) {
         setErrMessage(error.response.data.message || "An error occurred");
       } else {
@@ -48,6 +47,11 @@ const Login = () => {
                 placeholder={"username@domain.com"}
                 required={false}
               />
+              {errMessage && (
+                <p className="font-semibold text-red-500 text-sm">
+                  {errMessage}
+                </p>
+              )}
             </div>
             <div>
               <Input
@@ -60,6 +64,11 @@ const Login = () => {
                 placeholder={"••••••••"}
                 required={false}
               />
+              {errMessage && (
+                <p className="font-semibold text-red-500 text-sm">
+                  {errMessage}
+                </p>
+              )}
             </div>
             <div className="flex items-start">
               <CheckBox

@@ -14,6 +14,7 @@ import axios from "axios";
 import Loading from "../../../components/errors/Loading";
 import Errors from "../../../components/errors/Errors";
 import { jwtDecode } from "jwt-decode";
+import { SERVER_API } from "../../../services/api";
 
 const Tag = () => {
   const breadCrumbs = {
@@ -49,7 +50,7 @@ const Tag = () => {
   const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   const axiosJWT = axios.create();
 
   axiosJWT.interceptors.request.use(
@@ -73,8 +74,8 @@ const Tag = () => {
     try {
       const response = await axiosJWT.get("http://localhost:3001/master/tags", {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       setTags(response.data);
     } catch (error) {
@@ -99,7 +100,15 @@ const Tag = () => {
       return;
     }
     try {
-      await axios.post("http://localhost:3001/master/tags", { tag });
+      await axios.post(
+        "http://localhost:3001/master/tags",
+        { tag },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setTag(""); // Reset input field
       toggleAddModal(); // Close modal
       getTags(); // Refresh data
@@ -120,9 +129,17 @@ const Tag = () => {
       return;
     }
     try {
-      await axios.patch(`http://localhost:3001/master/tags/${editTag.id}`, {
-        tag: editTag.tag,
-      });
+      await axios.patch(
+        `http://localhost:3001/master/tags/${editTag.id}`,
+        {
+          tag: editTag.tag,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setEditTag({ id: "", tag: "" }); // Reset input fields
       toggleEditModal(); // Close modal
       getTags(); // Refresh data
@@ -144,7 +161,11 @@ const Tag = () => {
   // delete function
   const destroy = async (param) => {
     try {
-      await axios.delete(`http://localhost:3001/master/tags/${param}`);
+      await axios.delete(`http://localhost:3001/master/tags/${param}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       getTags();
     } catch (error) {
       console.log(error);
