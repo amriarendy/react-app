@@ -1,4 +1,5 @@
 import express from "express";
+import { verifyToken } from "../middleware/VerifyToken.js";
 import {
   destroy,
   getAll,
@@ -9,10 +10,10 @@ import {
 
 const router = express.Router();
 
-router.get("/users", getAll);
-router.get("/users/:id", getWhere);
-router.post("/users", store);
-router.patch("/users/:id", update);
-router.delete("/users/:id", destroy);
+router.get("/users", verifyToken, getAll);
+router.get("/users/:id", verifyToken, getWhere);
+router.post("/users", verifyToken, store);
+router.patch("/users/:id", verifyToken, update);
+router.delete("/users/:id", verifyToken, destroy);
 
 export default router;
