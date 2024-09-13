@@ -4,8 +4,6 @@ import bcrypt from "bcrypt";
 
 export const signIn = async (req, res) => {
   try {
-    console.log("request: ", req);
-
     const user = await Auth.findAll({
       where: {
         email: req.body.email,
@@ -47,10 +45,10 @@ export const signIn = async (req, res) => {
     });
     res.json({ tokenAccess });
   } catch (error) {
-    res.status(404).json({
-      code: 404,
+    res.status(500).json({
+      code: 500,
       status: "error",
-      message: "Email or password not found!",
+      message: "Internal server errors!",
     });
   }
 };

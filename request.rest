@@ -3,8 +3,8 @@ POST http://localhost:3001/login
 Content-Type: application/json
 
 {
-    "email": "jhon@doe.com",
-    "password": "password123"
+    "email": "d@f.c",
+    "password": "ss"
 }
 
 ### Logout
