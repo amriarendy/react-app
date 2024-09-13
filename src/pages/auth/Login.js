@@ -12,10 +12,16 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errMessage, setErrMessage] = useState(""); // Fixed typo from 'errMassage'
+  const [errEmail, setErrEmail] = useState("");
+  const [errPassword, setErrPassword] = useState("");
+  const [errMessage, setErrMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Clear previous errors
+    setErrEmail("");
+    setErrPassword("");
+    setErrMessage("");
     try {
       await axios.post("http://localhost:3001/login", {
         email,
@@ -24,7 +30,14 @@ const Login = () => {
       navigate("/dashboard");
     } catch (error) {
       if (error.response) {
-        setErrMessage(error.response.data.message || "An error occurred");
+        const errors = error.response.data.errors;
+        if (errors.field === "email") {
+          setErrEmail(error.response.data.errors.message || "An error occurred");
+        } else if (errors.field === "password") {
+          setErrPassword(error.response.data.errors.message || "An error occurred");
+        } else {
+          setErrMessage(error.response.data.message || "An error occurred");
+        }
       } else {
         setErrMessage("Network error, please try again later");
       }
@@ -42,14 +55,14 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 id={"email"}
                 name={"email"}
-                type={"email"}
+                type={"text"}
                 label={"Your Email"}
                 placeholder={"username@domain.com"}
                 required={false}
               />
-              {errMessage && (
+              {errEmail && (
                 <p className="font-semibold text-red-500 text-sm">
-                  {errMessage}
+                  {errEmail}
                 </p>
               )}
             </div>
@@ -64,9 +77,9 @@ const Login = () => {
                 placeholder={"••••••••"}
                 required={false}
               />
-              {errMessage && (
+              {errPassword && (
                 <p className="font-semibold text-red-500 text-sm">
-                  {errMessage}
+                  {errPassword}
                 </p>
               )}
             </div>
