@@ -20,7 +20,7 @@ const HrefText = ({ label, color, route }) => {
     <>
       <Link
         to={route}
-        className={`ml-auto text-sm text-${color}-700 hover:underline dark:text-${color}-500`}
+        className={`ml-auto font-medium text-${color}-700 hover:underline dark:text-${color}-500`}
       >
         {label}
       </Link>
@@ -42,4 +42,14 @@ const HrefProfile = ({ route, label }) => {
   );
 };
 
-export { Href, HrefText, HrefProfile };
+const HrefDynamic = ({ route, label, className }) => {
+  return (
+    <>
+      <Link to={route} className={className}>
+        {label}
+      </Link>
+    </>
+  );
+};
+
+export { Href, HrefText, HrefProfile, HrefDynamic };

@@ -1,6 +1,6 @@
-import CheckBox from "../ui/CheckBox";
+import CheckBox from "../../ui/CheckBox";
 
-const TableHeader = ({ attribute, thead }) => {
+const Thead = ({ attribute, thead }) => {
   return (
     <>
       <thead className="bg-gray-100 dark:bg-gray-700">
@@ -13,7 +13,7 @@ const TableHeader = ({ attribute, thead }) => {
             </th>
           )}
 
-          {attribute.no && (
+          {attribute.number && (
             <th
               scope="col"
               className="p-4 text-xs text-center text-gray-900 uppercase dark:text-gray-400"
@@ -36,4 +36,4 @@ const TableHeader = ({ attribute, thead }) => {
   );
 };
 
-export default TableHeader;
+export default Thead;

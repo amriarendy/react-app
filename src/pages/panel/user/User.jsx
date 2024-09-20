@@ -1,82 +1,134 @@
-import React, { useState } from "react";
 import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
 import PanelLayout from "../PanelLayout";
-import Card from "../../../components/card/Card";
-import Table from "../../../components/table/Table";
+import AttributeTable from "../../../components/table/advance/AttributeTable";
+import Table from "../../../components/table/advance/Table";
+import Thead from "../../../components/table/advance/Thead";
+import Tfoot from "../../../components/table/advance/Tfoot";
+import Taction from "../../../components/table/advance/Taction";
 import { USER_FORMAT_TABLE } from "../../../libs/constants/formats/UserFormat";
-import AttributeTable from "../../../components/table/AttributeTable";
-import DataTable from "../../../../dummy.json";
-import TableFeature from "../../../components/table/TableFeature";
-import TableAction from "../../../components/table/TableAction";
+import { useEffect, useState } from "react";
+import { ImageCircleSmall } from "../../../components/ui/Image";
+import { imageCheck } from "../../../libs/utils/image";
+import CheckBox from "../../../components/ui/CheckBox";
+import axios from "axios";
+import Loading from "../../../components/errors/Loading";
+import Errors from "../../../components/errors/Errors";
 
 const User = () => {
   const breadCrumbs = {
     page: "Users",
     data: [
-      { page: "Users", route: "/Users" },
-      { page: "List", route: "/Users" },
+      { page: "Users", route: "/dashboard/Users" },
+      { page: "List", route: "/dashboard/Users" },
     ],
   };
 
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [imageStatus, setImageStatus] = useState({});
 
-  const toggleAddModal = () => {
-    setIsAddModalOpen(!isAddModalOpen);
+  useEffect(() => {
+    if (users) {
+      setUsers(users);
+      const imageChecks = async () => {
+        const status = {};
+        await Promise.all(
+          users.map(async (item) => {
+            const result = await imageCheck(`${item.urlPhoto}`);
+            status[item.id] = result;
+          })
+        );
+        setImageStatus(status);
+      };
+      imageChecks();
+    }
+    getUsers();
+  }, []);
+
+  const getUsers = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/users");
+      setUsers(response.data);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const toggleEditModal = () => {
-    setIsEditModalOpen(!isEditModalOpen);
+  const destroy = async (param) => {
+    try {
+      await axios.delete(`http://localhost:3001/users/${param}`);
+      getUsers();
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   return (
     <>
       <PanelLayout>
         <Breadcrumbs breadCrumbs={breadCrumbs} />
-        <div className="col-span-3">
-          <Card
-            header={
-              <AttributeTable
-                attribute={USER_FORMAT_TABLE.attribute}
-                cols={1}
-              />
-            }
-          >
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-              <Table
-                attribute={USER_FORMAT_TABLE.attribute}
-                thead={USER_FORMAT_TABLE.th}
-              >
-                {DataTable.users.map((item, index) => (
-                  <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <TableFeature
-                      attribute={USER_FORMAT_TABLE.attribute}
-                      index={index}
-                    />
-                    <td class="flex items-center p-4 mr-12 space-x-6 whitespace-nowrap">
-                      <img
-                        class="w-10 h-10 rounded-full"
-                        src={`https://flowbite-admin-dashboard.vercel.app/images/users/${item.avatar}`}
-                        alt="{{ .name }} avatar"
+        <AttributeTable attribute={USER_FORMAT_TABLE.attribute} />
+        {loading ? (
+          <div className="flex items-center inset-0 sm:h-full">
+            <Loading />
+          </div>
+        ) : error ? (
+          <div className="flex items-center inset-0 sm:h-full">
+            <Errors code={500} status={error.code} message={error.message} />
+          </div>
+        ) : (
+          <Table>
+            <Thead
+              thead={USER_FORMAT_TABLE.th}
+              attribute={USER_FORMAT_TABLE.attribute}
+            />
+            <tbody>
+              {users.length > 0 ? (
+                users.map((item, index) => (
+                  <tr key={item.id} className="border-b dark:border-gray-700">
+                    {USER_FORMAT_TABLE.attribute.checkbox && (
+                      <td className="w-4 p-4">
+                        <div className="flex items-center">
+                          <CheckBox item={{ id: "checkbox-1" }} />
+                        </div>
+                      </td>
+                    )}
+                    {USER_FORMAT_TABLE.attribute.number && (
+                      <td className="w-4 p-4">
+                        <div className="flex items-center">{index + 1}.</div>
+                      </td>
+                    )}
+                    <td className="flex items-center p-4 mr-12 space-x-6 whitespace-nowrap">
+                      <ImageCircleSmall
+                        src={
+                          imageStatus[item.id]
+                            ? `${item.urlPhoto}`
+                            : "https://placehold.co/150x150?text=Image+Not+Found"
+                        }
+                        alt={item.name}
                       />
-                      <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                        <div class="text-base font-semibold text-gray-900 dark:text-white">
+                      <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                        <div className="text-base font-semibold text-gray-900 dark:text-white">
                           {item.name}
                         </div>
-                        <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                        <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
                           {item.email}
                         </div>
                       </div>
                     </td>
-                    <td class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
+                    <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
                       {item.biography}
                     </td>
-                    <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                       {item.position}
                     </td>
-                    <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                       {item.country}
                     </td>
-                    <td class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                    <td className="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
                       <div className="flex items-center">
                         {item.status === "Active" ? (
                           <div className="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
@@ -86,13 +138,24 @@ const User = () => {
                         {item.status}
                       </div>
                     </td>
-                    <TableAction attribute={USER_FORMAT_TABLE.attribute} />
+                    <Taction
+                      taction={item}
+                      attribute={USER_FORMAT_TABLE.attribute}
+                      destroy={destroy}
+                    />
                   </tr>
-                ))}
-              </Table>
-            </div>
-          </Card>
-        </div>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={8} className="px-4 py-3 text-center">
+                    Data Not Found
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </Table>
+        )}
+        <Tfoot />
       </PanelLayout>
     </>
   );

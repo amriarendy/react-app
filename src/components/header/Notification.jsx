@@ -1,23 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoIosNotifications } from "react-icons/io";
 import { BiMessageDetail } from "react-icons/bi";
-import { FaUserPlus, FaHeart, FaCommentDots, FaCamera, FaEye } from "react-icons/fa";
-import { ImageRounded } from "../ui/Image";
-import DataNotification from "../../../dummy.json"
+import {
+  FaUserPlus,
+  FaHeart,
+  FaCommentDots,
+  FaCamera,
+  FaEye,
+} from "react-icons/fa";
+import { ImageCircleSmall } from "../ui/Image";
+import DataNotification from "../../../dummy.json";
 import { Link } from "react-router-dom";
 import { ButtonIcon } from "../ui/Button";
+import { imageCheck } from "../../libs/utils/image";
+import useDummy from "../../hooks/useDummy";
 
 const Notification = () => {
+  const [users, setUsers] = useState([]);
+  const [imageStatus, setImageStatus] = useState({});
+
   const [useOpen, setOpen] = useState(false);
   const toggleNotification = () => {
     setOpen(!useOpen);
   };
+
+  const { data, loading, error } = useDummy("notifications");
+
+  useEffect(() => {
+    if (data) {
+      setUsers(data);
+      const imageChecks = async () => {
+        const status = {};
+        await Promise.all(
+          data.map(async (user) => {
+            const result = await imageCheck(`${user.photo}`);
+            status[user.id] = result;
+          })
+        );
+        setImageStatus(status);
+      };
+
+      imageChecks();
+    }
+  }, [data]);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
+
+  const columns = data && data.length > 0 ? data : <p>Data Not Found..</p>;
   return (
     <>
       <ButtonIcon
         onClick={toggleNotification}
-        type={'button'}
-        color={'gray'}
+        type={"button"}
+        color={"gray"}
         aria-expanded={useOpen ? "true" : "false"}
       >
         <span className="sr-only">View notifications</span>
@@ -39,9 +80,15 @@ const Notification = () => {
           Notifications
         </div>
         <div>
-        {DataNotification.notifications.map((item, index) => (
-          <ListNotification key={item.id} type={item.type} timeStamp={item.timeStamp} data={item.data} />
-        ))}
+          {DataNotification.notifications.map((item, index) => (
+            <ListNotification
+              key={item.id}
+              type={item.type}
+              timeStamp={item.timeStamp}
+              data={item.data}
+              imageStatus={imageStatus}
+            />
+          ))}
         </div>
         <a
           href="#"
@@ -59,57 +106,103 @@ const Notification = () => {
 
 export default Notification;
 
-function ListNotification({ id, type, timeStamp, data }) {
+function ListNotification({ id, type, timeStamp, data, imageStatus }) {
   const getUserByEmail = (email) => {
-    return DataNotification.users.find(user => user.email === email);
+    return DataNotification.users.find((user) => user.email === email);
   };
   const user = getUserByEmail(data.email);
-  const renderNotificationContent = () => {
+  const renderNotificationContent = ({ imageStatus }) => {
     switch (type) {
-      case 'inbox':
+      case "inbox":
         return (
           <>
             <div className="flex-shrink-0">
-              <ImageRounded src={`https://flowbite-admin-dashboard.vercel.app/images/users/${user.avatar}`} alt={user.name} rounded={'full'} widht={11} height={11} />
+              <ImageCircleSmall
+                src={
+                  imageStatus[user.id]
+                    ? `${user.photo}`
+                    : "https://placehold.co/150x150?text=Image+Not+Found"
+                }
+                alt={user.name}
+                rounded="full"
+                w={10}
+                h={10}
+              />
               <div className="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 border border-white rounded-full bg-blue-700 dark:border-gray-700">
-                <BiMessageDetail className="w-3 h-3 text-white" fill="currentColor" />
+                <BiMessageDetail
+                  className="w-3 h-3 text-white"
+                  fill="currentColor"
+                />
               </div>
             </div>
             <div className="w-full pl-3">
               <div className="text-gray-500 font-normal text-sm mb-1.5 dark:text-gray-400">
                 New message from{" "}
-                <span className="font-semibold text-gray-900 dark:text-white">{user.name}</span>
+                <span className="font-semibold text-gray-900 dark:text-white">
+                  {user.name}
+                </span>
                 : "{data.message}"
               </div>
-              <div className="text-xs font-medium text-blue-700 dark:text-blue-400">{timeStamp}</div>
+              <div className="text-xs font-medium text-blue-700 dark:text-blue-400">
+                {timeStamp}
+              </div>
             </div>
           </>
         );
-      case 'follow':
+      case "follow":
         return (
           <>
             <div className="flex-shrink-0">
-              <ImageRounded src={`https://flowbite-admin-dashboard.vercel.app/images/users/${user.avatar}`} alt={user.name} rounded={'full'} widht={11} height={11} />
+              <ImageCircleSmall
+                src={
+                  imageStatus[user.id]
+                    ? `${user.photo}`
+                    : "https://placehold.co/150x150?text=Image+Not+Found"
+                }
+                alt={user.name}
+                rounded="full"
+                w={10}
+                h={10}
+              />
               <div className="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 bg-gray-900 border border-white rounded-full dark:border-gray-700">
-                <FaUserPlus className="w-3 h-3 text-white" fill="currentColor" />
+                <FaUserPlus
+                  className="w-3 h-3 text-white"
+                  fill="currentColor"
+                />
               </div>
             </div>
             <div className="w-full pl-3">
               <div className="text-gray-500 font-normal text-sm mb-1.5 dark:text-gray-400">
-                <span className="font-semibold text-gray-900 dark:text-white">{user.name}</span>{" "}
+                <span className="font-semibold text-gray-900 dark:text-white">
+                  {user.name}
+                </span>{" "}
                 and{" "}
-                <span className="font-medium text-gray-900 dark:text-white">{data.message}</span>{" "}
+                <span className="font-medium text-gray-900 dark:text-white">
+                  {data.message}
+                </span>{" "}
                 started following you.
               </div>
-              <div className="text-xs font-medium text-blue-700 dark:text-blue-400">{timeStamp}</div>
+              <div className="text-xs font-medium text-blue-700 dark:text-blue-400">
+                {timeStamp}
+              </div>
             </div>
           </>
         );
-        case 'like':
-          return (
-            <>
-                          <div className="flex-shrink-0">
-              <ImageRounded src={`https://flowbite-admin-dashboard.vercel.app/images/users/${user.avatar}`} alt={user.name} rounded={'full'} widht={11} height={11} />
+      case "like":
+        return (
+          <>
+            <div className="flex-shrink-0">
+              <ImageCircleSmall
+                src={
+                  imageStatus[user.id]
+                    ? `${user.photo}`
+                    : "https://placehold.co/150x150?text=Image+Not+Found"
+                }
+                alt={user.name}
+                rounded="full"
+                w={10}
+                h={10}
+              />
               <div className="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 bg-red-600 border border-white rounded-full dark:border-gray-700">
                 <FaHeart className="w-3 h-3 text-white" fill="currentColor" />
               </div>
@@ -129,15 +222,28 @@ function ListNotification({ id, type, timeStamp, data }) {
                 {timeStamp}
               </div>
             </div>
-            </>
-          );
-          case 'mention':
-            return (
-              <>
-              <div className="flex-shrink-0">
-              <ImageRounded src={`https://flowbite-admin-dashboard.vercel.app/images/users/${user.avatar}`} alt={user.name} rounded={'full'} widht={11} height={11} />
+          </>
+        );
+      case "mention":
+        return (
+          <>
+            <div className="flex-shrink-0">
+              <ImageCircleSmall
+                src={
+                  imageStatus[user.id]
+                    ? `${user.photo}`
+                    : "https://placehold.co/150x150?text=Image+Not+Found"
+                }
+                alt={user.name}
+                rounded="full"
+                w={10}
+                h={10}
+              />
               <div className="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 bg-green-400 border border-white rounded-full dark:border-gray-700">
-                <FaCommentDots className="w-3 h-3 text-white" fill="currentColor" />
+                <FaCommentDots
+                  className="w-3 h-3 text-white"
+                  fill="currentColor"
+                />
               </div>
             </div>
             <div className="w-full pl-3">
@@ -155,39 +261,52 @@ function ListNotification({ id, type, timeStamp, data }) {
                 1 hour ago
               </div>
             </div>
-              </>
-            );
-            case 'activity':
-              return (
-                <>
-                <div className="flex-shrink-0">
-              <ImageRounded src={`https://flowbite-admin-dashboard.vercel.app/images/users/${user.avatar}`} alt={user.name} rounded={'full'} widht={11} height={11} />
-                  <div className="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 bg-purple-500 border border-white rounded-full dark:border-gray-700">
-                    <FaCamera className="w-3 h-3 text-white" fill="currentColor" />
-                  </div>
-                </div>
-                <div className="w-full pl-3">
-                  <div className="text-gray-500 font-normal text-sm mb-1.5 dark:text-gray-400">
-                    <span className="font-semibold text-gray-900 dark:text-white">
-                      {user.name}
-                    </span>{" "}
-                    posted a new video: {data.message}.
-                  </div>
-                  <div className="text-xs font-medium text-blue-700 dark:text-blue-400">
-                    {timeStamp}
-                  </div>
-                </div>
-                </>
-              );
+          </>
+        );
+      case "activity":
+        return (
+          <>
+            <div className="flex-shrink-0">
+              <ImageCircleSmall
+                src={
+                  imageStatus[user.id]
+                    ? `${user.photo}`
+                    : "https://placehold.co/150x150?text=Image+Not+Found"
+                }
+                alt={user.name}
+                rounded="full"
+                w={10}
+                h={10}
+              />
+              <div className="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 bg-purple-500 border border-white rounded-full dark:border-gray-700">
+                <FaCamera className="w-3 h-3 text-white" fill="currentColor" />
+              </div>
+            </div>
+            <div className="w-full pl-3">
+              <div className="text-gray-500 font-normal text-sm mb-1.5 dark:text-gray-400">
+                <span className="font-semibold text-gray-900 dark:text-white">
+                  {user.name}
+                </span>{" "}
+                posted a new video: {data.message}.
+              </div>
+              <div className="text-xs font-medium text-blue-700 dark:text-blue-400">
+                {timeStamp}
+              </div>
+            </div>
+          </>
+        );
       default:
-      return null;
+        return null;
     }
   };
 
   return (
-    <Link to="#" className="flex px-4 py-3 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600" key={id}>
-      {renderNotificationContent()}
+    <Link
+      to="#"
+      className="flex px-4 py-3 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600"
+      key={id}
+    >
+      {renderNotificationContent({ imageStatus })}
     </Link>
   );
 }
-

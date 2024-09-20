@@ -1,8 +1,9 @@
 import { SIDEBAR_MENU_ITEMS } from "../../libs/constants/navigations";
 import MenuList from "../menu/MenuList";
 import MenuBottom from "../menu/MenuBottom";
+import { FaSignOutAlt } from "react-icons/fa";
 
-const Sidebar = () => {
+const Sidebar = ({ logout }) => {
   return (
     <>
       <aside
@@ -17,6 +18,15 @@ const Sidebar = () => {
                 {SIDEBAR_MENU_ITEMS.map((item) => (
                   <MenuList key={item.key} item={item} />
                 ))}
+                <li>
+                  <button
+                    onClick={logout}
+                    className="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700"
+                  >
+                    <FaSignOutAlt className="w-6 h-6 text-red-500 transition duration-75 group-hover:text-red-900 dark:text-red-400 dark:group-hover:text-white" />
+                    <span className="ml-3">Keluar</span>
+                  </button>
+                </li>
               </ul>
             </div>
           </div>

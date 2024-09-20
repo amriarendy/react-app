@@ -1,41 +1,150 @@
+import { Link } from "react-router-dom";
+
 export function Image({ id, src, alt, className }) {
   return (
     <>
-      <img id={id} src={src} alt={alt} className={className} />
+      <img id={id} src={src} alt={alt} title={alt} className={className} />
     </>
   );
 }
 
-export function ImageRounded({ id, src, alt, rounded, widht, height }) {
+export function ImageSquare({ id, src, alt }) {
   return (
     <>
-      <img id={id} src={src} alt={alt} className={`mb-4 rounded-${rounded} w-${widht} h-${height} sm:mb-0 xl:mb-4 2xl:mb-0 bg-red-300`} />
+      <img
+        id={id}
+        src={src}
+        alt={alt}
+        title={alt}
+        className="mb-4 w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0"
+      />
     </>
   );
 }
 
-export function ImageCaption() {
+export function ImageRounded({ id, src, alt }) {
   return (
     <>
-      <figure class="max-w-lg">
-        <img class="h-auto max-w-full rounded-lg" src="/docs/images/examples/image-3@2x.jpg" alt="image description" />
-        <figcaption class="mt-2 text-sm text-center text-gray-500 dark:text-gray-400">Image caption</figcaption>
-      </figure>
+      <img
+        id={id}
+        src={src}
+        alt={alt}
+        title={alt}
+        className="mb-4 rounded-xl w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0"
+      />
     </>
-  )
+  );
 }
 
-export function ImageCard() {
+export function ImageCircle({ id, src, alt }) {
   return (
     <>
-      <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-        <a href="#">
-          <img class="rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description" />
-        </a>
-        <figcaption class="absolute px-4 text-lg text-white bottom-6">
-            <p>Do you want to get notified when a new component is added to Flowbite?</p>
+      <img
+        id={id}
+        src={src}
+        alt={alt}
+        title={alt}
+        className="mb-4 rounded-full w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0"
+      />
+    </>
+  );
+}
+
+export function ImageSquareSmall({ id, src, alt }) {
+  return (
+    <>
+      <img id={id} src={src} alt={alt} title={alt} className="w-9 h-9" />
+    </>
+  );
+}
+
+export function ImageRoundedSmall({ id, src, alt }) {
+  return (
+    <>
+      <img id={id} src={src} alt={alt} title={alt} className="rounded-xl w-9 h-9" />
+    </>
+  );
+}
+
+export function ImageCircleSmall({ id, src, alt }) {
+  return (
+    <>
+      <img
+        id={id}
+        src={src}
+        alt={alt}
+        title={alt}
+        className="rounded-full w-9 h-9"
+      />
+    </>
+  );
+}
+
+export function ImageCaption({ id, src, alt, caption }) {
+  return (
+    <>
+      <figure className="max-w-lg text-center">
+        <img
+          id={id}
+          src={src}
+          alt={alt}
+          title={alt}
+          className="h-auto max-w-full rounded-lg"
+        />
+        <figcaption className="mt-2 text-sm text-center text-gray-500 dark:text-gray-400">
+          {caption}
         </figcaption>
       </figure>
     </>
-  )
+  );
+}
+
+export function ImageGray({ id, route, src, alt, caption }) {
+  return (
+    <>
+      <figure className="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
+        <Link to={route}>
+          <img id={id} src={src} alt={alt} title={alt} className="rounded-lg" />
+        </Link>
+        <figcaption className="absolute px-4 text-lg text-white bottom-6">
+          <p>{caption}</p>
+        </figcaption>
+      </figure>
+      <img
+        className="h-auto max-w-full transition-all duration-300 rounded-lg cursor-pointer filter grayscale hover:grayscale-0"
+        src={src}
+        alt={alt}
+        title={alt}
+      />
+    </>
+  );
+}
+
+export function ImageGrayCaption({ id, route, src, alt, caption }) {
+  return (
+    <>
+      <figure className="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
+        <Link to={route}>
+          <img src={src} alt={alt} title={alt} className="rounded-lg" />
+        </Link>
+        <figcaption className="absolute px-4 text-lg text-white bottom-6">
+          <p>{caption}</p>
+        </figcaption>
+      </figure>
+    </>
+  );
+}
+
+export function ImageBlur({ id, src, alt }) {
+  return (
+    <>
+    <img
+      id={id}
+      className="h-auto max-w-full transition-all duration-300 rounded-lg blur-sm hover:blur-none"
+      src={src}
+      alt={alt}
+      title={alt}
+    />
+    </>
+  );
 }

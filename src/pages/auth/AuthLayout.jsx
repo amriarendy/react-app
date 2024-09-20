@@ -1,4 +1,22 @@
+import { useEffect, useState } from "react";
+
 const AuthLayout = ({ children }) => {
+  const [useOpen, setOpen] = useState(
+    localStorage.getItem("darkMode") === "true" ? true : false
+  );
+  const toggleDarkMode = () => {
+    const newValue = !useOpen;
+    setOpen(newValue);
+    localStorage.setItem("darkMode", newValue.toString());
+  };
+  useEffect(() => {
+    const htmlElement = document.querySelector("html");
+    if (useOpen) {
+      htmlElement.classList.add("dark");
+    } else {
+      htmlElement.classList.remove("dark");
+    }
+  }, [useOpen]);
   return (
     <>
       <main className="bg-gray-50 dark:bg-gray-900">
