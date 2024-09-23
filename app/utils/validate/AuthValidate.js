@@ -10,7 +10,7 @@ const validatePassword = (password) => {
   return password.length >= 6 && password.length <= 50; // Consider a minimum of 6 characters
 };
 
-const validateAuth = (req, res, next) => {
+const validateAuth = async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email) {
@@ -49,6 +49,21 @@ const validateAuth = (req, res, next) => {
           "password"
         )
       );
+  }
+
+  try {
+    const user = await Auth.findAll({
+      where: {
+        email: req.body.email,
+      },
+    });
+  const match = await bcrypt.compare(req.body.password, user[0].password);
+  if (!match)
+    return res
+    .status(400)
+    .json(createErrorResponse("Incorect password!", "UN_MATCH", "password"));
+  } catch (error) {
+    
   }
 
   next();
