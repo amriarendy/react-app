@@ -14,6 +14,7 @@ import axios from "axios";
 import Loading from "../../../components/errors/Loading";
 import Errors from "../../../components/errors/Errors";
 import { axiosJWT, setTokenAndExpire } from "../../../libs/utils/axiosJwt";
+import { getData } from "../../../services/axiosService";
 
 const Tag = () => {
   const breadCrumbs = {
@@ -52,11 +53,12 @@ const Tag = () => {
 
   const getTags = async () => {
     try {
-      const response = await axiosJWT.get("http://localhost:3001/master/tags", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      // const response = await axiosJWT.get("http://localhost:3001/master/tags", {
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      // });
+      const response = await getData("/master/tags");
       setTags(response.data);
     } catch (error) {
       setError(error);

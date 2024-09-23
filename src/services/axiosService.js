@@ -1,10 +1,13 @@
-import axios from "axios";
 import { SERVER_API } from "./api";
 import { axiosJWT } from "../libs/utils/axiosJwt";
 
 export const getData = async (endpoint) => {
   try {
-    const response = await axios.get(`${SERVER_API}/${endpoint}`);
+    const response = await axiosJWT.get(`${SERVER_API}/${endpoint}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -14,7 +17,7 @@ export const getData = async (endpoint) => {
 
 export const getWhere = async (endpoint, param) => {
   try {
-    const response = await axios.get(`${SERVER_API}/${endpoint}/${param}`);
+    const response = await axiosJWT.get(`${SERVER_API}/${endpoint}/${param}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching data with parameter:", error);
@@ -24,7 +27,7 @@ export const getWhere = async (endpoint, param) => {
 
 export const store = async (endpoint, data) => {
   try {
-    const response = await axios.post(`${SERVER_API}/${endpoint}`, data, {
+    const response = await axiosJWT.post(`${SERVER_API}/${endpoint}`, data, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -39,7 +42,7 @@ export const store = async (endpoint, data) => {
 
 export const update = async (endpoint, param, data) => {
   try {
-    const response = await axios.put(
+    const response = await axiosJWT.put(
       `${SERVER_API}/${endpoint}/${param}`,
       data,
       {
@@ -57,7 +60,7 @@ export const update = async (endpoint, param, data) => {
 
 export const destroy = async (endpoint, param) => {
   try {
-    const response = await axios.delete(`${SERVER_API}/${endpoint}/${param}`, {
+    const response = await axiosJWT.delete(`${SERVER_API}/${endpoint}/${param}`, {
       headers: {
         "Content-Type": "application/json",
       },
