@@ -31,4 +31,4 @@ axiosCreate.interceptors.request.use(
   }
 );
 
-export { axiosCreate as axiosJWT, SERVER_API };
+export { SERVER_API };

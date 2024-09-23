@@ -13,8 +13,7 @@ import { Input } from "../../../components/ui/Input";
 import axios from "axios";
 import Loading from "../../../components/errors/Loading";
 import Errors from "../../../components/errors/Errors";
-import { jwtDecode } from "jwt-decode";
-import { SERVER_API } from "../../../services/api";
+import { axiosJWT, setTokenAndExpire } from "../../../libs/utils/axiosJwt";
 
 const Tag = () => {
   const breadCrumbs = {
@@ -50,25 +49,6 @@ const Tag = () => {
   const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const axiosJWT = axios.create();
-
-  axiosJWT.interceptors.request.use(
-    async (config) => {
-      const currentDate = new Date();
-      if (expire * 1000 < currentDate.getTime()) {
-        const response = await axios.get("http://localhost:3001/token");
-        config.headers.Authorization = `Bearer ${response.data.accessToken}`;
-        setToken(response.data.accessToken);
-        const decode = jwtDecode(response.data.accessToken);
-        setExpire(decode.exp);
-      }
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
 
   const getTags = async () => {
     try {
@@ -129,7 +109,7 @@ const Tag = () => {
       return;
     }
     try {
-      await axios.patch(
+      await axiosJWT.patch(
         `http://localhost:3001/master/tags/${editTag.id}`,
         {
           tag: editTag.tag,
@@ -161,7 +141,7 @@ const Tag = () => {
   // delete function
   const destroy = async (param) => {
     try {
-      await axios.delete(`http://localhost:3001/master/tags/${param}`, {
+      await axiosJWT.delete(`http://localhost:3001/master/tags/${param}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

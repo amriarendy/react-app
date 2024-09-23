@@ -1,5 +1,6 @@
 import axios from "axios";
 import { SERVER_API } from "./api";
+import { axiosJWT } from "../libs/utils/axiosJwt";
 
 export const getData = async (endpoint) => {
   try {

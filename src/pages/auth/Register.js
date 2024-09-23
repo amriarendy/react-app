@@ -22,6 +22,7 @@ const Register = () => {
     formData.append("name", name);
     formData.append("email", email);
     formData.append("password", password);
+    formData.append("passwordConfirm", confirmPassword);
     try {
       await axios.post(`http://localhost:3001/register/`, formData, {
         headers: {

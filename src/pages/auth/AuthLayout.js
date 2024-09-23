@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const AuthLayout = ({ children }) => {
+  const navigate = useNavigate();
   const [useOpen, setOpen] = useState(
     localStorage.getItem("darkMode") === "true" ? true : false
   );
@@ -10,6 +13,7 @@ const AuthLayout = ({ children }) => {
     localStorage.setItem("darkMode", newValue.toString());
   };
   useEffect(() => {
+    checkAuth();
     const htmlElement = document.querySelector("html");
     if (useOpen) {
       htmlElement.classList.add("dark");
@@ -17,6 +21,39 @@ const AuthLayout = ({ children }) => {
       htmlElement.classList.remove("dark");
     }
   }, [useOpen]);
+
+  // const axiosJWT = axios.create();
+
+  // axiosJWT.interceptors.request.use(
+  //   async (config) => {
+  //     const currentDate = new Date();
+  //     if (expire * 1000 < currentDate.getTime()) {
+  //       const response = await axios.get("http://localhost:3001/token");
+  //       config.headers.Authorization = `Bearer ${response.data.accessToken}`;
+  //       setToken(response.data.accessToken);
+  //       const decode = jwtDecode(response.data.accessToken);
+  //       setName(decode.name);
+  //       setExpire(decode.exp);
+  //     }
+  //     return config;
+  //   },
+  //   (error) => {
+  //     return Promise.reject(error);
+  //   }
+  // );
+
+  const checkAuth = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/token"); // Memeriksa status autentikasi
+      console.log(response);
+      if (response.status === 200) {
+        navigate("/home"); // Redirect jika pengguna sudah login
+      }
+    } catch (error) {
+      console.log("User not authenticated:", error);
+    }
+  };
+
   return (
     <>
       <main className="bg-gray-50 dark:bg-gray-900">
