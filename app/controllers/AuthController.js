@@ -9,6 +9,7 @@ export const signIn = async (req, res) => {
         email: req.body.email,
       },
     });
+
     const match = await bcrypt.compare(req.body.password, user[0].password);
     if (!match)
       return res

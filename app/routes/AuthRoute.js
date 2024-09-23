@@ -7,12 +7,15 @@ import {
   resetPassword,
 } from "../controllers/AuthController.js";
 import { refreshToken } from "../controllers/RefreshToken.js";
-import validateAuth from "../utils/validate/Auth.js";
+import {
+  validateAuth,
+  validateRegister,
+} from "../utils/validate/AuthValidate.js";
 
 const router = express.Router();
 
 router.post("/login", validateAuth, signIn);
-router.post("/register", register);
+router.post("/register", validateRegister, register);
 router.get("/email-verify", verifyEmail);
 router.post("/reset-password", resetPassword);
 router.delete("/logout", signOut);
