@@ -22,32 +22,11 @@ const AuthLayout = ({ children }) => {
     }
   }, [useOpen]);
 
-  // const axiosJWT = axios.create();
-
-  // axiosJWT.interceptors.request.use(
-  //   async (config) => {
-  //     const currentDate = new Date();
-  //     if (expire * 1000 < currentDate.getTime()) {
-  //       const response = await axios.get("http://localhost:3001/token");
-  //       config.headers.Authorization = `Bearer ${response.data.accessToken}`;
-  //       setToken(response.data.accessToken);
-  //       const decode = jwtDecode(response.data.accessToken);
-  //       setName(decode.name);
-  //       setExpire(decode.exp);
-  //     }
-  //     return config;
-  //   },
-  //   (error) => {
-  //     return Promise.reject(error);
-  //   }
-  // );
-
   const checkAuth = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/token"); // Memeriksa status autentikasi
-      console.log(response);
+      const response = await axios.get("http://localhost:3001/token");
       if (response.status === 200) {
-        navigate("/home"); // Redirect jika pengguna sudah login
+        navigate("/dashboard");
       }
     } catch (error) {
       console.log("User not authenticated:", error);

@@ -6,16 +6,15 @@ import Thead from "../../../components/table/advance/Thead";
 import Tfoot from "../../../components/table/advance/Tfoot";
 import Taction from "../../../components/table/advance/Taction";
 import { BLOG_FORMAT_TABLE } from "../../../libs/constants/formats/BlogFormat";
-import useFetch from "../../../hooks/useFetch";
 import { useEffect, useState } from "react";
 import {
-  ImageRoundedSmall,
   ImageSquareSmall,
 } from "../../../components/ui/Image";
 import { imageCheck } from "../../../libs/utils/image";
 import CheckBox from "../../../components/ui/CheckBox";
-import axios from "axios";
+import { axiosJWT } from "../../../libs/utils/axiosJwt";
 import { DateTime } from "../../../libs/utils/dateTime";
+import { SERVER_API } from "../../../services/api";
 
 const Blog = () => {
   const breadCrumbs = {
@@ -51,7 +50,7 @@ const Blog = () => {
 
   const getblog = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/blogs/");
+      const response = await axiosJWT.get(`${SERVER_API()}/blogs/`);
       setBlog(response.data);
     } catch (error) {
       setError(error);
@@ -62,7 +61,7 @@ const Blog = () => {
 
   const destroy = async (param) => {
     try {
-      await axios.delete(`http://localhost:3001/blogs/${param}`);
+      await axiosJWT.delete(`${SERVER_API()}/blogs/${param}`);
       getblog();
     } catch (error) {
       console.log(error);

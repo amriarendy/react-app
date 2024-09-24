@@ -11,11 +11,12 @@ import Modal from "../../../components/modal/Modal";
 import { useNavigate } from "react-router-dom";
 import { Input, InputButton } from "../../../components/ui/Input";
 import { FaCodeBranch, FaRegEye } from "react-icons/fa";
-import axios from "axios";
+import { axiosJWT } from "../../../libs/utils/axiosJwt";
 import Loading from "../../../components/errors/Loading";
 import Errors from "../../../components/errors/Errors";
 import { slugFormat } from "../../../libs/utils/text";
 import { required, trimRequired } from "../../../libs/utils/validate";
+import { SERVER_API } from "../../../services/api";
 
 const Category = () => {
   const breadCrumbs = {
@@ -60,8 +61,8 @@ const Category = () => {
 
   const getCategories = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:3001/master/categories"
+      const response = await axiosJWT.get(
+        `${SERVER_API()}/master/categories`
       );
       setCategories(response.data);
     } catch (error) {
@@ -87,7 +88,7 @@ const Category = () => {
     }
     // insert data
     try {
-      await axios.post("http://localhost:3001/master/categories", {
+      await axiosJWT.post(`${SERVER_API()}/master/categories`, {
         category,
         slug,
       });
@@ -109,17 +110,17 @@ const Category = () => {
   // update function
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    // validation
-    const categoryEditError = required(category, "Category");
-    const slugEditError = trimRequired(slug, "Slug");
-    if (categoryEditError || slugEditError) {
-      setEditValidate({ category: categoryEditError, slug: slugEditError });
-      return;
-    }
+    // // validation
+    // const categoryEditError = required(category, "Category");
+    // const slugEditError = trimRequired(slug, "Slug");
+    // if (categoryEditError || slugEditError) {
+    //   setEditValidate({ category: categoryEditError, slug: slugEditError });
+    //   return;
+    // }
     // update data
     try {
-      await axios.patch(
-        `http://localhost:3001/master/categories/${editCategory.id}`,
+      await axiosJWT.patch(
+        `${SERVER_API()}/master/categories/${editCategory.id}`,
         {
           category: editCategory.category,
           slug: editCategory.slug,
@@ -150,7 +151,7 @@ const Category = () => {
   // delete data
   const destroy = async (param) => {
     try {
-      await axios.delete(`http://localhost:3001/master/categories/${param}`);
+      await axiosJWT.delete(`${SERVER_API()}/master/categories/${param}`);
       getCategories();
     } catch (error) {
       console.log(error);

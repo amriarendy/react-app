@@ -185,19 +185,7 @@ export const SIDEBAR_MENU_ITEMS = [
         fill="currentColor"
       />
     ),
-  },
-  {
-    key: "signout",
-    label: "Sign Out",
-    route: "/signout",
-    icon: (
-      <FaSignOutAlt
-        className="w-6 h-6 text-red-500 transition duration-75 group-hover:text-red-900 dark:text-red-400 dark:group-hover:text-white"
-        aria-hidden="true"
-        fill="currentColor"
-      />
-    ),
-  },
+  }
 ];
 
 export const SIDEBAR_BOTTOM_MENU_ITEMS = {};

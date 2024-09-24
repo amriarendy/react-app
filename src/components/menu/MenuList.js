@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoIosArrowDown } from "react-icons/io";
-import { RiLayout6Fill } from "react-icons/ri";
 
 const MenuList = ({ item }) => {
   const [useOpen, setOpen] = useState(false);

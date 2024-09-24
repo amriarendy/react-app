@@ -24,7 +24,7 @@ const Sidebar = ({ logout }) => {
                     className="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700"
                   >
                     <FaSignOutAlt className="w-6 h-6 text-red-500 transition duration-75 group-hover:text-red-900 dark:text-red-400 dark:group-hover:text-white" />
-                    <span className="ml-3">Keluar</span>
+                    <span className="ml-3 font-bold">SignOut</span>
                   </button>
                 </li>
               </ul>

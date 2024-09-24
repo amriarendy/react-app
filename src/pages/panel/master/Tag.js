@@ -10,11 +10,10 @@ import HASHTAG_FORMAT_TABLE from "../../../libs/constants/formats/TagFormat";
 import Modal from "../../../components/modal/Modal";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../../../components/ui/Input";
-import axios from "axios";
 import Loading from "../../../components/errors/Loading";
 import Errors from "../../../components/errors/Errors";
-import { axiosJWT, setTokenAndExpire } from "../../../libs/utils/axiosJwt";
-import { getData } from "../../../services/axiosService";
+import { axiosJWT } from "../../../libs/utils/axiosJwt";
+import { SERVER_API } from "../../../services/api";
 
 const Tag = () => {
   const breadCrumbs = {
@@ -53,12 +52,7 @@ const Tag = () => {
 
   const getTags = async () => {
     try {
-      // const response = await axiosJWT.get("http://localhost:3001/master/tags", {
-      //   headers: {
-      //     Authorization: `Bearer ${token}`,
-      //   },
-      // });
-      const response = await getData("/master/tags");
+      const response = await axiosJWT.get(`${SERVER_API()}/master/tags`);
       setTags(response.data);
     } catch (error) {
       setError(error);
@@ -82,15 +76,7 @@ const Tag = () => {
       return;
     }
     try {
-      await axios.post(
-        "http://localhost:3001/master/tags",
-        { tag },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await axiosJWT.post(`${SERVER_API()}/master/tags`,{ tag });
       setTag(""); // Reset input field
       toggleAddModal(); // Close modal
       getTags(); // Refresh data
@@ -111,17 +97,9 @@ const Tag = () => {
       return;
     }
     try {
-      await axiosJWT.patch(
-        `http://localhost:3001/master/tags/${editTag.id}`,
-        {
-          tag: editTag.tag,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await axiosJWT.patch(`${SERVER_API()}/master/tags/${editTag.id}`,{
+        tag: editTag.tag,
+      },);
       setEditTag({ id: "", tag: "" }); // Reset input fields
       toggleEditModal(); // Close modal
       getTags(); // Refresh data
@@ -143,11 +121,7 @@ const Tag = () => {
   // delete function
   const destroy = async (param) => {
     try {
-      await axiosJWT.delete(`http://localhost:3001/master/tags/${param}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axiosJWT.delete(`${SERVER_API()}/master/tags/${param}`);
       getTags();
     } catch (error) {
       console.log(error);
