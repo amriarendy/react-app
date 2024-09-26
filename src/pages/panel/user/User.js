@@ -10,9 +10,10 @@ import { useEffect, useState } from "react";
 import { ImageCircleSmall } from "../../../components/ui/Image";
 import { imageCheck } from "../../../libs/utils/image";
 import CheckBox from "../../../components/ui/CheckBox";
-import axios from "axios";
+import { axiosJWT } from "../../../libs/utils/axiosJwt";
 import Loading from "../../../components/errors/Loading";
 import Errors from "../../../components/errors/Errors";
+import { SERVER_API } from "../../../services/api";
 
 const User = () => {
   const breadCrumbs = {
@@ -48,7 +49,7 @@ const User = () => {
 
   const getUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/users");
+      const response = await axiosJWT.get(`${SERVER_API()}/users`);
       setUsers(response.data);
     } catch (error) {
       setError(error);
@@ -59,7 +60,7 @@ const User = () => {
 
   const destroy = async (param) => {
     try {
-      await axios.delete(`http://localhost:3001/users/${param}`);
+      await axiosJWT.delete(`${SERVER_API()}/users/${param}`);
       getUsers();
     } catch (error) {
       console.log(error);

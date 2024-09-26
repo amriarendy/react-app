@@ -6,12 +6,9 @@ import TextArea from "../../../components/ui/TextArea";
 import { Button } from "../../../components/ui/Button";
 import { FaSave } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import useForm from "../../../hooks/useForm";
-import { update } from "../../../services/routeService";
 import { useParams } from "react-router-dom";
-import useFetch from "../../../hooks/useFetch";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { axiosJWT } from "../../../libs/utils/axiosJwt";
 import { SERVER_API } from "../../../services/api";
 
 const EditUser = () => {
@@ -42,7 +39,7 @@ const EditUser = () => {
   }, []);
 
   const getWhere = async () => {
-    const response = await axios.get(`http://localhost:3001/users/${param}`);
+    const response = await axiosJWT.get(`${SERVER_API()}/users/${param}`);
     setName(response.data.name);
     setEmail(response.data.email);
     setPassword(response.data.password);
@@ -73,12 +70,12 @@ const EditUser = () => {
     formData.append("country", country);
 
     try {
-      await axios.patch(`http://localhost:3001/users/${param}`, formData, {
+      await axiosJWT.patch(`${SERVER_API()}/users/${param}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      navigate("/user");
+      navigate("/dashboard/user");
     } catch (error) {
       console.log(error);
     }
@@ -103,7 +100,7 @@ const EditUser = () => {
                   type={"text"}
                   label={"Full Name"}
                   placeholder={"full name"}
-                  required={true}
+                  required={false}
                 />
               </div>
               <div className="sm:col-span-2">
@@ -115,30 +112,7 @@ const EditUser = () => {
                   type={"email"}
                   label={"Email"}
                   placeholder={"active email"}
-                  required={true}
-                />
-              </div>
-              <div className="w-full">
-                <Input
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  id={"password"}
-                  name={"password"}
-                  type={"password"}
-                  label={"Password"}
-                  placeholder={"••••••••"}
-                  required={true}
-                />
-              </div>
-              <div className="w-full">
-                <Input
-                  value={password}
-                  id={"confirm-password"}
-                  name={"confirm-password"}
-                  type={"password"}
-                  label={"Password Confirm"}
-                  placeholder={"••••••••"}
-                  required={true}
+                  required={false}
                 />
               </div>
               <div className="w-full">
@@ -150,7 +124,7 @@ const EditUser = () => {
                   type={"phone"}
                   label={"Phone Number"}
                   placeholder={"+628••••••••"}
-                  required={true}
+                  required={false}
                 />
               </div>
               <div className="w-full">
@@ -162,7 +136,7 @@ const EditUser = () => {
                   type={"date"}
                   label={"Date of Birth"}
                   placeholder={"Date of Birth"}
-                  required={true}
+                  required={false}
                 />
               </div>
               <div className="w-full">
@@ -182,7 +156,7 @@ const EditUser = () => {
                   id={"gender"}
                   name={"gender"}
                   label={"Gender"}
-                  required={true}
+                  required={false}
                   selected={[
                     {
                       key: "",
@@ -203,7 +177,7 @@ const EditUser = () => {
                   id={"position"}
                   name={"position"}
                   label={"Position"}
-                  required={true}
+                  required={false}
                   selected={[
                     {
                       key: "",
@@ -239,7 +213,7 @@ const EditUser = () => {
                   id={"country"}
                   name={"country"}
                   label={"Country"}
-                  required={true}
+                  required={false}
                   selected={[
                     {
                       key: "",
@@ -267,7 +241,7 @@ const EditUser = () => {
                   name={"biography"}
                   label={"Biography"}
                   rows={4}
-                  required={true}
+                  required={false}
                 />
               </div>
             </div>

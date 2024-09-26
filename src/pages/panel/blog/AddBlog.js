@@ -9,8 +9,9 @@ import TextArea from "../../../components/ui/TextArea";
 import WYSIWYG from "../../../components/ui/WYSIWYG";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { axiosJWT } from "../../../libs/utils/axiosJwt";
 import { slugFormat } from "../../../libs/utils/text";
+import { SERVER_API } from "../../../services/api";
 
 const AddBlog = () => {
   const breadCrumbs = {
@@ -39,7 +40,7 @@ const AddBlog = () => {
 
   const getTags = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/master/tags");
+      const response = await axiosJWT.get(`${SERVER_API()}/master/tags`);
       setTags(response.data);
     } catch (error) {
       setError(error);
@@ -50,8 +51,8 @@ const AddBlog = () => {
 
   const getCategories = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:3001/master/categories"
+      const response = await axiosJWT.get(
+        `${SERVER_API()}/master/categories`
       );
       setCategories(response.data);
     } catch (error) {
@@ -83,12 +84,12 @@ const AddBlog = () => {
     formData.append("slug", slug);
     formData.append("publishedAt", publishedAt);
     try {
-      await axios.post(`http://localhost:3001/blogs/`, formData, {
+      await axiosJWT.post(`${SERVER_API()}/blogs/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      navigate("/blog");
+      navigate("/dashboard/blog");
     } catch (error) {
       console.log(error);
     }

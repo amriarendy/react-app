@@ -9,9 +9,10 @@ import TextArea from "../../../components/ui/TextArea";
 import WYSIWYG from "../../../components/ui/WYSIWYG";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { axiosJWT } from "../../../libs/utils/axiosJwt";
 import { DateTime } from "../../../libs/utils/dateTime";
 import { slugFormat } from "../../../libs/utils/text";
+import { SERVER_API } from "../../../services/api";
 
 const EditBlog = () => {
   const breadCrumbs = {
@@ -46,7 +47,7 @@ const EditBlog = () => {
   }, []);
 
   const getWhere = async () => {
-    const response = await axios.get(`http://localhost:3001/blogs/${param}`);
+    const response = await axiosJWT.get(`${SERVER_API}/blogs/${param}`);
     setTitle(response.data.title);
     setDescription(response.data.description);
     setCategory(response.data.category);
@@ -57,7 +58,7 @@ const EditBlog = () => {
 
   const getTags = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/master/tags");
+      const response = await axiosJWT.get(`${SERVER_API}/master/tags`);
       setTags(response.data);
     } catch (error) {
       setError(error);
@@ -68,8 +69,8 @@ const EditBlog = () => {
 
   const getCategories = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:3001/master/categories"
+      const response = await axiosJWT.get(
+        `${SERVER_API}/master/categories`
       );
       setCategories(response.data);
     } catch (error) {
@@ -97,12 +98,12 @@ const EditBlog = () => {
     console.log(DateTime(publishedAt));
 
     try {
-      await axios.patch(`http://localhost:3001/blogs/${param}`, formData, {
+      await axiosJWT.patch(`${SERVER_API}/blogs/${param}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      navigate("/blog");
+      navigate("/dashboard/blog");
     } catch (error) {
       console.log(error);
     }

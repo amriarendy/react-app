@@ -11,10 +11,10 @@ export const USER_FORMAT_TABLE = {
     number: true,
     checkbox: true,
     add: {
-      route: "/user/add",
+      route: "/dashboard/user/add",
     },
     edit: {
-      route: "/user/edit",
+      route: "/dashboard/user/edit",
     },
     delete: {
       route: false,

@@ -11,10 +11,10 @@ export const BLOG_FORMAT_TABLE = {
     number: true,
     checkbox: true,
     add: {
-      route: "/blog/add",
+      route: "/dashboard/blog/add",
     },
     edit: {
-      route: "/blog/edit",
+      route: "/dashboard/blog/edit",
     },
     delete: {
       route: "/blog/delete",

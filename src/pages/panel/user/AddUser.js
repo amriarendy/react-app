@@ -7,8 +7,9 @@ import { Button } from "../../../components/ui/Button";
 import { FaSave } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import axios from "axios";
+import { axiosJWT } from "../../../libs/utils/axiosJwt";
 import { passwordConfirm, required } from "../../../libs/utils/validate";
+import { SERVER_API } from "../../../services/api";
 
 const AddUser = () => {
   const breadCrumbs = {
@@ -35,9 +36,9 @@ const AddUser = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const passwordValidate = passwordConfirm(password, confirmPassword);
-    const requiredValidate = required(email, "email required");
-    alert(requiredValidate);
+    // const passwordValidate = passwordConfirm(password, confirmPassword);
+    // const requiredValidate = required(email, "email required");
+    // alert(requiredValidate);
 
     const formData = new FormData();
     formData.append("name", name);
@@ -55,12 +56,12 @@ const AddUser = () => {
     formData.append("country", country);
 
     try {
-      await axios.post(`http://localhost:3001/users/`, formData, {
+      await axiosJWT.post(`${SERVER_API()}/users/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      navigate("/user");
+      navigate("/dashboard/user");
     } catch (error) {
       console.log(error);
     }
