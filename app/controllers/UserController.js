@@ -1,4 +1,5 @@
 import User from "../models/UserModel.js";
+import bcrypt from "bcrypt";
 import path from "path";
 import fs from "fs";
 
@@ -29,8 +30,10 @@ export const store = async (req, res) => {
     return res
       .status(400)
       .json({ code: 400, status: "error", message: "Invalid image" });
+
+  const salt = await bcrypt.genSalt();
   const email = req.body.email;
-  const password = req.body.password;
+  const password = await bcrypt.hash(req.body.password, salt);
   const name = req.body.name;
   const dob = req.body.dob;
   const gender = req.body.gender;
@@ -134,7 +137,6 @@ export const update = async (req, res) => {
     });
   }
   const email = req.body.email;
-  const password = req.body.password;
   const name = req.body.name;
   const dob = req.body.dob;
   const phone = req.body.phone;
