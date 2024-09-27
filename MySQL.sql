@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 29, 2024 at 05:04 PM
+-- Generation Time: Sep 27, 2024 at 07:31 AM
 -- Server version: 8.0.30
 -- PHP Version: 7.4.33
 
@@ -68,6 +68,23 @@ CREATE TABLE `hashtags` (
   `blog_id` int DEFAULT NULL,
   `createdAt` timestamp NULL DEFAULT NULL,
   `updatedAt` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` bigint NOT NULL,
+  `type` varchar(50) DEFAULT NULL,
+  `status` enum('read','unread') DEFAULT NULL,
+  `message` longtext,
+  `email` varchar(100) DEFAULT NULL,
+  `timeStamp` timestamp NULL DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -162,6 +179,12 @@ ALTER TABLE `hashtags`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -205,6 +228,12 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `hashtags`
 --
 ALTER TABLE `hashtags`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
 
 --
