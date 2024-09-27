@@ -14,7 +14,6 @@ import EditUser from "./pages/panel/user/EditUser";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import ResetPassword from "./pages/auth/ResetPassword";
-import Information from "./pages/panel/Information";
 import Error from "./pages/panel/Error";
 import GridCols from "./pages/panel/tamplates/GridCols";
 import Layout from "./pages/panel/tamplates/Layout";
@@ -58,7 +57,6 @@ function App() {
           <Route path="/dashboard/user/add" element={<AddUser />} />
           <Route path="/dashboard/user/edit/:param" element={<EditUser />} />
           {/* setting */}
-          <Route path="/dashboard/information" element={<Information />} />
           <Route path="/dashboard/setting" element={<Setting />} />
           {/* layouts */}
           <Route path="/dashboard/templates/blank" element={<Blank />} />

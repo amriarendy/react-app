@@ -36,6 +36,18 @@ export const SIDEBAR_MENU_ITEMS = [
     ),
   },
   {
+    key: "user",
+    label: "Users",
+    route: "/dashboard/user",
+    icon: (
+      <FaUser
+        className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+        aria-hidden="true"
+        fill="currentColor"
+      />
+    ),
+  },
+  {
     key: "master",
     label: "Master",
     route: "collapse",
@@ -58,30 +70,6 @@ export const SIDEBAR_MENU_ITEMS = [
         route: "/dashboard/master/tag",
       },
     ],
-  },
-  {
-    key: "user",
-    label: "Users",
-    route: "/dashboard/user",
-    icon: (
-      <FaUser
-        className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-        aria-hidden="true"
-        fill="currentColor"
-      />
-    ),
-  },
-  {
-    key: "information",
-    label: "Information",
-    route: "/dashboard/information",
-    icon: (
-      <FaInfoCircle
-        className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-        aria-hidden="true"
-        fill="currentColor"
-      />
-    ),
   },
   {
     key: "template",
@@ -165,7 +153,7 @@ export const SIDEBAR_MENU_ITEMS = [
   {
     key: "docs",
     label: "Docs",
-    route: "/dashboard/docs",
+    route: "/docs",
     icon: (
       <FaBook
         className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
@@ -179,7 +167,7 @@ export const SIDEBAR_MENU_ITEMS = [
     label: "Setting",
     route: "/dashboard/setting",
     icon: (
-      <FaBook
+      <FaCogs
         className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
         aria-hidden="true"
         fill="currentColor"

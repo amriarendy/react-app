@@ -47,7 +47,7 @@ const EditBlog = () => {
   }, []);
 
   const getWhere = async () => {
-    const response = await axiosJWT.get(`${SERVER_API}/blogs/${param}`);
+    const response = await axiosJWT.get(`${SERVER_API()}/blogs/${param}`);
     setTitle(response.data.title);
     setDescription(response.data.description);
     setCategory(response.data.category);
@@ -58,7 +58,7 @@ const EditBlog = () => {
 
   const getTags = async () => {
     try {
-      const response = await axiosJWT.get(`${SERVER_API}/master/tags`);
+      const response = await axiosJWT.get(`${SERVER_API()}/master/tags`);
       setTags(response.data);
     } catch (error) {
       setError(error);
@@ -70,7 +70,7 @@ const EditBlog = () => {
   const getCategories = async () => {
     try {
       const response = await axiosJWT.get(
-        `${SERVER_API}/master/categories`
+        `${SERVER_API()}/master/categories`
       );
       setCategories(response.data);
     } catch (error) {
@@ -95,10 +95,8 @@ const EditBlog = () => {
       formData.append("file", file);
     }
     formData.append("publishedAt", DateTime(publishedAt));
-    console.log(DateTime(publishedAt));
-
     try {
-      await axiosJWT.patch(`${SERVER_API}/blogs/${param}`, formData, {
+      await axiosJWT.patch(`${SERVER_API()}/blogs/${param}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

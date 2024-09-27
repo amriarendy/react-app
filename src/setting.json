@@ -1,0 +1,6 @@
+{
+    "settings": {
+        "api": "http://localhost:3001",
+        "database": "mysql"
+    }
+}

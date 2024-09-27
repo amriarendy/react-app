@@ -85,17 +85,6 @@ const Setting = () => {
                   ]}
                 />
               </div>
-              <div className="sm:col-span-2">
-                <TextArea
-                  value={values.textarea}
-                  onChange={handleChange}
-                  id={"textarea"}
-                  name={"textarea"}
-                  label={"Textarea"}
-                  rows={4}
-                  required={true}
-                />
-              </div>
             </div>
             <Button
               id={"btnSave"}

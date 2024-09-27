@@ -1,4 +1,8 @@
 {
+  "settings": {
+    "api": "http://localhost:3001",
+    "database": "mysql"
+  },
   "users": [
     {
       "id": 1,
