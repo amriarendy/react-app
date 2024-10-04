@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/panel/Dashboard";
 import Blog from "./pages/panel/blog/Blog";
-import Setting from "./pages/panel/Setting";
 import Profile from "./pages/panel/Profile";
 import Blank from "./pages/panel/tamplates/Blank";
 import AddBlog from "./pages/panel/blog/AddBlog";
@@ -23,7 +22,6 @@ import Form from "./pages/panel/tamplates/Form";
 import TableDefault from "./pages/panel/tamplates/TableDefault";
 import TableAdvance from "./pages/panel/tamplates/TableAdvance";
 import Popup from "./pages/panel/tamplates/Popup";
-import Modal from "./pages/panel/tamplates/Modal";
 import Image from "./pages/panel/tamplates/Image";
 import PageError from "./pages/panel/tamplates/PageError";
 import PageLoading from "./pages/panel/tamplates/PageLoading";
@@ -56,8 +54,6 @@ function App() {
           <Route path="/dashboard/user" element={<User />} />
           <Route path="/dashboard/user/add" element={<AddUser />} />
           <Route path="/dashboard/user/edit/:param" element={<EditUser />} />
-          {/* setting */}
-          <Route path="/dashboard/setting" element={<Setting />} />
           {/* layouts */}
           <Route path="/dashboard/templates/blank" element={<Blank />} />
           <Route path="/dashboard/templates/layout" element={<Layout />} />
@@ -75,7 +71,6 @@ function App() {
             element={<TableDefault />}
           />
           <Route path="/dashboard/templates/form" element={<Form />} />
-          <Route path="/dashboard/templates/modal" element={<Modal />} />
           <Route path="/dashboard/templates/popup" element={<Popup />} />
           <Route path="/dashboard/templates/grid-cols" element={<GridCols />} />
           <Route path="/dashboard/templates/image" element={<Image />} />

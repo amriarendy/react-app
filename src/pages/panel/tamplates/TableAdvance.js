@@ -62,7 +62,7 @@ const TableAdvance = () => {
                     <div class="flex items-center">{index + 1}</div>
                   </td>
                   <td className="flex items-center p-4 mr-12 space-x-6 whitespace-nowrap">
-                    <ImageCircleSmall src={item.photo} alt={item.name} />
+                    <ImageCircleSmall src={item.urlPhoto} alt={item.name} />
                     <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
                       <div className="text-base font-semibold text-gray-900 dark:text-white">
                         {item.name}

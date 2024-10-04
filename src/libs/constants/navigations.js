@@ -114,11 +114,6 @@ export const SIDEBAR_MENU_ITEMS = [
         route: "/dashboard/templates/form",
       },
       {
-        key: "modal",
-        label: "Modal",
-        route: "/dashboard/templates/modal",
-      },
-      {
         key: "popup",
         label: "Popup",
         route: "/dashboard/templates/popup",
@@ -162,18 +157,6 @@ export const SIDEBAR_MENU_ITEMS = [
       />
     ),
   },
-  {
-    key: "setting",
-    label: "Setting",
-    route: "/dashboard/setting",
-    icon: (
-      <FaCogs
-        className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-        aria-hidden="true"
-        fill="currentColor"
-      />
-    ),
-  }
 ];
 
 export const SIDEBAR_BOTTOM_MENU_ITEMS = {};
