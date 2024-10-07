@@ -32,9 +32,13 @@ const Login = () => {
       if (error.response) {
         const errors = error.response.data.errors;
         if (errors.field === "email") {
-          setErrEmail(error.response.data.errors.message || "An error occurred");
+          setErrEmail(
+            error.response.data.errors.message || "An error occurred"
+          );
         } else if (errors.field === "password") {
-          setErrPassword(error.response.data.errors.message || "An error occurred");
+          setErrPassword(
+            error.response.data.errors.message || "An error occurred"
+          );
         } else {
           setErrMessage(error.response.data.message || "An error occurred");
         }
@@ -61,9 +65,7 @@ const Login = () => {
                 required={false}
               />
               {errEmail && (
-                <p className="font-semibold text-red-500 text-sm">
-                  {errEmail}
-                </p>
+                <p className="font-semibold text-red-500 text-sm">{errEmail}</p>
               )}
             </div>
             <div>

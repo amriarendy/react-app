@@ -61,9 +61,7 @@ const Category = () => {
 
   const getCategories = async () => {
     try {
-      const response = await axiosJWT.get(
-        `${SERVER_API()}/master/categories`
-      );
+      const response = await axiosJWT.get(`${SERVER_API()}/master/categories`);
       setCategories(response.data);
     } catch (error) {
       setError(error);
