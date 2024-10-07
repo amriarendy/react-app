@@ -57,14 +57,14 @@ const validateAuth = async (req, res, next) => {
         email: req.body.email,
       },
     });
-  const match = await bcrypt.compare(req.body.password, user[0].password);
-  if (!match)
-    return res
-    .status(400)
-    .json(createErrorResponse("Incorect password!", "UN_MATCH", "password"));
-  } catch (error) {
-    
-  }
+    const match = await bcrypt.compare(req.body.password, user[0].password);
+    if (!match)
+      return res
+        .status(400)
+        .json(
+          createErrorResponse("Incorect password!", "UN_MATCH", "password")
+        );
+  } catch (error) {}
 
   next();
 };

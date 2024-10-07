@@ -1,92 +1,46 @@
-const validation = (req, res, next) => {
-    const { email, password } = req.body;
-    if (!email) {
-        return res.status(400).json({
-            code: 400,
-            status: "error",
-            errors: {
-                code: "REQUIRED",
-                message: "Email are required!",
-                field: "email"
-            }
-        })
-    }
+import bcrypt from "bcrypt"; // Note: bcrypt is unused here, consider removing if not needed
 
-    if (!password) {
-        return res.status(400).json({
-            code: 400,
-            status: "error",
-            message: "Password are required!",
-            errors: {
-                code: "REQUIRED",
-                message: "Password are required!",
-                field: "password"
-            }
-        })
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        return res.status(400).json({
-            code: 400,
-            status: "error",
-            errors: {
-                code: "EMAIL_VALID",
-                message: "Email invalid format",
-                field: "email"
-            }
-        })
-    }
-
-    if (email.length < 5) {
-        return res.status(400).json({
-            code: 400,
-            status: "error",
-            errors: {
-                code: "TO_SHORT",
-                message: "Email must be at least 6 characters long",
-                field: "email",
-            }
-        });
-    }
-
-    if (email.length > 50) {
-        return res.status(400).json({
-            code: 400,
-            status: "error",
-            errors: {
-                code: "TO_LONG",
-                message: "Email must be no more than 20 characters long",
-                field: "email",
-            }
-        });
-    }
-
-        if (password.length < 3) {
-            return res.status(400).json({
-                code: 400,
-                status: "error",
-                errors: {
-                    code: "TO_SHORT",
-                    message: "Password must be at least 3 characters long",
-                    field: "password",
-                }
-            });
-        }
-    
-        if (password.length > 50) {
-            return res.status(400).json({
-                code: 400,
-                status: "error",
-                errors: {
-                    code: "TO_LONG",
-                    message: "Password must be no more than 50 characters long",
-                    field: "password",
-                }
-            });
-        }
-
-    next();
+// Interface for Validator
+class Validator {
+  validate(data) {
+    throw new Error("Method 'validate()' must be implemented.");
+  }
 }
 
-export default validation;
+class Required extends Validator {
+  validate(field) {
+    if (!field) {
+      return {
+        valid: false,
+        error: {
+          code: 400,
+          errors: {
+            code: "REQUIRED",
+            field: "input",
+            message: "Email is required!",
+          },
+        },
+      };
+    }
+    return { valid: true }; // Return valid response if no error
+  }
+}
+
+export { Required };
+
+// class emailRegex extends Validator {
+//   validate(field) {
+//     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//     if (!emailRegex.test(field) || field.length < 5 || field.length > 50) {
+//       return {
+//         valid: false,
+//         error: createErrorResponse(
+//           "Invalid email format or length!",
+//           "EMAIL_VALID",
+//           "email"
+//         ),
+//       };
+//     }
+//     return { valid: true };
+//   }
+// }
