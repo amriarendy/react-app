@@ -31,14 +31,14 @@ const Login = () => {
     } catch (error) {
       if (error.response) {
         const errors = error.response.data.errors;
-        if (errors.field === "email") {
-          setErrEmail(
-            error.response.data.errors.message || "An error occurred"
-          );
-        } else if (errors.field === "password") {
-          setErrPassword(
-            error.response.data.errors.message || "An error occurred"
-          );
+        if (Array.isArray(errors)) {
+          errors.forEach((err) => {
+            if (err.field === "email") {
+              setErrEmail(err.message || "An error occurred");
+            } else if (err.field === "password") {
+              setErrPassword(err.message || "An error occurred");
+            }
+          });
         } else {
           setErrMessage(error.response.data.message || "An error occurred");
         }
@@ -91,7 +91,11 @@ const Login = () => {
                 name={"remember"}
                 label={"Remember Me"}
               />
-              <HrefText color={"blue"} label={"Lost Password?"} />
+              <HrefText
+                route={"/reset-password"}
+                color={"blue"}
+                label={"Lost Password?"}
+              />
             </div>
             <Button
               id={"login"}

@@ -14,10 +14,19 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [errMassage, setErrMassage] = useState("");
+  const [errEmail, setErrEmail] = useState("");
+  const [errPassword, setErrPassword] = useState("");
+  const [errConfirmPassword, seterrConfirmPassword] = useState("");
+  const [errName, setErrName] = useState("");
+  const [errMessage, setErrMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrEmail("");
+    setErrPassword("");
+    seterrConfirmPassword("");
+    setErrName("");
+    setErrMessage("");
     const formData = new FormData();
     formData.append("name", name);
     formData.append("email", email);
@@ -32,7 +41,24 @@ const Register = () => {
       navigate("/login");
     } catch (error) {
       if (error.response) {
-        console.log(error.response.data.message);
+        const errors = error.response.data.errors;
+        if (Array.isArray(errors)) {
+          errors.forEach((err) => {
+            if (err.field === "email") {
+              setErrEmail(err.message || "An error occurred");
+            } else if (err.field === "password") {
+              setErrPassword(err.message || "An error occurred");
+            } else if (err.field === "passwordConfirm") {
+              seterrConfirmPassword(err.message || "An error occurred");
+            } else if (err.field === "name") {
+              setErrName(err.message || "An error occurred");
+            }
+          });
+        } else {
+          setErrMessage(error.response.data.message || "An error occurred");
+        }
+      } else {
+        setErrMessage("Network error, please try again later");
       }
     }
   };
@@ -51,11 +77,14 @@ const Register = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 id={"email"}
                 name={"email"}
-                type={"email"}
+                type={"text"}
                 label={"Your Email"}
                 placeholder={"username@domain.com"}
                 required={false}
               />
+              {errEmail && (
+                <p className="font-semibold text-red-500 text-sm">{errEmail}</p>
+              )}
             </div>
             <div>
               <Input
@@ -67,7 +96,10 @@ const Register = () => {
                 label={"Full Name"}
                 placeholder={"Write your full name"}
                 required={false}
-              />
+              />{" "}
+              {errName && (
+                <p className="font-semibold text-red-500 text-sm">{errName}</p>
+              )}
             </div>
             <div>
               <Input
@@ -79,7 +111,12 @@ const Register = () => {
                 label={"Password"}
                 placeholder={"••••••••"}
                 required={false}
-              />
+              />{" "}
+              {errPassword && (
+                <p className="font-semibold text-red-500 text-sm">
+                  {errPassword}
+                </p>
+              )}
             </div>
             <div>
               <Input
@@ -91,7 +128,12 @@ const Register = () => {
                 label={"Password Confirm"}
                 placeholder={"••••••••"}
                 required={false}
-              />
+              />{" "}
+              {errConfirmPassword && (
+                <p className="font-semibold text-red-500 text-sm">
+                  {errConfirmPassword}
+                </p>
+              )}
             </div>
             <div className="flex items-start">
               <div className="flex items-center h-5">
