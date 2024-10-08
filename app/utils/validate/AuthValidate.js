@@ -1,148 +1,59 @@
+import {
+  ConfirmPassword,
+  EmailFormat,
+  Match,
+  Max,
+  Min,
+  Required,
+  Unique,
+} from "./Validate.js";
 import Auth from "../../models/AuthModel.js";
-import bcrypt from "bcrypt";
-
-const validateEmail = (email) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email) && email.length >= 5 && email.length <= 50;
-};
-
-const validatePassword = (password) => {
-  return password.length >= 6 && password.length <= 50; // Consider a minimum of 6 characters
-};
 
 const validateAuth = async (req, res, next) => {
-  const { email, password } = req.body;
+  const fields = ["email", "password"];
 
-  if (!email) {
-    return res
-      .status(400)
-      .json(createErrorResponse("Email is required!", "REQUIRED", "email"));
-  }
+  const required = new Required(fields).validate(req.body);
+  const emailFormat = new EmailFormat("email").validate(req.body);
 
-  if (!password) {
-    return res
-      .status(400)
-      .json(
-        createErrorResponse("Password is required!", "REQUIRED", "password")
-      );
-  }
-
-  if (!validateEmail(email)) {
-    return res
-      .status(400)
-      .json(
-        createErrorResponse(
-          "Invalid email format or length!",
-          "EMAIL_VALID",
-          "email"
-        )
-      );
-  }
-
-  if (!validatePassword(password)) {
-    return res
-      .status(400)
-      .json(
-        createErrorResponse(
-          "Password must be between 6 and 50 characters long!",
-          "PASSWORD_VALID",
-          "password"
-        )
-      );
-  }
-
-  try {
-    const user = await Auth.findAll({
-      where: {
-        email: req.body.email,
-      },
+  // result error
+  const errors = [...emailFormat.errors, ...required.errors];
+  if (errors.length > 0) {
+    return res.status(400).json({
+      errors,
     });
-    const match = await bcrypt.compare(req.body.password, user[0].password);
-    if (!match)
-      return res
-        .status(400)
-        .json(
-          createErrorResponse("Incorect password!", "UN_MATCH", "password")
-        );
-  } catch (error) {}
+  }
 
   next();
 };
 
 const validateRegister = async (req, res, next) => {
-  const { email, password, passwordConfirm } = req.body;
+  const fields = ["email", "password", "passwordConfirm", "name"];
 
-  if (!email) {
-    return res
-      .status(400)
-      .json(createErrorResponse("Email is required!", "REQUIRED", "email"));
-  }
+  const required = new Required(fields).validate(req.body);
+  const emailFormat = new EmailFormat("email").validate(req.body);
+  const max = new Max("email", 50).validate(req.body);
+  const unique = new Unique(["email"], Auth, "email");
+  const { valid, errors: uniqueErrors } = await unique.validate(req.body);
+  const match = new ConfirmPassword("password", "passwordConfirm").validate(
+    req.body
+  );
 
-  if (!password) {
-    return res
-      .status(400)
-      .json(
-        createErrorResponse("Password is required!", "REQUIRED", "password")
-      );
-  }
+  // result error
+  const errors = [
+    ...emailFormat.errors,
+    ...max.errors,
+    ...uniqueErrors,
+    ...match.errors,
+    ...required.errors,
+  ];
 
-  if (password !== passwordConfirm) {
-    return res
-      .status(400)
-      .json(
-        createErrorResponse(
-          "Passwords do not match!",
-          "UN_MATCH",
-          "passwordConfirm"
-        )
-      );
-  }
-
-  if (!validateEmail(email)) {
-    return res
-      .status(400)
-      .json(
-        createErrorResponse(
-          "Invalid email format or length!",
-          "EMAIL_VALID",
-          "email"
-        )
-      );
-  }
-
-  if (!validatePassword(password)) {
-    return res
-      .status(400)
-      .json(
-        createErrorResponse(
-          "Password must be between 6 and 50 characters long!",
-          "PASSWORD_VALID",
-          "password"
-        )
-      );
-  }
-
-  try {
-    const user = await Auth.findOne({ where: { email } });
-    if (user) {
-      return res
-        .status(400)
-        .json(createErrorResponse("Email already exists!", "UNIQUE", "email"));
-    }
-  } catch (error) {
-    console.error(error);
-    return res
-      .status(500)
-      .json({ code: 500, status: "error", message: "Internal server error!" });
+  if (errors.length > 0) {
+    return res.status(400).json({
+      errors,
+    });
   }
 
   next();
 };
-
-const createErrorResponse = (message, code, field) => ({
-  code: 400,
-  status: "error",
-  errors: { code, message, field },
-});
 
 export { validateAuth, validateRegister };

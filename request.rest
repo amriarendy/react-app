@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "email": "jhon@gmail.com",
-    "password": "jhon@gmail.com"
+    "password": "d"
 }
 
 ### Logout
@@ -16,8 +16,9 @@ Content-Type: application/json
 
 {
     "name": "Jhon Doe",
-    "email": "jhon@doe.com",
-    "password": "password123"
+    "email": "hosssfe@gm.co",
+    "password": "password123",
+    "password_confirm": "password1s23"
 }
 
 ### Get Token

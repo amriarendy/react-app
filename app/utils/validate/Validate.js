@@ -7,12 +7,12 @@ class Validator {
 class Required extends Validator {
   constructor(fieldNames) {
     super();
-    this.fieldNames = fieldNames;
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
   }
 
   validate(data) {
     const errors = [];
-    this.fieldNames.forEach(fieldName => {
+    this.fieldNames.forEach((fieldName) => {
       if (!data || !data[fieldName]) {
         errors.push({
           field: fieldName,
@@ -28,15 +28,15 @@ class Required extends Validator {
 class Min extends Validator {
   constructor(fieldNames, min) {
     super();
-    this.fieldNames = fieldNames;
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
     this.min = min;
   }
 
   validate(data) {
     const errors = [];
-    this.fieldNames.forEach(fieldName => {
+    this.fieldNames.forEach((fieldName) => {
       const value = data && data[fieldName];
-      if (!value || value.length < this.min) {
+      if (value.length <= this.min) {
         errors.push({
           field: fieldName,
           issue: "MIN",
@@ -51,15 +51,15 @@ class Min extends Validator {
 class Max extends Validator {
   constructor(fieldNames, max) {
     super();
-    this.fieldNames = fieldNames;
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
     this.max = max;
   }
 
   validate(data) {
     const errors = [];
-    this.fieldNames.forEach(fieldName => {
+    this.fieldNames.forEach((fieldName) => {
       const value = data && data[fieldName];
-      if (!value || value.length > this.max) {
+      if (value.length >= this.max) {
         errors.push({
           field: fieldName,
           issue: "max",
@@ -74,19 +74,20 @@ class Max extends Validator {
 class EmailFormat extends Validator {
   constructor(fieldNames) {
     super();
-    this.fieldNames = fieldNames;
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
   }
 
   validate(data) {
     const errors = [];
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    this.fieldNames.forEach(fieldName => {
+
+    this.fieldNames.forEach((fieldName) => {
       const value = data && data[fieldName];
       if (!value || !emailRegex.test(value)) {
         errors.push({
           field: fieldName,
           issue: "EMAIL_INVALID",
-          message: `${fieldName}, email format is invalid.`,
+          message: `${fieldName} has an invalid email format.`,
         });
       }
     });
@@ -98,13 +99,13 @@ class EmailFormat extends Validator {
 class NumberFormat extends Validator {
   constructor(fieldNames) {
     super();
-    this.fieldNames = fieldNames;
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
   }
 
   validate(data) {
     const errors = [];
     const numberRegex = /^\d+(\.\d+)?$/;
-    this.fieldNames.forEach(fieldName => {
+    this.fieldNames.forEach((fieldName) => {
       const value = data && data[fieldName];
       if (!value || !numberRegex.test(value)) {
         errors.push({
@@ -122,14 +123,14 @@ class NumberFormat extends Validator {
 class Trim extends Validator {
   constructor(fieldNames) {
     super();
-    this.fieldNames = fieldNames;
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
   }
 
   validate(data) {
     const errors = [];
-    this.fieldNames.forEach(fieldName => {
+    this.fieldNames.forEach((fieldName) => {
       const value = data && data[fieldName];
-      const trimmedValue = value ? value.trim() : '';
+      const trimmedValue = value ? value.trim() : "";
       if (!trimmedValue) {
         errors.push({
           field: fieldName,
@@ -143,20 +144,52 @@ class Trim extends Validator {
   }
 }
 
+class ConfirmPassword extends Validator {
+  constructor(fieldNames, fieldNames2) {
+    super();
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
+    this.fieldNames2 = Array.isArray(fieldNames2) ? fieldNames2 : [fieldNames2];
+  }
+
+  validate(data) {
+    const errors = [];
+
+    this.fieldNames.forEach((fieldName, index) => {
+      const fieldValue = data[fieldName];
+      const fieldValue2 = data[this.fieldNames2[index]];
+
+      if (fieldValue !== fieldValue2) {
+        errors.push({
+          field: this.fieldNames2[index],
+          issue: "UN_MATCH",
+          message: `password and password confirm field not match!`,
+        });
+      }
+    });
+
+    return { valid: errors.length === 0, errors };
+  }
+}
+
 class Match extends Validator {
   constructor(fieldNames, fieldNames2) {
     super();
-    this.fieldNames = fieldNames;
-    this.fieldNames2 = fieldNames2;
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
+    this.fieldNames2 = Array.isArray(fieldNames2) ? fieldNames2 : [fieldNames2];
   }
+
   validate(data) {
     const errors = [];
-    this.fieldNames.forEach(fieldName => {
-      if (fieldNames2 !== fieldNames) {
+
+    this.fieldNames.forEach((fieldName, index) => {
+      const fieldValue = data[fieldName];
+      const fieldValue2 = data[this.fieldNames2[index]];
+
+      if (fieldValue !== fieldValue2) {
         errors.push({
-          field: fieldNames2,
+          field: fieldName,
           issue: "UN_MATCH",
-          message: `${fieldName} and ${fieldNames2} un matched!`,
+          message: `${fieldName} and ${this.fieldNames2[index]} not match!`,
         });
       }
     });
@@ -168,20 +201,20 @@ class Match extends Validator {
 class Unique extends Validator {
   constructor(fieldNames, table, column) {
     super();
-    this.fieldNames = fieldNames;
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
     this.table = table;
     this.column = column;
   }
 
   async validate(data) {
     const errors = [];
-
     for (const fieldName of this.fieldNames) {
       const value = data && data[fieldName];
-
       try {
-        const getWhere = await this.table.findOne({ where: { [this.column]: value } });
-        if (!value || getWhere) {
+        const getWhere = await this.table.findOne({
+          where: { [this.column]: value },
+        });
+        if (getWhere) {
           errors.push({
             field: fieldName,
             issue: "UNIQUE",
@@ -205,7 +238,7 @@ class Unique extends Validator {
 class Exists extends Validator {
   constructor(fieldNames, table, column) {
     super();
-    this.fieldNames = fieldNames;
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
     this.table = table;
     this.column = column;
   }
@@ -217,7 +250,9 @@ class Exists extends Validator {
       const value = data && data[fieldName];
 
       try {
-        const getWhere = await this.table.findOne({ where: { [this.column]: value } });
+        const getWhere = await this.table.findOne({
+          where: { [this.column]: value },
+        });
         if (!value || getWhere) {
           errors.push({
             field: fieldName,
@@ -242,16 +277,16 @@ class Exists extends Validator {
 class ExtensionAllowed extends Validator {
   constructor(fieldNames, allowedExtensions) {
     super();
-    this.fieldNames = fieldNames;
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
     this.allowedExtensions = allowedExtensions;
   }
 
   validate(data) {
     const errors = [];
-    this.fieldNames.forEach(fieldName => {
+    this.fieldNames.forEach((fieldName) => {
       const value = data && data[fieldName];
       if (value) {
-        const extension = value.split('.').pop();
+        const extension = value.split(".").pop();
         if (!this.allowedExtensions.includes(extension)) {
           errors.push({
             field: fieldName,
@@ -268,12 +303,12 @@ class ExtensionAllowed extends Validator {
 class Uppercase extends Validator {
   constructor(fieldNames) {
     super();
-    this.fieldNames = fieldNames;
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
   }
 
   validate(data) {
     const errors = [];
-    this.fieldNames.forEach(fieldName => {
+    this.fieldNames.forEach((fieldName) => {
       const value = data && data[fieldName];
       if (value && value !== value.toUpperCase()) {
         errors.push({
@@ -290,12 +325,12 @@ class Uppercase extends Validator {
 class Lowercase extends Validator {
   constructor(fieldNames) {
     super();
-    this.fieldNames = fieldNames;
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
   }
 
   validate(data) {
     const errors = [];
-    this.fieldNames.forEach(fieldName => {
+    this.fieldNames.forEach((fieldName) => {
       const value = data && data[fieldName];
       if (value && value !== value.toLowerCase()) {
         errors.push({
@@ -312,12 +347,12 @@ class Lowercase extends Validator {
 class DateValidator extends Validator {
   constructor(fieldNames) {
     super();
-    this.fieldNames = fieldNames;
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
   }
 
   validate(data) {
     const errors = [];
-    this.fieldNames.forEach(fieldName => {
+    this.fieldNames.forEach((fieldName) => {
       const value = data && data[fieldName];
       if (value && isNaN(Date.parse(value))) {
         errors.push({
@@ -334,16 +369,16 @@ class DateValidator extends Validator {
 class DateFormat extends Validator {
   constructor(fieldNames, format) {
     super();
-    this.fieldNames = fieldNames;
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
     this.format = format; // e.g., 'YYYY-MM-DD'
   }
 
   validate(data) {
     const errors = [];
-    this.fieldNames.forEach(fieldName => {
+    this.fieldNames.forEach((fieldName) => {
       const value = data && data[fieldName];
       // Example regex for YYYY-MM-DD
-      const regex = /^\d{4}-\d{2}-\d{2}$/; 
+      const regex = /^\d{4}-\d{2}-\d{2}$/;
       if (value && !regex.test(value)) {
         errors.push({
           field: fieldName,
@@ -359,12 +394,12 @@ class DateFormat extends Validator {
 class Decimal extends Validator {
   constructor(fieldNames) {
     super();
-    this.fieldNames = fieldNames;
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
   }
 
   validate(data) {
     const errors = [];
-    this.fieldNames.forEach(fieldName => {
+    this.fieldNames.forEach((fieldName) => {
       const value = data && data[fieldName];
       if (value && !/^\d+(\.\d+)?$/.test(value)) {
         errors.push({
@@ -381,12 +416,12 @@ class Decimal extends Validator {
 class UrlFormat extends Validator {
   constructor(fieldNames) {
     super();
-    this.fieldNames = fieldNames;
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
   }
 
   validate(data) {
     const errors = [];
-    this.fieldNames.forEach(fieldName => {
+    this.fieldNames.forEach((fieldName) => {
       const value = data && data[fieldName];
       const regex = /^(http|https):\/\/[^ "]+$/; // Basic URL format
       if (value && !regex.test(value)) {
@@ -401,4 +436,19 @@ class UrlFormat extends Validator {
   }
 }
 
-export { Required, Min, Max, NumberFormat, EmailFormat, Trim, Match, Unique, Exists, ExtensionAllowed, Uppercase, Lowercase, Date, DateFormat };
+export {
+  Required,
+  Min,
+  Max,
+  NumberFormat,
+  EmailFormat,
+  Trim,
+  Match,
+  ConfirmPassword,
+  Unique,
+  Exists,
+  ExtensionAllowed,
+  Uppercase,
+  Lowercase,
+  DateFormat,
+};

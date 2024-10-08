@@ -10,11 +10,17 @@ export const signIn = async (req, res) => {
       },
     });
 
-    // const match = await bcrypt.compare(req.body.password, user[0].password);
-    // if (!match)
-    //   return res
-    //     .status(400)
-    //     .json({ code: 400, status: "error", message: "Incorect password!" });
+    const match = await bcrypt.compare(req.body.password, user[0].password);
+    if (!match)
+      return res.status(400).json({
+        errors: [
+          {
+            field: "password",
+            issue: "INCORECT",
+            message: "Incorect password!",
+          },
+        ],
+      });
     const userId = user[0].id;
     const name = user[0].name;
     const email = user[0].email;
