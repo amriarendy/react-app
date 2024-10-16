@@ -33,12 +33,19 @@ const AddUser = () => {
   const [status, setStatus] = useState("Active");
   const [position, setPosition] = useState("");
   const [country, setCountry] = useState("");
+  // err state
+  const [errEmail, setErrEmail] = useState("");
+  const [errPassword, setErrPassword] = useState("");
+  const [errName, setErrName] = useState("");
+  const [errDob, setErrDob] = useState("");
+  const [errPhone, setErrPhone] = useState("");
+  const [errGender, setErrGender] = useState("");
+  const [errPhoto, setErrPhoto] = useState("");
+  const [errMessage, setErrMessage] = useState("");
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const passwordValidate = passwordConfirm(password, confirmPassword);
-    // const requiredValidate = required(email, "email required");
-    // alert(requiredValidate);
 
     const formData = new FormData();
     formData.append("name", name);
@@ -63,7 +70,33 @@ const AddUser = () => {
       });
       navigate("/dashboard/user");
     } catch (error) {
-      console.log(error);
+      console.log("Error: ", error.response.data.errors);
+      if (error.response) {
+        const errors = error.response.data.errors;
+        if (Array.isArray(errors)) {
+            errors.forEach((err) => {
+            if (err.field === "email") {
+              setErrEmail(err.message || "An error occurred");
+            } else if (err.field === "password") {
+              setErrPassword(err.message || "An error occurred");
+            } else if (err.field === "name") {
+              setErrName(err.message || "An error occurred");
+            } else if (err.field === "dob") {
+              setErrDob(err.message || "An error occurred");
+            } else if (err.field === "phone") {
+              setErrPhone(err.message || "An error occurred");
+            } else if (err.field === "gender") {
+              setErrGender(err.message || "An error occurred");
+            } else if (err.field === "photo") {
+              setErrGender(err.message || "An error occurred");
+            }
+          });
+        } else {
+          setErrMessage(error.response.data.message || "An error occurred");
+        }
+      } else {
+        setErrMessage("Network error, please try again later");
+      }
     }
   };
 
@@ -88,6 +121,9 @@ const AddUser = () => {
                   placeholder={"full name"}
                   required={false}
                 />
+                {errName && (
+                  <p className="font-semibold text-red-500 text-sm">{errName}</p>
+                )}
               </div>
               <div className="sm:col-span-2">
                 <Input
@@ -99,9 +135,11 @@ const AddUser = () => {
                   label={"Email"}
                   placeholder={"active email"}
                   required={false}
-                />
+                />              {errEmail && (
+                  <p className="font-semibold text-red-500 text-sm">{errEmail}</p>
+                )}
               </div>
-              <div className="w-full">
+              <div className="sm:col-span-2">
                 <Input
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -111,19 +149,9 @@ const AddUser = () => {
                   label={"Password"}
                   placeholder={"••••••••"}
                   required={false}
-                />
-              </div>
-              <div className="w-full">
-                <Input
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  id={"confirm-password"}
-                  name={"confirm-password"}
-                  type={"password"}
-                  label={"Password Confirm"}
-                  placeholder={"••••••••"}
-                  required={false}
-                />
+                />              {errPassword && (
+                  <p className="font-semibold text-red-500 text-sm">{errPassword}</p>
+                )}
               </div>
               <div className="w-full">
                 <Input
@@ -135,7 +163,9 @@ const AddUser = () => {
                   label={"Phone Number"}
                   placeholder={"+628••••••••"}
                   required={false}
-                />
+                />              {errPhone && (
+                  <p className="font-semibold text-red-500 text-sm">{errPhone}</p>
+                )}
               </div>
               <div className="w-full">
                 <Input
@@ -147,7 +177,9 @@ const AddUser = () => {
                   label={"Date of Birth"}
                   placeholder={"type here"}
                   required={false}
-                />
+                />              {errDob && (
+                  <p className="font-semibold text-red-500 text-sm">{errDob}</p>
+                )}
               </div>
               <div className="w-full">
                 <InputFile
@@ -158,6 +190,9 @@ const AddUser = () => {
                   help={"Ext: jpg, jpeg, png. Max: 1024MB"}
                   required={false}
                 />
+                {errPhoto && (
+                  <p className="font-semibold text-red-500 text-sm">{errPhoto}</p>
+                )}
               </div>
               <div className="w-full">
                 <Option
@@ -174,7 +209,9 @@ const AddUser = () => {
                     { value: "male", label: "Male" },
                     { value: "female", label: "Female" },
                   ]}
-                />
+                />              {errGender && (
+                  <p className="font-semibold text-red-500 text-sm">{errGender}</p>
+                )}
               </div>
               <div className="w-full">
                 <Option

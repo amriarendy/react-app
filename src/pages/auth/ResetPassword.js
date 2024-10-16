@@ -44,16 +44,10 @@ const ResetPassword = () => {
               />
             </div>
             <div className="flex items-start">
-              <div className="flex items-center h-5">
-                <CheckBox
-                  id={"termscondictions"}
-                  name={"termscondictions"}
-                  label={"I accept the"}
-                />
-              </div>
-              <div className="ml-3 text-sm">
-                <HrefText color={"blue"} label={" Terms and Conditions"} />
-              </div>
+            <div className="text-sm font-medium text-gray-500 dark:text-gray-400">
+              Already have an account?{" "}
+              <HrefText route="/login" color={"blue"} label={"Login"} />
+            </div>
             </div>
             <Button
               id={"login"}
