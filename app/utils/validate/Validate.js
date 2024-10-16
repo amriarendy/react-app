@@ -36,7 +36,7 @@ class Min extends Validator {
     const errors = [];
     this.fieldNames.forEach((fieldName) => {
       const value = data && data[fieldName];
-      if (value.length <= this.min) {
+      if (typeof value === 'string' && value.length < this.min) {
         errors.push({
           field: fieldName,
           issue: "MIN",
@@ -47,6 +47,7 @@ class Min extends Validator {
     return { valid: errors.length === 0, errors };
   }
 }
+
 
 class Max extends Validator {
   constructor(fieldNames, max) {
@@ -59,7 +60,7 @@ class Max extends Validator {
     const errors = [];
     this.fieldNames.forEach((fieldName) => {
       const value = data && data[fieldName];
-      if (value.length >= this.max) {
+      if (typeof value === 'string' && value.length > this.max) {
         errors.push({
           field: fieldName,
           issue: "max",
@@ -210,6 +211,11 @@ class Unique extends Validator {
     const errors = [];
     for (const fieldName of this.fieldNames) {
       const value = data && data[fieldName];
+      
+      if (value === null || value === undefined || value === '') {
+        continue;
+      }
+
       try {
         const getWhere = await this.table.findOne({
           where: { [this.column]: value },
@@ -226,7 +232,7 @@ class Unique extends Validator {
         errors.push({
           field: fieldName,
           issue: "DATABASE_ERROR",
-          message: "Internal server error during validation.",
+          message: `Internal server error during validation. ${error}`,
         });
       }
     }
@@ -249,11 +255,16 @@ class Exists extends Validator {
     for (const fieldName of this.fieldNames) {
       const value = data && data[fieldName];
 
+      if (value === undefined || value === null || value === '') {
+        continue;
+      }
+
       try {
         const getWhere = await this.table.findOne({
           where: { [this.column]: value },
         });
-        if (!value || getWhere) {
+
+        if (getWhere) {
           errors.push({
             field: fieldName,
             issue: "EXISTS",
@@ -274,27 +285,84 @@ class Exists extends Validator {
   }
 }
 
+class NotExists extends Validator {
+  constructor(fieldNames, table, column) {
+    super();
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
+    this.table = table;
+    this.column = column;
+  }
+
+  async validate(data) {
+    const errors = [];
+    const valuesToCheck = this.fieldNames.map(fieldName => data[fieldName]).filter(value => value !== undefined && value !== null && value !== '');
+
+    if (valuesToCheck.length === 0) {
+      return { valid: true, errors };
+    }
+
+    try {
+      const results = await this.table.findAll({
+        where: {
+          [this.column]: valuesToCheck
+        }
+      });
+
+      const existingValues = results.map(result => result[this.column]);
+
+      for (const fieldName of this.fieldNames) {
+        const value = data[fieldName];
+        if (value && !existingValues.includes(value)) {
+          errors.push({
+            field: fieldName,
+            issue: "NOT_EXISTS",
+            message: `${fieldName} data does not exist!`,
+          });
+        }
+      }
+    } catch (error) {
+      console.error("Validation error:", error);
+      errors.push({
+        field: 'database',
+        issue: "DATABASE_ERROR",
+        message: "Internal server error during validation.",
+      });
+    }
+
+    return { valid: errors.length === 0, errors };
+  }
+}
+
+
 class ExtensionAllowed extends Validator {
   constructor(fieldNames, allowedExtensions) {
     super();
     this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
-    this.allowedExtensions = allowedExtensions;
+    this.allowedExtensions = allowedExtensions.map(ext => ext.toLowerCase());
   }
 
   validate(data) {
     const errors = [];
     this.fieldNames.forEach((fieldName) => {
-      const value = data && data[fieldName];
-      if (value) {
-        const extension = value.split(".").pop();
-        if (!this.allowedExtensions.includes(extension)) {
-          errors.push({
-            field: fieldName,
-            issue: "INVALID_EXTENSION",
-            message: `${fieldName} has an invalid extension`,
-          });
-        }
+      const files = data[fieldName];
+      
+      if (files === undefined || files === null || files === '') {
+        return; 
       }
+      const fileList = Array.isArray(files) ? files : [files];
+
+      fileList.forEach((file) => {
+        if (file && file.originalname) {
+          const extension = file.originalname.split('.').pop().toLowerCase(); // Normalize to lowercase
+          if (!this.allowedExtensions.includes(extension)) {
+            errors.push({
+              field: fieldName,
+              issue: "INVALID_EXTENSION",
+              message: `${fieldName} has an invalid extension. Allowed extensions are: ${this.allowedExtensions.join(", ")}`,
+            });
+          }
+        }
+      });
     });
     return { valid: errors.length === 0, errors };
   }
@@ -447,6 +515,7 @@ export {
   ConfirmPassword,
   Unique,
   Exists,
+  NotExists,
   ExtensionAllowed,
   Uppercase,
   Lowercase,

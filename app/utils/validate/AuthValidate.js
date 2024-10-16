@@ -1,9 +1,11 @@
 import {
   ConfirmPassword,
   EmailFormat,
+  Exists,
   Match,
   Max,
   Min,
+  NotExists,
   Required,
   Unique,
 } from "./Validate.js";
@@ -14,15 +16,16 @@ const validateAuth = async (req, res, next) => {
 
   const required = new Required(fields).validate(req.body);
   const emailFormat = new EmailFormat("email").validate(req.body);
+  const exists = new NotExists(["email"], Auth, "email");
+  const { errors: existsErrors } = await exists.validate(req.body);
 
   // result error
-  const errors = [...emailFormat.errors, ...required.errors];
+  const errors = [...emailFormat.errors, ...required.errors, ...existsErrors];
   if (errors.length > 0) {
     return res.status(400).json({
       errors,
     });
   }
-
   next();
 };
 

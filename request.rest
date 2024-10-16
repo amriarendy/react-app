@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "email": "jhon@gmail.com",
-    "password": "d"
+    "password": "jhon@gmail.com"
 }
 
 ### Logout
@@ -35,4 +35,18 @@ Content-Type: application/json
 
 {
     "tag": "dsdsfsd"
+}
+
+### Post User
+POST http://localhost:3001/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJKaG9uIERvZSIsImVtYWlsIjoiamhvbkBnbWFpbC5jb20iLCJpYXQiOjE3MjkwNTY1NjUsImV4cCI6MTcyOTA1NjU4MH0.G317uPXd-11DYCJSAvNl4ew0mEXet7BSTzIoAF6Vhl4
+Content-Type: application/json
+
+{
+    "email": "s",
+    "name": "agus",
+    "password": "agus",
+    "dob": "",
+    "phone": "fesf",
+    "gender": "male"
 }
