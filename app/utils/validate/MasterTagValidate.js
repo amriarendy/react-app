@@ -1,7 +1,7 @@
 import { Max, Min, Required, Unique } from "./Validate.js";
 import Tag from "../../models/TagModel.js";
 
-const MasterTagValidate = async (req, res, next) => {
+const validateTag = async (req, res, next) => {
   const fields = ["tag"];
 
   const required = new Required(fields).validate(req.body);
@@ -26,4 +26,4 @@ const MasterTagValidate = async (req, res, next) => {
   next();
 };
 
-export { MasterTagValidate };
+export { validateTag };

@@ -345,10 +345,9 @@ class ExtensionAllowed extends Validator {
 
   validate(data) {
     const errors = [];
-
+    
     this.fieldNames.forEach((fieldName) => {
       const files = data[fieldName];
-
       if (!files) {
         errors.push({
           field: fieldName,
@@ -397,9 +396,14 @@ class ExtSizeFile extends Validator {
   }
 
   validate(data) {
+    console.log("Data being validated: ", data);
     const errors = [];
+    if (!data) {
+      return { valid: errors.length === 0, errors };
+    }
     this.fieldNames.forEach((fieldName) => {
       const files = data[fieldName];
+      console.log("fieldName: ", fieldName);
       // If files is undefined or empty, skip validation for this field
       if (!files || (Array.isArray(files) && files.length === 0)) {
         return; // Skip validation for empty fields

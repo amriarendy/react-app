@@ -26,149 +26,113 @@ export const getWhere = async (req, res) => {
 };
 
 export const store = async (req, res) => {
-  if (req.files === null)
-    return res
-      .status(400)
-      .json({ code: 400, status: "error", message: "Invalid image" });
+  let fileName = 'default.png'; // Default filename
+  let urlPhoto = `${req.protocol}://${req.get('host')}/uploads/profiles/${fileName}`; // Default URL
+
+  if (req.files && req.files.photo) {
+    const photo = req.files.photo;
+    const ext = path.extname(photo.name);
+    fileName = `${photo.md5}${ext}`;
+    urlPhoto = `${req.protocol}://${req.get('host')}/uploads/profiles/${fileName}`;
+
+    try {
+      await photo.mv(`./public/uploads/profiles/${fileName}`); // Wait for the move to complete
+    } catch (err) {
+      return res.status(500).json({ code: 500, status: 'error', message: err.message });
+    }
+  }
 
   const salt = await bcrypt.genSalt();
   const email = req.body.email;
   const password = await bcrypt.hash(req.body.password, salt);
-  const name = req.body.name;
-  const dob = req.body.dob;
-  const gender = req.body.gender;
-  const photo = req.files.photo;
-  const phone = req.body.phone;
-  const biography = req.body.biography;
-  const status = req.body.status;
-  const position = req.body.position;
-  const country = req.body.country;
+  const status = "Active";
+  const { name, dob, gender, phone, biography, position, country } = req.body;
 
-  const ext = path.extname(photo.name);
-  const fileName = photo.md5 + ext;
-  const urlPhoto = `${req.protocol}://${req.get(
-    "host"
-  )}/uploads/profiles/${fileName}`;
-
-  photo.mv(`./public/uploads/profiles/${fileName}`, async (err) => {
-    if (err)
-      return res
-        .status(500)
-        .json({ code: 500, status: "error", message: err.message });
-    try {
-      await User.create({
-        email: email,
-        password: password,
-        name: name,
-        dob: dob,
-        phone: phone,
-        gender: gender,
-        biography: biography,
-        status: status,
-        position: position,
-        country: country,
-        photo: fileName,
-        urlPhoto: urlPhoto,
-      });
-      res
-        .status(201)
-        .json({ code: 201, status: "success", message: "Data insert" });
-    } catch (error) {
-      console.log(error.message);
-      return res
-        .status(500)
-        .json({ code: 500, status: "error", message: error.message });
-    }
-  });
+  try {
+    await User.create({
+      email,
+      password,
+      name,
+      dob,
+      phone,
+      gender,
+      biography,
+      status,
+      position,
+      country,
+      photo: fileName,
+      urlPhoto,
+    });
+    res.status(201).json({ code: 201, status: 'success', message: 'Data inserted' });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ code: 500, status: 'error', message: error.message });
+  }
 };
 
 export const update = async (req, res) => {
-  const getWhere = await User.findOne({
-    where: {
-      id: req.params.id,
-    },
-  });
+  const userId = req.params.id;
+  let getUser;
 
-  if (!getWhere)
-    return res
-      .status(404)
-      .json({ code: 404, status: "error", message: "Data not found" });
-  let fileName = "";
-  if (req.files === null) {
-    fileName = getWhere.photo;
-  } else {
-    const file = req.files.photo;
-    const fileSize = file.data.length;
-    const ext = path.extname(file.name);
-    fileName = file.md5 + ext;
-    const allowedType = [".jpg", ".jpeg", ".png"];
-
-    if (!allowedType.includes(ext.toLowerCase()))
-      return res
-        .status(422)
-        .json({ code: 422, status: "error", message: "Invalid image!" });
-    if (fileSize > 5000000)
-      return res.status(422).json({
-        code: 422,
-        status: "error",
-        message: "File must be lower 5mb",
-      });
-
-    const filepath = `./public/uploads/profiles/${getWhere.photo}`;
-    if (fs.existsSync(filepath)) {
-      fs.unlinkSync(filepath);
-      return res.status(200).json({
-        code: 200,
-        status: "success",
-        message: "Delete file success",
-      });
+  try {
+    getUser = await User.findOne({ where: { id: userId } });
+    if (!getUser) {
+      return res.status(404).json({ code: 404, status: 'error', message: 'Data not found' });
     }
-
-    file.mv(`./public/uploads/profiles/${fileName}`, (err) => {
-      if (err) return res.status(500).json({ msg: err.message });
-    });
+  } catch (error) {
+    return res.status(500).json({ code: 500, status: 'error', message: error.message });
   }
-  const email = req.body.email;
-  const name = req.body.name;
-  const dob = req.body.dob;
-  const phone = req.body.phone;
-  const gender = req.body.gender;
-  const biography = req.body.biography;
-  const status = req.body.status;
-  const position = req.body.position;
-  const country = req.body.country;
-  const urlPhoto = `${req.protocol}://${req.get(
-    "host"
-  )}/uploads/profiles/${fileName}`;
+
+  let fileName = getUser.photo;
+  let urlPhoto = `${req.protocol}://${req.get('host')}/uploads/profiles/${fileName}`;
+
+  if (req.files && req.files.photo) {
+    const file = req.files.photo;
+    const ext = path.extname(file.name);
+    fileName = `${file.md5}${ext}`;
+    
+    const oldFilePath = `./public/uploads/profiles/${getUser.photo}`;
+    if (fs.existsSync(oldFilePath)) {
+      fs.unlinkSync(oldFilePath);
+    }
+    
+    try {
+      await file.mv(`./public/uploads/profiles/${fileName}`);
+      urlPhoto = `${req.protocol}://${req.get('host')}/uploads/profiles/${fileName}`;
+    } catch (err) {
+      return res.status(500).json({ code: 500, status: 'error', message: err.message });
+    }
+  }
+
+  const { email, name, dob, phone, gender, biography, status, position, country } = req.body;
+
   try {
     await User.update(
       {
-        email: email,
-        password: password,
-        name: name,
-        dob: dob,
-        phone: phone,
-        gender: gender,
-        biography: biography,
-        status: status,
-        position: position,
-        country: country,
+        email,
+        name,
+        dob,
+        phone,
+        gender,
+        biography,
+        status,
+        position,
+        country,
         photo: fileName,
-        urlPhoto: urlPhoto,
+        urlPhoto,
       },
       {
-        where: {
-          id: req.params.id,
-        },
+        where: { id: userId },
       }
     );
-    res
-      .status(201)
-      .json({ code: 201, status: "success", message: "Data updated" });
+
+    res.status(200).json({ code: 200, status: 'success', message: 'Data updated' });
   } catch (error) {
     console.log(error.message);
+    res.status(500).json({ code: 500, status: 'error', message: error.message });
   }
 };
+
 
 export const destroy = async (req, res) => {
   const getWhere = await User.findOne({

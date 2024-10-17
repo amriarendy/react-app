@@ -7,14 +7,14 @@ import {
   store,
   update,
 } from "../controllers/UserController.js";
-import { validateUser } from "../utils/validate/UserValidate.js";
+import { validateAddUser, validateUpdateUser } from "../utils/validate/UserValidate.js";
 
 const router = express.Router();
 
 router.get("/users", verifyToken, getAll);
 router.get("/users/:id", verifyToken, getWhere);
-router.post("/users", validateUser, store);
-router.patch("/users/:id", verifyToken, update);
+router.post("/users", validateAddUser, store);
+router.patch("/users/:id", validateUpdateUser, update);
 router.delete("/users/:id", verifyToken, destroy);
 
 export default router;
