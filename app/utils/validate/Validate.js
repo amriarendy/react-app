@@ -36,7 +36,7 @@ class Min extends Validator {
     const errors = [];
     this.fieldNames.forEach((fieldName) => {
       const value = data && data[fieldName];
-      if (typeof value === 'string' && value.length < this.min) {
+      if (typeof value === "string" && value.length < this.min) {
         errors.push({
           field: fieldName,
           issue: "MIN",
@@ -47,7 +47,6 @@ class Min extends Validator {
     return { valid: errors.length === 0, errors };
   }
 }
-
 
 class Max extends Validator {
   constructor(fieldNames, max) {
@@ -60,7 +59,7 @@ class Max extends Validator {
     const errors = [];
     this.fieldNames.forEach((fieldName) => {
       const value = data && data[fieldName];
-      if (typeof value === 'string' && value.length > this.max) {
+      if (typeof value === "string" && value.length > this.max) {
         errors.push({
           field: fieldName,
           issue: "max",
@@ -211,8 +210,8 @@ class Unique extends Validator {
     const errors = [];
     for (const fieldName of this.fieldNames) {
       const value = data && data[fieldName];
-      
-      if (value === null || value === undefined || value === '') {
+
+      if (value === null || value === undefined || value === "") {
         continue;
       }
 
@@ -255,7 +254,7 @@ class Exists extends Validator {
     for (const fieldName of this.fieldNames) {
       const value = data && data[fieldName];
 
-      if (value === undefined || value === null || value === '') {
+      if (value === undefined || value === null || value === "") {
         continue;
       }
 
@@ -295,7 +294,9 @@ class NotExists extends Validator {
 
   async validate(data) {
     const errors = [];
-    const valuesToCheck = this.fieldNames.map(fieldName => data[fieldName]).filter(value => value !== undefined && value !== null && value !== '');
+    const valuesToCheck = this.fieldNames
+      .map((fieldName) => data[fieldName])
+      .filter((value) => value !== undefined && value !== null && value !== "");
 
     if (valuesToCheck.length === 0) {
       return { valid: true, errors };
@@ -304,11 +305,11 @@ class NotExists extends Validator {
     try {
       const results = await this.table.findAll({
         where: {
-          [this.column]: valuesToCheck
-        }
+          [this.column]: valuesToCheck,
+        },
       });
 
-      const existingValues = results.map(result => result[this.column]);
+      const existingValues = results.map((result) => result[this.column]);
 
       for (const fieldName of this.fieldNames) {
         const value = data[fieldName];
@@ -323,7 +324,7 @@ class NotExists extends Validator {
     } catch (error) {
       console.error("Validation error:", error);
       errors.push({
-        field: 'database',
+        field: "database",
         issue: "DATABASE_ERROR",
         message: "Internal server error during validation.",
       });
@@ -333,34 +334,105 @@ class NotExists extends Validator {
   }
 }
 
-
 class ExtensionAllowed extends Validator {
   constructor(fieldNames, allowedExtensions) {
     super();
     this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
-    this.allowedExtensions = allowedExtensions.map(ext => ext.toLowerCase());
+    this.allowedExtensions = allowedExtensions
+      .map((ext) => ext.trim().toLowerCase())
+      .map((ext) => (ext.startsWith(".") ? ext : `.${ext}`));
+  }
+
+  validate(data) {
+    const errors = [];
+
+    this.fieldNames.forEach((fieldName) => {
+      const files = data[fieldName];
+
+      if (!files) {
+        errors.push({
+          field: fieldName,
+          issue: "NO_FILES_PROVIDED",
+          message: `${fieldName} is required but no files were provided.`,
+        });
+        return;
+      }
+
+      const fileList = Array.isArray(files) ? files : [files];
+
+      fileList.forEach((file) => {
+        if (file && file.originalname) {
+          const extension = file.originalname.split(".").pop().toLowerCase();
+          if (!this.allowedExtensions.includes(`.${extension}`)) {
+            errors.push({
+              field: fieldName,
+              issue: "INVALID_EXTENSION",
+              message: `${fieldName} has an invalid extension. Allowed extensions are: ${this.allowedExtensions.join(
+                ", "
+              )}`,
+            });
+          }
+        } else {
+          errors.push({
+            field: fieldName,
+            issue: "MALFORMED_FILE",
+            message: `${fieldName} contains a malformed file.`,
+          });
+        }
+      });
+    });
+
+    return { valid: errors.length === 0, errors };
+  }
+}
+
+class ExtSizeFile extends Validator {
+  constructor(fieldNames, maxFileSize, allowedExtensions) {
+    super();
+    this.fieldNames = Array.isArray(fieldNames) ? fieldNames : [fieldNames];
+    this.maxFileSize = maxFileSize; // Maximum file size in bytes
+    this.allowedExtensions = allowedExtensions
+      .map((ext) => ext.trim().toLowerCase())
+      .map((ext) => (ext.startsWith(".") ? ext : `.${ext}`));
   }
 
   validate(data) {
     const errors = [];
     this.fieldNames.forEach((fieldName) => {
       const files = data[fieldName];
-      
-      if (files === undefined || files === null || files === '') {
-        return; 
+      // If files is undefined or empty, skip validation for this field
+      if (!files || (Array.isArray(files) && files.length === 0)) {
+        return; // Skip validation for empty fields
       }
-      const fileList = Array.isArray(files) ? files : [files];
 
+      const fileList = Array.isArray(files) ? files : [files];
       fileList.forEach((file) => {
-        if (file && file.originalname) {
-          const extension = file.originalname.split('.').pop().toLowerCase(); // Normalize to lowercase
-          if (!this.allowedExtensions.includes(extension)) {
+        if (file && file.name) {
+          // Check file size
+          if (file.size > this.maxFileSize) {
+            errors.push({
+              field: fieldName,
+              issue: "FILE_TOO_LARGE",
+              message: `Each file must be less than ${this.maxFileSize} bytes.`,
+            });
+            return;
+          }
+          const extension = file.name.split(".").pop().toLowerCase();
+          if (!this.allowedExtensions.includes(`.${extension}`)) {
             errors.push({
               field: fieldName,
               issue: "INVALID_EXTENSION",
-              message: `${fieldName} has an invalid extension. Allowed extensions are: ${this.allowedExtensions.join(", ")}`,
+              message: `${fieldName} has an invalid extension. Allowed extensions are: ${this.allowedExtensions.join(
+                ", "
+              )}`,
             });
           }
+        } else {
+          errors.push({
+            field: fieldName,
+            issue: "MALFORMED_FILE",
+            message: `${JSON.stringify(file)} contains a malformed file.`,
+          });
         }
       });
     });
@@ -517,6 +589,7 @@ export {
   Exists,
   NotExists,
   ExtensionAllowed,
+  ExtSizeFile,
   Uppercase,
   Lowercase,
   DateFormat,

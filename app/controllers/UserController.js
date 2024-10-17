@@ -44,20 +44,12 @@ export const store = async (req, res) => {
   const position = req.body.position;
   const country = req.body.country;
 
-  const fileSize = photo.data.length;
   const ext = path.extname(photo.name);
   const fileName = photo.md5 + ext;
   const urlPhoto = `${req.protocol}://${req.get(
     "host"
   )}/uploads/profiles/${fileName}`;
-  const allowedType = [".png", ".jpg", ".jpeg"];
 
-  if (!allowedType.includes(ext.toLowerCase()))
-    return res
-      .status(422)
-      .json({ code: 422, status: "error", message: "Invalid image" });
-  if (fileSize > 5000000)
-    return res.status(422).json({ message: "Image must be less than 5 MB" });
   photo.mv(`./public/uploads/profiles/${fileName}`, async (err) => {
     if (err)
       return res
