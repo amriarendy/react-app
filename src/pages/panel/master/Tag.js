@@ -28,10 +28,11 @@ const Tag = () => {
 
   const [tag, setTag] = useState("");
   const [editTag, setEditTag] = useState({ id: "", tag: "" });
-  const [validate, setValidate] = useState("");
-  const [editValidate, setEditValidate] = useState("");
   const [token, setToken] = useState("");
   const [expire, setExpire] = useState("");
+  // err state
+  const [errTag, setErrTag] = useState("");
+  const [errMessage, setErrMessage] = useState("");
 
   // state modal add, edit open & close
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -67,44 +68,58 @@ const Tag = () => {
 
   const handleAddSubmit = async (e) => {
     e.preventDefault();
-    if (!tag.trim()) {
-      setValidate("Tag is required.");
-      return;
-    }
-    if (tag.length > 50) {
-      setValidate("Tag must be less than 50 characters.");
-      return;
-    }
     try {
       await axiosJWT.post(`${SERVER_API()}/master/tags`,{ tag });
       setTag(""); // Reset input field
+      setErrTag("");
       toggleAddModal(); // Close modal
       getTags(); // Refresh data
     } catch (error) {
-      console.error("Error adding tag", error);
+      console.log("Error: ", error.response.data.errors);
+      if (error.response) {
+        const errors = error.response.data.errors;
+        if (Array.isArray(errors)) {
+            errors.forEach((err) => {
+            if (err.field === "tag") {
+              setErrTag(err.message || "An error occurred");
+            }
+          });
+        } else {
+          setErrMessage(error.response.data.message || "An error occurred");
+        }
+      } else {
+        setErrMessage("Network error, please try again later");
+      }
     }
   };
 
   // update function
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    if (!editTag.tag.trim()) {
-      setEditValidate("Tag is required.");
-      return;
-    }
-    if (editTag.tag.length > 50) {
-      setEditValidate("Tag must be less than 50 characters.");
-      return;
-    }
     try {
       await axiosJWT.patch(`${SERVER_API()}/master/tags/${editTag.id}`,{
         tag: editTag.tag,
       },);
       setEditTag({ id: "", tag: "" }); // Reset input fields
+      setErrTag("");
       toggleEditModal(); // Close modal
       getTags(); // Refresh data
     } catch (error) {
-      console.error("Error updating tag", error);
+      console.log("Error: ", error.response.data.errors);
+      if (error.response) {
+        const errors = error.response.data.errors;
+        if (Array.isArray(errors)) {
+            errors.forEach((err) => {
+            if (err.field === "tag") {
+              setErrTag(err.message || "An error occurred");
+            }
+          });
+        } else {
+          setErrMessage(error.response.data.message || "An error occurred");
+        }
+      } else {
+        setErrMessage("Network error, please try again later");
+      }
     }
   };
 
@@ -200,10 +215,8 @@ const Tag = () => {
                       label={"Tag"}
                       required={false}
                     />
-                    {validate && (
-                      <p className="font-semibold text-red-500 text-sm">
-                        {validate}
-                      </p>
+                    {errTag && (
+                      <p className="font-semibold text-red-500 text-sm">{errTag}</p>
                     )}
                   </div>
                 </div>
@@ -236,10 +249,8 @@ const Tag = () => {
                       label={"Tag"}
                       required={false}
                     />
-                    {editValidate && (
-                      <p className="font-semibold text-red-500 text-sm">
-                        {editValidate}
-                      </p>
+                    {errTag && (
+                      <p className="font-semibold text-red-500 text-sm">{errTag}</p>
                     )}
                   </div>
                 </div>

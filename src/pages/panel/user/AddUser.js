@@ -8,7 +8,6 @@ import { FaSave } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { axiosJWT } from "../../../libs/utils/axiosJwt";
-import { passwordConfirm, required } from "../../../libs/utils/validate";
 import { SERVER_API } from "../../../services/api";
 
 const AddUser = () => {

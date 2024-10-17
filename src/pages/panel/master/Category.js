@@ -15,7 +15,6 @@ import { axiosJWT } from "../../../libs/utils/axiosJwt";
 import Loading from "../../../components/errors/Loading";
 import Errors from "../../../components/errors/Errors";
 import { slugFormat } from "../../../libs/utils/text";
-import { required, trimRequired } from "../../../libs/utils/validate";
 import { SERVER_API } from "../../../services/api";
 
 const Category = () => {
@@ -37,6 +36,10 @@ const Category = () => {
     category: "",
     slug: "",
   });
+  // err state
+  const [errCategory, setErrCategory] = useState("");
+  const [errSlug, setErrSlug] = useState("");
+  const [errMessage, setErrMessage] = useState("");
 
   // state modal add, edit open & close
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -77,14 +80,7 @@ const Category = () => {
   // craete function
   const handleAddSubmit = async (e) => {
     e.preventDefault();
-    // validation
-    const categoryAddError = required(category, "Category");
-    const slugAddError = trimRequired(slug, "Slug");
-    if (categoryAddError || slugAddError) {
-      setAddValidate({ category: categoryAddError, slug: slugAddError });
-      return;
-    }
-    // insert data
+    
     try {
       await axiosJWT.post(`${SERVER_API()}/master/categories`, {
         category,
@@ -92,10 +88,28 @@ const Category = () => {
       });
       setCategory("");
       setSlug(""); // Reset input field
+      setErrCategory("");
+      setErrSlug("");
       toggleAddModal(); // Close modal
       getCategories(); // Refresh data
     } catch (error) {
-      console.error("Error adding tag", error);
+      console.log("Error: ", error.response.data.errors);
+      if (error.response) {
+        const errors = error.response.data.errors;
+        if (Array.isArray(errors)) {
+            errors.forEach((err) => {
+            if (err.field === "category") {
+              setErrCategory(err.message || "An error occurred");
+            } else if (err.field === "slug"){
+              setErrSlug(err.message || "An error occurred");
+            }
+          });
+        } else {
+          setErrMessage(error.response.data.message || "An error occurred");
+        }
+      } else {
+        setErrMessage("Network error, please try again later");
+      }
     } finally {
       // Delay for 5000ms before setting isSubmitting to false
       setTimeout(() => {
@@ -108,14 +122,6 @@ const Category = () => {
   // update function
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    // // validation
-    // const categoryEditError = required(category, "Category");
-    // const slugEditError = trimRequired(slug, "Slug");
-    // if (categoryEditError || slugEditError) {
-    //   setEditValidate({ category: categoryEditError, slug: slugEditError });
-    //   return;
-    // }
-    // update data
     try {
       await axiosJWT.patch(
         `${SERVER_API()}/master/categories/${editCategory.id}`,
@@ -125,10 +131,28 @@ const Category = () => {
         }
       );
       setEditCategory({ id: "", category: "", slug: "" }); // Reset input fields
+      setErrCategory("");
+      setErrSlug("");
       toggleEditModal(); // Close modal
       getCategories(); // Refresh data
     } catch (error) {
-      console.error("Error updating tag", error);
+      console.log("Error: ", error.response.data.errors);
+      if (error.response) {
+        const errors = error.response.data.errors;
+        if (Array.isArray(errors)) {
+            errors.forEach((err) => {
+            if (err.field === "category") {
+              setErrCategory(err.message || "An error occurred");
+            } else if (err.field === "slug"){
+              setErrSlug(err.message || "An error occurred");
+            }
+          });
+        } else {
+          setErrMessage(error.response.data.message || "An error occurred");
+        }
+      } else {
+        setErrMessage("Network error, please try again later");
+      }
     }
   };
 
@@ -236,10 +260,8 @@ const Category = () => {
                         label={"Category"}
                         required={false}
                       />
-                      {addValidate.category && (
-                        <p className="font-semibold text-red-500 text-sm">
-                          {addValidate.category}
-                        </p>
+                      {errCategory && (
+                        <p className="font-semibold text-red-500 text-sm">{errCategory}</p>
                       )}
                     </div>
 
@@ -257,10 +279,8 @@ const Category = () => {
                         readonly={true}
                         required={false}
                       />
-                      {addValidate.slug && (
-                        <p className="font-semibold text-red-500 text-sm">
-                          {addValidate.slug}
-                        </p>
+                      {errSlug && (
+                        <p className="font-semibold text-red-500 text-sm">{errSlug}</p>
                       )}
                     </div>
                   </div>
@@ -300,10 +320,8 @@ const Category = () => {
                       label={"Category"}
                       required={false}
                     />
-                    {editValidate.category && (
-                      <p className="font-semibold text-red-500 text-sm">
-                        {editValidate.category}
-                      </p>
+                    {errCategory && (
+                      <p className="font-semibold text-red-500 text-sm">{errCategory}</p>
                     )}
                   </div>
                   <div className="sm:col-span-2">
@@ -320,10 +338,8 @@ const Category = () => {
                       readonly={true}
                       required={false}
                     />
-                    {editValidate.slug && (
-                      <p className="font-semibold text-red-500 text-sm">
-                        {editValidate.slug}
-                      </p>
+                    {errSlug && (
+                      <p className="font-semibold text-red-500 text-sm">{errSlug}</p>
                     )}
                   </div>
                 </div>

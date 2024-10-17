@@ -13,7 +13,7 @@ const Option = ({
       <div className="mb-4">
         <label
           htmlFor={id}
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className="block mb-2 text-sm font-semibold font-medium text-gray-900 dark:text-white"
         >
           {label}
           {required ? <span className="text-red-600"> *</span> : null}

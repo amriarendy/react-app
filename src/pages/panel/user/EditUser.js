@@ -33,6 +33,15 @@ const EditUser = () => {
   const [status, setStatus] = useState("Active");
   const [position, setPosition] = useState("");
   const [country, setCountry] = useState("");
+  // err state
+  const [errEmail, setErrEmail] = useState("");
+  const [errPassword, setErrPassword] = useState("");
+  const [errName, setErrName] = useState("");
+  const [errDob, setErrDob] = useState("");
+  const [errPhone, setErrPhone] = useState("");
+  const [errGender, setErrGender] = useState("");
+  const [errPhoto, setErrPhoto] = useState("");
+  const [errMessage, setErrMessage] = useState("");
 
   useEffect(() => {
     getWhere();
@@ -42,7 +51,6 @@ const EditUser = () => {
     const response = await axiosJWT.get(`${SERVER_API()}/users/${param}`);
     setName(response.data.name);
     setEmail(response.data.email);
-    setPassword(response.data.password);
     setDob(response.data.dob);
     setPhone(response.data.phone);
     setGender(response.data.gender);
@@ -77,7 +85,31 @@ const EditUser = () => {
       });
       navigate("/dashboard/user");
     } catch (error) {
-      console.log(error);
+      console.log("Error: ", error.response.data.errors);
+      if (error.response) {
+        const errors = error.response.data.errors;
+        if (Array.isArray(errors)) {
+            errors.forEach((err) => {
+            if (err.field === "email") {
+              setErrEmail(err.message || "An error occurred");
+            } else if (err.field === "name") {
+              setErrName(err.message || "An error occurred");
+            } else if (err.field === "dob") {
+              setErrDob(err.message || "An error occurred");
+            } else if (err.field === "phone") {
+              setErrPhone(err.message || "An error occurred");
+            } else if (err.field === "gender") {
+              setErrGender(err.message || "An error occurred");
+            } else if (err.field === "photo") {
+              setErrGender(err.message || "An error occurred");
+            }
+          });
+        } else {
+          setErrMessage(error.response.data.message || "An error occurred");
+        }
+      } else {
+        setErrMessage("Network error, please try again later");
+      }
     }
   };
 
@@ -102,6 +134,9 @@ const EditUser = () => {
                   placeholder={"full name"}
                   required={false}
                 />
+                                {errName && (
+                  <p className="font-semibold text-red-500 text-sm">{errName}</p>
+                )}
               </div>
               <div className="sm:col-span-2">
                 <Input
@@ -114,6 +149,9 @@ const EditUser = () => {
                   placeholder={"active email"}
                   required={false}
                 />
+                                {errEmail && (
+                  <p className="font-semibold text-red-500 text-sm">{errEmail}</p>
+                )}
               </div>
               <div className="w-full">
                 <Input
@@ -126,6 +164,9 @@ const EditUser = () => {
                   placeholder={"+628••••••••"}
                   required={false}
                 />
+                                {errPhone && (
+                  <p className="font-semibold text-red-500 text-sm">{errPhone}</p>
+                )}
               </div>
               <div className="w-full">
                 <Input
@@ -138,6 +179,9 @@ const EditUser = () => {
                   placeholder={"Date of Birth"}
                   required={false}
                 />
+                                {errDob && (
+                  <p className="font-semibold text-red-500 text-sm">{errDob}</p>
+                )}
               </div>
               <div className="w-full">
                 <InputFile
@@ -148,6 +192,9 @@ const EditUser = () => {
                   help={"Ext: jpg, jpeg, png. Max: 1024MB"}
                   required={false}
                 />
+                                {errPhoto && (
+                  <p className="font-semibold text-red-500 text-sm">{errPhoto}</p>
+                )}
               </div>
               <div className="w-full">
                 <Option
@@ -160,15 +207,17 @@ const EditUser = () => {
                   selected={[
                     {
                       key: "",
-                      value: `${gender}`,
-                      label: `${gender}`,
+                      value: gender || "Choose Your Selected",
+                      label: gender || "Choose Your Selected",
                     },
                   ]}
                   data={[
                     { value: "male", label: "Male" },
                     { value: "female", label: "Female" },
                   ]}
-                />
+                />                {errGender && (
+                  <p className="font-semibold text-red-500 text-sm">{errGender}</p>
+                )}
               </div>
               <div className="w-full">
                 <Option
@@ -181,8 +230,8 @@ const EditUser = () => {
                   selected={[
                     {
                       key: "",
-                      value: `${position}`,
-                      label: `${position}`,
+                      value: position || "Choose Your Selected",
+                      label: position || "Choose Your Selected",
                     },
                   ]}
                   data={[
@@ -217,8 +266,8 @@ const EditUser = () => {
                   selected={[
                     {
                       key: "",
-                      value: `${country}`,
-                      label: `${country}`,
+                      value: country || "Choose Your Selected",
+                      label: country || "Choose Your Selected",
                     },
                   ]}
                   data={[

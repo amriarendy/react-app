@@ -121,13 +121,13 @@ const User = () => {
                       </div>
                     </td>
                     <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-                      {item.biography}
+                      {item.gender}
                     </td>
                     <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      {item.position}
+                      {item.phone}
                     </td>
                     <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      {item.country}
+                      {item.dob}
                     </td>
                     <td className="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
                       <div className="flex items-center">
