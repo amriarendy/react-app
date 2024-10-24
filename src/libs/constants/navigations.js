@@ -160,3 +160,31 @@ export const SIDEBAR_MENU_ITEMS = [
 ];
 
 export const SIDEBAR_BOTTOM_MENU_ITEMS = {};
+
+export const WELCOME_MENU_ITEMS = [
+  {
+    key: "home",
+    label: "Home",
+    route: "/",
+  },
+  {
+    key: "profile",
+    label: "Profile",
+    route: "/profile",
+  },
+  {
+    key: "product",
+    label: "Product",
+    route: "/products",
+  },
+  {
+    key: "service",
+    label: "Service",
+    route: "/service",
+  },
+  {
+    key: "contact",
+    label: "Contact",
+    route: "/contact",
+  },
+];
