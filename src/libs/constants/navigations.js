@@ -8,6 +8,7 @@ import {
   FaDatabase,
   FaBook,
   FaInfoCircle,
+  FaHome,
 } from "react-icons/fa";
 
 export const SIDEBAR_MENU_ITEMS = [
@@ -164,27 +165,32 @@ export const SIDEBAR_BOTTOM_MENU_ITEMS = {};
 export const WELCOME_MENU_ITEMS = [
   {
     key: "home",
-    label: "Home",
+    label: " Home",
+    icon: <FaHome className="w-4 h-4" />,
     route: "/",
   },
   {
-    key: "profile",
-    label: "Profile",
-    route: "/profile",
+    key: "blog",
+    label: "Blog",
+    icon: <FaHome className="w-4 h-4" />,
+    route: "/blog",
   },
   {
-    key: "product",
-    label: "Product",
-    route: "/products",
+    key: "store",
+    label: "Store",
+    icon: <FaHome className="w-4 h-4" />,
+    route: "/stores",
   },
   {
     key: "service",
     label: "Service",
+    icon: <FaHome className="w-4 h-4" />,
     route: "/service",
   },
   {
     key: "contact",
     label: "Contact",
+    icon: <FaHome className="w-4 h-4" />,
     route: "/contact",
   },
 ];

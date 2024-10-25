@@ -1,7 +1,4 @@
 import LOGO from "../../logo512.png";
-import { FaMoon, FaRegSun } from "react-icons/fa";
-import { IoMdClose } from "react-icons/io";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { WELCOME_MENU_ITEMS } from "../../libs/constants/navigations";
 import MenuItem from "../../components/menu/MenuItem";
 import DarkMode from "../header/DarkMode";
@@ -35,12 +32,16 @@ const TopBar = () => {
                     key={item.key}
                     route={item.route}
                     label={item.label}
+                    icon={item.icon}
                   />
                 ))}
               </ul>
             </div>
 
             <DarkMode />
+            <div class="flex items-center lg:order-2">
+                <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Login</a>
+                </div>
             <div
               id="ecommerce-navbar-menu-1"
               class="bg-gray-50 dark:bg-gray-700 dark:border-gray-600 border border-gray-200 rounded-lg py-3 hidden px-4 mt-4"
@@ -49,7 +50,7 @@ const TopBar = () => {
                 <li>
                   <a
                     href="#"
-                    class="hover:text-primary-700 dark:hover:text-primary-500"
+                    class="hover:text-blue-700 dark:hover:text-blue-500"
                   >
                     Home
                   </a>
@@ -57,7 +58,7 @@ const TopBar = () => {
                 <li>
                   <a
                     href="#"
-                    class="hover:text-primary-700 dark:hover:text-primary-500"
+                    class="hover:text-blue-700 dark:hover:text-blue-500"
                   >
                     Best Sellers
                   </a>
@@ -65,7 +66,7 @@ const TopBar = () => {
                 <li>
                   <a
                     href="#"
-                    class="hover:text-primary-700 dark:hover:text-primary-500"
+                    class="hover:text-blue-700 dark:hover:text-blue-500"
                   >
                     Gift Ideas
                   </a>
@@ -73,7 +74,7 @@ const TopBar = () => {
                 <li>
                   <a
                     href="#"
-                    class="hover:text-primary-700 dark:hover:text-primary-500"
+                    class="hover:text-blue-700 dark:hover:text-blue-500"
                   >
                     Games
                   </a>
@@ -81,7 +82,7 @@ const TopBar = () => {
                 <li>
                   <a
                     href="#"
-                    class="hover:text-primary-700 dark:hover:text-primary-500"
+                    class="hover:text-blue-700 dark:hover:text-blue-500"
                   >
                     Electronics
                   </a>
@@ -89,7 +90,7 @@ const TopBar = () => {
                 <li>
                   <a
                     href="#"
-                    class="hover:text-primary-700 dark:hover:text-primary-500"
+                    class="hover:text-blue-700 dark:hover:text-blue-500"
                   >
                     Home & Garden
                   </a>
