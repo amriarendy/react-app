@@ -1,15 +1,16 @@
-import { RiPieChartFill, RiLayout6Fill } from "react-icons/ri";
+import { RiPieChartFill, RiLayout6Fill, RiQuestionLine } from "react-icons/ri";
 import { ImNewspaper } from "react-icons/im";
 import {
   FaCogs,
-  FaBorderNone,
-  FaSignOutAlt,
+  FaQuestion,
+  FaCode,
   FaUser,
   FaDatabase,
   FaBook,
-  FaInfoCircle,
+  FaStoreAlt,
   FaHome,
 } from "react-icons/fa";
+import { IoNewspaperOutline } from "react-icons/io5";
 
 export const SIDEBAR_MENU_ITEMS = [
   {
@@ -166,31 +167,41 @@ export const WELCOME_MENU_ITEMS = [
   {
     key: "home",
     label: " Home",
-    icon: <FaHome className="w-4 h-4" />,
+    icon: (
+      <FaHome className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+    ),
     route: "/",
   },
   {
     key: "blog",
     label: "Blog",
-    icon: <FaHome className="w-4 h-4" />,
+    icon: (
+      <IoNewspaperOutline className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+    ),
     route: "/blog",
   },
   {
     key: "store",
     label: "Store",
-    icon: <FaHome className="w-4 h-4" />,
+    icon: (
+      <FaStoreAlt className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+    ),
     route: "/stores",
   },
   {
-    key: "service",
-    label: "Service",
-    icon: <FaHome className="w-4 h-4" />,
-    route: "/service",
+    key: "build-app",
+    label: "Build App",
+    icon: (
+      <FaCode className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+    ),
+    route: "/build-app",
   },
   {
-    key: "contact",
-    label: "Contact",
-    icon: <FaHome className="w-4 h-4" />,
-    route: "/contact",
+    key: "about",
+    label: "About",
+    icon: (
+      <RiQuestionLine className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+    ),
+    route: "/about",
   },
 ];

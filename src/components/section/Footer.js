@@ -3,7 +3,7 @@ import LOGO from "../../logo512.png";
 const Footer = () => {
   return (
     <>
-      <footer className="bg-white dark:bg-gray-900">
+      <footer className="bg-slate-800 text-white dark:bg-gray-900">
         <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700" />
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
           <div className="md:flex md:justify-between">

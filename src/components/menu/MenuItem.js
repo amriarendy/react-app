@@ -10,7 +10,8 @@ const MenuItem = ({ route, label, icon }) => {
           to={route}
           className="flex text-md font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500"
         >
-          {icon && <span className="mr-2">{icon}</span>}{label}
+          {icon}
+          <span className="ml-2">{label}</span>
         </Link>
       </li>
     </>

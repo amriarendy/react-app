@@ -6,6 +6,7 @@ import About from "../components/section/About";
 import Introduction from "../components/section/Introduction";
 import Blog from "../components/section/Blog";
 import Subscribe from "../components/section/Subscribe";
+import Test from "../components/section/Test";
 
 const Welcome = () => {
   return (
@@ -13,8 +14,9 @@ const Welcome = () => {
       <Layout>
         <Heading />
         <Blog />
-        <Subscribe />
         <CustomerLogo />
+        <Test />
+        <Subscribe />
       </Layout>
     </>
   );
