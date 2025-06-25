@@ -178,7 +178,7 @@ export const WELCOME_MENU_ITEMS = [
     icon: (
       <IoNewspaperOutline className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
     ),
-    route: "/blog",
+    route: "/blogs",
   },
   {
     key: "store",
@@ -186,7 +186,7 @@ export const WELCOME_MENU_ITEMS = [
     icon: (
       <FaStoreAlt className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
     ),
-    route: "/stores",
+    route: "/store",
   },
   {
     key: "build-app",
