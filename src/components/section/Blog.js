@@ -1,24 +1,15 @@
 import React from "react";
 
-const Blog = () => {
+const BlogSquare = () => {
   return (
     <>
       <section className="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-12">
-        <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
-          <div className="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
-            <div>
-              <h2 className="mt-3 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
-                Articles
-              </h2>
-              <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">
-                Flowbite helps you connect with friends, family and communities
-                of people who share your interests. Connecting with your friends
-                and family as well as discovering new ones is easy with features
-                like Groups, Watch and Marketplace.
-              </p>
-            </div>
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div class="mx-auto max-w-2xl text-center">
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">From the blog</h2>
+            <p class="mt-2 text-lg leading-8 text-gray-600">Learn how to grow your business with our expert advice.</p>
           </div>
-          <div className="mb-4 grid gap-3 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-3">
+          <div className="mx-auto mt-16 mb-4 grid gap-3 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-3">
             {/* Start Blog */}
             <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <div className="h-56 w-full">
@@ -321,4 +312,12 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+const BlogList = () => {
+  return (
+    <>
+    
+    </>
+  )
+}
+
+export { BlogSquare, BlogList };
