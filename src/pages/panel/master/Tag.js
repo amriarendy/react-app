@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import PanelLayout from "../PanelLayout";
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
-import AttributeTable from "../../../components/table/default/AttributeTable";
-import Table from "../../../components/table/default/Table";
-import Thead from "../../../components/table/default/Thead";
-import Tfoot from "../../../components/table/default/Tfoot";
-import Taction from "../../../components/table/default/Taction";
+import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
+import AttributeTable from "../../../components/organisms/table/default/AttributeTable";
+import Table from "../../../components/organisms/table/default/Table";
+import Thead from "../../../components/organisms/table/default/Thead";
+import Tfoot from "../../../components/organisms/table/default/Tfoot";
+import Taction from "../../../components/organisms/table/default/Taction";
 import HASHTAG_FORMAT_TABLE from "../../../libs/constants/formats/TagFormat";
-import Modal from "../../../components/modal/Modal";
+import Modal from "../../../components/organisms/modal/Modal";
 import { useNavigate } from "react-router-dom";
-import { Input } from "../../../components/ui/Input";
-import Loading from "../../../components/errors/Loading";
-import Errors from "../../../components/errors/Errors";
+import { Input } from "../../../components/atoms/Input";
+import Loading from "../../../components/molecules/errors/Loading";
+import Errors from "../../../components/molecules/errors/Errors";
 import { axiosJWT } from "../../../libs/utils/axiosJwt";
 import { SERVER_API } from "../../../services/api";
 
@@ -69,7 +69,7 @@ const Tag = () => {
   const handleAddSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axiosJWT.post(`${SERVER_API()}/master/tags`,{ tag });
+      await axiosJWT.post(`${SERVER_API()}/master/tags`, { tag });
       setTag(""); // Reset input field
       setErrTag("");
       toggleAddModal(); // Close modal
@@ -79,7 +79,7 @@ const Tag = () => {
       if (error.response) {
         const errors = error.response.data.errors;
         if (Array.isArray(errors)) {
-            errors.forEach((err) => {
+          errors.forEach((err) => {
             if (err.field === "tag") {
               setErrTag(err.message || "An error occurred");
             }
@@ -97,9 +97,9 @@ const Tag = () => {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axiosJWT.patch(`${SERVER_API()}/master/tags/${editTag.id}`,{
+      await axiosJWT.patch(`${SERVER_API()}/master/tags/${editTag.id}`, {
         tag: editTag.tag,
-      },);
+      });
       setEditTag({ id: "", tag: "" }); // Reset input fields
       setErrTag("");
       toggleEditModal(); // Close modal
@@ -109,7 +109,7 @@ const Tag = () => {
       if (error.response) {
         const errors = error.response.data.errors;
         if (Array.isArray(errors)) {
-            errors.forEach((err) => {
+          errors.forEach((err) => {
             if (err.field === "tag") {
               setErrTag(err.message || "An error occurred");
             }
@@ -216,7 +216,9 @@ const Tag = () => {
                       required={false}
                     />
                     {errTag && (
-                      <p className="font-semibold text-red-500 text-sm">{errTag}</p>
+                      <p className="font-semibold text-red-500 text-sm">
+                        {errTag}
+                      </p>
                     )}
                   </div>
                 </div>
@@ -250,7 +252,9 @@ const Tag = () => {
                       required={false}
                     />
                     {errTag && (
-                      <p className="font-semibold text-red-500 text-sm">{errTag}</p>
+                      <p className="font-semibold text-red-500 text-sm">
+                        {errTag}
+                      </p>
                     )}
                   </div>
                 </div>

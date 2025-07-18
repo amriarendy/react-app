@@ -1,9 +1,9 @@
 import PanelLayout from "../PanelLayout";
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
-import { Input, InputFile } from "../../../components/ui/Input";
-import Option from "../../../components/ui/Option";
-import TextArea from "../../../components/ui/TextArea";
-import { Button } from "../../../components/ui/Button";
+import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
+import { Input, InputFile } from "../../../components/atoms/Input";
+import Option from "../../../components/atoms/Option";
+import TextArea from "../../../components/atoms/TextArea";
+import { Button } from "../../../components/atoms/Button";
 import { FaSave } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
@@ -42,7 +42,6 @@ const AddUser = () => {
   const [errPhoto, setErrPhoto] = useState("");
   const [errMessage, setErrMessage] = useState("");
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -73,7 +72,7 @@ const AddUser = () => {
       if (error.response) {
         const errors = error.response.data.errors;
         if (Array.isArray(errors)) {
-            errors.forEach((err) => {
+          errors.forEach((err) => {
             if (err.field === "email") {
               setErrEmail(err.message || "An error occurred");
             } else if (err.field === "password") {
@@ -121,7 +120,9 @@ const AddUser = () => {
                   required={false}
                 />
                 {errName && (
-                  <p className="font-semibold text-red-500 text-sm">{errName}</p>
+                  <p className="font-semibold text-red-500 text-sm">
+                    {errName}
+                  </p>
                 )}
               </div>
               <div className="sm:col-span-2">
@@ -134,8 +135,11 @@ const AddUser = () => {
                   label={"Email"}
                   placeholder={"active email"}
                   required={false}
-                />              {errEmail && (
-                  <p className="font-semibold text-red-500 text-sm">{errEmail}</p>
+                />{" "}
+                {errEmail && (
+                  <p className="font-semibold text-red-500 text-sm">
+                    {errEmail}
+                  </p>
                 )}
               </div>
               <div className="sm:col-span-2">
@@ -148,8 +152,11 @@ const AddUser = () => {
                   label={"Password"}
                   placeholder={"••••••••"}
                   required={false}
-                />              {errPassword && (
-                  <p className="font-semibold text-red-500 text-sm">{errPassword}</p>
+                />{" "}
+                {errPassword && (
+                  <p className="font-semibold text-red-500 text-sm">
+                    {errPassword}
+                  </p>
                 )}
               </div>
               <div className="w-full">
@@ -162,8 +169,11 @@ const AddUser = () => {
                   label={"Phone Number"}
                   placeholder={"+628••••••••"}
                   required={false}
-                />              {errPhone && (
-                  <p className="font-semibold text-red-500 text-sm">{errPhone}</p>
+                />{" "}
+                {errPhone && (
+                  <p className="font-semibold text-red-500 text-sm">
+                    {errPhone}
+                  </p>
                 )}
               </div>
               <div className="w-full">
@@ -176,7 +186,8 @@ const AddUser = () => {
                   label={"Date of Birth"}
                   placeholder={"type here"}
                   required={false}
-                />              {errDob && (
+                />{" "}
+                {errDob && (
                   <p className="font-semibold text-red-500 text-sm">{errDob}</p>
                 )}
               </div>
@@ -190,7 +201,9 @@ const AddUser = () => {
                   required={false}
                 />
                 {errPhoto && (
-                  <p className="font-semibold text-red-500 text-sm">{errPhoto}</p>
+                  <p className="font-semibold text-red-500 text-sm">
+                    {errPhoto}
+                  </p>
                 )}
               </div>
               <div className="w-full">
@@ -208,8 +221,11 @@ const AddUser = () => {
                     { value: "male", label: "Male" },
                     { value: "female", label: "Female" },
                   ]}
-                />              {errGender && (
-                  <p className="font-semibold text-red-500 text-sm">{errGender}</p>
+                />{" "}
+                {errGender && (
+                  <p className="font-semibold text-red-500 text-sm">
+                    {errGender}
+                  </p>
                 )}
               </div>
               <div className="w-full">
@@ -238,7 +254,7 @@ const AddUser = () => {
                     },
                     { value: "Data Analyts", label: "Data Analyts" },
                     { value: "Data Science", label: "Data Science" },
-                    { value: "UI/UX", label: "UI/UX" },
+                    { value: "atoms/UX", label: "atoms/UX" },
                     { value: "Design", label: "Design" },
                     { value: "Ilustrator", label: "Ilustrator" },
                   ]}

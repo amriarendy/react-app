@@ -1,4 +1,4 @@
-import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../../components/molecules/breadcrumbs/Breadcrumbs";
 import PanelLayout from "./PanelLayout";
 
 const Profile = () => {

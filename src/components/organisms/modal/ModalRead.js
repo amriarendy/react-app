@@ -1,4 +1,4 @@
-import { ButtonIcon } from "../ui/Button";
+import { ButtonIcon } from "../../atoms/Button";
 import { IoMdClose } from "react-icons/io";
 
 const ModalRead = ({ children, header, toggleModal }) => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaMoon, FaRegSun } from "react-icons/fa";
-import { Button, ButtonIcon } from "../ui/Button";
+import { Button, ButtonIcon } from "../../atoms/Button";
 
 const DarkMode = () => {
   const [useOpen, setOpen] = useState(

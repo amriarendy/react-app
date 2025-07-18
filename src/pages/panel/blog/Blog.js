@@ -1,17 +1,15 @@
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
 import PanelLayout from "../PanelLayout";
-import AttributeTable from "../../../components/table/advance/AttributeTable";
-import Table from "../../../components/table/advance/Table";
-import Thead from "../../../components/table/advance/Thead";
-import Tfoot from "../../../components/table/advance/Tfoot";
-import Taction from "../../../components/table/advance/Taction";
+import AttributeTable from "../../../components/organisms/table/advance/AttributeTable";
+import Table from "../../../components/organisms/table/advance/Table";
+import Thead from "../../../components/organisms/table/advance/Thead";
+import Tfoot from "../../../components/organisms/table/advance/Tfoot";
+import Taction from "../../../components/organisms/table/advance/Taction";
 import { BLOG_FORMAT_TABLE } from "../../../libs/constants/formats/BlogFormat";
 import { useEffect, useState } from "react";
-import {
-  ImageSquareSmall,
-} from "../../../components/ui/Image";
+import { ImageSquareSmall } from "../../../components/atoms/Image";
 import { imageCheck } from "../../../libs/utils/image";
-import CheckBox from "../../../components/ui/CheckBox";
+import CheckBox from "../../../components/atoms/CheckBox";
 import { axiosJWT } from "../../../libs/utils/axiosJwt";
 import { DateTime } from "../../../libs/utils/dateTime";
 import { SERVER_API } from "../../../services/api";

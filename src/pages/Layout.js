@@ -1,7 +1,7 @@
 import React from "react";
-import TopBar from "../components/section/TopBar";
-import Footer from "../components/section/Footer";
-import Test from "../components/section/Test";
+import TopBar from "../components/organisms/section/TopBar";
+import Footer from "../components/organisms/section/Footer";
+import Test from "../components/organisms/section/Test";
 
 const Layout = ({ children }) => {
   return (

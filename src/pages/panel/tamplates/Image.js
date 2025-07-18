@@ -1,5 +1,5 @@
 import PanelLayout from "../PanelLayout";
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
 import {
   ImageBlur,
   ImageCaption,
@@ -11,7 +11,7 @@ import {
   ImageRoundedSmall,
   ImageSquare,
   ImageSquareSmall,
-} from "../../../components/ui/Image";
+} from "../../../components/atoms/Image";
 
 const Image = () => {
   const breadCrumbs = {
@@ -168,7 +168,7 @@ const Image = () => {
               id={"image-gray-caption-example"}
               route="/"
               src={
-                "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png"
+                "https://flowbite.s3.amazonaws.com/blocks/marketing-atoms/content/content-gallery-3.png"
               }
               alt={"Image Gray With Caption"}
               caption={"Image Grayscale With Caption"}
@@ -179,7 +179,7 @@ const Image = () => {
             <ImageGray
               id={"image-gray-caption-example"}
               src={
-                "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png"
+                "https://flowbite.s3.amazonaws.com/blocks/marketing-atoms/content/content-gallery-3.png"
               }
               alt={"Image Gray"}
               caption={"Image Grayscale With Caption"}
@@ -190,7 +190,7 @@ const Image = () => {
             <ImageBlur
               id={"image-blur-example"}
               src={
-                "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png"
+                "https://flowbite.s3.amazonaws.com/blocks/marketing-atoms/content/content-gallery-3.png"
               }
               alt={"Image Blur"}
             />

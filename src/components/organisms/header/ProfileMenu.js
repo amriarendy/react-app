@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { HrefProfile } from "../ui/Href";
-import { ImageCircleSmall } from "../ui/Image";
-import { ButtonDynamic } from "../ui/Button";
+import { HrefProfile } from "../../atoms/Href";
+import { ImageCircleSmall } from "../../atoms/Image";
+import { ButtonDynamic } from "../../atoms/Button";
 
 const ProfileMenu = () => {
   const [useOpen, setOpen] = useState(false);

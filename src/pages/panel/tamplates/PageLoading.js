@@ -1,6 +1,6 @@
 import PanelLayout from "../PanelLayout";
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
-import Loading from "../../../components/errors/Loading";
+import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
+import Loading from "../../../components/molecules/errors/Loading";
 
 const PageLoading = () => {
   const breadCrumbs = {

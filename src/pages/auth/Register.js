@@ -1,7 +1,7 @@
-import CheckBox from "../../components/ui/CheckBox";
-import { HrefText } from "../../components/ui/Href";
-import { Input } from "../../components/ui/Input";
-import { Button } from "../../components/ui/Button";
+import CheckBox from "../../components/atoms/CheckBox";
+import { HrefText } from "../../components/atoms/Href";
+import { Input } from "../../components/atoms/Input";
+import { Button } from "../../components/atoms/Button";
 import AuthLayout from "./AuthLayout";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";

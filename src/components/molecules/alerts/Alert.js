@@ -1,7 +1,7 @@
 import { RiCloseFill, RiErrorWarningLine } from "react-icons/ri";
 import { FaCheck, FaInfoCircle, FaEye } from "react-icons/fa";
 import { TiWarningOutline } from "react-icons/ti";
-import { ButtonDynamic } from "../ui/Button";
+import { ButtonDynamic } from "../../atoms/Button";
 
 function AlertStatus({ code, status }) {
   let color;

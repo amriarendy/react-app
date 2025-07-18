@@ -1,7 +1,7 @@
-import CheckBox from "../../components/ui/CheckBox";
-import { HrefText } from "../../components/ui/Href";
-import { Input } from "../../components/ui/Input";
-import { Button } from "../../components/ui/Button";
+import CheckBox from "../../components/atoms/CheckBox";
+import { HrefText } from "../../components/atoms/Href";
+import { Input } from "../../components/atoms/Input";
+import { Button } from "../../components/atoms/Button";
 import AuthLayout from "./AuthLayout";
 
 const ResetPassword = () => {
@@ -44,10 +44,10 @@ const ResetPassword = () => {
               />
             </div>
             <div className="flex items-start">
-            <div className="text-sm font-medium text-gray-500 dark:text-gray-400">
-              Already have an account?{" "}
-              <HrefText route="/login" color={"blue"} label={"Login"} />
-            </div>
+              <div className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                Already have an account?{" "}
+                <HrefText route="/login" color={"blue"} label={"Login"} />
+              </div>
             </div>
             <Button
               id={"login"}

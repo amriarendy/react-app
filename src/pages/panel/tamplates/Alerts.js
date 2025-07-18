@@ -1,12 +1,12 @@
 import PanelLayout from "../PanelLayout";
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
-import Card from "../../../components/card/Card";
+import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
+import Card from "../../../components/molecules/card/Card";
 import {
   Alert,
   AlertAditionalContent,
   AlertBorder,
   AlertList,
-} from "../../../components/alerts/Alert";
+} from "../../../components/molecules/alerts/Alert";
 
 const Alerts = () => {
   const breadCrumbs = {

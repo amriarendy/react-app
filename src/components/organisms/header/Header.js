@@ -3,7 +3,7 @@ import { MdClose } from "react-icons/md";
 import Notification from "./Notification";
 import ProfileMenu from "./ProfileMenu";
 import DarkMode from "./DarkMode";
-import { Image } from "../ui/Image";
+import { Image } from "../../atoms/Image";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";

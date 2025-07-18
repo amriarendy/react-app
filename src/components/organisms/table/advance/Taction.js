@@ -1,6 +1,6 @@
-import { Button } from "../../ui/Button";
+import { Button } from "../../../atoms/Button";
 import { FaRegTrashAlt, FaEdit } from "react-icons/fa";
-import { Href } from "../../ui/Href";
+import { Href } from "../../../atoms/Href";
 
 const Taction = ({ attribute, toggleModal, taction, destroy }) => {
   return (

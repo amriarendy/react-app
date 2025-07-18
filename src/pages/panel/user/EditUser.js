@@ -1,9 +1,9 @@
 import PanelLayout from "../PanelLayout";
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
-import { Input, InputFile } from "../../../components/ui/Input";
-import Option from "../../../components/ui/Option";
-import TextArea from "../../../components/ui/TextArea";
-import { Button } from "../../../components/ui/Button";
+import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
+import { Input, InputFile } from "../../../components/atoms/Input";
+import Option from "../../../components/atoms/Option";
+import TextArea from "../../../components/atoms/TextArea";
+import { Button } from "../../../components/atoms/Button";
 import { FaSave } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
@@ -89,7 +89,7 @@ const EditUser = () => {
       if (error.response) {
         const errors = error.response.data.errors;
         if (Array.isArray(errors)) {
-            errors.forEach((err) => {
+          errors.forEach((err) => {
             if (err.field === "email") {
               setErrEmail(err.message || "An error occurred");
             } else if (err.field === "name") {
@@ -134,8 +134,10 @@ const EditUser = () => {
                   placeholder={"full name"}
                   required={false}
                 />
-                                {errName && (
-                  <p className="font-semibold text-red-500 text-sm">{errName}</p>
+                {errName && (
+                  <p className="font-semibold text-red-500 text-sm">
+                    {errName}
+                  </p>
                 )}
               </div>
               <div className="sm:col-span-2">
@@ -149,8 +151,10 @@ const EditUser = () => {
                   placeholder={"active email"}
                   required={false}
                 />
-                                {errEmail && (
-                  <p className="font-semibold text-red-500 text-sm">{errEmail}</p>
+                {errEmail && (
+                  <p className="font-semibold text-red-500 text-sm">
+                    {errEmail}
+                  </p>
                 )}
               </div>
               <div className="w-full">
@@ -164,8 +168,10 @@ const EditUser = () => {
                   placeholder={"+628••••••••"}
                   required={false}
                 />
-                                {errPhone && (
-                  <p className="font-semibold text-red-500 text-sm">{errPhone}</p>
+                {errPhone && (
+                  <p className="font-semibold text-red-500 text-sm">
+                    {errPhone}
+                  </p>
                 )}
               </div>
               <div className="w-full">
@@ -179,7 +185,7 @@ const EditUser = () => {
                   placeholder={"Date of Birth"}
                   required={false}
                 />
-                                {errDob && (
+                {errDob && (
                   <p className="font-semibold text-red-500 text-sm">{errDob}</p>
                 )}
               </div>
@@ -192,8 +198,10 @@ const EditUser = () => {
                   help={"Ext: jpg, jpeg, png. Max: 1024MB"}
                   required={false}
                 />
-                                {errPhoto && (
-                  <p className="font-semibold text-red-500 text-sm">{errPhoto}</p>
+                {errPhoto && (
+                  <p className="font-semibold text-red-500 text-sm">
+                    {errPhoto}
+                  </p>
                 )}
               </div>
               <div className="w-full">
@@ -215,8 +223,11 @@ const EditUser = () => {
                     { value: "male", label: "Male" },
                     { value: "female", label: "Female" },
                   ]}
-                />                {errGender && (
-                  <p className="font-semibold text-red-500 text-sm">{errGender}</p>
+                />{" "}
+                {errGender && (
+                  <p className="font-semibold text-red-500 text-sm">
+                    {errGender}
+                  </p>
                 )}
               </div>
               <div className="w-full">
@@ -249,7 +260,7 @@ const EditUser = () => {
                     },
                     { value: "Data Analyts", label: "Data Analyts" },
                     { value: "Data Science", label: "Data Science" },
-                    { value: "UI/UX", label: "UI/UX" },
+                    { value: "atoms/UX", label: "atoms/UX" },
                     { value: "Design", label: "Design" },
                     { value: "Ilustrator", label: "Ilustrator" },
                   ]}

@@ -1,5 +1,5 @@
-import { ButtonDynamic } from "../../ui/Button";
-import { Href } from "../../ui/Href";
+import { ButtonDynamic } from "../../../atoms/Button";
+import { Href } from "../../../atoms/Href";
 
 const Taction = ({ attribute, taction, toggleModal, destroy }) => {
   return (

@@ -1,12 +1,12 @@
 import PanelLayout from "../PanelLayout";
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
-import Card from "../../../components/card/Card";
-import { Button } from "../../../components/ui/Button";
+import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
+import Card from "../../../components/molecules/card/Card";
+import { Button } from "../../../components/atoms/Button";
 import { FaCodeBranch, FaSave } from "react-icons/fa";
-import { Input, InputButton, InputFile } from "../../../components/ui/Input";
-import Option from "../../../components/ui/Option";
-import TextArea from "../../../components/ui/TextArea";
-import WYSIWYG from "../../../components/ui/WYSIWYG";
+import { Input, InputButton, InputFile } from "../../../components/atoms/Input";
+import Option from "../../../components/atoms/Option";
+import TextArea from "../../../components/atoms/TextArea";
+import WYSIWYG from "../../../components/atoms/WYSIWYG";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { axiosJWT } from "../../../libs/utils/axiosJwt";
@@ -69,9 +69,7 @@ const EditBlog = () => {
 
   const getCategories = async () => {
     try {
-      const response = await axiosJWT.get(
-        `${SERVER_API()}/master/categories`
-      );
+      const response = await axiosJWT.get(`${SERVER_API()}/master/categories`);
       setCategories(response.data);
     } catch (error) {
       setError(error);

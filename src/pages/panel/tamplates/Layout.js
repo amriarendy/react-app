@@ -1,6 +1,6 @@
 import PanelLayout from "../PanelLayout";
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
-import Card from "../../../components/card/Card";
+import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
+import Card from "../../../components/molecules/card/Card";
 
 const Layout = () => {
   const breadCrumbs = {

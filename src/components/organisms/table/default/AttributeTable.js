@@ -1,6 +1,6 @@
-import { Button } from "../../ui/Button";
-import { Href } from "../../ui/Href";
-import { InputSearch } from "../../ui/Input";
+import { Button } from "../../../atoms/Button";
+import { Href } from "../../../atoms/Href";
+import { InputSearch } from "../../../atoms/Input";
 
 const AttributeTable = ({ attribute, toggleModal }) => {
   return (

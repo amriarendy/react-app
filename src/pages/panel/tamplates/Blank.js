@@ -1,5 +1,5 @@
 import PanelLayout from "../PanelLayout";
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
 
 const Blank = () => {
   const breadCrumbs = {

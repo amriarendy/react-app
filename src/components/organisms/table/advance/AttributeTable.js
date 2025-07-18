@@ -1,7 +1,7 @@
-import { Button } from "../../ui/Button";
-import { Input } from "../../ui/Input";
+import { Button } from "../../../atoms/Button";
+import { Input } from "../../../atoms/Input";
 import { FaPlus, FaFileExcel } from "react-icons/fa";
-import { Href } from "../../ui/Href";
+import { Href } from "../../../atoms/Href";
 
 const AttributeTable = ({ attribute, toggleModal }) => {
   return (

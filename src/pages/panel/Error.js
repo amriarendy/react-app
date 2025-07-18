@@ -1,5 +1,5 @@
-import Card from "../../components/card/Card";
-import Errors from "../../components/errors/Errors";
+import Card from "../../components/molecules/card/Card";
+import Errors from "../../components/molecules/errors/Errors";
 import PanelLayout from "./PanelLayout";
 
 const ErrorPage = () => {

@@ -1,5 +1,5 @@
 import { IoMdClose } from "react-icons/io";
-import { Button, ButtonIcon } from "../ui/Button";
+import { Button, ButtonIcon } from "../../atoms/Button";
 import { FaSave } from "react-icons/fa";
 
 const Modal = ({ children, header, onSubmit, toggleModal }) => {

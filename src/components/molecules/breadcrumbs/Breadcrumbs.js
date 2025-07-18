@@ -4,7 +4,7 @@ import { IoMdHome, IoIosArrowForward } from "react-icons/io";
 const Breadcrumbs = ({ breadCrumbs }) => {
   return (
     <>
-    <div className="grid grid-cols-1 px-4 pt-6 lg:grid-cols-4 gap-4 dark:bg-gray-900">
+      <div className="grid grid-cols-1 px-4 pt-6 lg:grid-cols-4 gap-4 dark:bg-gray-900">
         <div className="mb-4 col-span-full xl:mb-2">
           <nav className="flex mb-5" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2">

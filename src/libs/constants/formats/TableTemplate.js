@@ -1,6 +1,6 @@
-import { Button } from "../../../components/ui/Button";
+import { Button } from "../../../components/atoms/Button";
 import { FaSave } from "react-icons/fa";
-import { Input } from "../../../components/ui/Input";
+import { Input } from "../../../components/atoms/Input";
 
 export const TABLE_DEFAULT_FORMAT = {
   th: [

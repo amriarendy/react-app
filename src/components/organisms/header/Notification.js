@@ -8,12 +8,12 @@ import {
   FaCamera,
   FaEye,
 } from "react-icons/fa";
-import { ImageCircleSmall } from "../ui/Image";
-import DataNotification from "../../dummy.json";
+import { ImageCircleSmall } from "../../atoms/Image";
+import DataNotification from "../../../dummy.json";
 import { Link } from "react-router-dom";
-import { ButtonIcon } from "../ui/Button";
-import { imageCheck } from "../../libs/utils/image";
-import useDummy from "../../hooks/useDummy";
+import { ButtonIcon } from "../../atoms/Button";
+import { imageCheck } from "../../../libs/utils/image";
+import useDummy from "../../../hooks/useDummy";
 
 const Notification = () => {
   const [users, setUsers] = useState([]);

@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import PanelLayout from "../PanelLayout";
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
-import AttributeTable from "../../../components/table/default/AttributeTable";
-import Table from "../../../components/table/default/Table";
-import Thead from "../../../components/table/default/Thead";
-import Tfoot from "../../../components/table/default/Tfoot";
-import Taction from "../../../components/table/default/Taction";
+import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
+import AttributeTable from "../../../components/organisms/table/default/AttributeTable";
+import Table from "../../../components/organisms/table/default/Table";
+import Thead from "../../../components/organisms/table/default/Thead";
+import Tfoot from "../../../components/organisms/table/default/Tfoot";
+import Taction from "../../../components/organisms/table/default/Taction";
 import {
   TABLE_DEFAULT_FORMAT,
   ADD_TABLE_DEFAULT_FORMAT,
 } from "../../../libs/constants/formats/TableTemplate";
 import useDummy from "../../../hooks/useDummy";
-import Modal from "../../../components/modal/Modal";
+import Modal from "../../../components/organisms/modal/Modal";
 
 const TableDefault = () => {
   const breadCrumbs = {

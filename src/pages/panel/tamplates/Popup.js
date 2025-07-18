@@ -1,10 +1,10 @@
 import PanelLayout from "../PanelLayout";
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
-import { Button } from "../../../components/ui/Button";
+import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
+import { Button } from "../../../components/atoms/Button";
 import { useState } from "react";
-import Modal from "../../../components/modal/Modal";
-import { Input } from "../../../components/ui/Input";
-import ModalRead from "../../../components/modal/ModalRead";
+import Modal from "../../../components/organisms/modal/Modal";
+import { Input } from "../../../components/atoms/Input";
+import ModalRead from "../../../components/organisms/modal/ModalRead";
 
 const Popup = () => {
   const breadCrumbs = {

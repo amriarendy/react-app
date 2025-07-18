@@ -1,6 +1,6 @@
 import PanelLayout from "../PanelLayout";
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
-import Errors from "../../../components/errors/Errors";
+import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
+import Errors from "../../../components/molecules/errors/Errors";
 
 const PageError = () => {
   const breadCrumbs = {

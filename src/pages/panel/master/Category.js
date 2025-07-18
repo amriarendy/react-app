@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import PanelLayout from "../PanelLayout";
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
-import AttributeTable from "../../../components/table/default/AttributeTable";
-import Table from "../../../components/table/default/Table";
-import Thead from "../../../components/table/default/Thead";
-import Tfoot from "../../../components/table/default/Tfoot";
-import Taction from "../../../components/table/default/Taction";
+import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
+import AttributeTable from "../../../components/organisms/table/default/AttributeTable";
+import Table from "../../../components/organisms/table/default/Table";
+import Thead from "../../../components/organisms/table/default/Thead";
+import Tfoot from "../../../components/organisms/table/default/Tfoot";
+import Taction from "../../../components/organisms/table/default/Taction";
 import CATEGORY_FORMAT_TABLE from "../../../libs/constants/formats/CategoryFormat";
-import Modal from "../../../components/modal/Modal";
+import Modal from "../../../components/organisms/modal/Modal";
 import { useNavigate } from "react-router-dom";
-import { Input, InputButton } from "../../../components/ui/Input";
+import { Input, InputButton } from "../../../components/atoms/Input";
 import { FaCodeBranch, FaRegEye } from "react-icons/fa";
 import { axiosJWT } from "../../../libs/utils/axiosJwt";
-import Loading from "../../../components/errors/Loading";
-import Errors from "../../../components/errors/Errors";
+import Loading from "../../../components/molecules/errors/Loading";
+import Errors from "../../../components/molecules/errors/Errors";
 import { slugFormat } from "../../../libs/utils/text";
 import { SERVER_API } from "../../../services/api";
 
@@ -80,7 +80,7 @@ const Category = () => {
   // craete function
   const handleAddSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       await axiosJWT.post(`${SERVER_API()}/master/categories`, {
         category,
@@ -97,10 +97,10 @@ const Category = () => {
       if (error.response) {
         const errors = error.response.data.errors;
         if (Array.isArray(errors)) {
-            errors.forEach((err) => {
+          errors.forEach((err) => {
             if (err.field === "category") {
               setErrCategory(err.message || "An error occurred");
-            } else if (err.field === "slug"){
+            } else if (err.field === "slug") {
               setErrSlug(err.message || "An error occurred");
             }
           });
@@ -140,10 +140,10 @@ const Category = () => {
       if (error.response) {
         const errors = error.response.data.errors;
         if (Array.isArray(errors)) {
-            errors.forEach((err) => {
+          errors.forEach((err) => {
             if (err.field === "category") {
               setErrCategory(err.message || "An error occurred");
-            } else if (err.field === "slug"){
+            } else if (err.field === "slug") {
               setErrSlug(err.message || "An error occurred");
             }
           });
@@ -261,7 +261,9 @@ const Category = () => {
                         required={false}
                       />
                       {errCategory && (
-                        <p className="font-semibold text-red-500 text-sm">{errCategory}</p>
+                        <p className="font-semibold text-red-500 text-sm">
+                          {errCategory}
+                        </p>
                       )}
                     </div>
 
@@ -280,7 +282,9 @@ const Category = () => {
                         required={false}
                       />
                       {errSlug && (
-                        <p className="font-semibold text-red-500 text-sm">{errSlug}</p>
+                        <p className="font-semibold text-red-500 text-sm">
+                          {errSlug}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -321,7 +325,9 @@ const Category = () => {
                       required={false}
                     />
                     {errCategory && (
-                      <p className="font-semibold text-red-500 text-sm">{errCategory}</p>
+                      <p className="font-semibold text-red-500 text-sm">
+                        {errCategory}
+                      </p>
                     )}
                   </div>
                   <div className="sm:col-span-2">
@@ -339,7 +345,9 @@ const Category = () => {
                       required={false}
                     />
                     {errSlug && (
-                      <p className="font-semibold text-red-500 text-sm">{errSlug}</p>
+                      <p className="font-semibold text-red-500 text-sm">
+                        {errSlug}
+                      </p>
                     )}
                   </div>
                 </div>

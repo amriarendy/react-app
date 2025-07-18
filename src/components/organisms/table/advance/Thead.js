@@ -1,4 +1,4 @@
-import CheckBox from "../../ui/CheckBox";
+import CheckBox from "../../../atoms/CheckBox";
 
 const Thead = ({ attribute, thead }) => {
   return (

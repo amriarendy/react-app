@@ -1,7 +1,7 @@
-import LOGO from "../../logo512.png";
-import { WELCOME_MENU_ITEMS } from "../../libs/constants/navigations";
-import MenuItem from "../../components/menu/MenuItem";
-import DarkMode from "../header/DarkMode";
+import LOGO from "../../../logo512.png";
+import { WELCOME_MENU_ITEMS } from "../../../libs/constants/navigations";
+import MenuItem from "../../../components/molecules/menu/MenuItem";
+import DarkMode from "../../organisms/header/DarkMode";
 
 const TopBar = () => {
   return (

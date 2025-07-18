@@ -1,10 +1,10 @@
 import React from "react";
 import PanelLayout from "../PanelLayout";
-import Breadcrumbs from "../../../components/breadcrumbs/Breadcrumbs";
-import { Input, InputFile } from "../../../components/ui/Input";
-import Option from "../../../components/ui/Option";
-import TextArea from "../../../components/ui/TextArea";
-import { Button } from "../../../components/ui/Button";
+import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
+import { Input, InputFile } from "../../../components/atoms/Input";
+import Option from "../../../components/atoms/Option";
+import TextArea from "../../../components/atoms/TextArea";
+import { Button } from "../../../components/atoms/Button";
 import { FaCodeBranch, FaSave, FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../../hooks/useForm";
@@ -180,7 +180,7 @@ const Test = () => {
                     },
                     { value: "Data Analyts", label: "Data Analyts" },
                     { value: "Data Science", label: "Data Science" },
-                    { value: "UI/UX", label: "UI/UX" },
+                    { value: "atoms/UX", label: "atoms/UX" },
                     { value: "Design", label: "Design" },
                     { value: "Ilustrator", label: "Ilustrator" },
                   ]}

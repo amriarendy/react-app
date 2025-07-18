@@ -1,6 +1,6 @@
-import FooterPanel from "../../components/footer/FooterPanel";
-import Header from "../../components/header/Header";
-import Sidebar from "../../components/sidebar/Sidebar";
+import FooterPanel from "../../components/organisms/footer/FooterPanel";
+import Header from "../../components/organisms/header/Header";
+import Sidebar from "../../components/organisms/sidebar/Sidebar";
 import axios from "axios";
 // import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
