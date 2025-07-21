@@ -1,5 +1,5 @@
 import PanelLayout from "./PanelLayout";
-import Chart from "../../components/chart/Chart";
+import Chart from "../../components/molecules/chart/Chart";
 
 const Dashboard = () => {
   return (

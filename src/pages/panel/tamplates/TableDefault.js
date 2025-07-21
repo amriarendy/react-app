@@ -11,7 +11,7 @@ import {
   ADD_TABLE_DEFAULT_FORMAT,
 } from "../../../libs/constants/formats/TableTemplate";
 import useDummy from "../../../hooks/useDummy";
-import Modal from "../../../components/organisms/modal/Modal";
+import Modal from "../../../components/molecules/modal/Modal";
 
 const TableDefault = () => {
   const breadCrumbs = {

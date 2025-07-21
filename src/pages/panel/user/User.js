@@ -11,8 +11,8 @@ import { ImageCircleSmall } from "../../../components/atoms/Image";
 import { imageCheck } from "../../../libs/utils/image";
 import CheckBox from "../../../components/atoms/CheckBox";
 import { axiosJWT } from "../../../libs/utils/axiosJwt";
-import Loading from "../../../components/errors/Loading";
-import Errors from "../../../components/errors/Errors";
+import Loading from "../../../components/molecules/errors/Loading";
+import Errors from "../../../components/molecules/errors/Errors";
 import { SERVER_API } from "../../../services/api";
 
 const User = () => {

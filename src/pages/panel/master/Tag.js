@@ -7,7 +7,7 @@ import Thead from "../../../components/organisms/table/default/Thead";
 import Tfoot from "../../../components/organisms/table/default/Tfoot";
 import Taction from "../../../components/organisms/table/default/Taction";
 import HASHTAG_FORMAT_TABLE from "../../../libs/constants/formats/TagFormat";
-import Modal from "../../../components/organisms/modal/Modal";
+import Modal from "../../../components/molecules/modal/Modal";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../../../components/atoms/Input";
 import Loading from "../../../components/molecules/errors/Loading";
