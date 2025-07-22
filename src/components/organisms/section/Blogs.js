@@ -20,15 +20,15 @@ const Blogs = () => {
           {/* input group/ */}
           <div className="mx-auto mt-4 mb-4 grid gap-3 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-3">
             {/* Start Blog */}
-              <BlogSquare />
-              <BlogSquare />
-              <BlogSquare />
-              <BlogSquare />
-              <BlogSquare />
-              <BlogSquare />
-              <BlogSquare />
-              <BlogSquare />
-              <BlogSquare />
+            <BlogSquare />
+            <BlogSquare />
+            <BlogSquare />
+            <BlogSquare />
+            <BlogSquare />
+            <BlogSquare />
+            <BlogSquare />
+            <BlogSquare />
+            <BlogSquare />
             {/* End Blog */}
           </div>
           <div className="w-full text-center">

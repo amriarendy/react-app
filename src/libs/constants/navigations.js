@@ -116,6 +116,16 @@ export const SIDEBAR_MENU_ITEMS = [
         route: "/dashboard/templates/form",
       },
       {
+        key: "paginate",
+        label: "Paginate",
+        route: "/dashboard/templates/paginate",
+      },
+      {
+        key: "card",
+        label: "Card",
+        route: "/dashboard/templates/card",
+      },
+      {
         key: "popup",
         label: "Popup",
         route: "/dashboard/templates/popup",
@@ -178,7 +188,7 @@ export const WELCOME_MENU_ITEMS = [
     icon: (
       <IoNewspaperOutline className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
     ),
-    route: "/blogs",
+    route: "/blog",
   },
   {
     key: "store",

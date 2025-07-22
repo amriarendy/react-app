@@ -1,5 +1,5 @@
-import PaginateArrow from "../../pagination/PaginateArrow";
-import ShowEntries from "../../pagination/ShowEntries";
+import PaginateArrow from "../../../molecules/pagination/PaginateArrow";
+import ShowEntries from "../../../molecules/pagination/ShowEntries";
 
 const Tfoot = () => {
   return (

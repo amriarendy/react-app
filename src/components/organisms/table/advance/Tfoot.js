@@ -1,5 +1,5 @@
-import PaginatePrevNext from "../../pagination/PaginatePrevNext";
-import ShowEntries from "../../pagination/ShowEntries";
+import PaginatePrevNext from "../../../molecules/pagination/PaginatePrevNext";
+import ShowEntries from "../../../molecules/pagination/ShowEntries";
 
 const Tfoot = () => {
   return (

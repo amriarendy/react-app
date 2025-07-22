@@ -29,6 +29,8 @@ import Tag from "./pages/panel/master/Tag";
 import Welcome from "./pages/Welcome";
 import Articles from "./pages/Articles";
 import Starter from "./pages/Starter";
+import Paginate from "./pages/panel/tamplates/Paginate";
+import Card from "./pages/panel/tamplates/Card";
 
 function App() {
   return (
@@ -76,8 +78,10 @@ function App() {
           />
           <Route path="/dashboard/templates/form" element={<Form />} />
           <Route path="/dashboard/templates/popup" element={<Popup />} />
+          <Route path="/dashboard/templates/paginate" element={<Paginate />} />
           <Route path="/dashboard/templates/grid-cols" element={<GridCols />} />
           <Route path="/dashboard/templates/image" element={<Image />} />
+          <Route path="/dashboard/templates/card" element={<Card />} />
           <Route
             path="/dashboard/templates/page-error"
             element={<PageError />}
