@@ -27,7 +27,7 @@ import PageError from "./pages/panel/tamplates/PageError";
 import PageLoading from "./pages/panel/tamplates/PageLoading";
 import Tag from "./pages/panel/master/Tag";
 import Welcome from "./pages/Welcome";
-import Blogs from "./pages/Blog";
+import Articles from "./pages/Articles";
 import Starter from "./pages/Starter";
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Welcome />} />
-          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blog" element={<Articles />} />
           <Route path="/detail" element={<Welcome />} />
           <Route path="/starter" element={<Starter />} />
           <Route path="/docs" element={<Docs />} />
