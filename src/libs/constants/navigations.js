@@ -116,9 +116,9 @@ export const SIDEBAR_MENU_ITEMS = [
         route: "/dashboard/templates/form",
       },
       {
-        key: "paginate",
-        label: "Paginate",
-        route: "/dashboard/templates/paginate",
+        key: "pagination",
+        label: "Pagination",
+        route: "/dashboard/templates/pagination",
       },
       {
         key: "card",

@@ -29,8 +29,9 @@ import Tag from "./pages/panel/master/Tag";
 import Welcome from "./pages/Welcome";
 import Articles from "./pages/Articles";
 import Starter from "./pages/Starter";
-import Paginate from "./pages/panel/tamplates/Paginate";
+import Pagination from "./pages/panel/tamplates/Pagination";
 import Card from "./pages/panel/tamplates/Card";
+import ArticleDetail from "./pages/ArticleDetail";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/blog" element={<Articles />} />
+          <Route path="/blog/detail" element={<ArticleDetail />} />
           <Route path="/detail" element={<Welcome />} />
           <Route path="/starter" element={<Starter />} />
           <Route path="/docs" element={<Docs />} />
@@ -78,7 +80,10 @@ function App() {
           />
           <Route path="/dashboard/templates/form" element={<Form />} />
           <Route path="/dashboard/templates/popup" element={<Popup />} />
-          <Route path="/dashboard/templates/paginate" element={<Paginate />} />
+          <Route
+            path="/dashboard/templates/Pagination"
+            element={<Pagination />}
+          />
           <Route path="/dashboard/templates/grid-cols" element={<GridCols />} />
           <Route path="/dashboard/templates/image" element={<Image />} />
           <Route path="/dashboard/templates/card" element={<Card />} />

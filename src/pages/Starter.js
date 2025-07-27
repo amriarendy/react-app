@@ -1,7 +1,13 @@
-import React from "react";
+import Layout from "./Layout";
 
 const Starter = () => {
-  return <div>Starter</div>;
+  return (
+    <>
+      <Layout>
+        <div>Write Your Holly Content Here!!!</div>
+      </Layout>
+    </>
+  );
 };
 
 export default Starter;
