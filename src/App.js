@@ -27,11 +27,14 @@ import PageError from "./pages/panel/tamplates/PageError";
 import PageLoading from "./pages/panel/tamplates/PageLoading";
 import Tag from "./pages/panel/master/Tag";
 import Welcome from "./pages/Welcome";
-import Articles from "./pages/Articles";
-import Starter from "./pages/Starter";
+import Articles from "./pages/landingpage/articles/Articles";
+import ArticleDetail from "./pages/landingpage/articles/ArticleDetail";
+import Starter from "./pages/landingpage/Starter";
 import Pagination from "./pages/panel/tamplates/Pagination";
 import Card from "./pages/panel/tamplates/Card";
-import ArticleDetail from "./pages/ArticleDetail";
+import About from "./pages/landingpage/About";
+import Ecommerce from "./pages/landingpage/ecommerce/Ecommerce";
+import EcommerceDetail from "./pages/landingpage/ecommerce/EcommerceDetail";
 
 function App() {
   return (
@@ -41,7 +44,9 @@ function App() {
           <Route path="/" element={<Welcome />} />
           <Route path="/blog" element={<Articles />} />
           <Route path="/blog/detail" element={<ArticleDetail />} />
-          <Route path="/detail" element={<Welcome />} />
+          <Route path="/ecommerce" element={<Ecommerce />} />
+          <Route path="/ecommerce/detail" element={<EcommerceDetail />} />
+          <Route path="/about" element={<About />} />
           <Route path="/starter" element={<Starter />} />
           <Route path="/docs" element={<Docs />} />
           {/* auth */}

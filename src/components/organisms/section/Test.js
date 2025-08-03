@@ -2,24 +2,58 @@ import LOGO from "../../../logo512.png";
 
 const Test = () => {
   return (
-    <section class="bg-white dark:bg-gray-900">
-      <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-        <div class="mx-auto max-w-screen-sm text-center">
-          <h2 class="mb-4 text-4xl tracking-tight font-extrabold leading-tight text-gray-900 dark:text-white">
-            Start your free trial today
+    <div class="bg-white py-24 sm:py-32">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl lg:mx-0">
+          <h2 class="text-3xl font-bold tracking-tight text-gray-900">
+            Our offices
           </h2>
-          <p class="mb-6 font-light text-gray-500 dark:text-gray-400 md:text-lg">
-            Try Flowbite Platform for 30 days. No credit card required.
+          <p class="mt-6 text-lg leading-8 text-gray-600">
+            Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate
+            id malesuada non. Cras aliquet purus dui laoreet diam sed lacus,
+            fames.
           </p>
-          <a
-            href="#"
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-          >
-            Free trial for 30 days
-          </a>
+        </div>
+        <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 text-base leading-7 sm:grid-cols-2 sm:gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4">
+          <div>
+            <h3 class="border-l border-indigo-600 pl-6 font-semibold text-gray-900">
+              Los Angeles
+            </h3>
+            <address class="border-l border-gray-200 pl-6 pt-2 not-italic text-gray-600">
+              <p>4556 Brendan Ferry</p>
+              <p>Los Angeles, CA 90210</p>
+            </address>
+          </div>
+          <div>
+            <h3 class="border-l border-indigo-600 pl-6 font-semibold text-gray-900">
+              New York
+            </h3>
+            <address class="border-l border-gray-200 pl-6 pt-2 not-italic text-gray-600">
+              <p>886 Walter Street</p>
+              <p>New York, NY 12345</p>
+            </address>
+          </div>
+          <div>
+            <h3 class="border-l border-indigo-600 pl-6 font-semibold text-gray-900">
+              Toronto
+            </h3>
+            <address class="border-l border-gray-200 pl-6 pt-2 not-italic text-gray-600">
+              <p>7363 Cynthia Pass</p>
+              <p>Toronto, ON N3Y 4H8</p>
+            </address>
+          </div>
+          <div>
+            <h3 class="border-l border-indigo-600 pl-6 font-semibold text-gray-900">
+              London
+            </h3>
+            <address class="border-l border-gray-200 pl-6 pt-2 not-italic text-gray-600">
+              <p>114 Cobble Lane</p>
+              <p>London N1 2EF</p>
+            </address>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

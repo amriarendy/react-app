@@ -1,8 +1,6 @@
 import { RiPieChartFill, RiLayout6Fill, RiQuestionLine } from "react-icons/ri";
 import { ImNewspaper } from "react-icons/im";
 import {
-  FaCogs,
-  FaQuestion,
   FaCode,
   FaUser,
   FaDatabase,
@@ -191,12 +189,12 @@ export const WELCOME_MENU_ITEMS = [
     route: "/blog",
   },
   {
-    key: "store",
-    label: "Store",
+    key: "ecommerce",
+    label: "Ecommerce",
     icon: (
       <FaStoreAlt className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
     ),
-    route: "/store",
+    route: "/ecommerce",
   },
   {
     key: "build-app",

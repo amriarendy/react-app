@@ -1,12 +1,12 @@
-import LOGO from "../../../logo512.png";
-import { WELCOME_MENU_ITEMS } from "../../../libs/constants/navigations";
-import MenuItem from "../../../components/molecules/menu/MenuItem";
-import DarkMode from "../../molecules/darkmode/DarkMode";
+import LOGO from "../../../../logo512.png";
+import { WELCOME_MENU_ITEMS } from "../../../../libs/constants/navigations";
+import MenuItem from "../../../molecules/menu/MenuItem";
+import DarkMode from "../../../molecules/darkmode/DarkMode";
 
 const TopBar = () => {
   return (
     <>
-      <nav className="bg-white dark:bg-gray-800 antialiased">
+      <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-300 dark:bg-gray-900 dark:border-gray-500 antialiased">
         <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-8">

@@ -1,9 +1,9 @@
-import LOGO from "../../../logo512.png";
+import LOGO from "../../../../logo512.png";
 
 const Footer = () => {
   return (
     <>
-      <footer className="bg-slate-800 text-white dark:bg-gray-800">
+      <footer className="bg-gray-900 text-white dark:bg-gray-900">
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">

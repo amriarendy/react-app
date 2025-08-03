@@ -1,14 +1,12 @@
-import React from "react";
-import TopBar from "../components/organisms/section/TopBar";
-import Footer from "../components/organisms/section/Footer";
-import Test from "../components/organisms/section/Test";
+import TopBar from "../components/organisms/section/layouts/TopBar";
+import Footer from "../components/organisms/section/layouts/Footer";
 
 const Layout = ({ children }) => {
   return (
     <>
       {/* <Test /> */}
       <TopBar />
-      {children}
+      <div className="pt-16 overflow-auto">{children}</div>
       <Footer />
     </>
   );
