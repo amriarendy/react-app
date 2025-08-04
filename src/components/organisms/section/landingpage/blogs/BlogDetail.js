@@ -1,6 +1,6 @@
-import Divider from "../../../atoms/Divider";
-import ListComments from "../../../molecules/list/ListComments";
-import CommentInput from "../../../molecules/textareas/CommentInput";
+import Divider from "../../../../atoms/Divider";
+import ListComments from "../../../../molecules/list/ListComments";
+import CommentInput from "../../../../molecules/textareas/CommentInput";
 
 const BlogDetail = () => {
   return (

@@ -1,5 +1,5 @@
-import BlogSquare from "../../molecules/blog/BlogSquare";
-import { Button } from "../../atoms/Button";
+import BlogSquare from "../../../molecules/blog/BlogSquare";
+import { Button } from "../../../atoms/Button";
 
 const WelcomeArticle = () => {
   return (

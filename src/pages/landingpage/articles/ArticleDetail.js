@@ -1,4 +1,4 @@
-import BlogDetail from "../../../components/organisms/section/blogs/BlogDetail";
+import BlogDetail from "../../../components/organisms/section/landingpage/blogs/BlogDetail";
 import Layout from "../../Layout";
 
 const ArticleDetail = () => {

@@ -1,6 +1,6 @@
-import { SearchSort } from "../../../molecules/search/SearchSort";
-import BlogSquare from "../../../molecules/blog/BlogSquare";
-import Paginate from "../../../molecules/pagination/Paginate";
+import { SearchSort } from "../../../../molecules/search/SearchSort";
+import BlogSquare from "../../../../molecules/blog/BlogSquare";
+import Paginate from "../../../../molecules/pagination/Paginate";
 
 const Blogs = () => {
   return (

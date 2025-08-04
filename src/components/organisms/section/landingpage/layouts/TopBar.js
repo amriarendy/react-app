@@ -1,7 +1,8 @@
-import LOGO from "../../../../logo512.png";
-import { WELCOME_MENU_ITEMS } from "../../../../libs/constants/navigations";
-import MenuItem from "../../../molecules/menu/MenuItem";
-import DarkMode from "../../../molecules/darkmode/DarkMode";
+import LOGO from "../../../../../logo512.png";
+import { WELCOME_MENU_ITEMS } from "../../../../../libs/constants/navigations";
+import MenuItem from "../../../../molecules/menu/MenuItem";
+import DarkMode from "../../../../molecules/darkmode/DarkMode";
+import { Link } from "react-router-dom";
 
 const TopBar = () => {
   return (
@@ -37,24 +38,24 @@ const TopBar = () => {
                 ))}
               </ul>
             </div>
-            <div class="flex items-center lg:order-2">
+            <div className="flex items-center lg:order-2">
               <DarkMode />
-              <a
-                href="#"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 ml-4 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+              <Link
+              to={'/login'}
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 ml-4 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               >
                 Login
-              </a>
+              </Link>
               <button
                 data-collapse-toggle="mobile-menu-2"
                 type="button"
-                class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                 aria-controls="mobile-menu-2"
                 aria-expanded="false"
               >
-                <span class="sr-only">Open main menu</span>
+                <span className="sr-only">Open main menu</span>
                 <svg
-                  class="w-6 h-6"
+                  className="w-6 h-6"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +67,7 @@ const TopBar = () => {
                   ></path>
                 </svg>
                 <svg
-                  class="hidden w-6 h-6"
+                  className="hidden w-6 h-6"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -81,13 +82,13 @@ const TopBar = () => {
             </div>
             <div
               id="ecommerce-navbar-menu-1"
-              class="bg-gray-50 dark:bg-gray-700 dark:border-gray-600 border border-gray-200 rounded-lg py-3 hidden px-4 mt-4"
+              className="bg-gray-50 dark:bg-gray-700 dark:border-gray-600 border border-gray-200 rounded-lg py-3 hidden px-4 mt-4"
             >
-              <ul class="text-gray-900 dark:text-white text-sm font-medium dark:text-white space-y-3">
+              <ul className="text-gray-900 dark:text-white text-sm font-medium dark:text-white space-y-3">
                 <li>
                   <a
                     href="#"
-                    class="hover:text-blue-700 dark:hover:text-blue-500"
+                    className="hover:text-blue-700 dark:hover:text-blue-500"
                   >
                     Home
                   </a>
@@ -95,7 +96,7 @@ const TopBar = () => {
                 <li>
                   <a
                     href="#"
-                    class="hover:text-blue-700 dark:hover:text-blue-500"
+                    className="hover:text-blue-700 dark:hover:text-blue-500"
                   >
                     Best Sellers
                   </a>
@@ -103,7 +104,7 @@ const TopBar = () => {
                 <li>
                   <a
                     href="#"
-                    class="hover:text-blue-700 dark:hover:text-blue-500"
+                    className="hover:text-blue-700 dark:hover:text-blue-500"
                   >
                     Gift Ideas
                   </a>
@@ -111,7 +112,7 @@ const TopBar = () => {
                 <li>
                   <a
                     href="#"
-                    class="hover:text-blue-700 dark:hover:text-blue-500"
+                    className="hover:text-blue-700 dark:hover:text-blue-500"
                   >
                     Games
                   </a>
@@ -119,7 +120,7 @@ const TopBar = () => {
                 <li>
                   <a
                     href="#"
-                    class="hover:text-blue-700 dark:hover:text-blue-500"
+                    className="hover:text-blue-700 dark:hover:text-blue-500"
                   >
                     Electronics
                   </a>
@@ -127,7 +128,7 @@ const TopBar = () => {
                 <li>
                   <a
                     href="#"
-                    class="hover:text-blue-700 dark:hover:text-blue-500"
+                    className="hover:text-blue-700 dark:hover:text-blue-500"
                   >
                     Home & Garden
                   </a>

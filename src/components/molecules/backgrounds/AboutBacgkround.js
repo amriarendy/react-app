@@ -1,11 +1,10 @@
 import React from "react";
 
-const AboutBg = () => {
+const AboutBacgkround = () => {
   return (
-    <div>
-      <div class="absolute inset-y-0 left-0 -z-10 w-full overflow-hidden bg-gray-100 ring-1 ring-gray-900/10 lg:w-1/2">
+      <div className="absolute inset-y-0 left-0 -z-10 w-full overflow-hidden bg-gray-100 ring-1 ring-gray-900/10 lg:w-1/2">
         <svg
-          class="absolute inset-0 h-full w-full stroke-gray-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
+          className="absolute inset-0 h-full w-full stroke-gray-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
           aria-hidden="true"
         >
           <defs>
@@ -21,7 +20,7 @@ const AboutBg = () => {
             </pattern>
           </defs>
           <rect width="100%" height="100%" strokeWidth="0" fill="white" />
-          <svg x="100%" y="-1" class="overflow-visible fill-gray-50">
+          <svg x="100%" y="-1" className="overflow-visible fill-gray-50">
             <path d="M-470.5 0h201v201h-201Z" strokeWidth="0" />
           </svg>
           <rect
@@ -32,8 +31,7 @@ const AboutBg = () => {
           />
         </svg>
       </div>
-    </div>
   );
 };
 
-export default AboutBg;
+export default AboutBacgkround;
