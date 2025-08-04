@@ -1,6 +1,6 @@
-import FooterPanel from "../../components/organisms/footer/FooterPanel";
-import Header from "../../components/organisms/header/Header";
-import Sidebar from "../../components/organisms/sidebar/Sidebar";
+import Footer from "../../components/organisms/section/panel/layouts/Footer";
+import Header from "../../components/organisms/section/panel/layouts/Header";
+import Sidebar from "../../components/organisms/section/panel/layouts/Sidebar";
 import axios from "axios";
 // import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
@@ -71,7 +71,7 @@ const PanelLayout = ({ children }) => {
           <main>
             <section className="min-h-screen">{children}</section>
           </main>
-          <FooterPanel />
+          <Footer />
         </div>
       </div>
     </>

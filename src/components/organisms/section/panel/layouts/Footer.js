@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const FooterPanel = () => {
+const Footer = () => {
   return (
     <>
       <footer className="bg-white rounded-lg shadow m-4 dark:bg-gray-800">
@@ -47,4 +47,4 @@ const FooterPanel = () => {
   );
 };
 
-export default FooterPanel;
+export default Footer;

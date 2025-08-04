@@ -9,7 +9,7 @@ const Paginate = ({ children, currentPage, totalPages, onPageChange }) => {
   return (
     <>
       <div className="px-4 py-5 sm:p-6">
-        <div className="flex items-center justify-center border-gray-200 px-4 py-3 sm:px-6 dark:bg-gray-900">
+        <div className="flex items-center justify-center border-gray-200 px-4 py-3 sm:px-6">
           <div className="sm:flex sm:flex-1 sm:items-center sm:justify-center">
             <div>
               <nav

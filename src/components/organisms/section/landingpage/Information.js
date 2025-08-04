@@ -1,10 +1,10 @@
-import AboutBacgkround from "../../molecules/backgrounds/AboutBacgkround";
+import AboutBacgkround from "../../../molecules/backgrounds/AboutBacgkround";
 import { HiBuildingOffice2 } from "react-icons/hi2";
 import { BsTelephone } from "react-icons/bs";
 import { CiMail } from "react-icons/ci";
-import ContactUs from "../../molecules/forms/ContactUs";
+import ContactUs from "../../../molecules/forms/ContactUs";
 
-const Information = ({useOpen}) => {
+const Information = ({ useOpen }) => {
   console.log("useOpen: ", useOpen);
   return (
     <>
@@ -12,7 +12,6 @@ const Information = ({useOpen}) => {
         <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
           <div className="relative px-6 pb-20 pt-24 sm:pt-32 lg:static lg:px-8 lg:py-48">
             <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
-
               {!useOpen && <AboutBacgkround />}
               <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
                 About & Contact Us
@@ -54,7 +53,10 @@ const Information = ({useOpen}) => {
                     />
                   </dt>
                   <dd>
-                    <a className="hover:text-gray-900" href="tel:+1 (555) 234-5678">
+                    <a
+                      className="hover:text-gray-900"
+                      href="tel:+1 (555) 234-5678"
+                    >
                       +1 (555) 234-5678
                     </a>
                   </dd>

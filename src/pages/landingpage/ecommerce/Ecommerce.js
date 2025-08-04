@@ -1,13 +1,13 @@
 import Paginate from "../../../components/molecules/pagination/Paginate";
 import { SearchSort } from "../../../components/molecules/search/SearchSort";
-import StoreList from "../../../components/organisms/section/store/StoreList";
+import StoreList from "../../../components/organisms/section/landingpage/store/StoreList";
 import Layout from "../../Layout";
 
 const Ecommerce = () => {
   return (
     <>
       <Layout>
-        <section className="bg-gray-50 antialiased dark:bg-gray-900">
+        <section className="bg-gray-50 antialiased dark:bg-gray-800">
           <div class="mx-auto max-w-2xl text-center px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
             <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white">
               Store
