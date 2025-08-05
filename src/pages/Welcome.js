@@ -17,7 +17,7 @@ const Welcome = () => {
           <WelcomeArticle />
         </section>
         {/* Customer Logo */}
-        <section className="bg-gray-600 dark:bg-gray-800">
+        <section className="bg-gray-600 dark:bg-gray-900">
           <CustomerLogo />
         </section>
         {/* Subscribes */}

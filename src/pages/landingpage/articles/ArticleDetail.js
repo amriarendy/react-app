@@ -5,7 +5,7 @@ const ArticleDetail = () => {
   return (
     <>
       <Layout>
-        <section className="bg-white px-6 py-16 lg:px-8 dark:bg-gray-900">
+        <section className="bg-white px-6 py-16 lg:px-8 dark:bg-gray-800">
           <BlogDetail />
         </section>
       </Layout>

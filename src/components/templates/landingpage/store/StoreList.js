@@ -1,34 +1,39 @@
+import Paginate from "../../../molecules/pagination/Paginate";
+import { SearchSort } from "../../../molecules/search/SearchSort";
+import TitleDescription from "../../../molecules/title/TitleDescription";
+import StoreSquare from "../../../organisms/landingpage/store/StoreSquare";
+
 const StoreList = () => {
   return (
-    <div>
-      <div class="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white dark:bg-gray-800">
-        <div class="aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none group-hover:opacity-75 sm:h-96">
-          <img
-            src="https://tailwindui.com/plus-assets/img/ecommerce-images/category-page-02-image-card-01.jpg"
-            alt="Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green."
-            class="h-full w-full object-cover object-center sm:h-full sm:w-full"
-          />
+    <>
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <TitleDescription
+          label={"Ecommerce"}
+          description={
+            "Learn how to grow your business with our expert advice."
+          }
+        />
+        {/* <input group */}
+        <SearchSort />
+        {/* input group/ */}
+        <div className="mx-auto mt-4 mb-4 grid gap-3 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-3">
+          {/* Start Blog */}
+          <StoreSquare />
+          <StoreSquare />
+          <StoreSquare />
+          <StoreSquare />
+          <StoreSquare />
+          <StoreSquare />
+          <StoreSquare />
+          <StoreSquare />
+          <StoreSquare />
+          {/* End Blog */}
         </div>
-        <div class="flex flex-1 flex-col space-y-2 p-4">
-          <h3 class="text-sm font-medium text-gray-900 dark:text-white">
-            <a href="#">
-              <span aria-hidden="true" class="absolute inset-0"></span>
-              Basic Tee 8-Pack
-            </a>
-          </h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400">
-            Get the full lineup of our Basic Tees. Have a fresh shirt all week,
-            and an extra for laundry day.
-          </p>
-          <div class="flex flex-1 flex-col justify-end">
-            <p class="text-sm italic text-gray-500">8 colors</p>
-            <p class="text-base font-medium text-gray-900 dark:text-gray-400">
-              $256
-            </p>
-          </div>
+        <div className="w-full text-center">
+          <Paginate />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

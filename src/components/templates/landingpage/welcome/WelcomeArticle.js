@@ -1,4 +1,4 @@
-import BlogSquare from "../../../molecules/blog/BlogSquare";
+import BlogSquare from "../../../organisms/landingpage/blogs/BlogSquare";
 import { Button } from "../../../atoms/Button";
 
 const WelcomeArticle = () => {

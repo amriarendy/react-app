@@ -1,13 +1,12 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const BlogSquare = ({ hide = {} }) => {
   const { description = false, author = false, date = false } = hide;
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+    <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm border-gray-300 dark:bg-gray-800 dark:border-gray-500">
       <div className="h-56 w-full">
-        <a href="#">
+        <Link to={"/blog/detail/"}>
           <img
             className="mx-auto h-full dark:hidden"
             src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
@@ -18,21 +17,21 @@ const BlogSquare = ({ hide = {} }) => {
             src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
             alt=""
           />
-        </a>
+        </Link>
       </div>
       <span className="bg-purple-100 text-purple-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
         Article
       </span>
       <div className="pt-6">
-        <a
-          href="#"
+        <Link
+          to={"/blog/detail/"}
           className="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white"
         >
           Apple iMac 27", 1TB HDD, Retina 5K Display, M3 Max
-        </a>
+        </Link>
 
         {!description && (
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-600 dark:text-gray-400  mt-2">
             Over the past year, Volosoft has undergone many changes! After
             months of preparation and some hard work, we moved to our new
             office.
@@ -50,11 +49,7 @@ const BlogSquare = ({ hide = {} }) => {
               {!author && (
                 <p className="text-gray-800 text-sm font-semibold">Jese Leos</p>
               )}
-              {!date && (
-                <p className="text-gray-600 text-sm">
-                  Aug 15, 2021 · 16 min read
-                </p>
-              )}
+              {!date && <p className="text-gray-600 text-sm">Aug 15, 2021</p>}
             </div>
           </div>
         )}
