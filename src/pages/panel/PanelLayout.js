@@ -1,6 +1,6 @@
-import Footer from "../../components/organisms/section/panel/layouts/Footer";
-import Header from "../../components/organisms/section/panel/layouts/Header";
-import Sidebar from "../../components/organisms/section/panel/layouts/Sidebar";
+import Footer from "../../components/templates/panel/layouts/Footer";
+import TopBar from "../../components/templates/panel/layouts/TopBar";
+import Sidebar from "../../components/templates/panel/layouts/Sidebar";
 import axios from "axios";
 // import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
@@ -61,7 +61,7 @@ const PanelLayout = ({ children }) => {
 
   return (
     <>
-      <Header />
+      <TopBar />
       <div className="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
         <Sidebar logout={Logout} />
         <div

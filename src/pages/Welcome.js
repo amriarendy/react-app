@@ -1,9 +1,8 @@
-import Heading from "../components/organisms/section/landingpage/Heading";
-import CustomerLogo from "../components/organisms/section/landingpage/CustomerLogo";
+import Heading from "../components/templates/landingpage/welcome/Heading";
+import CustomerLogo from "../components/templates/landingpage/welcome/CustomerLogo";
 import Layout from "./Layout";
-import Subscribe from "../components/organisms/section/landingpage/Subscribe";
-import WelcomeArticle from "../components/organisms/section/landingpage/WelcomeArticle";
-import Test from "../components/organisms/section/landingpage/Test";
+import Subscribe from "../components/templates/landingpage/welcome/Subscribe";
+import WelcomeArticle from "../components/templates/landingpage/welcome/WelcomeArticle";
 
 const Welcome = () => {
   return (

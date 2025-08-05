@@ -35,6 +35,7 @@ import Card from "./pages/panel/tamplates/Card";
 import About from "./pages/landingpage/About";
 import Ecommerce from "./pages/landingpage/ecommerce/Ecommerce";
 import EcommerceDetail from "./pages/landingpage/ecommerce/EcommerceDetail";
+import BuildApp from "./pages/landingpage/BuildApp";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           <Route path="/ecommerce" element={<Ecommerce />} />
           <Route path="/ecommerce/detail" element={<EcommerceDetail />} />
           <Route path="/about" element={<About />} />
+          <Route path="/build-app" element={<BuildApp />} />
           <Route path="/starter" element={<Starter />} />
           <Route path="/docs" element={<Docs />} />
           {/* auth */}

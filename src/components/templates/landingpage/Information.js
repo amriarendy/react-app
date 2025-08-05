@@ -1,8 +1,8 @@
-import AboutBacgkround from "../../../molecules/backgrounds/AboutBacgkround";
+import AboutBacgkround from "../../molecules/backgrounds/AboutBacgkround";
 import { HiBuildingOffice2 } from "react-icons/hi2";
 import { BsTelephone } from "react-icons/bs";
 import { CiMail } from "react-icons/ci";
-import ContactUs from "../../../molecules/forms/ContactUs";
+import ContactUs from "../../molecules/forms/ContactUs";
 
 const Information = ({ useOpen }) => {
   console.log("useOpen: ", useOpen);

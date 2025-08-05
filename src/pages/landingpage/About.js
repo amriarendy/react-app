@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Information from "../../components/organisms/section/landingpage/Information";
+import Information from "../../components/templates/landingpage/Information";
 import Layout from "../Layout";
 
 const About = () => {

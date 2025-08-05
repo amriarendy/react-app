@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import PanelLayout from "../PanelLayout";
 import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
-import AttributeTable from "../../../components/organisms/table/default/AttributeTable";
-import Table from "../../../components/organisms/table/default/Table";
-import Thead from "../../../components/organisms/table/default/Thead";
-import Tfoot from "../../../components/organisms/table/default/Tfoot";
-import Taction from "../../../components/organisms/table/default/Taction";
+import AttributeTable from "../../../components/organisms/table/advance/AttributeTable";
+import Table from "../../../components/organisms/table/advance/Table";
+import Thead from "../../../components/organisms/table/advance/Thead";
+import Tfoot from "../../../components/organisms/table/advance/Tfoot";
+import Taction from "../../../components/organisms/table/advance/Taction";
 import HASHTAG_FORMAT_TABLE from "../../../libs/constants/formats/TagFormat";
 import Modal from "../../../components/molecules/modal/Modal";
 import { useNavigate } from "react-router-dom";

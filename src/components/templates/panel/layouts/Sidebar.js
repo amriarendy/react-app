@@ -1,6 +1,6 @@
-import { SIDEBAR_MENU_ITEMS } from "../../../../../libs/constants/navigations";
-import MenuList from "../../../../molecules/menu/MenuList";
-import MenuBottom from "../../../../molecules/menu/MenuButton";
+import { SIDEBAR_MENU_ITEMS } from "../../../../libs/constants/navigations";
+import MenuList from "../../../molecules/menu/MenuList";
+import MenuBottom from "../../../molecules/menu/MenuButton";
 import { FaSignOutAlt } from "react-icons/fa";
 
 const Sidebar = ({ logout }) => {

@@ -1,6 +1,6 @@
 import Paginate from "../../../components/molecules/pagination/Paginate";
 import { SearchSort } from "../../../components/molecules/search/SearchSort";
-import StoreList from "../../../components/organisms/section/landingpage/store/StoreList";
+import StoreList from "../../../components/templates/landingpage/store/StoreList";
 import Layout from "../../Layout";
 
 const Ecommerce = () => {

@@ -1,15 +1,15 @@
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
-import Notification from "../../../../molecules/panel/Notification";
-import ProfileMenu from "../../../../molecules/panel/ProfileMenu";
-import DarkMode from "../../../../molecules/darkmode/DarkMode";
-import { Image } from "../../../../atoms/Image";
+import Notification from "../../../molecules/panel/Notification";
+import ProfileMenu from "../../../molecules/panel/ProfileMenu";
+import DarkMode from "../../../molecules/darkmode/DarkMode";
+import { Image } from "../../../atoms/Image";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 
-const Header = () => {
+const TopBar = () => {
   const [name, setName] = useState("");
   const [token, setToken] = useState("");
   const [expire, setExpire] = useState("");
@@ -113,4 +113,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default TopBar;

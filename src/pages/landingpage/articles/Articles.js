@@ -1,5 +1,5 @@
 import Layout from "../../Layout";
-import BlogList from "../../../components/organisms/section/landingpage/blogs/BlogList";
+import BlogList from "../../../components/templates/landingpage/blogs/BlogList";
 
 const Articles = () => {
   return (
