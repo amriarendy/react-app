@@ -5,9 +5,7 @@ import EcommerceImageThumbnail from "../../../molecules/ecommerce/EcommerceImage
 import EcommerceRating from "../../../molecules/ecommerce/EcommerceRating";
 
 const StoreContent = () => {
-  return (
-      <div></div>
-    )
+  return <div></div>;
 };
 
 export default StoreContent;

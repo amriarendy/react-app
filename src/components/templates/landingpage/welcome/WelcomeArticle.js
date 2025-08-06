@@ -7,9 +7,7 @@ const WelcomeArticle = () => {
     <div className="mx-auto max-w-7xl px-6 lg:px-8">
       <TitleDescription
         label={"Articles"}
-        description={
-          "Learn how to grow your business with our expert advice."
-        }
+        description={"Learn how to grow your business with our expert advice."}
       />
       <div className="mx-auto mt-4 mb-4 grid gap-3 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-3">
         <BlogSquare hide={{ author: true, date: true, description: false }} />

@@ -90,7 +90,10 @@ const ContactUs = () => {
                   </svg>
                 </dt>
                 <dd>
-                  <a className="hover:text-gray-900" href="tel:+1 (555) 234-5678">
+                  <a
+                    className="hover:text-gray-900"
+                    href="tel:+1 (555) 234-5678"
+                  >
                     +1 (555) 234-5678
                   </a>
                 </dd>

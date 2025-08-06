@@ -5,7 +5,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <TopBar />
-        <div className="pt-16 overflow-auto">{children}</div>
+      <div className="pt-16 overflow-auto">{children}</div>
       <Footer />
     </>
   );

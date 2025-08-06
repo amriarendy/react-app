@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
+import Logo from "../../../molecules/logo/Logo";
 
 const TopBar = () => {
   const [name, setName] = useState("");
@@ -81,18 +82,7 @@ const TopBar = () => {
                   fill="currentColor"
                 />
               </button>
-              <Link to={"#"} className="flex ml-2 md:mr-24">
-                <Image
-                  src={
-                    "https://flowbite-admin-dashboard.vercel.app/images/logo.svg"
-                  }
-                  alt={"logo"}
-                  className={"h-8 mr-3"}
-                />
-                <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                  Flowbite
-                </span>
-              </Link>
+              <Logo route={"/"}>React.JS</Logo>
             </div>
             <div className="flex items-center">
               {/* <!-- Notifications --> */}
