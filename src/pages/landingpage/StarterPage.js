@@ -1,6 +1,6 @@
 import Layout from "../Layout";
 
-const Starter = () => {
+const StarterPage = () => {
   return (
     <>
       <Layout>
@@ -10,4 +10,4 @@ const Starter = () => {
   );
 };
 
-export default Starter;
+export default StarterPage;

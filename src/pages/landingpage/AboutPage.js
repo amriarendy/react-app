@@ -2,7 +2,7 @@ import { useState } from "react";
 import Information from "../../components/templates/landingpage/Information";
 import Layout from "../Layout";
 
-const About = () => {
+const AboutPage = () => {
   const [useOpen, setOpen] = useState(
     localStorage.getItem("darkMode") === "true" ? true : false
   );
@@ -17,4 +17,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AboutPage;

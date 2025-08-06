@@ -1,7 +1,7 @@
 import Layout from "../../Layout";
 import BlogList from "../../../components/templates/landingpage/blogs/BlogList";
 
-const Articles = () => {
+const ArticlesPage = () => {
   return (
     <>
       <Layout>
@@ -13,4 +13,4 @@ const Articles = () => {
   );
 };
 
-export default Articles;
+export default ArticlesPage;

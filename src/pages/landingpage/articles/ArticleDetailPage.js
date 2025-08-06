@@ -1,7 +1,7 @@
 import BlogDetail from "../../../components/templates/landingpage/blogs/BlogDetail";
 import Layout from "../../Layout";
 
-const ArticleDetail = () => {
+const ArticleDetailPage = () => {
   return (
     <>
       <Layout>
@@ -13,4 +13,4 @@ const ArticleDetail = () => {
   );
 };
 
-export default ArticleDetail;
+export default ArticleDetailPage;

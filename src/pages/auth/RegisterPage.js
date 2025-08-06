@@ -2,7 +2,7 @@ import CheckBox from "../../components/atoms/CheckBox";
 import { HrefText } from "../../components/atoms/Href";
 import { Input } from "../../components/atoms/Input";
 import { Button } from "../../components/atoms/Button";
-import AuthLayout from "./AuthLayout";
+import AuthLayout from "../../components/templates/auth/AuthLayout";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";

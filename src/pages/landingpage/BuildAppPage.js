@@ -1,6 +1,6 @@
 import Layout from "../Layout";
 
-const BuildApp = () => {
+const BuildAppPage = () => {
   return (
     <>
       <Layout>
@@ -10,4 +10,4 @@ const BuildApp = () => {
   );
 };
 
-export default BuildApp;
+export default BuildAppPage;

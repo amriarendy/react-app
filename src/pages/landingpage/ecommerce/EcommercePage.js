@@ -2,7 +2,7 @@ import StoreList from "../../../components/templates/landingpage/store/StoreList
 import Layout from "../../Layout";
 import BlogList from "../../../components/templates/landingpage/blogs/BlogList";
 
-const Ecommerce = () => {
+const EcommercePage = () => {
   return (
     <>
       <Layout>
@@ -14,4 +14,4 @@ const Ecommerce = () => {
   );
 };
 
-export default Ecommerce;
+export default EcommercePage;

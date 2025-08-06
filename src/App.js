@@ -10,9 +10,9 @@ import Test from "./pages/panel/tamplates/Test";
 import Category from "./pages/panel/master/Category";
 import AddUser from "./pages/panel/user/AddUser";
 import EditUser from "./pages/panel/user/EditUser";
-import Login from "./pages/auth/Login";
-import Register from "./pages/auth/Register";
-import ResetPassword from "./pages/auth/ResetPassword";
+import LoginPage from "./pages/auth/LoginPage";
+import RegisterPage from "./pages/auth/RegisterPage";
+import ResetPasswordPage from "./pages/auth/ResetPasswordPage";
 import Error from "./pages/panel/Error";
 import GridCols from "./pages/panel/tamplates/GridCols";
 import Layout from "./pages/panel/tamplates/Layout";
@@ -26,35 +26,34 @@ import Image from "./pages/panel/tamplates/Image";
 import PageError from "./pages/panel/tamplates/PageError";
 import PageLoading from "./pages/panel/tamplates/PageLoading";
 import Tag from "./pages/panel/master/Tag";
-import Welcome from "./pages/Welcome";
-import Articles from "./pages/landingpage/articles/Articles";
-import ArticleDetail from "./pages/landingpage/articles/ArticleDetail";
-import Starter from "./pages/landingpage/Starter";
+import WelcomePage from "./pages/WelcomePage";
+import ArticlesPage from "./pages/landingpage/articles/ArticlesPage";
+import ArticleDetailPage from "./pages/landingpage/articles/ArticleDetailPage";
+import StarterPage from "./pages/landingpage/StarterPage";
 import Pagination from "./pages/panel/tamplates/Pagination";
 import Card from "./pages/panel/tamplates/Card";
-import About from "./pages/landingpage/About";
-import Ecommerce from "./pages/landingpage/ecommerce/Ecommerce";
-import EcommerceDetail from "./pages/landingpage/ecommerce/EcommerceDetail";
-import BuildApp from "./pages/landingpage/BuildApp";
+import AboutPage from "./pages/landingpage/AboutPage";
+import EcommercePage from "./pages/landingpage/ecommerce/EcommercePage";
+import EcommerceDetailPage from "./pages/landingpage/ecommerce/EcommerceDetailPage";
+import BuildAppPage from "./pages/landingpage/BuildAppPage";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Welcome />} />
-          <Route path="/blog" element={<Articles />} />
-          <Route path="/blog/detail" element={<ArticleDetail />} />
-          <Route path="/ecommerce" element={<Ecommerce />} />
-          <Route path="/ecommerce/detail" element={<EcommerceDetail />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/build-app" element={<BuildApp />} />
-          <Route path="/starter" element={<Starter />} />
-          <Route path="/docs" element={<Docs />} />
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="/blog" element={<ArticlesPage />} />
+          <Route path="/blog/detail" element={<ArticleDetailPage />} />
+          <Route path="/ecommerce" element={<EcommercePage />} />
+          <Route path="/ecommerce/detail" element={<EcommerceDetailPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/build-app" element={<BuildAppPage/>} />
+          <Route path="/starter" element={<StarterPage />} />
           {/* auth */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/login" element={<LoginPage/>} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
           {/* dashboard */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/profile" element={<Profile />} />

@@ -1,10 +1,10 @@
 import Heading from "../components/templates/landingpage/welcome/Heading";
-import CustomerLogo from "../components/templates/landingpage/welcome/CustomerLogo";
+import Pricing from "../components/templates/landingpage/welcome/Pricing";
 import Layout from "./Layout";
 import Subscribe from "../components/templates/landingpage/welcome/Subscribe";
 import WelcomeArticle from "../components/templates/landingpage/welcome/WelcomeArticle";
 
-const Welcome = () => {
+const WelcomePage = () => {
   return (
     <>
       <Layout>
@@ -16,17 +16,17 @@ const Welcome = () => {
         <section className="bg-gray-50 py-8 md:py-12 antialiased dark:bg-gray-800">
           <WelcomeArticle />
         </section>
-        {/* Customer Logo */}
-        <section className="bg-gray-600 dark:bg-gray-900">
-          <CustomerLogo />
-        </section>
         {/* Subscribes */}
         <section class="bg-gray-50 dark:bg-gray-800">
           <Subscribe />
+        </section>
+        {/* Customer Logo */}
+        <section className="bg-gray-50 dark:bg-gray-800">
+          <Pricing />
         </section>
       </Layout>
     </>
   );
 };
 
-export default Welcome;
+export default WelcomePage;

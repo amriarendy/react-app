@@ -1,56 +1,58 @@
-import CheckBox from "../../components/atoms/CheckBox";
-import { HrefText } from "../../components/atoms/Href";
-import { Input } from "../../components/atoms/Input";
-import { Button } from "../../components/atoms/Button";
+import CheckBox from "../../atoms/CheckBox";
+import { HrefText } from "../../atoms/Href";
+import { Input } from "../../atoms/Input";
+import { Button } from "../../atoms/Button";
 import AuthLayout from "./AuthLayout";
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
-  const navigate = useNavigate();
+const LoginView = () => {
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errEmail, setErrEmail] = useState("");
-  const [errPassword, setErrPassword] = useState("");
-  const [errMessage, setErrMessage] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Clear previous errors
-    setErrEmail("");
-    setErrPassword("");
-    setErrMessage("");
-    try {
-      await axios.post("http://localhost:3001/login", {
-        email,
-        password,
-      });
-      navigate("/dashboard");
-    } catch (error) {
-      if (error.response) {
-        const errors = error.response.data.errors;
-        if (Array.isArray(errors)) {
-          errors.forEach((err) => {
-            if (err.field === "email") {
-              setErrEmail(err.message || "An error occurred");
-            } else if (err.field === "password") {
-              setErrPassword(err.message || "An error occurred");
-            }
-          });
+    const navigate = useNavigate();
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errEmail, setErrEmail] = useState("");
+    const [errPassword, setErrPassword] = useState("");
+    const [errMessage, setErrMessage] = useState("");
+    
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      // Clear previous errors
+      setErrEmail("");
+      setErrPassword("");
+      setErrMessage("");
+      try {
+        await axios.post("http://localhost:3001/login", {
+          email,
+          password,
+        });
+        navigate("/dashboard");
+      } catch (error) {
+        if (error.response) {
+          const errors = error.response.data.errors;
+          if (Array.isArray(errors)) {
+            errors.forEach((err) => {
+              if (err.field === "email") {
+                setErrEmail(err.message || "An error occurred");
+              } else if (err.field === "password") {
+                setErrPassword(err.message || "An error occurred");
+              }
+            });
+          } else {
+            setErrMessage(error.response.data.message || "An error occurred");
+          }
         } else {
-          setErrMessage(error.response.data.message || "An error occurred");
+          setErrMessage("Network error, please try again later");
         }
-      } else {
-        setErrMessage("Network error, please try again later");
       }
-    }
-  };
+    };
 
-  return (
-    <>
-      <AuthLayout>
+    return (
+        <>
+            
         <div className="w-full max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow dark:bg-gray-800">
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div>
@@ -113,9 +115,8 @@ const Login = () => {
             </div>
           </form>
         </div>
-      </AuthLayout>
-    </>
-  );
-};
+        </>
+    )
+}
 
-export default Login;
+export default LoginView;
