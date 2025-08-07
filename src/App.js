@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Dashboard from "./pages/panel/Dashboard";
+import DashboardPage from "./pages/panel/DashboardPage";
 import Blog from "./pages/panel/blog/Blog";
 import Profile from "./pages/panel/Profile";
-import Blank from "./pages/panel/tamplates/Blank";
+import BlankPage from "./pages/panel/tamplates/BlankPage";
 import AddBlog from "./pages/panel/blog/AddBlog";
 import EditBlog from "./pages/panel/blog/EditBlog";
 import User from "./pages/panel/user/User";
@@ -16,7 +16,6 @@ import ResetPasswordPage from "./pages/auth/ResetPasswordPage";
 import Error from "./pages/panel/Error";
 import GridCols from "./pages/panel/tamplates/GridCols";
 import Layout from "./pages/panel/tamplates/Layout";
-import Docs from "./pages/panel/Docs";
 import Alerts from "./pages/panel/tamplates/Alerts";
 import Form from "./pages/panel/tamplates/Form";
 import TableDefault from "./pages/panel/tamplates/TableDefault";
@@ -55,7 +54,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           {/* dashboard */}
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/Dashboard" element={<DashboardPage />} />
           <Route path="/dashboard/profile" element={<Profile />} />
           {/* blog */}
           <Route path="/dashboard/blog" element={<Blog />} />
@@ -69,7 +68,7 @@ function App() {
           <Route path="/dashboard/user/add" element={<AddUser />} />
           <Route path="/dashboard/user/edit/:param" element={<EditUser />} />
           {/* layouts */}
-          <Route path="/dashboard/templates/blank" element={<Blank />} />
+          <Route path="/dashboard/templates/blank" element={<BlankPage />} />
           <Route path="/dashboard/templates/layout" element={<Layout />} />
           <Route path="/dashboard/templates/alerts" element={<Alerts />} />
           <Route
@@ -103,7 +102,6 @@ function App() {
           />
           <Route path="/dashboard/templates/test" element={<Test />} />
           {/* etc */}
-          <Route path="/docs" element={<Docs />} />
           <Route path="error" element={<Error />} />
         </Routes>
       </BrowserRouter>

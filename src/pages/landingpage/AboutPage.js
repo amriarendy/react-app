@@ -1,16 +1,16 @@
 import { useState } from "react";
-import Information from "../../components/templates/landingpage/Information";
+import AboutView from "../../components/templates/landingpage/AboutView";
 import Layout from "../Layout";
 
 const AboutPage = () => {
-  const [useOpen, setOpen] = useState(
+  const [useDark, setUseDark] = useState(
     localStorage.getItem("darkMode") === "true" ? true : false
   );
   return (
     <>
       <Layout>
         <section className="relative isolate bg-white dark:bg-gray-800">
-          <Information useOpen />
+          <AboutView useDark />
         </section>
       </Layout>
     </>
