@@ -4,7 +4,7 @@ const BlogSquare = ({ hide = {} }) => {
   const { description = false, author = false, date = false } = hide;
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm border-gray-300 dark:bg-gray-800 dark:border-gray-500">
+    <div className="rounded-lg border bg-white p-6 shadow-sm border-gray-300 dark:bg-gray-800 dark:border-gray-500">
       <div className="h-56 w-full">
         <Link to={"/blog/detail/"}>
           <img
