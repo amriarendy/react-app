@@ -1,16 +1,31 @@
 import React from "react";
+import Card from "../../../molecules/card/Card";
+import { Alert, AlertList, AlertBorder } from "../../../molecules/toast/Alert";
 
-const Alert = () => {
+const Toast = () => {
   return (
-    <div>
-      <Card header={"Alert"}>
+    <>
+
+<Card header={"Alert"}>
         <div className="col-span-1">
           <Alert
             code={200}
             message={"Nice Work! Success alert with code 200."}
           />
+          <Alert
+            code={422}
+            message={"Warning! Some problem here code 422."}
+          />
+          <Alert
+            code={500}
+            message={"Danger! Internal server error code 500"}
+          />
+          <Alert
+            message={"Good! Have nice day!"}
+          />
           <AlertList
             code={422}
+            color={"yellow"}
             label={"Warning! Validation status code 422"}
             data={[
               { message: "Input required" },
@@ -25,18 +40,11 @@ const Alert = () => {
               },
             ]}
           />
-          <AlertAditionalContent
-            code={500}
-            label={"This is a danger alert"}
-            message={
-              " More info about this info alert goes here. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content."
-            }
-          />
           <AlertBorder message={"Information: You good and god bless you."} />
         </div>
       </Card>
-    </div>
+    </>
   );
 };
 
-export default Alert;
+export default Toast;

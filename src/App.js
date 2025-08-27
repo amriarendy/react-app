@@ -16,7 +16,7 @@ import ResetPasswordPage from "./pages/auth/ResetPasswordPage";
 import Error from "./pages/panel/Error";
 import GridCols from "./pages/panel/tamplates/GridCols";
 import Layout from "./pages/panel/tamplates/Layout";
-import Alerts from "./pages/panel/tamplates/Alerts";
+import Toast from "./pages/panel/tamplates/Toast";
 import Form from "./pages/panel/tamplates/Form";
 import TableDefault from "./pages/panel/tamplates/TableDefault";
 import TableAdvance from "./pages/panel/tamplates/TableAdvance";
@@ -70,7 +70,7 @@ function App() {
           {/* layouts */}
           <Route path="/dashboard/templates/blank" element={<BlankPage />} />
           <Route path="/dashboard/templates/layout" element={<Layout />} />
-          <Route path="/dashboard/templates/alerts" element={<Alerts />} />
+          <Route path="/dashboard/templates/Toast" element={<Toast />} />
           <Route
             path="/dashboard/templates/table-default"
             element={<TableDefault />}
