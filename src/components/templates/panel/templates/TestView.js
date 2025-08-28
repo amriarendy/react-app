@@ -1,8 +1,8 @@
-
 import { useState } from "react";
 import Table from "../../../elements/tables";
 import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
 import useDummy from "../../../../hooks/useDummy";
+import Button from "../../../elements/button/Button";
 import Modal from "../../../../components/molecules/modal/Modal";
 
 const TestView = () => {
@@ -34,46 +34,100 @@ const TestView = () => {
   return (
     <>
       <Breadcrumbs breadCrumbs={breadCrumbs} />
-      
       <div className="grid grid-cols-1 px-4 pt-6 lg:grid-cols-1 gap-4 mb-4">
         <Table>
-                        <thead className="bg-gray-50">
-                        <tr>
-                            <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
-                            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Title</th>
-                            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Email</th>
-                            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Role</th>
-                            <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                            <span className="sr-only">Edit</span>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-200 bg-white">
-                        {data.length > 0 ? (
-                  data.map((item, index) => (
-                    <tr key={item.id} className="border-b dark:border-gray-700">
-                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{index + 1}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.product}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.category}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.technology}</td>
-                      <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-                        {item.description}
-                      </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">${item.price}</td>
-                      <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Lindsay Walton</span></a>
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan={7} className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 text-center">
-                      Data Not Found
-                    </td>
-                  </tr>
-                )}
-
-                        </tbody>
+          <thead className="bg-gray-200 dark:bg-gray-800">
+            <tr>
+              <th
+                scope="col"
+                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6"
+              >
+                No
+              </th>
+              <th
+                scope="col"
+                className="px-3 py-3.5 text-left text-sm font-semibold"
+              >
+                Product
+              </th>
+              <th
+                scope="col"
+                className="px-3 py-3.5 text-left text-sm font-semibold"
+              >
+                Category
+              </th>
+              <th
+                scope="col"
+                className="px-3 py-3.5 text-left text-sm font-semibold"
+              >
+                Brand
+              </th>
+              <th
+                scope="col"
+                className="px-3 py-3.5 text-left text-sm font-semibold"
+              >
+                Price
+              </th>
+              <th
+                scope="col"
+                className="px-3 py-3.5 text-left text-sm font-semibold"
+              >
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody className="bg-white dark:bg-gray-800">
+            {data.length > 0 ? (
+              data.map((item, index) => (
+                <tr key={item.id} className="border-b dark:border-gray-700">
+                  <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium sm:pl-6">
+                    {index + 1}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-sm">
+                    {item.product}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-sm">
+                    {item.category}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-sm">
+                    {item.technology}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-4 text-sm">
+                    ${item.price}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-4 space-x-2 text-sm">
+                    <Button
+                      id={"btnEditProduct"}
+                      type={"button"}
+                      classname={
+                        "inline-flex items-center px-2 py-1 text-white bg-indigo-700 hover:bg-indigo-500"
+                      }
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      id={"btnDeleteProduct"}
+                      type={"button"}
+                      classname={
+                        "inline-flex items-center px-2 py-1 text-white bg-red-700 hover:bg-red-500"
+                      }
+                    >
+                      Delete
+                    </Button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td
+                  colSpan={7}
+                  className="whitespace-nowrap px-3 py-4 text-sm text-center"
+                >
+                  Data Not Found
+                </td>
+              </tr>
+            )}
+          </tbody>
         </Table>
       </div>
     </>
