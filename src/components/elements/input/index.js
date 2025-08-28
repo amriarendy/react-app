@@ -1,6 +1,7 @@
 import Label from "./Label";
+import Input from "./Input"
 
-const InputGroup = (props) => {
+const InputGroup = (children, props) => {
   const {
     id,
     label,
