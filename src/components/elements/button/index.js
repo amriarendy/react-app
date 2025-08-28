@@ -1,9 +1,5 @@
 const ButtonGroup = () => {
-    return (
-        <>
-        
-        </>
-    )
-}
+  return <></>;
+};
 
 export default ButtonGroup;

@@ -1,5 +1,6 @@
 import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
 import Blank from "../../../organisms/panel/templates/Blank";
+import TableSimple from "../../../organisms/panel/templates/TableSimple";
 
 const TestView = () => {
   const breadCrumbs = {
@@ -12,7 +13,7 @@ const TestView = () => {
   return (
     <>
       <Breadcrumbs breadCrumbs={breadCrumbs} />
-      <Blank />
+      <TableSimple />
     </>
   );
 };
