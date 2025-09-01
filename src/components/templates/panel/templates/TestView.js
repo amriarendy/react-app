@@ -4,6 +4,7 @@ import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
 import useDummy from "../../../../hooks/useDummy";
 import Button from "../../../elements/button/Button";
 import Modal from "../../../../components/molecules/modal/Modal";
+import Test from "../../../organisms/panel/templates/Test";
 
 const TestView = () => {
   const breadCrumbs = {
@@ -35,6 +36,7 @@ const TestView = () => {
     <>
       <Breadcrumbs breadCrumbs={breadCrumbs} />
       <div className="grid grid-cols-1 px-4 pt-6 lg:grid-cols-1 gap-4 mb-4">
+        <Test />
         <Table>
           <thead className="bg-gray-200 dark:bg-gray-800">
             <tr>
@@ -76,10 +78,10 @@ const TestView = () => {
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white dark:bg-gray-800">
+          <tbody className="bg-white dark:bg-gray-700">
             {data.length > 0 ? (
               data.map((item, index) => (
-                <tr key={item.id} className="border-b dark:border-gray-700">
+                <tr key={item.id} className="border-b dark:border-gray-800">
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium sm:pl-6">
                     {index + 1}
                   </td>

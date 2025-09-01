@@ -1,7 +1,7 @@
 import CheckBox from "../../atoms/CheckBox";
 import { HrefText } from "../../atoms/Href";
 import { Input } from "../../atoms/Input";
-import { Button } from "../../atoms/Button";
+import Button from "../../elements/button/Button";
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -86,12 +86,20 @@ const LoginForm = () => {
           label={"Lost Password?"}
         />
       </div>
-      <Button
-        id={"login"}
-        type={"submit"}
-        label={"Login to your account"}
-        color={"blue"}
-      />
+
+      <div className="flex justify-center">
+        <Button
+          id={"login"}
+          type={"submit"}
+          label={"Login to your account"}
+          onClick={handleSubmit}
+          classname={
+            "inline-flex items-center px-3 py-2 text-white bg-indigo-700 hover:bg-indigo-500"
+          }
+        >
+          Login
+        </Button>
+      </div>
       <div className="text-sm font-medium text-gray-500 dark:text-gray-400">
         Not registered?{" "}
         <HrefText

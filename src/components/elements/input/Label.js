@@ -1,5 +1,4 @@
-const Label = (children, props) => {
-  const { type, htmlFor, required } = props;
+const Label = ({ label, type, htmlFor, required }) => {
   return (
     <>
       {type == "hidden" ? (
@@ -9,7 +8,7 @@ const Label = (children, props) => {
           htmlFor={htmlFor}
           className="block mb-2 font-semibold text-sm font-medium text-gray-900 dark:text-white"
         >
-          {children}
+          {label}
           {required ? <span className="text-red-600"> *</span> : null}
         </label>
       )}
