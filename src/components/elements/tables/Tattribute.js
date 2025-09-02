@@ -2,7 +2,7 @@ import { FaSearch } from "react-icons/fa";
 import InputForm from "../input/InputForm";
 import Button from "../button/Button";
 
-const Tattribute = () => {
+const Tattribute = ({ attribute, toggleModal }) => {
   return (
     <>
       <div className="sm:flex sm:items-center">
@@ -18,6 +18,8 @@ const Tattribute = () => {
           </InputForm>
         </div>
         <div className="sm:ml-8 sm:flex-none">
+        {attribute.add &&
+            (attribute.add.route === "toggleAddModal" ? (
           <Button
             id={"btnDeleteProduct"}
             type={"button"}
@@ -27,6 +29,9 @@ const Tattribute = () => {
           >
             Create Data
           </Button>
+          ) : (
+            <Href route={attribute.add.route} label="Add Data" color="blue" />
+          ))}
         </div>
       </div>
     </>

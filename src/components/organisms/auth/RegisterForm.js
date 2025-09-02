@@ -143,7 +143,7 @@ const RegisterForm = () => {
             id={"register"}
             type={"submit"}
             label={"Create account"}
-            onClick={"handleSubmit"}
+            onClick={handleSubmit}
             classname={
               "inline-flex items-center px-3 py-2 text-white bg-indigo-700 hover:bg-indigo-500"
             }

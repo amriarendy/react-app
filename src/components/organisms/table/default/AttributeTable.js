@@ -1,5 +1,5 @@
 import { Button } from "../../../atoms/Button";
-import { Href } from "../../../atoms/Href";
+import { Href } from "../../../elements/href/Href";
 import { InputSearch } from "../../../atoms/Input";
 
 const AttributeTable = ({ attribute, toggleModal }) => {
@@ -24,7 +24,7 @@ const AttributeTable = ({ attribute, toggleModal }) => {
                 onClick={toggleModal}
               />
             ) : (
-              <Href route={attribute.add.route} label="Add Data" color="blue" />
+              <Href route={attribute.add.route}>Add Data</Href>
             ))}
         </div>
       </div>

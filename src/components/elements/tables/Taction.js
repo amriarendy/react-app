@@ -6,10 +6,19 @@ const Taction = () => {
     <>
       {" "}
       <Button
+        id={"btnDetailProduct"}
+        type={"button"}
+        classname={
+          "inline-flex items-center px-2 py-1 text-white bg-teal-700 hover:bg-indigo-500"
+        }
+      >
+        Detail
+      </Button>
+      <Button
         id={"btnEditProduct"}
         type={"button"}
         classname={
-          "inline-flex items-center px-2 py-1 text-white bg-indigo-700 hover:bg-indigo-500"
+          "inline-flex items-center px-2 py-1 text-white bg-yellow-400 hover:bg-yellow-500"
         }
       >
         Edit
