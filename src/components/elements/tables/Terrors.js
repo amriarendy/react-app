@@ -7,4 +7,5 @@ const Terrors = ({ children, colSpan, classname }) => {
     </td>
   );
 };
+
 export default Terrors;

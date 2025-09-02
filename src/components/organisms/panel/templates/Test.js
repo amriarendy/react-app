@@ -18,8 +18,8 @@ const Test = ({ data }) => {
 
   return (
     <>
-      <Table>
-        <Thead toggleModal={toggleAddModal}>
+      <Table attributeTable={toggleAddModal}>
+        <Thead>
           <Trow>
             <Th classname={"pr-1 sm:pl-6"}>No</Th>
             <Th>Product</Th>
