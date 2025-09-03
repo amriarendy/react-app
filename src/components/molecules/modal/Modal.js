@@ -1,6 +1,7 @@
 import { IoMdClose } from "react-icons/io";
-import { Button, ButtonIcon } from "../../atoms/Button";
+// import { Button, ButtonIcon } from "../../atoms/Button";
 import { FaSave } from "react-icons/fa";
+import Button from "../../elements/button/Button";
 
 const Modal = ({ children, header, onSubmit, toggleModal }) => {
   return (
@@ -28,9 +29,12 @@ const Modal = ({ children, header, onSubmit, toggleModal }) => {
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                 {header}
               </h3>
-              <ButtonIcon color={"red"} onClick={toggleModal} type="button">
+              <Button id={"closeButton"} type={"button"} onClick={toggleModal}>
                 <IoMdClose className="w-5 h-5" fill="currentColor" />
-              </ButtonIcon>
+              </Button>
+              {/* <ButtonIcon color={"red"} onClick={toggleModal} type="button">
+                <IoMdClose className="w-5 h-5" fill="currentColor" />
+              </ButtonIcon> */}
             </div>
 
             <form onSubmit={onSubmit}>

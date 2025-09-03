@@ -7,11 +7,19 @@ import Td from "../../../elements/tables/Td";
 import Th from "../../../elements/tables/Th";
 import Taction from "../../../elements/tables/Taction";
 import Terrors from "../../../elements/tables/Terrors";
+import Modal from "../../../elements/modal/Modal";
+import ModalForm from "../../../elements/modal/ModalForm";
+import InputGroup from "../../../elements/input";
 
 const Test = ({ data }) => {
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsAddModalOpen(!isAddModalOpen);
+  };
   return (
     <>
-      <Table attribute={"toggleModal"}>
+      <Table attribute={"null"} toggleModal={toggleModal}>
         <Thead>
           <Trow>
             <Th classname={"pr-1 sm:pl-6"}>No</Th>
@@ -43,6 +51,26 @@ const Test = ({ data }) => {
           )}
         </Tbody>
       </Table>
+      {isAddModalOpen && (
+        <Modal label={"Create Data"} toggleModal={toggleModal}>
+          <ModalForm onSubmit={"Testing"}>
+            <InputGroup
+              id={"product"}
+              name={"product"}
+              label={"Product"}
+              type={"text"}
+              required={true}
+            />
+            <InputGroup
+              id={"product"}
+              name={"product"}
+              label={"Product"}
+              type={"text"}
+              required={true}
+            />
+          </ModalForm>
+        </Modal>
+      )}
     </>
   );
 };
