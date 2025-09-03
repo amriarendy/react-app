@@ -1,5 +1,5 @@
 import { Button } from "../../../atoms/Button";
-import { Href } from "../../../elements/href/Href";
+import { Href } from "../../../atoms/Href";
 import { InputSearch } from "../../../atoms/Input";
 
 const AttributeTable = ({ attribute, toggleModal }) => {
