@@ -35,6 +35,7 @@ import AboutPage from "./pages/landingpage/AboutPage";
 import EcommercePage from "./pages/landingpage/ecommerce/EcommercePage";
 import EcommerceDetailPage from "./pages/landingpage/ecommerce/EcommerceDetailPage";
 import BuildAppPage from "./pages/landingpage/BuildAppPage";
+import TablePage from "./pages/panel/tamplates/TablePage";
 
 function App() {
   return (
@@ -72,8 +73,8 @@ function App() {
           <Route path="/dashboard/templates/layout" element={<Layout />} />
           <Route path="/dashboard/templates/Toast" element={<Toast />} />
           <Route
-            path="/dashboard/templates/table-default"
-            element={<TableDefault />}
+            path="/dashboard/templates/table"
+            element={<TablePage />}
           />
           <Route
             path="/dashboard/templates/table-advance"

@@ -99,9 +99,9 @@ export const SIDEBAR_MENU_ITEMS = [
         route: "/dashboard/templates/toast",
       },
       {
-        key: "table-default",
-        label: "Table Default",
-        route: "/dashboard/templates/table-default",
+        key: "table",
+        label: "Table",
+        route: "/dashboard/templates/table",
       },
       {
         key: "table-advance",
