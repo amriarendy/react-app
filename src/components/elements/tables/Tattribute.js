@@ -23,9 +23,9 @@ const Tattribute = ({ attribute, toggleModal }) => {
             <FaSearch className="w-4 h-4" />
           </InputForm>
         </div>
-        <div className="sm:ml-8 sm:flex-none">
+        <div className="sm:flex-none">
           <Button
-            id={"btnDeleteProduct"}
+            id={"btnAdd"}
             type={"button"}
             onClick={toggleModal}
             classname={

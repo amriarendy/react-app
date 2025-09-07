@@ -1,28 +1,21 @@
-import React from "react";
 import Card from "../../../molecules/card/Card";
 import { Alert, AlertList, AlertBorder } from "../../../molecules/toast/Alert";
 
 const Toast = () => {
   return (
     <>
-
-<Card header={"Alert"}>
+      <Card header={"Alert"}>
         <div className="col-span-1">
           <Alert
             code={200}
             message={"Nice Work! Success alert with code 200."}
           />
-          <Alert
-            code={422}
-            message={"Warning! Some problem here code 422."}
-          />
+          <Alert code={422} message={"Warning! Some problem here code 422."} />
           <Alert
             code={500}
             message={"Danger! Internal server error code 500"}
           />
-          <Alert
-            message={"Good! Have nice day!"}
-          />
+          <Alert message={"Good! Have nice day!"} />
           <AlertList
             code={422}
             color={"yellow"}

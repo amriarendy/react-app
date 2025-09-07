@@ -1,0 +1,132 @@
+import React, { useState } from "react";
+import Table from "../../../../elements/tables/index";
+import Thead from "../../../../elements/tables/Thead";
+import Tbody from "../../../../elements/tables/Tbody";
+import Trow from "../../../../elements/tables/Trow";
+import Td from "../../../../elements/tables/Td";
+import Th from "../../../../elements/tables/Th";
+// import Taction from "../../../../elements/tables/Taction";
+import Terrors from "../../../../elements/tables/Terrors";
+import Modal from "../../../../elements/modal/";
+import ModalForm from "../../../../elements/modal/ModalForm";
+import InputGroup from "../../../../elements/input";
+import Button from "../../../../elements/button/Button";
+import Href from "../../../../elements/href/Href";
+
+const Tag = ({ data, onAdd, onEdit, editTag, setEditTag, errTag }) => {
+  const [modalType, setModalType] = useState(null);
+  const [tag, setTag] = useState("");
+  const toggleModal = (type = null) => setModalType(type);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onAdd(tag, () => {
+      setTag("");
+      toggleModal();
+    });
+  };
+
+  const handleEditSubmit = (e) => {
+    e.preventDefault();
+    onEdit(editTag.id, editTag.tag, () => {
+      setEditTag({ id: "", tag: "" });
+      toggleModal();
+    });
+  };
+
+  return (
+    <>
+      <Table attribute={"null"} toggleModal={() => toggleModal("add")}>
+        <Thead>
+          <Trow>
+            <Th classname={"pr-1 sm:pl-6"}>No</Th>
+            <Th>Tag</Th>
+            <Th>Action</Th>
+          </Trow>
+        </Thead>
+        <Tbody>
+          {data.length > 0 ? (
+            data.map((item, index) => (
+              <Trow classname={"border-b"} key={item.index}>
+                <Td classname={"text-center font-medium w-14 flex-none"}>
+                  {index + 1}
+                </Td>
+                <Td classname={"font-medium w-64 flex-auto"}>{item.tag}</Td>
+                <Td classname={"font-medium w-32 flex-auto space-x-2"}>
+                  <Button
+                    id={"btnEdit"}
+                    onClick={() => {
+                      setEditTag({ id: item.id, tag: item.tag });
+                      toggleModal("edit");
+                    }}
+                    classname={
+                      "rounded rounded-lg inline-flex items-center px-2 py-1 text-white bg-yellow-400 hover:bg-yellow-500"
+                    }
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    id={"btnDeleteProduct"}
+                    route={"button"}
+                    onClick={() => toggleModal("delete")}
+                    classname={
+                      "rounded rounded-lg inline-flex items-center px-2 py-1 text-white bg-red-700 hover:bg-red-500"
+                    }
+                  >
+                    Delete
+                  </Button>
+                </Td>
+              </Trow>
+            ))
+          ) : (
+            <Trow>
+              <Terrors colSpan={4}>Data Not Found!</Terrors>
+            </Trow>
+          )}
+        </Tbody>
+      </Table>
+      {modalType === "add" && (
+        <Modal label={"Create Data"} toggleModal={() => toggleModal()}>
+          <ModalForm onSubmit={handleSubmit}>
+            <InputGroup
+              value={tag}
+              onChange={(e) => setTag(e.target.value)}
+              id={"tag"}
+              name={"tag"}
+              label={"Tag"}
+              type={"text"}
+              required={true}
+            />
+          </ModalForm>
+        </Modal>
+      )}
+
+      {modalType === "edit" && (
+        <Modal label={"Edit Data"} toggleModal={() => toggleModal()}>
+          <ModalForm onSubmit={handleEditSubmit}>
+            <InputGroup
+              value={editTag.id}
+              id="id"
+              name="id"
+              type="text"
+              label="ID"
+              disabled
+            />
+            <InputGroup
+              value={editTag.tag}
+              onChange={(e) => setEditTag({ ...editTag, tag: e.target.value })}
+              id="tag"
+              name="tag"
+              label="Tag"
+              type="text"
+              required
+            />
+            {errTag && <p className="text-red-500 text-sm">{errTag}</p>}
+          </ModalForm>
+        </Modal>
+      )}
+    </>
+  );
+};
+
+export default Tag;

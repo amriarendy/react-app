@@ -4,10 +4,10 @@ import useDummy from "../../../../hooks/useDummy";
 
 const TableView = () => {
   const breadCrumbs = {
-    page: "Table Simple",
+    page: "Table",
     data: [
-      { page: "Templates", route: "/dashboard/templates/table-simple" },
-      { page: "Table Simple", route: "/dashboard/templates/table-simple" },
+      { page: "Templates", route: "/dashboard/templates/table" },
+      { page: "Table", route: "/dashboard/templates/table" },
     ],
   };
 
@@ -22,6 +22,7 @@ const TableView = () => {
   }
 
   const columns = data && data.length > 0 ? data : <p>Data Not Found..</p>;
+
   return (
     <>
       <Breadcrumbs breadCrumbs={breadCrumbs} />

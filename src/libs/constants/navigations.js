@@ -104,11 +104,6 @@ export const SIDEBAR_MENU_ITEMS = [
         route: "/dashboard/templates/table",
       },
       {
-        key: "table-advance",
-        label: "Table Advance",
-        route: "/dashboard/templates/table-advance",
-      },
-      {
         key: "form",
         label: "Form",
         route: "/dashboard/templates/form",

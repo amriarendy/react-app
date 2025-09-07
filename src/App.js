@@ -19,12 +19,12 @@ import Layout from "./pages/panel/tamplates/Layout";
 import Toast from "./pages/panel/tamplates/Toast";
 import Form from "./pages/panel/tamplates/Form";
 import TableDefault from "./pages/panel/tamplates/TableDefault";
-import TableAdvance from "./pages/panel/tamplates/TableAdvance";
-import Popup from "./pages/panel/tamplates/Popup";
+import PopupPage from "./pages/panel/tamplates/PopupPage";
 import Image from "./pages/panel/tamplates/Image";
 import PageError from "./pages/panel/tamplates/PageError";
 import PageLoading from "./pages/panel/tamplates/PageLoading";
 import Tag from "./pages/panel/master/Tag";
+import TagPage from "./pages/panel/master/TagPage";
 import WelcomePage from "./pages/WelcomePage";
 import ArticlesPage from "./pages/landingpage/articles/ArticlesPage";
 import ArticleDetailPage from "./pages/landingpage/articles/ArticleDetailPage";
@@ -48,10 +48,10 @@ function App() {
           <Route path="/ecommerce" element={<EcommercePage />} />
           <Route path="/ecommerce/detail" element={<EcommerceDetailPage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/build-app" element={<BuildAppPage/>} />
+          <Route path="/build-app" element={<BuildAppPage />} />
           <Route path="/starter" element={<StarterPage />} />
           {/* auth */}
-          <Route path="/login" element={<LoginPage/>} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           {/* dashboard */}
@@ -64,6 +64,7 @@ function App() {
           {/* master */}
           <Route path="/dashboard/master/category" element={<Category />} />
           <Route path="/dashboard/master/tag" element={<Tag />} />
+          <Route path="/dashboard/master/tag-page" element={<TagPage />} />
           {/* users */}
           <Route path="/dashboard/user" element={<User />} />
           <Route path="/dashboard/user/add" element={<AddUser />} />
@@ -72,20 +73,13 @@ function App() {
           <Route path="/dashboard/templates/blank" element={<BlankPage />} />
           <Route path="/dashboard/templates/layout" element={<Layout />} />
           <Route path="/dashboard/templates/Toast" element={<Toast />} />
-          <Route
-            path="/dashboard/templates/table"
-            element={<TablePage />}
-          />
-          <Route
-            path="/dashboard/templates/table-advance"
-            element={<TableAdvance />}
-          />
+          <Route path="/dashboard/templates/table" element={<TablePage />} />
           <Route
             path="/dashboard/templates/table2"
             element={<TableDefault />}
           />
           <Route path="/dashboard/templates/form" element={<Form />} />
-          <Route path="/dashboard/templates/popup" element={<Popup />} />
+          <Route path="/dashboard/templates/popup" element={<PopupPage />} />
           <Route
             path="/dashboard/templates/Pagination"
             element={<Pagination />}

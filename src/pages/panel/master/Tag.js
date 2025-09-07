@@ -24,6 +24,7 @@ const Tag = () => {
       { page: "List", route: "/dashboard/master/tag" },
     ],
   };
+
   const navigate = useNavigate();
 
   const [tag, setTag] = useState("");
