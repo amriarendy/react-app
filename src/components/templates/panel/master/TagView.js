@@ -76,12 +76,17 @@ const TagView = () => {
   };
 
   const handleDelete = async (param) => {
+    const confirmDelete = window.confirm(
+      "Apakah Anda yakin ingin menghapus data ini?"
+    );
+    if (!confirmDelete) return;
     try {
       await axiosJWT.delete(`${SERVER_API()}/master/tags/${param}`);
+      await getData();
     } catch (error) {
       console.log("Error messages:", error);
     }
-  }
+  };
 
   if (loading) {
     return <p>Loading...</p>;
@@ -92,7 +97,7 @@ const TagView = () => {
   }
 
   const columns = data && data.length > 0 ? data : <p>Data Not Found..</p>;
-  
+
   return (
     <>
       <Breadcrumbs breadCrumbs={breadCrumbs} />

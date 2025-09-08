@@ -36,6 +36,7 @@ import EcommercePage from "./pages/landingpage/ecommerce/EcommercePage";
 import EcommerceDetailPage from "./pages/landingpage/ecommerce/EcommerceDetailPage";
 import BuildAppPage from "./pages/landingpage/BuildAppPage";
 import TablePage from "./pages/panel/tamplates/TablePage";
+import CategoryPage from "./pages/panel/master/CategoryPage";
 
 function App() {
   return (
@@ -63,6 +64,10 @@ function App() {
           <Route path="/dashboard/blog/edit/:param" element={<EditBlog />} />
           {/* master */}
           <Route path="/dashboard/master/category" element={<Category />} />
+          <Route
+            path="/dashboard/master/category-page"
+            element={<CategoryPage />}
+          />
           <Route path="/dashboard/master/tag" element={<Tag />} />
           <Route path="/dashboard/master/tag-page" element={<TagPage />} />
           {/* users */}

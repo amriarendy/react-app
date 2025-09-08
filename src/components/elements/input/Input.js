@@ -1,6 +1,5 @@
 export function Input({
   id,
-  label,
   type,
   name,
   placeholder,
@@ -28,4 +27,4 @@ export function Input({
   );
 }
 
-export default Input
+export default Input;

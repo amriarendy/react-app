@@ -16,7 +16,7 @@ const InputGroup = ({
   return (
     <>
       <div className="mb-2">
-        <Label htmlFor={id} label={label} />
+        {type !== "hidden" && <Label htmlFor={id} label={label} />}
         <Input
           id={id}
           type={type}

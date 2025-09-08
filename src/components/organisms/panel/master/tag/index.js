@@ -5,15 +5,21 @@ import Tbody from "../../../../elements/tables/Tbody";
 import Trow from "../../../../elements/tables/Trow";
 import Td from "../../../../elements/tables/Td";
 import Th from "../../../../elements/tables/Th";
-// import Taction from "../../../../elements/tables/Taction";
 import Terrors from "../../../../elements/tables/Terrors";
 import Modal from "../../../../elements/modal/";
 import ModalForm from "../../../../elements/modal/ModalForm";
 import InputGroup from "../../../../elements/input";
 import Button from "../../../../elements/button/Button";
-import Href from "../../../../elements/href/Href";
 
-const Tag = ({ data, onAdd, onEdit, onDelete, editTag, setEditTag, errTag }) => {
+const Tag = ({
+  data,
+  onAdd,
+  onEdit,
+  onDelete,
+  editTag,
+  setEditTag,
+  errTag,
+}) => {
   const [modalType, setModalType] = useState(null);
   const [tag, setTag] = useState("");
   const toggleModal = (type = null) => setModalType(type);
@@ -86,8 +92,8 @@ const Tag = ({ data, onAdd, onEdit, onDelete, editTag, setEditTag, errTag }) => 
         </Tbody>
       </Table>
       {modalType === "add" && (
-          <ModalForm onSubmit={handleAddSubmit}>
-        <Modal label={"Create Data"} toggleModal={() => toggleModal()}>
+        <ModalForm onSubmit={handleAddSubmit}>
+          <Modal label={"Create Data"} toggleModal={() => toggleModal()}>
             <InputGroup
               value={tag}
               onChange={(e) => setTag(e.target.value)}
@@ -97,18 +103,18 @@ const Tag = ({ data, onAdd, onEdit, onDelete, editTag, setEditTag, errTag }) => 
               type={"text"}
               required={true}
             />
-        </Modal>
-          </ModalForm>
+          </Modal>
+        </ModalForm>
       )}
 
       {modalType === "edit" && (
-        <Modal label={"Edit Data"} toggleModal={() => toggleModal()}>
-          <ModalForm onSubmit={handleEditSubmit}>
+        <ModalForm onSubmit={handleEditSubmit}>
+          <Modal label={"Edit Data"} toggleModal={() => toggleModal()}>
             <InputGroup
               value={editTag.id}
               id="id"
               name="id"
-              type="text"
+              type="hidden"
               label="ID"
               disabled
             />
@@ -122,8 +128,8 @@ const Tag = ({ data, onAdd, onEdit, onDelete, editTag, setEditTag, errTag }) => 
               required
             />
             {errTag && <p className="text-red-500 text-sm">{errTag}</p>}
-          </ModalForm>
-        </Modal>
+          </Modal>
+        </ModalForm>
       )}
     </>
   );
