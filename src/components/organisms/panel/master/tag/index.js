@@ -13,12 +13,12 @@ import InputGroup from "../../../../elements/input";
 import Button from "../../../../elements/button/Button";
 import Href from "../../../../elements/href/Href";
 
-const Tag = ({ data, onAdd, onEdit, editTag, setEditTag, errTag }) => {
+const Tag = ({ data, onAdd, onEdit, onDelete, editTag, setEditTag, errTag }) => {
   const [modalType, setModalType] = useState(null);
   const [tag, setTag] = useState("");
   const toggleModal = (type = null) => setModalType(type);
 
-  const handleSubmit = (e) => {
+  const handleAddSubmit = (e) => {
     e.preventDefault();
     onAdd(tag, () => {
       setTag("");
@@ -66,9 +66,9 @@ const Tag = ({ data, onAdd, onEdit, editTag, setEditTag, errTag }) => {
                     Edit
                   </Button>
                   <Button
-                    id={"btnDeleteProduct"}
+                    id={"btnDelete"}
                     route={"button"}
-                    onClick={() => toggleModal("delete")}
+                    onClick={() => onDelete(item.id)}
                     classname={
                       "rounded rounded-lg inline-flex items-center px-2 py-1 text-white bg-red-700 hover:bg-red-500"
                     }
@@ -86,8 +86,8 @@ const Tag = ({ data, onAdd, onEdit, editTag, setEditTag, errTag }) => {
         </Tbody>
       </Table>
       {modalType === "add" && (
+          <ModalForm onSubmit={handleAddSubmit}>
         <Modal label={"Create Data"} toggleModal={() => toggleModal()}>
-          <ModalForm onSubmit={handleSubmit}>
             <InputGroup
               value={tag}
               onChange={(e) => setTag(e.target.value)}
@@ -97,8 +97,8 @@ const Tag = ({ data, onAdd, onEdit, editTag, setEditTag, errTag }) => {
               type={"text"}
               required={true}
             />
-          </ModalForm>
         </Modal>
+          </ModalForm>
       )}
 
       {modalType === "edit" && (

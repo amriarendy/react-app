@@ -39,7 +39,7 @@ const TagView = () => {
     getData();
   }, []);
 
-  const handleAddSubmit = async (tag, onSuccess) => {
+  const handleAdd = async (tag, onSuccess) => {
     try {
       await axiosJWT.post(`${SERVER_API()}/master/tags`, { tag });
       setErrTag("");
@@ -57,7 +57,7 @@ const TagView = () => {
   };
 
   // update function
-  const handleEditSubmit = async (id, tag, onSuccess) => {
+  const handleEdit = async (id, tag, onSuccess) => {
     try {
       await axiosJWT.patch(`${SERVER_API()}/master/tags/${id}`, { tag });
       setEditTag({ id: "", tag: "" }); // Reset input fields
@@ -75,6 +75,14 @@ const TagView = () => {
     }
   };
 
+  const handleDelete = async (param) => {
+    try {
+      await axiosJWT.delete(`${SERVER_API()}/master/tags/${param}`);
+    } catch (error) {
+      console.log("Error messages:", error);
+    }
+  }
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -84,16 +92,18 @@ const TagView = () => {
   }
 
   const columns = data && data.length > 0 ? data : <p>Data Not Found..</p>;
+  
   return (
     <>
       <Breadcrumbs breadCrumbs={breadCrumbs} />
       <Tag
         data={data}
-        onAdd={handleAddSubmit}
-        onEdit={handleEditSubmit}
-        errTag={errTag}
+        onAdd={handleAdd}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
         setEditTag={setEditTag}
         editTag={editTag}
+        errTag={errTag}
       />
     </>
   );
