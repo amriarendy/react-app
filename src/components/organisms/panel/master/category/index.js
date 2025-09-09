@@ -10,6 +10,7 @@ import Modal from "../../../../elements/modal/";
 import ModalForm from "../../../../elements/modal/ModalForm";
 import InputGroup from "../../../../elements/input";
 import Button from "../../../../elements/button/Button";
+import { slugFormat } from "../../../../../libs/utils/text";
 
 const Category = ({
   data,
@@ -108,10 +109,14 @@ const Category = ({
           <Modal label={"Create Data"} toggleModal={() => toggleModal()}>
             <InputGroup
               value={category}
-              onChange={(e) => setCategory(e.target.value)}
+              onChange={(e) => {
+                const categoryAddSlug = e.target.value;
+                setCategory(categoryAddSlug);
+                setSlug(slugFormat(categoryAddSlug))
+              }}
               id={"category"}
               name={"category"}
-              label={"category"}
+              label={"Category"}
               type={"text"}
               required={true}
             />
@@ -120,7 +125,7 @@ const Category = ({
               onChange={(e) => setSlug(e.target.value)}
               id={"slug"}
               name={"slug"}
-              label={"slug"}
+              label={"Slug"}
               type={"text"}
               required={true}
             />
@@ -135,7 +140,7 @@ const Category = ({
               value={editCategory.id}
               id="id"
               name="id"
-              type="hidden"
+              type="text"
               label="ID"
               disabled
             />
@@ -144,20 +149,22 @@ const Category = ({
               onChange={(e) =>
                 setEditCategory({ ...editCategory, category: e.target.value })
               }
-              id="slug"
-              name="slug"
-              label="slug"
+              id="category"
+              name="category"
+              label="Category"
               type="text"
               required
             />
             <InputGroup
-              value={editSlug.slug}
-              onChange={(e) =>
-                setEditSlug({ ...editSlug, slug: e.target.value })
-              }
+              value={editCategory.slug}
+              onChange={(e) => {
+                const categoryEditSlug = e.target.value;
+                setCategory(categoryEditSlug);
+                setSlug(slugFormat(categoryEditSlug))
+              }}
               id="slug"
               name="slug"
-              label="slug"
+              label="Slug"
               type="text"
               required
             />

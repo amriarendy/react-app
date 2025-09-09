@@ -23,6 +23,7 @@ const CategoryView = () => {
   const [error, setError] = useState(null);
   const [errCategory, setErrCategory] = useState("");
   const [editCategory, setEditCategory] = useState("");
+  const [editSlug, setEditSlug] = useState("");
 
   const getData = async () => {
     try {
@@ -41,10 +42,10 @@ const CategoryView = () => {
 
   const handleAdd = async (category, onSuccess) => {
     try {
-      await axiosJWT.post(`${SERVER_API()}/master/categories`, { category });
+      await axiosJWT.post(`${SERVER_API()}/master/categories`, { category, slug });
       setErrCategory("");
-      await getData(); // refresh data
-      if (onSuccess) onSuccess(); // misalnya untuk close modal
+      await getData();
+      if (onSuccess) onSuccess();
     } catch (error) {
       if (error.response?.data?.errors) {
         const errors = error.response.data.errors;
@@ -65,12 +66,12 @@ const CategoryView = () => {
       });
       setEditCategory({ id: "", category: "", slug: "" }); // Reset input fields
       setErrCategory("");
-      await getData(); // Refresh data
-      if (onSuccess) onSuccess(); // close modal dari child
+      await getData();
+      if (onSuccess) onSuccess();
     } catch (error) {
       if (error.response?.data?.errors) {
         const errors = error.response.data.errors;
-        const categoryError = errors.find((err) => err.field === "tag");
+        const categoryError = errors.find((err) => err.field === "category");
         if (categoryError) setErrCategory(categoryError.message);
       } else {
         setErrCategory("An error occurred");
