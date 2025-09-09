@@ -3,6 +3,7 @@ export function Input({
   type,
   name,
   placeholder,
+  classname,
   required,
   value,
   onChange,
@@ -17,7 +18,7 @@ export function Input({
         id={id}
         value={value}
         onChange={onChange}
-        className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className={`${classname} block w-full p-2.5 text-gray-900 sm:text-sm rounded-lg shadow-sm border border-gray-300 focus:ring-gray-400 focus:border-gray-400 dark:text-white dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-gray-600 dark:focus:border-gray-600`}
         placeholder={placeholder}
         {...(required ? { required: true } : {})}
         {...(readonly ? { readOnly: true } : {})}

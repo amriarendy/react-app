@@ -11,6 +11,8 @@ import ModalForm from "../../../../elements/modal/ModalForm";
 import InputGroup from "../../../../elements/input";
 import Button from "../../../../elements/button/Button";
 import { slugFormat } from "../../../../../libs/utils/text";
+import InputButton from "../../../../elements/input/InputButton";
+import { FaRegEye, FaRegEyeSlash, FaSearch } from "react-icons/fa";
 
 const Category = ({
   data,
@@ -39,10 +41,20 @@ const Category = ({
 
   const handleEditSubmit = (e) => {
     e.preventDefault();
-    onEdit(editCategory.id, editCategory.category, editSlug.slug, () => {
+    onEdit(editCategory.id, editCategory.category, editCategory.slug, () => {
       setEditCategory({ id: "", category: "", slug: "" });
       toggleModal();
     });
+  };
+
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditCategory((prev) => ({ ...prev, [name]: value }));
+  };
+  const [isReadOnly, setReadOnly] = useState(true);
+
+  const toggleReadOnly = () => {
+    setReadOnly(!isReadOnly);
   };
 
   return (
@@ -112,7 +124,7 @@ const Category = ({
               onChange={(e) => {
                 const categoryAddSlug = e.target.value;
                 setCategory(categoryAddSlug);
-                setSlug(slugFormat(categoryAddSlug))
+                setSlug(slugFormat(categoryAddSlug));
               }}
               id={"category"}
               name={"category"}
@@ -146,9 +158,13 @@ const Category = ({
             />
             <InputGroup
               value={editCategory.category}
-              onChange={(e) =>
-                setEditCategory({ ...editCategory, category: e.target.value })
-              }
+              onChange={(e) => {
+                handleEditChange(e);
+                setEditCategory((prev) => ({
+                  ...prev,
+                  slug: slugFormat(e.target.value),
+                }));
+              }}
               id="category"
               name="category"
               label="Category"
@@ -160,7 +176,7 @@ const Category = ({
               onChange={(e) => {
                 const categoryEditSlug = e.target.value;
                 setCategory(categoryEditSlug);
-                setSlug(slugFormat(categoryEditSlug))
+                setSlug(slugFormat(categoryEditSlug));
               }}
               id="slug"
               name="slug"
@@ -171,6 +187,29 @@ const Category = ({
             {errCategory && (
               <p className="text-red-500 text-sm">{errCategory}</p>
             )}
+            <InputButton
+              value={editCategory.slug}
+              onChange={(e) => {
+                const categoryEditSlug = e.target.value;
+                setCategory(categoryEditSlug);
+                setSlug(slugFormat(categoryEditSlug));
+              }}
+              id="slug"
+              name="slug"
+              label="Slug"
+              type="text"
+              onClick={toggleReadOnly}
+              classname={`${
+                isReadOnly ? "bg-gray-300 dark:bg-gray-700" : "dark:bg-gray-100"
+              }`}
+              required
+            >
+              {isReadOnly ? (
+                <FaRegEyeSlash className="w-4 h-4" />
+              ) : (
+                <FaRegEye className="w-4 h-4" />
+              )}
+            </InputButton>
           </Modal>
         </ModalForm>
       )}

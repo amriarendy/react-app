@@ -23,7 +23,6 @@ const CategoryView = () => {
   const [error, setError] = useState(null);
   const [errCategory, setErrCategory] = useState("");
   const [editCategory, setEditCategory] = useState("");
-  const [editSlug, setEditSlug] = useState("");
 
   const getData = async () => {
     try {
@@ -40,9 +39,12 @@ const CategoryView = () => {
     getData();
   }, []);
 
-  const handleAdd = async (category, onSuccess) => {
+  const handleAdd = async (category, slug, onSuccess) => {
     try {
-      await axiosJWT.post(`${SERVER_API()}/master/categories`, { category, slug });
+      await axiosJWT.post(`${SERVER_API()}/master/categories`, {
+        category,
+        slug,
+      });
       setErrCategory("");
       await getData();
       if (onSuccess) onSuccess();
