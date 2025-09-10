@@ -6,10 +6,13 @@ import BlankPage from "./pages/panel/tamplates/BlankPage";
 import AddBlog from "./pages/panel/blog/AddBlog";
 import EditBlog from "./pages/panel/blog/EditBlog";
 import User from "./pages/panel/user/User";
-import Test from "./pages/panel/tamplates/Test";
-import Category from "./pages/panel/master/Category";
 import AddUser from "./pages/panel/user/AddUser";
 import EditUser from "./pages/panel/user/EditUser";
+import UserPage from "./pages/panel/user/UserPage";
+import AddUserPage from "./pages/panel/user/AddUserPage";
+import EditUserPage from "./pages/panel/user/EditUserPage";
+import Test from "./pages/panel/tamplates/Test";
+import Category from "./pages/panel/master/Category";
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import ResetPasswordPage from "./pages/auth/ResetPasswordPage";
@@ -74,6 +77,13 @@ function App() {
           <Route path="/dashboard/user" element={<User />} />
           <Route path="/dashboard/user/add" element={<AddUser />} />
           <Route path="/dashboard/user/edit/:param" element={<EditUser />} />
+          {/* users */}
+          <Route path="/dashboard/user-page" element={<UserPage />} />
+          <Route path="/dashboard/user/add-page" element={<AddUserPage />} />
+          <Route
+            path="/dashboard/user/edit-page/:param"
+            element={<EditUserPage />}
+          />
           {/* layouts */}
           <Route path="/dashboard/templates/blank" element={<BlankPage />} />
           <Route path="/dashboard/templates/layout" element={<Layout />} />

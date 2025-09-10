@@ -152,7 +152,7 @@ const Category = ({
               value={editCategory.id}
               id="id"
               name="id"
-              type="text"
+              type="hidden"
               label="ID"
               disabled
             />
@@ -171,22 +171,6 @@ const Category = ({
               type="text"
               required
             />
-            <InputGroup
-              value={editCategory.slug}
-              onChange={(e) => {
-                const categoryEditSlug = e.target.value;
-                setCategory(categoryEditSlug);
-                setSlug(slugFormat(categoryEditSlug));
-              }}
-              id="slug"
-              name="slug"
-              label="Slug"
-              type="text"
-              required
-            />
-            {errCategory && (
-              <p className="text-red-500 text-sm">{errCategory}</p>
-            )}
             <InputButton
               value={editCategory.slug}
               onChange={(e) => {
@@ -203,6 +187,7 @@ const Category = ({
                 isReadOnly ? "bg-gray-300 dark:bg-gray-700" : "dark:bg-gray-100"
               }`}
               required
+              readonly={isReadOnly ? { readonly: true } : {}}
             >
               {isReadOnly ? (
                 <FaRegEyeSlash className="w-4 h-4" />
