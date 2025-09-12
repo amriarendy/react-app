@@ -9,8 +9,8 @@ const UserView = () => {
   const breadCrumbs = {
     page: "User",
     data: [
-      { page: "Templates", route: "/dashboard/master/user" },
-      { page: "User", route: "/dashboard/master/user" },
+      { page: "Templates", route: "/dashboard/user" },
+      { page: "User", route: "/dashboard/user" },
     ],
   };
 
@@ -25,7 +25,7 @@ const UserView = () => {
 
   const getData = async () => {
     try {
-      const response = await axiosJWT.get(`${SERVER_API()}/master/tags`);
+      const response = await axiosJWT.get(`${SERVER_API()}/users`);
       setData(response.data);
     } catch (error) {
       setError(error);
@@ -40,7 +40,7 @@ const UserView = () => {
 
   const handleAdd = async (tag, onSuccess) => {
     try {
-      await axiosJWT.post(`${SERVER_API()}/master/tags`, { tag });
+      await axiosJWT.post(`${SERVER_API()}/users`, { tag });
       setErrTag("");
       await getData(); // refresh data
       if (onSuccess) onSuccess(); // misalnya untuk close modal

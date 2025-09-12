@@ -62,7 +62,12 @@ const User = ({
                 <Td classname={"text-center font-medium w-14 flex-none"}>
                   {index + 1}
                 </Td>
-                <Td classname={"font-medium w-64 flex-auto"}>{item.tag}</Td>
+                <Td classname={"font-medium w-64 flex-auto"}>{item.photo}</Td>
+                <Td classname={"font-medium w-64 flex-auto"}>{item.name}</Td>
+                <Td classname={"font-medium w-64 flex-auto"}>{item.gender}</Td>
+                <Td classname={"font-medium w-64 flex-auto"}>{item.phone}</Td>
+                <Td classname={"font-medium w-64 flex-auto"}>{item.dob}</Td>
+                <Td classname={"font-medium w-64 flex-auto"}>{item.status}</Td>
                 <Td classname={"font-medium w-32 flex-auto space-x-2"}>
                   <Button
                     id={"btnEdit"}

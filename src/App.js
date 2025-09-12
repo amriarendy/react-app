@@ -24,6 +24,7 @@ import Form from "./pages/panel/tamplates/Form";
 import TableDefault from "./pages/panel/tamplates/TableDefault";
 import PopupPage from "./pages/panel/tamplates/PopupPage";
 import Image from "./pages/panel/tamplates/Image";
+import ImagePage from "./pages/panel/tamplates/ImagePage";
 import PageError from "./pages/panel/tamplates/PageError";
 import PageLoading from "./pages/panel/tamplates/PageLoading";
 import Tag from "./pages/panel/master/Tag";
@@ -101,6 +102,10 @@ function App() {
           />
           <Route path="/dashboard/templates/grid-cols" element={<GridCols />} />
           <Route path="/dashboard/templates/image" element={<Image />} />
+          <Route
+            path="/dashboard/templates/image-page"
+            element={<ImagePage />}
+          />
           <Route path="/dashboard/templates/card" element={<Card />} />
           <Route
             path="/dashboard/templates/page-error"
