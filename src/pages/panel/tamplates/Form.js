@@ -1,4 +1,4 @@
-import PanelLayout from "../PanelLayout";
+import Layout from "../../../components/templates/panel/layouts";
 import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
 import { Input, InputButton, InputFile } from "../../../components/atoms/Input";
 import Option from "../../../components/atoms/Option";
@@ -46,7 +46,7 @@ const Form = () => {
 
   return (
     <>
-      <PanelLayout>
+      <Layout>
         <Breadcrumbs breadCrumbs={breadCrumbs} />
         <div className="py-8 bg-white border border-gray-200 rounded-lg shadow-sm px-4 mx-auto max-w-2xl lg:py-4 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
           <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
@@ -202,7 +202,7 @@ const Form = () => {
             />
           </form>
         </div>
-      </PanelLayout>
+      </Layout>
     </>
   );
 };

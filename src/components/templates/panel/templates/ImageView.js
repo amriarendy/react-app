@@ -1,7 +1,7 @@
 import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
-import Image from "../../../organisms/panel/templates/Image";
+import Images from "../../../organisms/panel/templates/Images";
 
-const ImagekView = () => {
+const ImageView = () => {
   const breadCrumbs = {
     page: "Image",
     data: [
@@ -12,9 +12,9 @@ const ImagekView = () => {
   return (
     <>
       <Breadcrumbs breadCrumbs={breadCrumbs} />
-      <Image />
+      <Images />
     </>
   );
 };
 
-export default ImagekView;
+export default ImageView;

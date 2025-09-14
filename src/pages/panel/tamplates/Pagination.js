@@ -1,4 +1,4 @@
-import PanelLayout from "../PanelLayout";
+import Layout from "../../../components/templates/panel/layouts";
 import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
 import Paginate from "../../../components/molecules/pagination/Paginate";
 import PaginatePrevNext from "../../../components/molecules/pagination/PaginatePrevNext";
@@ -15,7 +15,7 @@ const Pagination = () => {
   };
   return (
     <>
-      <PanelLayout>
+      <Layout>
         <Breadcrumbs breadCrumbs={breadCrumbs} />
         <div className="grid grid-cols-1 px-4 pt-6 lg:grid-cols-1 gap-4 mb-4 dark:bg-gray-900">
           {/* Paginate */}
@@ -48,7 +48,7 @@ const Pagination = () => {
             </div>
           </div>
         </div>
-      </PanelLayout>
+      </Layout>
     </>
   );
 };

@@ -1,4 +1,4 @@
-import PanelLayout from "../PanelLayout";
+import Layout from "../../../components/templates/panel/layouts";
 import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
 import Loading from "../../../components/molecules/errors/Loading";
 
@@ -12,12 +12,12 @@ const PageLoading = () => {
   };
   return (
     <>
-      <PanelLayout>
+      <Layout>
         <Breadcrumbs breadCrumbs={breadCrumbs} />
         <div className="flex items-center inset-0 sm:h-full">
           <Loading />
         </div>
-      </PanelLayout>
+      </Layout>
     </>
   );
 };

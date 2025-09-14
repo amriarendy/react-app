@@ -1,15 +1,14 @@
-import PanelLayout from "./PanelLayout";
-import Chart from "../../components/molecules/chart/Chart";
+import Layout from "../../components/templates/panel/layouts";
 import Banner from "../../components/molecules/profile/Banner";
 
 const DashboardPage = () => {
   return (
     <>
-      <PanelLayout>
+      <Layout>
         <section className="bg-white dark:bg-gray-900">
           <Banner />
         </section>
-      </PanelLayout>
+      </Layout>
     </>
   );
 };

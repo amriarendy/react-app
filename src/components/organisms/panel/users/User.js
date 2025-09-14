@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Table from "../../../elements/tables/index";
 import Thead from "../../../elements/tables/Thead";
 import Tbody from "../../../elements/tables/Tbody";
@@ -10,6 +10,7 @@ import Modal from "../../../elements/modal/";
 import ModalForm from "../../../elements/modal/ModalForm";
 import InputGroup from "../../../elements/input";
 import Button from "../../../elements/button/Button";
+import Image from "../../../elements/image/Image";
 
 const User = ({
   data,
@@ -23,7 +24,33 @@ const User = ({
   const [modalType, setModalType] = useState(null);
   const [tag, setTag] = useState("");
   const toggleModal = (type = null) => setModalType(type);
+  const [imageStatus, setImageStatus] = useState({}); // ✅ added
 
+  // simple image checker
+  const imageCheck = async (url) => {
+    try {
+      const res = await fetch(url, { method: "HEAD" });
+      return res.ok;
+    } catch {
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    if (data && data.length > 0) {
+      const imageChecks = async () => {
+        const status = {};
+        await Promise.all(
+          data.map(async (item) => {
+            const result = await imageCheck(item.urlPhoto);
+            status[item.id] = result;
+          })
+        );
+        setImageStatus(status);
+      };
+      imageChecks();
+    }
+  }, [data]);
   const handleAddSubmit = (e) => {
     e.preventDefault();
     onAdd(tag, () => {
@@ -62,7 +89,21 @@ const User = ({
                 <Td classname={"text-center font-medium w-14 flex-none"}>
                   {index + 1}
                 </Td>
-                <Td classname={"font-medium w-64 flex-auto"}>{item.photo}</Td>
+                <Td
+                  classname={
+                    "font-medium w-24 flex-auto flex items-center justify-center"
+                  }
+                >
+                  <Image
+                    src={
+                      imageStatus[item.id]
+                        ? `${item.urlPhoto}`
+                        : "https://placehold.co/150x150?text=Image+Not+Found"
+                    }
+                    alt={item.name}
+                    classname={"rounded-full w-14 h-14"}
+                  />
+                </Td>
                 <Td classname={"font-medium w-64 flex-auto"}>{item.name}</Td>
                 <Td classname={"font-medium w-64 flex-auto"}>{item.gender}</Td>
                 <Td classname={"font-medium w-64 flex-auto"}>{item.phone}</Td>

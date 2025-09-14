@@ -1,4 +1,4 @@
-import PanelLayout from "../PanelLayout";
+import Layout from "../../../components/templates/panel/layouts";
 import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
 
 const Card = () => {
@@ -11,7 +11,7 @@ const Card = () => {
   };
   return (
     <>
-      <PanelLayout>
+      <Layout>
         <Breadcrumbs breadCrumbs={breadCrumbs} />
         <div className="grid grid-cols-1 px-4 pt-6 lg:grid-cols-1 gap-4 mb-4 dark:bg-gray-900">
           <h1 className="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
@@ -29,7 +29,7 @@ const Card = () => {
             PageMaker including versions of Lorem Ipsum.
           </p>
         </div>
-      </PanelLayout>
+      </Layout>
     </>
   );
 };

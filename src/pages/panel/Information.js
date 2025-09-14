@@ -3,7 +3,7 @@ import { Button } from "../../components/ui/Button";
 import { Input, InputFile } from "../../components/ui/Input";
 import Option from "../../components/ui/Option";
 import TextArea from "../../components/ui/TextArea";
-import PanelLayout from "./PanelLayout";
+import Layout from "../../components/templates/panel/layouts";
 import Radio from "../../components/ui/Radio";
 import { ImageRounded } from "../../components/ui/Image";
 import Card from "../../components/card/Card";
@@ -22,7 +22,7 @@ const Information = () => {
   };
   return (
     <>
-      <PanelLayout>
+      <Layout>
         <Breadcrumbs breadCrumbs={breadCrumbs} />
         <div className="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900">
           <div className="col-span-full xl:col-auto">
@@ -278,7 +278,7 @@ const Information = () => {
             </Card>
           </div>
         </div>
-      </PanelLayout>
+      </Layout>
     </>
   );
 };

@@ -1,16 +1,16 @@
-import PanelLayout from "../PanelLayout";
-import ImagekView from "../../../components/templates/panel/templates/ImageView";
+import Layout from "../../../components/templates/panel/layouts";
+import ImageView from "../../../components/templates/panel/templates/ImageView";
 
-const BlankPage = () => {
+const ImagePage = () => {
   return (
     <>
-      <PanelLayout>
+      <Layout>
         <section className="min-h-screen bg-gray-100 dark:bg-gray-900">
-          <ImagekView />
+          <ImageView />
         </section>
-      </PanelLayout>
+      </Layout>
     </>
   );
 };
 
-export default BlankPage;
+export default ImagePage;

@@ -61,7 +61,13 @@ export function ImageSquareSmall({ id, src, alt }) {
 export function ImageRoundedSmall({ id, src, alt }) {
   return (
     <>
-      <img id={id} src={src} alt={alt} title={alt} className="rounded-xl w-9 h-9" />
+      <img
+        id={id}
+        src={src}
+        alt={alt}
+        title={alt}
+        className="rounded-xl w-9 h-9"
+      />
     </>
   );
 }
@@ -99,27 +105,6 @@ export function ImageCaption({ id, src, alt, caption }) {
   );
 }
 
-export function ImageGray({ id, route, src, alt, caption }) {
-  return (
-    <>
-      <figure className="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-        <Link to={route}>
-          <img id={id} src={src} alt={alt} title={alt} className="rounded-lg" />
-        </Link>
-        <figcaption className="absolute px-4 text-lg text-white bottom-6">
-          <p>{caption}</p>
-        </figcaption>
-      </figure>
-      <img
-        className="h-auto max-w-full transition-all duration-300 rounded-lg cursor-pointer filter grayscale hover:grayscale-0"
-        src={src}
-        alt={alt}
-        title={alt}
-      />
-    </>
-  );
-}
-
 export function ImageGrayCaption({ id, route, src, alt, caption }) {
   return (
     <>
@@ -138,13 +123,13 @@ export function ImageGrayCaption({ id, route, src, alt, caption }) {
 export function ImageBlur({ id, src, alt }) {
   return (
     <>
-    <img
-      id={id}
-      className="h-auto max-w-full transition-all duration-300 rounded-lg blur-sm hover:blur-none"
-      src={src}
-      alt={alt}
-      title={alt}
-    />
+      <img
+        id={id}
+        className="h-auto max-w-full transition-all duration-300 rounded-lg blur-sm hover:blur-none"
+        src={src}
+        alt={alt}
+        title={alt}
+      />
     </>
   );
 }

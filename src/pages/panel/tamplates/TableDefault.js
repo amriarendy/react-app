@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PanelLayout from "../PanelLayout";
+import Layout from "../../../components/templates/panel/layouts";
 import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
 import AttributeTable from "../../../components/organisms/table/default/AttributeTable";
 import Table from "../../../components/organisms/table/default/Table";
@@ -42,7 +42,7 @@ const TableDefault = () => {
 
   return (
     <>
-      <PanelLayout>
+      <Layout>
         <Breadcrumbs breadCrumbs={breadCrumbs} />
         <div className="mx-auto max-w-screen-xl mb-4 px-4 lg:px-12">
           <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
@@ -90,7 +90,7 @@ const TableDefault = () => {
         {isAddModalOpen && (
           <Modal body={ADD_TABLE_DEFAULT_FORMAT} toggleModal={toggleAddModal} />
         )}
-      </PanelLayout>
+      </Layout>
     </>
   );
 };

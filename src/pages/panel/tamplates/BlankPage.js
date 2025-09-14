@@ -1,14 +1,14 @@
-import PanelLayout from "../PanelLayout";
+import Layout from "../../../components/templates/panel/layouts";
 import BlankView from "../../../components/templates/panel/templates/BlankView";
 
 const BlankPage = () => {
   return (
     <>
-      <PanelLayout>
+      <Layout>
         <section className="min-h-screen bg-gray-100 dark:bg-gray-900">
           <BlankView />
         </section>
-      </PanelLayout>
+      </Layout>
     </>
   );
 };

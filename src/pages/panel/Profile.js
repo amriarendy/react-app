@@ -1,5 +1,5 @@
+import Layout from "../../components/templates/panel/layouts";
 import Breadcrumbs from "../../components/molecules/breadcrumbs/Breadcrumbs";
-import PanelLayout from "./PanelLayout";
 
 const Profile = () => {
   const breadCrumbs = {
@@ -8,12 +8,12 @@ const Profile = () => {
   };
   return (
     <>
-      <PanelLayout>
+      <Layout>
         <Breadcrumbs breadCrumbs={breadCrumbs} />
         <div className="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900">
           WRITE YOUR HOLLY CONTENT HERE
         </div>
-      </PanelLayout>
+      </Layout>
     </>
   );
 };

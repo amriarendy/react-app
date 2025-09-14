@@ -1,4 +1,4 @@
-import PanelLayout from "../PanelLayout";
+import Layout from "../../../components/templates/panel/layouts";
 import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
 import Errors from "../../../components/molecules/errors/Errors";
 
@@ -12,12 +12,12 @@ const PageError = () => {
   };
   return (
     <>
-      <PanelLayout>
+      <Layout>
         <Breadcrumbs breadCrumbs={breadCrumbs} />
         <div className="flex items-center inset-0 sm:h-full">
           <Errors code={500} status="Errors" message="Internal Server Error" />
         </div>
-      </PanelLayout>
+      </Layout>
     </>
   );
 };

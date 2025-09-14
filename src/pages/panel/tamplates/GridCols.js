@@ -1,4 +1,4 @@
-import PanelLayout from "../PanelLayout";
+import Layout from "../../../components/templates/panel/layouts";
 import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
 
 const GridCols = () => {
@@ -11,7 +11,7 @@ const GridCols = () => {
   };
   return (
     <>
-      <PanelLayout>
+      <Layout>
         <Breadcrumbs breadCrumbs={breadCrumbs} />
         <h2 class="text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-3xl dark:text-white">
           Horizontal: Row: 1, Columns: 4
@@ -174,7 +174,7 @@ const GridCols = () => {
           No Grid
         </h2>
         <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4"></div>
-      </PanelLayout>
+      </Layout>
     </>
   );
 };
