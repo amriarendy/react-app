@@ -1,18 +1,18 @@
 import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
-import Blank from "../../../organisms/panel/templates/Blank";
+import EditUser from "../../../organisms/panel/users/EditUser";
 
 const EditUserView = () => {
   const breadCrumbs = {
-    page: "Blank",
+    page: "Edit User",
     data: [
-      { page: "Templates", route: "/dashboard/templates/blank" },
-      { page: "Blank", route: "/dashboard/templates/blank" },
+      { page: "Templates", route: "/dashboard/templates/edit-user" },
+      { page: "Edit User", route: "/dashboard/templates/edit-user" },
     ],
   };
   return (
     <>
       <Breadcrumbs breadCrumbs={breadCrumbs} />
-      <Blank />
+      <EditUser />
     </>
   );
 };

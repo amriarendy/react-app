@@ -5,14 +5,10 @@ import Profile from "./pages/panel/Profile";
 import BlankPage from "./pages/panel/tamplates/BlankPage";
 import AddBlog from "./pages/panel/blog/AddBlog";
 import EditBlog from "./pages/panel/blog/EditBlog";
-import User from "./pages/panel/user/User";
-import AddUser from "./pages/panel/user/AddUser";
-import EditUser from "./pages/panel/user/EditUser";
 import UserPage from "./pages/panel/user/UserPage";
 import AddUserPage from "./pages/panel/user/AddUserPage";
 import EditUserPage from "./pages/panel/user/EditUserPage";
 import Test from "./pages/panel/tamplates/Test";
-import Category from "./pages/panel/master/Category";
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import ResetPasswordPage from "./pages/auth/ResetPasswordPage";
@@ -26,8 +22,8 @@ import PopupPage from "./pages/panel/tamplates/PopupPage";
 import ImagePage from "./pages/panel/tamplates/ImagePage";
 import PageError from "./pages/panel/tamplates/PageError";
 import PageLoading from "./pages/panel/tamplates/PageLoading";
-import Tag from "./pages/panel/master/Tag";
 import TagPage from "./pages/panel/master/TagPage";
+import CategoryPage from "./pages/panel/master/CategoryPage";
 import WelcomePage from "./pages/WelcomePage";
 import ArticlesPage from "./pages/landingpage/articles/ArticlesPage";
 import ArticleDetailPage from "./pages/landingpage/articles/ArticleDetailPage";
@@ -39,7 +35,6 @@ import EcommercePage from "./pages/landingpage/ecommerce/EcommercePage";
 import EcommerceDetailPage from "./pages/landingpage/ecommerce/EcommerceDetailPage";
 import BuildAppPage from "./pages/landingpage/BuildAppPage";
 import TablePage from "./pages/panel/tamplates/TablePage";
-import CategoryPage from "./pages/panel/master/CategoryPage";
 
 function App() {
   return (
@@ -66,22 +61,13 @@ function App() {
           <Route path="/dashboard/blog/add" element={<AddBlog />} />
           <Route path="/dashboard/blog/edit/:param" element={<EditBlog />} />
           {/* master */}
-          <Route path="/dashboard/master/category" element={<Category />} />
-          <Route
-            path="/dashboard/master/category-page"
-            element={<CategoryPage />}
-          />
-          <Route path="/dashboard/master/tag" element={<Tag />} />
-          <Route path="/dashboard/master/tag-page" element={<TagPage />} />
+          <Route path="/dashboard/master/category" element={<CategoryPage />} />
+          <Route path="/dashboard/master/tag" element={<TagPage />} />
           {/* users */}
-          <Route path="/dashboard/user" element={<User />} />
-          <Route path="/dashboard/user/add" element={<AddUser />} />
-          <Route path="/dashboard/user/edit/:param" element={<EditUser />} />
-          {/* users */}
-          <Route path="/dashboard/user-page" element={<UserPage />} />
-          <Route path="/dashboard/user/add-page" element={<AddUserPage />} />
+          <Route path="/dashboard/user" element={<UserPage />} />
+          <Route path="/dashboard/user/add" element={<AddUserPage />} />
           <Route
-            path="/dashboard/user/edit-page/:param"
+            path="/dashboard/user/edit/:param"
             element={<EditUserPage />}
           />
           {/* layouts */}

@@ -69,7 +69,7 @@ const User = ({
 
   return (
     <>
-      <Table attribute={"null"} toggleModal={() => toggleModal("add")}>
+      <Table attribute={() => toggleModal("add")}>
         <Thead>
           <Trow>
             <Th classname={"pr-1 sm:pl-6"}>No</Th>

@@ -12,6 +12,7 @@ const InputGroup = ({
   onChange,
   readonly,
   disabled,
+  validate,
 }) => {
   return (
     <>
@@ -29,6 +30,9 @@ const InputGroup = ({
           {...(readonly ? { readOnly: true } : {})}
           {...(disabled ? { disabled: true } : {})}
         />
+        {validate && (
+          <p className="font-semibold text-red-600 mt-2 text-sm">{validate}</p>
+        )}
       </div>
     </>
   );

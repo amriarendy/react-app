@@ -1,6 +1,5 @@
 import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
 import Category from "../../../organisms/panel/master/category";
-import useDummy from "../../../../hooks/useDummy";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { axiosJWT } from "../../../../libs/utils/axiosJwt";
@@ -8,21 +7,20 @@ import { SERVER_API } from "../../../../services/api";
 
 const CategoryView = () => {
   const breadCrumbs = {
-    page: "Category View",
+    page: "Category",
     data: [
-      { page: "Templates", route: "/dashboard/master/Category" },
-      { page: "Category View", route: "/dashboard/master/Category" },
+      { page: "Templates", route: "/dashboard/master/category" },
+      { page: "Category", route: "/dashboard/master/category" },
     ],
   };
 
-  const navigate = useNavigate();
-
   // state fetch data
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [errCategory, setErrCategory] = useState("");
   const [editCategory, setEditCategory] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [validate, setvalidate] = useState("");
 
   const getData = async () => {
     try {
@@ -94,16 +92,6 @@ const CategoryView = () => {
     }
   };
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error.message}</p>;
-  }
-
-  const columns = data && data.length > 0 ? data : <p>Data Not Found..</p>;
-
   return (
     <>
       <Breadcrumbs breadCrumbs={breadCrumbs} />
@@ -115,6 +103,9 @@ const CategoryView = () => {
         setEditCategory={setEditCategory}
         editCategory={editCategory}
         errCategory={errCategory}
+        validate={validate}
+        loading={loading}
+        error={error}
       />
     </>
   );
