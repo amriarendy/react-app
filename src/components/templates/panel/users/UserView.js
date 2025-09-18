@@ -9,8 +9,8 @@ const UserView = () => {
   const breadCrumbs = {
     page: "User",
     data: [
-      { page: "Templates", route: "/dashboard/user" },
-      { page: "User", route: "/dashboard/user" },
+      { page: "Users", route: "/dashboard/user" },
+      { page: "List", route: "/dashboard/user" },
     ],
   };
 

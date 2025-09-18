@@ -5,8 +5,8 @@ const AddUserView = () => {
   const breadCrumbs = {
     page: "Add User",
     data: [
-      { page: "Templates", route: "/dashboard/templates/add-user" },
-      { page: "Add User", route: "/dashboard/templates/add-user" },
+      { page: "Users", route: "/dashboard/users" },
+      { page: "Add Users", route: "/dashboard/users/add-user" },
     ],
   };
   return (

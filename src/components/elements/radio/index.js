@@ -1,12 +1,11 @@
 import Label from "./Label";
-import TextArea from "./TextArea";
+import Radio from "./Radio";
 
-const TextAreaGroup = ({
+const RadioGroup = ({
   id,
   type,
   name,
   label,
-  rows,
   placeholder,
   required,
   value,
@@ -18,22 +17,25 @@ const TextAreaGroup = ({
   validate,
 }) => {
   return (
-    <>
-      <div className="mb-2">
+    <>            {/* <div class="flex items-center">
+    <input id="email" name="notification-method" type="radio" checked class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"/>
+    <label for="email" class="ml-3 block text-sm font-medium leading-6 text-gray-900">Email</label>
+</div> */}
+      <div className="mb-2 flex items-center">
         {type !== "hidden" && <Label htmlFor={id} label={label} required={required}/>}
-        <TextArea
+        <Radio
           id={id}
           type={type}
           name={name}
-          rows={rows}
           value={value}
           onChange={onChange}
-          className={`${classname} shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+          className={`${classname}`}
           placeholder={placeholder}
           {...(required ? { required: true } : {})}
           {...(readonly ? { readOnly: true } : {})}
           {...(disabled ? { disabled: true } : {})}
         />
+        <label for={id} class="ml-3 block text-sm font-medium leading-6 text-gray-900">Email</label>
         {caption && (
           <p className="text-sm text-gray-500 dark:text-gray-300">{caption}</p>
         )}
@@ -45,4 +47,4 @@ const TextAreaGroup = ({
   );
 };
 
-export default TextAreaGroup;
+export default RadioGroup;

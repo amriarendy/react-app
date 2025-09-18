@@ -1,14 +1,13 @@
 import { FaSearch } from "react-icons/fa";
 import InputForm from "../input/InputForm";
 import Button from "../button/Button";
+import Href from "../../elements/href/Href"
 
 const Tattribute = ({ attribute }) => {
-  // const [isModalOpen, setIsModalOpen] = useState(false);
+  if (!attribute) return null;
 
-  // const toggleModal = () => {
-  //   setIsModalOpen(!isModalOpen);
-  // };
-
+  const { label, action } = attribute;
+  
   return (
     <>
       <div className="sm:flex sm:items-center">
@@ -24,31 +23,22 @@ const Tattribute = ({ attribute }) => {
           </InputForm>
         </div>
         <div className="sm:flex-none">
-          <Button
-            id={"btnAdd"}
-            type={"button"}
-            onClick={attribute.toggleModal}
-            classname={
-              "p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            }
-          >
-            Create Data
-          </Button>
-          {/* {attribute &&
-            (attribute === toggleModal ? (
+          {typeof action === "function" ? (
               <Button
-                id={"btnDeleteProduct"}
+                id={"btnAdd"}
                 type={"button"}
-                onClick={toggleModal}
+                onClick={action}
                 classname={
                   "p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 }
               >
-                Create Data
+                {label}
               </Button>
             ) : (
-              <Href route={attribute} label="Add Data" color="blue" />
-            ))} */}
+              <Href route={action} label={label} classname={
+                "p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              }>{label}</Href>
+            )}
         </div>
       </div>
     </>

@@ -17,6 +17,7 @@ import GridCols from "./pages/panel/tamplates/GridCols";
 import Layout from "./pages/panel/tamplates/Layout";
 import Toast from "./pages/panel/tamplates/Toast";
 import Form from "./pages/panel/tamplates/Form";
+import FormPage from "./pages/panel/tamplates/FormPage";
 import TableDefault from "./pages/panel/tamplates/TableDefault";
 import PopupPage from "./pages/panel/tamplates/PopupPage";
 import ImagePage from "./pages/panel/tamplates/ImagePage";
@@ -64,10 +65,10 @@ function App() {
           <Route path="/dashboard/master/category" element={<CategoryPage />} />
           <Route path="/dashboard/master/tag" element={<TagPage />} />
           {/* users */}
-          <Route path="/dashboard/user" element={<UserPage />} />
-          <Route path="/dashboard/user/add" element={<AddUserPage />} />
+          <Route path="/dashboard/users" element={<UserPage />} />
+          <Route path="/dashboard/users/add" element={<AddUserPage />} />
           <Route
-            path="/dashboard/user/edit/:param"
+            path="/dashboard/users/edit/:param"
             element={<EditUserPage />}
           />
           {/* layouts */}
@@ -80,6 +81,7 @@ function App() {
             element={<TableDefault />}
           />
           <Route path="/dashboard/templates/form" element={<Form />} />
+          <Route path="/dashboard/templates/form-page" element={<FormPage />} />
           <Route path="/dashboard/templates/popup" element={<PopupPage />} />
           <Route
             path="/dashboard/templates/Pagination"

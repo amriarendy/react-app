@@ -11,6 +11,7 @@ import ModalForm from "../../../elements/modal/ModalForm";
 import InputGroup from "../../../elements/input";
 import Button from "../../../elements/button/Button";
 import Image from "../../../elements/image/Image";
+import Href from "../../../elements/href/Href";
 
 const User = ({
   data,
@@ -69,7 +70,7 @@ const User = ({
 
   return (
     <>
-      <Table attribute={() => toggleModal("add")}>
+      <Table attribute={{ label: "Add Data", action: "/dashboard/users/add" }} >
         <Thead>
           <Trow>
             <Th classname={"pr-1 sm:pl-6"}>No</Th>
@@ -110,18 +111,15 @@ const User = ({
                 <Td classname={"font-medium w-64 flex-auto"}>{item.dob}</Td>
                 <Td classname={"font-medium w-64 flex-auto"}>{item.status}</Td>
                 <Td classname={"font-medium w-32 flex-auto space-x-2"}>
-                  <Button
+                  <Href
                     id={"btnEdit"}
-                    onClick={() => {
-                      setEditTag({ id: item.id, tag: item.tag });
-                      toggleModal("edit");
-                    }}
+                    route={"/dashboard/users/edit"}
                     classname={
                       "rounded rounded-lg inline-flex items-center px-2 py-1 text-white bg-yellow-400 hover:bg-yellow-500"
                     }
                   >
                     Edit
-                  </Button>
+                  </Href>
                   <Button
                     id={"btnDelete"}
                     route={"button"}
@@ -142,46 +140,6 @@ const User = ({
           )}
         </Tbody>
       </Table>
-      {modalType === "add" && (
-        <ModalForm onSubmit={handleAddSubmit}>
-          <Modal label={"Create Data"} toggleModal={() => toggleModal()}>
-            <InputGroup
-              value={tag}
-              onChange={(e) => setTag(e.target.value)}
-              id={"tag"}
-              name={"tag"}
-              label={"Tag"}
-              type={"text"}
-              required={true}
-            />
-          </Modal>
-        </ModalForm>
-      )}
-
-      {modalType === "edit" && (
-        <ModalForm onSubmit={handleEditSubmit}>
-          <Modal label={"Edit Data"} toggleModal={() => toggleModal()}>
-            <InputGroup
-              value={editTag.id}
-              id="id"
-              name="id"
-              type="hidden"
-              label="ID"
-              disabled
-            />
-            <InputGroup
-              value={editTag.tag}
-              onChange={(e) => setEditTag({ ...editTag, tag: e.target.value })}
-              id="tag"
-              name="tag"
-              label="Tag"
-              type="text"
-              required
-            />
-            {errTag && <p className="text-red-500 text-sm">{errTag}</p>}
-          </Modal>
-        </ModalForm>
-      )}
     </>
   );
 };

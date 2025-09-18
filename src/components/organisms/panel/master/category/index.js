@@ -66,7 +66,7 @@ const Category = ({
           <Errors code={500} status={error.code} message={error.message} />
         </div>
       ) : (
-        <Table attribute={() => toggleModal("add")}>
+        <Table attribute={{ label: "Create Data", action: () => toggleModal("add") }}>
           <Thead>
             <Trow>
               <Th classname={"pr-1 sm:pl-6"}>No</Th>

@@ -1,16 +1,16 @@
 import Layout from "../../../components/templates/panel/layouts";
-import EditUserView from "../../../components/templates/panel/users/EditUserView";
+import FormView from "../../../components/templates/panel/templates/FormView";
 
-const AddUserPage = () => {
+const FormPage = () => {
   return (
     <>
       <Layout>
         <section className="min-h-screen bg-gray-100 dark:bg-gray-900">
-          <EditUserView />
+          <FormView />
         </section>
       </Layout>
     </>
   );
 };
 
-export default AddUserPage;
+export default FormPage;

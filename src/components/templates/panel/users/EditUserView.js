@@ -5,8 +5,8 @@ const EditUserView = () => {
   const breadCrumbs = {
     page: "Edit User",
     data: [
-      { page: "Templates", route: "/dashboard/templates/edit-user" },
-      { page: "Edit User", route: "/dashboard/templates/edit-user" },
+      { page: "Users", route: "/dashboard/users" },
+      { page: "Edit Users", route: "/dashboard/users/edit-user" },
     ],
   };
   return (
