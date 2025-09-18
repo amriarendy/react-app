@@ -7,6 +7,7 @@ import {
   FaBook,
   FaStoreAlt,
   FaHome,
+  FaAtom,
 } from "react-icons/fa";
 import { IoNewspaperOutline } from "react-icons/io5";
 
@@ -68,6 +69,40 @@ export const SIDEBAR_MENU_ITEMS = [
         key: "hashtag",
         label: "Hashtag",
         route: "/dashboard/master/tag",
+      },
+    ],
+  },
+  {
+    key: "elements",
+    label: "Elements",
+    route: "collapse",
+    icon: (
+      <FaAtom
+        className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+        aria-hidden="true"
+        fill="currentColor"
+      />
+    ),
+    subMenu: [
+      {
+        key: "button",
+        label: "Button",
+        route: "/dashboard/elements/button",
+      },
+      {
+        key: "input",
+        label: "Input",
+        route: "/dashboard/elements/input",
+      },
+      {
+        key: "textarea",
+        label: "Textarea",
+        route: "/dashboard/elements/textarea",
+      },
+      {
+        key: "tables",
+        label: "Tables",
+        route: "/dashboard/elements/tables",
       },
     ],
   },

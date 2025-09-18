@@ -28,6 +28,7 @@ const Category = ({
   const [category, setCategory] = useState("");
   const [slug, setSlug] = useState("");
   const toggleModal = (type = null) => setModalType(type);
+  const [isReadOnly, setReadOnly] = useState(true);
 
   const handleAddSubmit = (e) => {
     e.preventDefault();
@@ -49,7 +50,6 @@ const Category = ({
     const { name, value } = e.target;
     setEditCategory((prev) => ({ ...prev, [name]: value }));
   };
-  const [isReadOnly, setReadOnly] = useState(true);
 
   const toggleReadOnly = () => {
     setReadOnly(!isReadOnly);
@@ -66,7 +66,9 @@ const Category = ({
           <Errors code={500} status={error.code} message={error.message} />
         </div>
       ) : (
-        <Table attribute={{ label: "Create Data", action: () => toggleModal("add") }}>
+        <Table
+          attribute={{ label: "Create Data", action: () => toggleModal("add") }}
+        >
           <Thead>
             <Trow>
               <Th classname={"pr-1 sm:pl-6"}>No</Th>
