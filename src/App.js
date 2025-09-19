@@ -1,10 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DashboardPage from "./pages/panel/DashboardPage";
-import Blog from "./pages/panel/blog/Blog";
 import Profile from "./pages/panel/Profile";
 import BlankPage from "./pages/panel/tamplates/BlankPage";
+import Blog from "./pages/panel/blog/Blog";
 import AddBlog from "./pages/panel/blog/AddBlog";
 import EditBlog from "./pages/panel/blog/EditBlog";
+import BlogPage from "./pages/panel/blog/BlogPage";
+import AddBlogPage from "./pages/panel/blog/AddBlogPage";
+import EditBlogPage from "./pages/panel/blog/EditBlogPage";
 import UserPage from "./pages/panel/user/UserPage";
 import AddUserPage from "./pages/panel/user/AddUserPage";
 import EditUserPage from "./pages/panel/user/EditUserPage";
@@ -58,9 +61,12 @@ function App() {
           <Route path="/Dashboard" element={<DashboardPage />} />
           <Route path="/dashboard/profile" element={<Profile />} />
           {/* blog */}
-          <Route path="/dashboard/blog" element={<Blog />} />
-          <Route path="/dashboard/blog/add" element={<AddBlog />} />
-          <Route path="/dashboard/blog/edit/:param" element={<EditBlog />} />
+          <Route path="/dashboard/blogs" element={<Blog />} />
+          <Route path="/dashboard/blogs/add" element={<AddBlog />} />
+          <Route path="/dashboard/blogs/edit/:param" element={<EditBlog />} />
+          <Route path="/dashboard/blogs-page" element={<BlogPage />} />
+          <Route path="/dashboard/blogs-page/add" element={<AddBlogPage />} />
+          <Route path="/dashboard/blogs-page/edit/:param" element={<EditBlogPage />} />
           {/* master */}
           <Route path="/dashboard/master/category" element={<CategoryPage />} />
           <Route path="/dashboard/master/tag" element={<TagPage />} />
