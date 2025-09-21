@@ -42,8 +42,7 @@ const CategoryEdit = ({ onSubmit, toggleModal, props }) => {
             name="category"
             label="Category"
             type="text"
-            validate={validate}
-            required
+            validate={validate.category}
           />
           <InputButton
             value={editCategory.slug}
@@ -60,8 +59,7 @@ const CategoryEdit = ({ onSubmit, toggleModal, props }) => {
             classname={`${
               isReadOnly ? "bg-gray-300 dark:bg-gray-700" : "dark:bg-gray-100"
             }`}
-            validate={validate}
-            required
+            validate={validate.slug}
             readonly={isReadOnly ? { readonly: true } : {}}
           >
             {isReadOnly ? (

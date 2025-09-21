@@ -66,7 +66,10 @@ function App() {
           <Route path="/dashboard/blogs/edit/:param" element={<EditBlog />} />
           <Route path="/dashboard/blogs-page" element={<BlogPage />} />
           <Route path="/dashboard/blogs-page/add" element={<AddBlogPage />} />
-          <Route path="/dashboard/blogs-page/edit/:param" element={<EditBlogPage />} />
+          <Route
+            path="/dashboard/blogs-page/edit/:param"
+            element={<EditBlogPage />}
+          />
           {/* master */}
           <Route path="/dashboard/master/category" element={<CategoryPage />} />
           <Route path="/dashboard/master/tag" element={<TagPage />} />

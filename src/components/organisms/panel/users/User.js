@@ -52,6 +52,7 @@ const User = ({
       imageChecks();
     }
   }, [data]);
+
   const handleAddSubmit = (e) => {
     e.preventDefault();
     onAdd(tag, () => {
@@ -70,7 +71,7 @@ const User = ({
 
   return (
     <>
-      <Table attribute={{ label: "Add Data", action: "/dashboard/users/add" }} >
+      <Table attribute={{ label: "Add Data", action: "/dashboard/users/add" }}>
         <Thead>
           <Trow>
             <Th classname={"pr-1 sm:pl-6"}>No</Th>

@@ -1,6 +1,5 @@
 import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
 import Category from "../../../organisms/panel/master/category";
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { axiosJWT } from "../../../../libs/utils/axiosJwt";
 import { SERVER_API } from "../../../../services/api";
@@ -16,11 +15,10 @@ const CategoryView = () => {
 
   // state fetch data
   const [data, setData] = useState([]);
-  const [errCategory, setErrCategory] = useState("");
   const [editCategory, setEditCategory] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [validate, setvalidate] = useState("");
+  const [validate, setValidate] = useState({ category: "", slug: "" });
 
   const getData = async () => {
     try {
@@ -43,16 +41,23 @@ const CategoryView = () => {
         category,
         slug,
       });
-      setErrCategory("");
+      setValidate({ category: "", slug: "" });
       await getData();
       if (onSuccess) onSuccess();
     } catch (error) {
       if (error.response?.data?.errors) {
         const errors = error.response.data.errors;
+        let newValidate = { category: "", slug: "" };
+
         const categoryError = errors.find((err) => err.field === "category");
-        if (categoryError) setErrCategory(categoryError.message);
+        const slugError = errors.find((err) => err.field === "slug");
+
+        if (categoryError) newValidate.category = categoryError.message;
+        if (slugError) newValidate.slug = slugError.message;
+
+        setValidate(newValidate);
       } else {
-        setErrCategory("An error occurred");
+        setValidate({ category: "An error occurred", slug: "" });
       }
     }
   };
@@ -64,17 +69,24 @@ const CategoryView = () => {
         category,
         slug,
       });
-      setEditCategory({ id: "", category: "", slug: "" }); // Reset input fields
-      setErrCategory("");
+      setEditCategory({ id: "", category: "", slug: "" });
+      setValidate({ category: "", slug: "" });
       await getData();
       if (onSuccess) onSuccess();
     } catch (error) {
       if (error.response?.data?.errors) {
         const errors = error.response.data.errors;
+        let newValidate = { category: "", slug: "" };
+
         const categoryError = errors.find((err) => err.field === "category");
-        if (categoryError) setErrCategory(categoryError.message);
+        const slugError = errors.find((err) => err.field === "slug");
+
+        if (categoryError) newValidate.category = categoryError.message;
+        if (slugError) newValidate.slug = slugError.message;
+
+        setValidate(newValidate);
       } else {
-        setErrCategory("An error occurred");
+        setValidate({ category: "An error occurred", slug: "" });
       }
     }
   };
@@ -102,7 +114,6 @@ const CategoryView = () => {
         onDelete={handleDelete}
         setEditCategory={setEditCategory}
         editCategory={editCategory}
-        errCategory={errCategory}
         validate={validate}
         loading={loading}
         error={error}

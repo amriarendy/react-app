@@ -1,10 +1,18 @@
 import Modal from "../../../../elements/modal/";
 import ModalForm from "../../../../elements/modal/ModalForm";
 import InputGroup from "../../../../elements/input";
-import { FaRegEye, FaRegEyeSlash, FaSearch } from "react-icons/fa";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import InputButton from "../../../../elements/input/InputButton";
+import { useState } from "react";
 
 const CategoryAdd = ({ onSubmit, toggleModal, props }) => {
   const { slugFormat, validate, category, setCategory, slug, setSlug } = props;
+  const [isReadOnly, setReadOnly] = useState(true);
+
+  const toggleReadOnly = () => {
+    setReadOnly(!isReadOnly);
+  };
+
   return (
     <>
       {" "}
@@ -13,27 +21,38 @@ const CategoryAdd = ({ onSubmit, toggleModal, props }) => {
           <InputGroup
             value={category}
             onChange={(e) => {
-              const categoryAddSlug = e.target.value;
-              setCategory(categoryAddSlug);
-              setSlug(slugFormat(categoryAddSlug));
+              const categorySlug = e.target.value;
+              setCategory(categorySlug);
+              setSlug(slugFormat(categorySlug));
             }}
             id={"category"}
             name={"category"}
             label={"Category"}
             type={"text"}
-            validate={validate}
-            required={true}
+            validate={validate.category}
           />
-          <InputGroup
+          <InputButton
             value={slug}
             onChange={(e) => setSlug(e.target.value)}
-            id={"slug"}
-            name={"slug"}
-            label={"Slug"}
-            type={"text"}
-            validate={validate}
-            required={true}
-          />
+            id="slug"
+            name="slug"
+            label="Slug"
+            type="text"
+            classname={`${
+              isReadOnly ? "bg-gray-300 dark:bg-gray-700" : "dark:bg-gray-100"
+            }`}
+            onClick={toggleReadOnly}
+            placeholder={"Type Here"}
+            readonly={isReadOnly ? { readonly: true } : {}}
+            validate={validate.slug}
+          >
+            {" "}
+            {isReadOnly ? (
+              <FaRegEyeSlash className="w-4 h-4" />
+            ) : (
+              <FaRegEye className="w-4 h-4" />
+            )}
+          </InputButton>
         </Modal>
       </ModalForm>
     </>

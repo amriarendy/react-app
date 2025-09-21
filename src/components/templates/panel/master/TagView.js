@@ -21,7 +21,7 @@ const TagView = () => {
   const [editTag, setEditTag] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [validate, setvalidate] = useState("");
+  const [validate, setValidate] = useState("");
 
   const getData = async () => {
     try {
@@ -41,16 +41,16 @@ const TagView = () => {
   const handleAdd = async (tag, onSuccess) => {
     try {
       await axiosJWT.post(`${SERVER_API()}/master/tags`, { tag });
-      setvalidate("");
-      await getData(); // refresh data
-      if (onSuccess) onSuccess(); // misalnya untuk close modal
+      setValidate("");
+      await getData();
+      if (onSuccess) onSuccess();
     } catch (error) {
       if (error.response?.data?.errors) {
         const errors = error.response.data.errors;
         const tagError = errors.find((err) => err.field === "tag");
-        if (tagError) setvalidate(tagError.message);
+        if (tagError) setValidate(tagError.message);
       } else {
-        setvalidate("An error occurred");
+        setValidate("An error occurred");
       }
     }
   };
@@ -59,17 +59,17 @@ const TagView = () => {
   const handleEdit = async (id, tag, onSuccess) => {
     try {
       await axiosJWT.patch(`${SERVER_API()}/master/tags/${id}`, { tag });
-      setEditTag({ id: "", tag: "" }); // Reset input fields
-      setvalidate("");
-      await getData(); // Refresh data
-      if (onSuccess) onSuccess(); // close modal dari child
+      setEditTag({ id: "", tag: "" });
+      setValidate("");
+      await getData();
+      if (onSuccess) onSuccess();
     } catch (error) {
       if (error.response?.data?.errors) {
         const errors = error.response.data.errors;
         const tagError = errors.find((err) => err.field === "tag");
-        if (tagError) setvalidate(tagError.message);
+        if (tagError) setValidate(tagError.message);
       } else {
-        setvalidate("An error occurred");
+        setValidate("An error occurred");
       }
     }
   };

@@ -67,7 +67,7 @@ const User = ({
 
   return (
     <>
-      <Table attribute={{ label: "Add Data", action: "/dashboard/blogs/add" }} >
+      <Table attribute={{ label: "Add Data", action: "/dashboard/blogs/add" }}>
         <Thead>
           <Trow>
             <Th classname={"pr-1 sm:pl-6"}>No</Th>
@@ -102,8 +102,12 @@ const User = ({
                   />
                 </Td>
                 <Td classname={"font-medium w-64 flex-auto"}>{item.title}</Td>
-                <Td classname={"font-medium w-64 flex-auto"}>{item.category}</Td>
-                <Td classname={"font-medium w-64 flex-auto"}>{item.publishedAt}</Td>
+                <Td classname={"font-medium w-64 flex-auto"}>
+                  {item.category}
+                </Td>
+                <Td classname={"font-medium w-64 flex-auto"}>
+                  {item.publishedAt}
+                </Td>
                 <Td classname={"font-medium w-64 flex-auto"}>{item.author}</Td>
                 <Td classname={"font-medium w-32 flex-auto space-x-2"}>
                   <Href
