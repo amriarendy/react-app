@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { axiosJWT } from "../../../../libs/utils/axiosJwt";
 import { SERVER_API } from "../../../../services/api";
-import User from "../../../organisms/panel/blogs/Blog";
+import Blog from "../../../organisms/panel/blogs/Blog";
 
 const BlogView = () => {
   const breadCrumbs = {
@@ -75,32 +75,20 @@ const BlogView = () => {
   };
 
   const handleDelete = async (param) => {
-    const confirmDelete = window.confirm(
-      "Apakah Anda yakin ingin menghapus data ini?"
-    );
+    const confirmDelete = window.confirm("Are you sure delete this data?");
     if (!confirmDelete) return;
     try {
-      await axiosJWT.delete(`${SERVER_API()}/blogs${param}`);
+      await axiosJWT.delete(`${SERVER_API()}/blogs/${param}`);
       await getData();
     } catch (error) {
       console.log("Error messages:", error);
     }
   };
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error.message}</p>;
-  }
-
-  const columns = data && data.length > 0 ? data : <p>Data Not Found..</p>;
-
   return (
     <>
       <Breadcrumbs breadCrumbs={breadCrumbs} />
-      <User
+      <Blog
         data={data}
         onAdd={handleAdd}
         onEdit={handleEdit}

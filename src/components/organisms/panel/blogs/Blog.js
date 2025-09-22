@@ -10,21 +10,9 @@ import Button from "../../../elements/button/Button";
 import Image from "../../../elements/image/Image";
 import Href from "../../../elements/href/Href";
 
-const User = ({
-  data,
-  onAdd,
-  onEdit,
-  onDelete,
-  editTag,
-  setEditTag,
-  errTag,
-}) => {
-  const [modalType, setModalType] = useState(null);
-  const [tag, setTag] = useState("");
-  const toggleModal = (type = null) => setModalType(type);
-  const [imageStatus, setImageStatus] = useState({}); // ✅ added
+const Blog = ({ data, onDelete }) => {
+  const [imageStatus, setImageStatus] = useState({});
 
-  // simple image checker
   const imageCheck = async (url) => {
     try {
       const res = await fetch(url, { method: "HEAD" });
@@ -49,21 +37,6 @@ const User = ({
       imageChecks();
     }
   }, [data]);
-  const handleAddSubmit = (e) => {
-    e.preventDefault();
-    onAdd(tag, () => {
-      setTag("");
-      toggleModal();
-    });
-  };
-
-  const handleEditSubmit = (e) => {
-    e.preventDefault();
-    onEdit(editTag.id, editTag.tag, () => {
-      setEditTag({ id: "", tag: "" });
-      toggleModal();
-    });
-  };
 
   return (
     <>
@@ -143,4 +116,4 @@ const User = ({
   );
 };
 
-export default User;
+export default Blog;

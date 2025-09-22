@@ -75,27 +75,15 @@ const UserView = () => {
   };
 
   const handleDelete = async (param) => {
-    const confirmDelete = window.confirm(
-      "Apakah Anda yakin ingin menghapus data ini?"
-    );
+    const confirmDelete = window.confirm("Are you sure delete this data?");
     if (!confirmDelete) return;
     try {
-      await axiosJWT.delete(`${SERVER_API()}/users${param}`);
+      await axiosJWT.delete(`${SERVER_API()}/users/${param}`);
       await getData();
     } catch (error) {
       console.log("Error messages:", error);
     }
   };
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error.message}</p>;
-  }
-
-  const columns = data && data.length > 0 ? data : <p>Data Not Found..</p>;
 
   return (
     <>

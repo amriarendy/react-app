@@ -92,9 +92,7 @@ const CategoryView = () => {
   };
 
   const handleDelete = async (param) => {
-    const confirmDelete = window.confirm(
-      "Apakah Anda yakin ingin menghapus data ini?"
-    );
+    const confirmDelete = window.confirm("Are you sure delete this data?");
     if (!confirmDelete) return;
     try {
       await axiosJWT.delete(`${SERVER_API()}/master/categories/${param}`);

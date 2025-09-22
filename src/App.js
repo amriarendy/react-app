@@ -59,13 +59,10 @@ function App() {
           <Route path="/Dashboard" element={<DashboardPage />} />
           <Route path="/dashboard/profile" element={<Profile />} />
           {/* blog */}
-          <Route path="/dashboard/blogs" element={<Blog />} />
-          <Route path="/dashboard/blogs/add" element={<AddBlog />} />
-          <Route path="/dashboard/blogs/edit/:param" element={<EditBlog />} />
-          <Route path="/dashboard/blogs-page" element={<BlogPage />} />
-          <Route path="/dashboard/blogs-page/add" element={<AddBlogPage />} />
+          <Route path="/dashboard/blogs" element={<BlogPage />} />
+          <Route path="/dashboard/blogs/add" element={<AddBlogPage />} />
           <Route
-            path="/dashboard/blogs-page/edit/:param"
+            path="/dashboard/blogs/edit/:param"
             element={<EditBlogPage />}
           />
           {/* master */}
@@ -92,10 +89,7 @@ function App() {
           <Route path="/dashboard/templates/grid-cols" element={<GridCols />} />
           <Route path="/dashboard/templates/image" element={<ImagePage />} />
           <Route path="/dashboard/templates/card" element={<CardPage />} />
-          <Route
-            path="/dashboard/templates/error"
-            element={<ErrorPage />}
-          />
+          <Route path="/dashboard/templates/error" element={<ErrorPage />} />
           <Route
             path="/dashboard/templates/loading"
             element={<LoadingPage />}

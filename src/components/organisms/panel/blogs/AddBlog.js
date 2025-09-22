@@ -8,12 +8,28 @@ import { useState } from "react";
 import { slugFormat } from "../../../../libs/utils/text";
 import FormGroup from "../../../elements/form";
 
-const AddBlog = ({ onSubmit, toggleModal, props }) => {
-  // const { validate } = props;
+const AddBlog = ({ onSubmit, props }) => {
+  const {
+    title,
+    setTitle,
+    description,
+    setDescription,
+    body,
+    setBody,
+    category,
+    setCategory,
+    thumbnail,
+    setThumbnail,
+    author,
+    setAuthor,
+    slug,
+    setSlug,
+    publishedAt,
+    setPublishedAt,
+    validate,
+  } = props;
 
   const [isReadOnly, setReadOnly] = useState(true);
-  const [useTitle, setTitle] = useState("");
-  const [useSlug, setSlug] = useState("");
 
   const toggleReadOnly = () => {
     setReadOnly(!isReadOnly);
@@ -21,10 +37,10 @@ const AddBlog = ({ onSubmit, toggleModal, props }) => {
 
   return (
     <>
-      <FormGroup label={"Create Data"}>
+      <FormGroup label={"Create Data"} onSubmit={onSubmit}>
         <div className="sm:col-span-2">
           <InputGroup
-            value={useTitle}
+            value={title}
             onChange={(e) => {
               const titleAddSlug = e.target.value;
               setTitle(titleAddSlug);
@@ -35,12 +51,11 @@ const AddBlog = ({ onSubmit, toggleModal, props }) => {
             label="Title"
             type="text"
             placeholder={"Type Here"}
-            required
           />
         </div>
         <div className="sm:col-span-2">
           <InputButton
-            value={useSlug}
+            value={slug}
             onChange={(e) => setSlug(e.target.value)}
             id="slug"
             name="slug"
@@ -51,7 +66,6 @@ const AddBlog = ({ onSubmit, toggleModal, props }) => {
             }`}
             onClick={toggleReadOnly}
             placeholder={"Type Here"}
-            required
             readonly={isReadOnly ? { readonly: true } : {}}
           >
             {" "}
@@ -64,6 +78,8 @@ const AddBlog = ({ onSubmit, toggleModal, props }) => {
         </div>
         <div className="sm:col-span-2">
           <TextAreaGroup
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             id="description"
             name="description"
             label="Description"
@@ -73,10 +89,11 @@ const AddBlog = ({ onSubmit, toggleModal, props }) => {
         </div>
         <div className="w-full">
           <OptionGroup
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
             id={"category"}
             name={"category"}
             label={"Category"}
-            required={true}
             selected={[{ key: "", value: "", label: "Choose Your Selected" }]}
             data={[
               {
@@ -146,8 +163,8 @@ const AddBlog = ({ onSubmit, toggleModal, props }) => {
         </div>
         <div className="w-full">
           <InputGroup
-            value={""}
-            onChange={""}
+            value={thumbnail}
+            onChange={(e) => setThumbnail(e.target.files[0])}
             id="thumbnail"
             name="thumbnail"
             label="Thumbnail"
@@ -157,8 +174,6 @@ const AddBlog = ({ onSubmit, toggleModal, props }) => {
         </div>
         <div className="w-full">
           <InputGroup
-            value={""}
-            onChange={""}
             id="document"
             name="document"
             label="Document"
@@ -167,7 +182,14 @@ const AddBlog = ({ onSubmit, toggleModal, props }) => {
           />
         </div>
         <div className="sm:col-span-2">
-          <TextAreaGroup id="body" name="body" label="Body" rows={8} required />
+          <TextAreaGroup
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+            id="body"
+            name="body"
+            label="Body"
+            rows={8}
+          />
         </div>
         <div className="mt-3">
           <Button
