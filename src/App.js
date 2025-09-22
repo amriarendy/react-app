@@ -11,29 +11,27 @@ import EditBlogPage from "./pages/panel/blog/EditBlogPage";
 import UserPage from "./pages/panel/user/UserPage";
 import AddUserPage from "./pages/panel/user/AddUserPage";
 import EditUserPage from "./pages/panel/user/EditUserPage";
-import Test from "./pages/panel/tamplates/Test";
+import TestPage from "./pages/panel/tamplates/TestPage";
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import ResetPasswordPage from "./pages/auth/ResetPasswordPage";
 import Error from "./pages/panel/Error";
 import GridCols from "./pages/panel/tamplates/GridCols";
 import Layout from "./pages/panel/tamplates/Layout";
-import Toast from "./pages/panel/tamplates/Toast";
-import Form from "./pages/panel/tamplates/Form";
+import ToastPage from "./pages/panel/tamplates/ToastPage";
 import FormPage from "./pages/panel/tamplates/FormPage";
-import TableDefault from "./pages/panel/tamplates/TableDefault";
 import PopupPage from "./pages/panel/tamplates/PopupPage";
 import ImagePage from "./pages/panel/tamplates/ImagePage";
-import PageError from "./pages/panel/tamplates/PageError";
-import PageLoading from "./pages/panel/tamplates/PageLoading";
+import ErrorPage from "./pages/panel/tamplates/ErrorPage";
+import LoadingPage from "./pages/panel/tamplates/LoadingPage";
 import TagPage from "./pages/panel/master/TagPage";
 import CategoryPage from "./pages/panel/master/CategoryPage";
 import WelcomePage from "./pages/WelcomePage";
 import ArticlesPage from "./pages/landingpage/articles/ArticlesPage";
 import ArticleDetailPage from "./pages/landingpage/articles/ArticleDetailPage";
 import StarterPage from "./pages/landingpage/StarterPage";
-import Pagination from "./pages/panel/tamplates/Pagination";
-import Card from "./pages/panel/tamplates/Card";
+import PaginatePage from "./pages/panel/tamplates/PaginatePage";
+import CardPage from "./pages/panel/tamplates/CardPage";
 import AboutPage from "./pages/landingpage/AboutPage";
 import EcommercePage from "./pages/landingpage/ecommerce/EcommercePage";
 import EcommerceDetailPage from "./pages/landingpage/ecommerce/EcommerceDetailPage";
@@ -83,31 +81,26 @@ function App() {
           {/* layouts */}
           <Route path="/dashboard/templates/blank" element={<BlankPage />} />
           <Route path="/dashboard/templates/layout" element={<Layout />} />
-          <Route path="/dashboard/templates/Toast" element={<Toast />} />
+          <Route path="/dashboard/templates/toast" element={<ToastPage />} />
           <Route path="/dashboard/templates/table" element={<TablePage />} />
-          <Route
-            path="/dashboard/templates/table2"
-            element={<TableDefault />}
-          />
-          <Route path="/dashboard/templates/form" element={<Form />} />
-          <Route path="/dashboard/templates/form-page" element={<FormPage />} />
+          <Route path="/dashboard/templates/form" element={<FormPage />} />
           <Route path="/dashboard/templates/popup" element={<PopupPage />} />
           <Route
-            path="/dashboard/templates/Pagination"
-            element={<Pagination />}
+            path="/dashboard/templates/paginate"
+            element={<PaginatePage />}
           />
           <Route path="/dashboard/templates/grid-cols" element={<GridCols />} />
           <Route path="/dashboard/templates/image" element={<ImagePage />} />
-          <Route path="/dashboard/templates/card" element={<Card />} />
+          <Route path="/dashboard/templates/card" element={<CardPage />} />
           <Route
-            path="/dashboard/templates/page-error"
-            element={<PageError />}
+            path="/dashboard/templates/error"
+            element={<ErrorPage />}
           />
           <Route
-            path="/dashboard/templates/page-loading"
-            element={<PageLoading />}
+            path="/dashboard/templates/loading"
+            element={<LoadingPage />}
           />
-          <Route path="/dashboard/templates/test" element={<Test />} />
+          <Route path="/dashboard/templates/test" element={<TestPage />} />
           {/* etc */}
           <Route path="error" element={<Error />} />
         </Routes>

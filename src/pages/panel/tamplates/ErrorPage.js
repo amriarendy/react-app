@@ -1,16 +1,16 @@
 import Layout from "../../../components/templates/panel/layouts";
-import ToastView from "../../../components/templates/panel/templates/ToastView";
+import ErrorView from "../../../components/templates/panel/templates/ErrorView";
 
-const Toast = () => {
+const ErrorPage = () => {
   return (
     <>
       <Layout>
         <section className="min-h-screen bg-gray-100 dark:bg-gray-900">
-          <ToastView />
+          <ErrorView />
         </section>
       </Layout>
     </>
   );
 };
 
-export default Toast;
+export default ErrorPage;

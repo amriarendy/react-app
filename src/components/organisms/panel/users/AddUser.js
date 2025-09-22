@@ -44,7 +44,7 @@ const AddUser = ({ onSubmit, props }) => {
             name="email"
             label="Email"
             type="email"
-            placeholder={"Type Here"}
+            placeholder={"Active Email"}
             validate={validate.email}
           />
         </div>
@@ -56,7 +56,7 @@ const AddUser = ({ onSubmit, props }) => {
             name="name"
             label="Full Name"
             type="text"
-            placeholder={"Type Here"}
+            placeholder={"Full Name"}
             validate={validate.name}
           />
         </div>
@@ -103,7 +103,7 @@ const AddUser = ({ onSubmit, props }) => {
             name={"gender"}
             label={"Gender"}
             validate={validate.gender}
-            selected={[{ key: "", value: "", label: "Choose Your Selected" }]}
+            selected={[{ key: null, value: "", label: "Choose Your Selected" }]}
             data={[
               { key: "male", value: "male", label: "Male" },
               { key: "female", value: "female", label: "Female" },
@@ -129,7 +129,7 @@ const AddUser = ({ onSubmit, props }) => {
             name={"position"}
             label={"Position"}
             validate={validate.position}
-            selected={[{ key: "", value: "", label: "Choose Your Selected" }]}
+            selected={[{ key: null, value: "", label: "Choose Your Selected" }]}
             data={[
               {
                 key: "software-engginer",
@@ -168,7 +168,7 @@ const AddUser = ({ onSubmit, props }) => {
             name={"country"}
             label={"Country"}
             validate={validate.country}
-            selected={[{ key: "", value: "", label: "Choose Your Selected" }]}
+            selected={[{ key: null, value: "", label: "Choose Your Selected" }]}
             data={[
               { key: "indonesia", value: "indonesia", label: "Indonesia" },
               { key: "malaysia", value: "malaysia", label: "Malaysia" },
@@ -197,13 +197,13 @@ const AddUser = ({ onSubmit, props }) => {
         </div>
         <div className="mt-3">
           <Button
-            id={"btnSave"}
+            id={"btnSubmit"}
             type={"submit"}
             classname={
               "rounded rounded-lg inline-flex items-center px-2 py-1 text-white bg-blue-700 hover:bg-blue-500"
             }
           >
-            Save
+            Submit
           </Button>
         </div>
       </FormGroup>

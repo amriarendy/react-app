@@ -7,7 +7,6 @@ const Option = ({
     onChange,
     selected,
   }) => {
-    console.log("Selected: ", selected[0]);
     return (
       <select
         id={id}

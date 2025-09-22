@@ -6,9 +6,6 @@ import Trow from "../../../elements/tables/Trow";
 import Td from "../../../elements/tables/Td";
 import Th from "../../../elements/tables/Th";
 import Terrors from "../../../elements/tables/Terrors";
-import Modal from "../../../elements/modal/";
-import ModalForm from "../../../elements/modal/ModalForm";
-import InputGroup from "../../../elements/input";
 import Button from "../../../elements/button/Button";
 import Image from "../../../elements/image/Image";
 import Href from "../../../elements/href/Href";
@@ -114,7 +111,7 @@ const User = ({
                 <Td classname={"font-medium w-32 flex-auto space-x-2"}>
                   <Href
                     id={"btnEdit"}
-                    route={"/dashboard/users/edit"}
+                    route={`/dashboard/users/edit/${item.id}`}
                     classname={
                       "rounded rounded-lg inline-flex items-center px-2 py-1 text-white bg-yellow-400 hover:bg-yellow-500"
                     }

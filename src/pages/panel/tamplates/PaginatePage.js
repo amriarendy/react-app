@@ -1,16 +1,16 @@
 import Layout from "../../../components/templates/panel/layouts";
-import TestView from "../../../components/templates/panel/templates/TestView";
+import BlankView from "../../../components/templates/panel/templates/BlankView";
 
-const BlankPage = () => {
+const PaginatePage = () => {
   return (
     <>
       <Layout>
         <section className="min-h-screen bg-gray-100 dark:bg-gray-900">
-          <TestView />
+          <BlankView />
         </section>
       </Layout>
     </>
   );
 };
 
-export default BlankPage;
+export default PaginatePage;

@@ -1,16 +1,16 @@
 import Layout from "../../../components/templates/panel/layouts";
-import PopupView from "../../../components/templates/panel/templates/PopupView";
+import TestView from "../../../components/templates/panel/templates/TestView";
 
-const PopupPage = () => {
+const TestPage = () => {
   return (
     <>
       <Layout>
         <section className="min-h-screen bg-gray-100 dark:bg-gray-900">
-          <PopupView />
+          <TestView />
         </section>
       </Layout>
     </>
   );
 };
 
-export default PopupPage;
+export default TestPage;

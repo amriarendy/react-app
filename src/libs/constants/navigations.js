@@ -144,9 +144,9 @@ export const SIDEBAR_MENU_ITEMS = [
         route: "/dashboard/templates/form",
       },
       {
-        key: "pagination",
-        label: "Pagination",
-        route: "/dashboard/templates/pagination",
+        key: "paginate",
+        label: "Paginate",
+        route: "/dashboard/templates/paginate",
       },
       {
         key: "card",
@@ -171,7 +171,7 @@ export const SIDEBAR_MENU_ITEMS = [
       {
         key: "page-error",
         label: "Page Error",
-        route: "/dashboard/templates/page-error",
+        route: "/dashboard/templates/error",
       },
       {
         key: "page-loading",
