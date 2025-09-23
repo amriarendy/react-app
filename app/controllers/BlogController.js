@@ -25,60 +25,39 @@ export const getWhere = async (req, res) => {
 };
 
 export const store = async (req, res) => {
-  if (req.files === null)
-    return res
-      .status(400)
-      .json({ code: 400, status: "error", message: "Invalid image" });
-  const title = req.body.title;
-  const description = req.body.description;
-  const body = req.body.body;
-  const category = req.body.category;
-  const thumbnail = req.files.thumbnail;
-  const author = req.body.author;
-  const slug = req.body.slug;
-  const publishedAt = req.body.publishedAt;
+  let fileName = 'default.png'; // Default filename
+  let urlThumbnail = `${req.protocol}://${req.get('host')}/uploads/blogs/${fileName}`; // Default URL
 
-  const fileSize = thumbnail.data.length;
-  const ext = path.extname(thumbnail.name);
-  const fileName = thumbnail.md5 + ext;
-  const urlThumbnail = `${req.protocol}://${req.get(
-    "host"
-  )}/uploads/blogs/${fileName}`;
-  const allowedType = [".png", ".jpg", ".jpeg"];
+  if (req.files && req.files.thumbnail) {
+    const thumbnail = req.files.thumbnail;
+    const ext = path.extname(thumbnail.name);
+    fileName = `${thumbnail.md5}${ext}`;
+    urlThumbnail = `${req.protocol}://${req.get('host')}/uploads/blogs/${fileName}`;
 
-  if (!allowedType.includes(ext.toLowerCase()))
-    return res
-      .status(422)
-      .json({ code: 422, status: "error", message: "Invalid image" });
-  if (fileSize > 5000000)
-    return res.status(422).json({ message: "Image must be less than 5 MB" });
-  thumbnail.mv(`./public/uploads/blogs/${fileName}`, async (err) => {
-    if (err)
-      return res
-        .status(500)
-        .json({ code: 500, status: "error", message: err.message });
     try {
-      await Blog.create({
-        title: title,
-        description: description,
-        body: body,
-        category: category,
-        author: author,
-        slug: slug,
-        publishedAt: publishedAt,
-        thumbnail: fileName,
-        urlThumbnail: urlThumbnail,
-      });
-      res
-        .status(201)
-        .json({ code: 201, status: "success", message: "Data insert" });
-    } catch (error) {
-      console.log(error.message);
-      return res
-        .status(500)
-        .json({ code: 500, status: "error", message: error.message });
+      await thumbnail.mv(`./public/uploads/blogs/${fileName}`); // Wait for the move to complete
+    } catch (err) {
+      return res.status(500).json({ code: 500, status: 'error', message: err.message });
     }
-  });
+  }
+  
+  const { title, description, body, category, slug } = req.body;
+
+  try {
+    await Blog.create({
+      title,
+      description,
+      body,
+      category,
+      slug,
+      thumbnail: fileName,
+      urlThumbnail,
+    });
+    res.status(201).json({ code: 201, status: 'success', message: 'Data inserted' });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ code: 500, status: 'error', message: error.message });
+  }
 };
 
 export const update = async (req, res) => {
