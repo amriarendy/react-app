@@ -17,8 +17,8 @@ const validateAddUser = async (req, res, next) => {
   const required = new Required(fields).validate(req.body);
   const emailFormat = new EmailFormat("email").validate(req.body);
   const numberFormat = new NumberFormat("phone").validate(req.body);
-  const min = new Min("email", 6).validate(req.body);
-  const max = new Max("email", 15).validate(req.body);
+  const min = new Min("email", 16).validate(req.body);
+  const max = new Max("email", 32).validate(req.body);
   const date = new DateFormat("dob", "DD-MM-YYYY").validate(req.body);
   const extAllowed = new ExtSizeFile("photo", 1000000, [
     ".png",
@@ -57,8 +57,8 @@ const validateUpdateUser = async (req, res, next) => {
   const required = new Required(fields).validate(req.body);
   const emailFormat = new EmailFormat("email").validate(req.body);
   const numberFormat = new NumberFormat("phone").validate(req.body);
-  const min = new Min("email", 6).validate(req.body);
-  const max = new Max("email", 15).validate(req.body);
+  const min = new Min("email", 16).validate(req.body);
+  const max = new Max("email", 32).validate(req.body);
   const date = new DateFormat("dob", "DD-MM-YYYY").validate(req.body);
   const extAllowed = new ExtSizeFile("photo", 1000000, [
     ".png",
