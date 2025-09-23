@@ -42,9 +42,9 @@ const AddBlog = ({ onSubmit, props }) => {
           <InputGroup
             value={title}
             onChange={(e) => {
-              const titleAddSlug = e.target.value;
-              setTitle(titleAddSlug);
-              setSlug(slugFormat(titleAddSlug));
+              const titleSlug = e.target.value;
+              setTitle(titleSlug);
+              setSlug(slugFormat(titleSlug));
             }}
             id="title"
             name="title"
@@ -167,7 +167,6 @@ const AddBlog = ({ onSubmit, props }) => {
         </div>
         <div className="w-full">
           <InputGroup
-            value={thumbnail}
             onChange={(e) => setThumbnail(e.target.files[0])}
             id="thumbnail"
             name="thumbnail"
@@ -179,10 +178,12 @@ const AddBlog = ({ onSubmit, props }) => {
         </div>
         <div className="w-full">
           <InputGroup
-            id="document"
-            name="document"
-            label="Document"
-            type="text"
+            value={publishedAt}
+            onChange={(e) => setPublishedAt(e.target.value)}
+            id="publishedAt"
+            name="publishedAt"
+            label="Date Post"
+            type="date"
             caption="Ext: pdf, doc, excel,, images, svg. Max: 1024MB"
           />
         </div>

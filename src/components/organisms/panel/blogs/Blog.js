@@ -85,7 +85,7 @@ const Blog = ({ data, onDelete }) => {
                 <Td classname={"font-medium w-32 flex-auto space-x-2"}>
                   <Href
                     id={"btnEdit"}
-                    route={"/dashboard/blogs/edit"}
+                    route={`/dashboard/blogs/edit/${item.id}`}
                     classname={
                       "rounded rounded-lg inline-flex items-center px-2 py-1 text-white bg-yellow-400 hover:bg-yellow-500"
                     }

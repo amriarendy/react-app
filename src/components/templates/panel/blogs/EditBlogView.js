@@ -72,7 +72,7 @@ const EditBlogView = () => {
     formData.append("publishedAt", publishedAt);
 
     try {
-      await axiosJWT.post(`${SERVER_API()}/blogs/`, formData, {
+      await axiosJWT.patch(`${SERVER_API()}/blogs/${param}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
