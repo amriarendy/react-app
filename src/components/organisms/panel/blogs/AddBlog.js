@@ -51,6 +51,7 @@ const AddBlog = ({ onSubmit, props }) => {
             label="Title"
             type="text"
             placeholder={"Type Here"}
+            validate={validate.title}
           />
         </div>
         <div className="sm:col-span-2">
@@ -61,6 +62,7 @@ const AddBlog = ({ onSubmit, props }) => {
             name="slug"
             label="Slug"
             type="text"
+            validate={validate.slug}
             classname={`${
               isReadOnly ? "bg-gray-300 dark:bg-gray-700" : "dark:bg-gray-100"
             }`}
@@ -85,6 +87,7 @@ const AddBlog = ({ onSubmit, props }) => {
             label="Description"
             placeholder="Description for meta seo"
             rows={4}
+            validate={validate.description}
           />
         </div>
         <div className="w-full">
@@ -94,6 +97,7 @@ const AddBlog = ({ onSubmit, props }) => {
             id={"category"}
             name={"category"}
             label={"Category"}
+            validate={validate.category}
             selected={[{ key: "", value: "", label: "Choose Your Selected" }]}
             data={[
               {
@@ -170,6 +174,7 @@ const AddBlog = ({ onSubmit, props }) => {
             label="Thumbnail"
             type="file"
             caption="Ext: jpg, jpeg, png, svg. Max: 1024MB"
+            validate={validate.thumbnail}
           />
         </div>
         <div className="w-full">
@@ -177,7 +182,7 @@ const AddBlog = ({ onSubmit, props }) => {
             id="document"
             name="document"
             label="Document"
-            type="file"
+            type="text"
             caption="Ext: pdf, doc, excel,, images, svg. Max: 1024MB"
           />
         </div>
@@ -189,6 +194,7 @@ const AddBlog = ({ onSubmit, props }) => {
             name="body"
             label="Body"
             rows={8}
+            validate={validate.body}
           />
         </div>
         <div className="mt-3">
