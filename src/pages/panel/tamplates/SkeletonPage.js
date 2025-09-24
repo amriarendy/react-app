@@ -1,16 +1,16 @@
 import Layout from "../../../components/templates/panel/layouts";
-import BlankView from "../../../components/templates/panel/templates/BlankView";
+import SkeletonView from "../../../components/templates/panel/templates/SkeletonView";
 
-const LoadingPage = () => {
+const SkeletonPage = () => {
   return (
     <>
       <Layout>
         <section className="min-h-screen bg-gray-100 dark:bg-gray-900">
-          <BlankView />
+          <SkeletonView />
         </section>
       </Layout>
     </>
   );
 };
 
-export default LoadingPage;
+export default SkeletonPage;

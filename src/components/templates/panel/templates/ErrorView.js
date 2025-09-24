@@ -1,5 +1,5 @@
-import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
-import Error from "../../../organisms/panel/templates/Error"
+import Breadcrumbs from "../../../elements/breadcrumbs/Breadcrumbs";
+import Error from "../../../organisms/panel/templates/Error";
 
 const ErrorView = () => {
   const breadCrumbs = {

@@ -1,9 +1,5 @@
-import { useState } from "react";
-import Table from "../../../elements/tables";
-import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../../../elements/breadcrumbs/Breadcrumbs";
 import useDummy from "../../../../hooks/useDummy";
-import Button from "../../../elements/button/Button";
-import Modal from "../../../../components/molecules/modal/Modal";
 import Test from "../../../organisms/panel/templates/Test";
 
 const TestView = () => {

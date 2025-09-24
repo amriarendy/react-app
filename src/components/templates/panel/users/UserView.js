@@ -1,4 +1,4 @@
-import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../../../elements/breadcrumbs/Breadcrumbs";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { axiosJWT } from "../../../../libs/utils/axiosJwt";

@@ -1,4 +1,4 @@
-import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../../../elements/breadcrumbs/Breadcrumbs";
 import Images from "../../../organisms/panel/templates/Images";
 
 const ImageView = () => {

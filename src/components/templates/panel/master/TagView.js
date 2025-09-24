@@ -1,4 +1,4 @@
-import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../../../elements/breadcrumbs/Breadcrumbs";
 import Tag from "../../../organisms/panel/master/tag";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";

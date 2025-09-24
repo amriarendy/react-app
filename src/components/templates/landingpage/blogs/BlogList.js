@@ -1,9 +1,12 @@
 import { SearchSort } from "../../../molecules/search/SearchSort";
 import BlogSquare from "../../../organisms/landingpage/blogs/BlogSquare";
-import Paginate from "../../../molecules/pagination/Paginate";
 import TitleDescription from "../../../molecules/title/TitleDescription";
+import Pagination from "../../../elements/pagination";
+import { useState } from "react";
 
 const BlogList = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10;
   return (
     <>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -30,7 +33,13 @@ const BlogList = () => {
           {/* End Blog */}
         </div>
         <div className="w-full text-center">
-          <Paginate />
+          <div className="px-4 py-5 sm:p-6">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={(page) => setCurrentPage(page)}
+            />
+          </div>
         </div>
       </div>
     </>

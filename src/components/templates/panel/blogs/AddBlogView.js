@@ -1,5 +1,5 @@
+import Breadcrumbs from "../../../elements/breadcrumbs/Breadcrumbs";
 import { useState } from "react";
-import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
 import AddBlog from "../../../organisms/panel/blogs/AddBlog";
 import { useNavigate } from "react-router-dom";
 import { axiosJWT } from "../../../../libs/utils/axiosJwt";

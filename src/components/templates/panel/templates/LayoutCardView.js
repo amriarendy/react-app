@@ -1,4 +1,4 @@
-import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../../../elements/breadcrumbs/Breadcrumbs";
 import LayoutCard from "../../../organisms/panel/templates/LayoutCard";
 
 const LayoutCardView = () => {

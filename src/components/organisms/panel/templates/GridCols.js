@@ -1,18 +1,7 @@
-import Layout from "../../../components/templates/panel/layouts";
-import Breadcrumbs from "../../../components/molecules/breadcrumbs/Breadcrumbs";
-
 const GridCols = () => {
-  const breadCrumbs = {
-    page: "Grid and Cols",
-    data: [
-      { page: "Templates", route: "/dashboard/templates/grid-cols" },
-      { page: "Grid and Cols", route: "/dashboard/templates/grid-cols" },
-    ],
-  };
   return (
     <>
-      <Layout>
-        <Breadcrumbs breadCrumbs={breadCrumbs} />
+      <div className="grid grid-cols-1 px-4 pt-6 lg:grid-cols-1 gap-4 mb-4">
         <h2 class="text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-3xl dark:text-white">
           Horizontal: Row: 1, Columns: 4
         </h2>
@@ -174,7 +163,7 @@ const GridCols = () => {
           No Grid
         </h2>
         <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4"></div>
-      </Layout>
+      </div>
     </>
   );
 };

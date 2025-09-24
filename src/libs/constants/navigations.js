@@ -124,11 +124,6 @@ export const SIDEBAR_MENU_ITEMS = [
         route: "/dashboard/templates/blank",
       },
       {
-        key: "layout",
-        label: "Layouts",
-        route: "/dashboard/templates/layout",
-      },
-      {
         key: "toast",
         label: "Toast",
         route: "/dashboard/templates/toast",
@@ -174,9 +169,9 @@ export const SIDEBAR_MENU_ITEMS = [
         route: "/dashboard/templates/error",
       },
       {
-        key: "page-loading",
-        label: "Page Loading",
-        route: "/dashboard/templates/page-loading",
+        key: "skeleton",
+        label: "Skeleton",
+        route: "/dashboard/templates/skeleton",
       },
       {
         key: "test",

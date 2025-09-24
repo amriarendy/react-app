@@ -1,4 +1,4 @@
-import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../../../elements/breadcrumbs/Breadcrumbs";
 import Toast from "../../../organisms/panel/templates/Toast";
 
 const ToastView = () => {

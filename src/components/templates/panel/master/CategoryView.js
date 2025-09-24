@@ -1,4 +1,4 @@
-import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../../../elements/breadcrumbs/Breadcrumbs";
 import Category from "../../../organisms/panel/master/category";
 import { useEffect, useState } from "react";
 import { axiosJWT } from "../../../../libs/utils/axiosJwt";

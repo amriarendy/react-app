@@ -1,4 +1,4 @@
-import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../../../elements/breadcrumbs/Breadcrumbs";
 import EditUser from "../../../organisms/panel/users/EditUser";
 import { axiosJWT } from "../../../../libs/utils/axiosJwt";
 import { SERVER_API } from "../../../../services/api";

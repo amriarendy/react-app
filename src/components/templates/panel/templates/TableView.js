@@ -1,5 +1,5 @@
+import Breadcrumbs from "../../../elements/breadcrumbs/Breadcrumbs";
 import Table from "../../../organisms/panel/templates/Table";
-import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
 import useDummy from "../../../../hooks/useDummy";
 
 const TableView = () => {

@@ -13,14 +13,13 @@ import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import ResetPasswordPage from "./pages/auth/ResetPasswordPage";
 import Error from "./pages/panel/Error";
-import GridCols from "./pages/panel/tamplates/GridCols";
-import Layout from "./pages/panel/tamplates/Layout";
+import GridColsPage from "./pages/panel/tamplates/GridColsPage";
 import ToastPage from "./pages/panel/tamplates/ToastPage";
 import FormPage from "./pages/panel/tamplates/FormPage";
 import PopupPage from "./pages/panel/tamplates/PopupPage";
 import ImagePage from "./pages/panel/tamplates/ImagePage";
 import ErrorPage from "./pages/panel/tamplates/ErrorPage";
-import LoadingPage from "./pages/panel/tamplates/LoadingPage";
+import SkeletonPage from "./pages/panel/tamplates/SkeletonPage";
 import TagPage from "./pages/panel/master/TagPage";
 import CategoryPage from "./pages/panel/master/CategoryPage";
 import WelcomePage from "./pages/WelcomePage";
@@ -74,7 +73,6 @@ function App() {
           />
           {/* layouts */}
           <Route path="/dashboard/templates/blank" element={<BlankPage />} />
-          <Route path="/dashboard/templates/layout" element={<Layout />} />
           <Route path="/dashboard/templates/toast" element={<ToastPage />} />
           <Route path="/dashboard/templates/table" element={<TablePage />} />
           <Route path="/dashboard/templates/form" element={<FormPage />} />
@@ -83,13 +81,19 @@ function App() {
             path="/dashboard/templates/paginate"
             element={<PaginatePage />}
           />
-          <Route path="/dashboard/templates/grid-cols" element={<GridCols />} />
+          <Route
+            path="/dashboard/templates/grid-cols"
+            element={<GridColsPage />}
+          />
           <Route path="/dashboard/templates/image" element={<ImagePage />} />
-          <Route path="/dashboard/templates/layout-card" element={<LayoutCardPage />} />
+          <Route
+            path="/dashboard/templates/layout-card"
+            element={<LayoutCardPage />}
+          />
           <Route path="/dashboard/templates/error" element={<ErrorPage />} />
           <Route
-            path="/dashboard/templates/loading"
-            element={<LoadingPage />}
+            path="/dashboard/templates/skeleton"
+            element={<SkeletonPage />}
           />
           <Route path="/dashboard/templates/test" element={<TestPage />} />
           {/* etc */}

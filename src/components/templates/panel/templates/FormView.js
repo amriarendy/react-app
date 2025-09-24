@@ -1,9 +1,9 @@
-import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../../../elements/breadcrumbs/Breadcrumbs";
 import Form from "../../../organisms/panel/templates/Form";
 
 const FormView = () => {
   const breadCrumbs = {
-    page: "Form View",
+    page: "Form",
     data: [
       { page: "Templates", route: "/dashboard/templates/form" },
       { page: "Form", route: "/dashboard/templates/form" },

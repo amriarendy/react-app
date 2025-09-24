@@ -1,5 +1,5 @@
+import Breadcrumbs from "../../../elements/breadcrumbs/Breadcrumbs";
 import { useState } from "react";
-import Breadcrumbs from "../../../molecules/breadcrumbs/Breadcrumbs";
 import AddUser from "../../../organisms/panel/users/AddUser";
 import { axiosJWT } from "../../../../libs/utils/axiosJwt";
 import { SERVER_API } from "../../../../services/api";
