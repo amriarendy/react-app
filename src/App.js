@@ -2,9 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DashboardPage from "./pages/panel/DashboardPage";
 import Profile from "./pages/panel/Profile";
 import BlankPage from "./pages/panel/tamplates/BlankPage";
-import Blog from "./pages/panel/blog/Blog";
-import AddBlog from "./pages/panel/blog/AddBlog";
-import EditBlog from "./pages/panel/blog/EditBlog";
 import BlogPage from "./pages/panel/blog/BlogPage";
 import AddBlogPage from "./pages/panel/blog/AddBlogPage";
 import EditBlogPage from "./pages/panel/blog/EditBlogPage";
@@ -31,7 +28,7 @@ import ArticlesPage from "./pages/landingpage/articles/ArticlesPage";
 import ArticleDetailPage from "./pages/landingpage/articles/ArticleDetailPage";
 import StarterPage from "./pages/landingpage/StarterPage";
 import PaginatePage from "./pages/panel/tamplates/PaginatePage";
-import CardPage from "./pages/panel/tamplates/CardPage";
+import LayoutCardPage from "./pages/panel/tamplates/LayoutCardPage";
 import AboutPage from "./pages/landingpage/AboutPage";
 import EcommercePage from "./pages/landingpage/ecommerce/EcommercePage";
 import EcommerceDetailPage from "./pages/landingpage/ecommerce/EcommerceDetailPage";
@@ -88,7 +85,7 @@ function App() {
           />
           <Route path="/dashboard/templates/grid-cols" element={<GridCols />} />
           <Route path="/dashboard/templates/image" element={<ImagePage />} />
-          <Route path="/dashboard/templates/card" element={<CardPage />} />
+          <Route path="/dashboard/templates/layout-card" element={<LayoutCardPage />} />
           <Route path="/dashboard/templates/error" element={<ErrorPage />} />
           <Route
             path="/dashboard/templates/loading"

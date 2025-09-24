@@ -149,9 +149,9 @@ export const SIDEBAR_MENU_ITEMS = [
         route: "/dashboard/templates/paginate",
       },
       {
-        key: "card",
-        label: "Card",
-        route: "/dashboard/templates/card",
+        key: "layout-card",
+        label: "Layout Card",
+        route: "/dashboard/templates/layout-card",
       },
       {
         key: "popup",

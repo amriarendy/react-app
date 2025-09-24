@@ -1,16 +1,16 @@
 import Layout from "../../../components/templates/panel/layouts";
-import CardView from "../../../components/templates/panel/templates/CardView";
+import LayoutCardView from "../../../components/templates/panel/templates/LayoutCardView";
 
-const CardPage = () => {
+const LayoutCardPage = () => {
   return (
     <>
       <Layout>
         <section className="min-h-screen bg-gray-100 dark:bg-gray-900">
-          <CardView />
+          <LayoutCardView />
         </section>
       </Layout>
     </>
   );
 };
 
-export default CardPage;
+export default LayoutCardPage;
