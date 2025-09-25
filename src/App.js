@@ -19,6 +19,7 @@ import FormPage from "./pages/panel/tamplates/FormPage";
 import PopupPage from "./pages/panel/tamplates/PopupPage";
 import ImagePage from "./pages/panel/tamplates/ImagePage";
 import ErrorPage from "./pages/panel/tamplates/ErrorPage";
+import ModalPage from "./pages/panel/tamplates/ModalPage";
 import SkeletonPage from "./pages/panel/tamplates/SkeletonPage";
 import TagPage from "./pages/panel/master/TagPage";
 import CategoryPage from "./pages/panel/master/CategoryPage";
@@ -76,6 +77,7 @@ function App() {
           <Route path="/dashboard/templates/toast" element={<ToastPage />} />
           <Route path="/dashboard/templates/table" element={<TablePage />} />
           <Route path="/dashboard/templates/form" element={<FormPage />} />
+          <Route path="/dashboard/templates/modal" element={<ModalPage />} />
           <Route path="/dashboard/templates/popup" element={<PopupPage />} />
           <Route
             path="/dashboard/templates/paginate"

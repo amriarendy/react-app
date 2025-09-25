@@ -124,6 +124,11 @@ export const SIDEBAR_MENU_ITEMS = [
         route: "/dashboard/templates/blank",
       },
       {
+        key: "modal",
+        label: "Modal",
+        route: "/dashboard/templates/modal",
+      },
+      {
         key: "toast",
         label: "Toast",
         route: "/dashboard/templates/toast",

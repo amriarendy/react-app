@@ -25,9 +25,9 @@ const Category = ({
   validate,
 }) => {
   const [modalType, setModalType] = useState(null);
+  const toggleModal = (type = null) => setModalType(type);
   const [category, setCategory] = useState("");
   const [slug, setSlug] = useState("");
-  const toggleModal = (type = null) => setModalType(type);
   const [isReadOnly, setReadOnly] = useState(true);
 
   const handleAddSubmit = (e) => {
