@@ -1,16 +1,16 @@
 import Layout from "../../../components/templates/panel/layouts";
-import SkeletonView from "../../../components/templates/panel/templates/SkeletonView";
+import LoadView from "../../../components/templates/panel/templates/LoadView";
 
-const SkeletonPage = () => {
+const LoadPage = () => {
   return (
     <>
       <Layout>
         <section className="min-h-screen bg-gray-100 dark:bg-gray-900">
-          <SkeletonView />
+          <LoadView />
         </section>
       </Layout>
     </>
   );
 };
 
-export default SkeletonPage;
+export default LoadPage;

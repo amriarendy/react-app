@@ -174,9 +174,9 @@ export const SIDEBAR_MENU_ITEMS = [
         route: "/dashboard/templates/error",
       },
       {
-        key: "skeleton",
-        label: "Skeleton",
-        route: "/dashboard/templates/skeleton",
+        key: "load",
+        label: "Load",
+        route: "/dashboard/templates/load",
       },
       {
         key: "test",

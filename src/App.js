@@ -20,7 +20,7 @@ import PopupPage from "./pages/panel/tamplates/PopupPage";
 import ImagePage from "./pages/panel/tamplates/ImagePage";
 import ErrorPage from "./pages/panel/tamplates/ErrorPage";
 import ModalPage from "./pages/panel/tamplates/ModalPage";
-import SkeletonPage from "./pages/panel/tamplates/SkeletonPage";
+import LoadPage from "./pages/panel/tamplates/LoadPage";
 import TagPage from "./pages/panel/master/TagPage";
 import CategoryPage from "./pages/panel/master/CategoryPage";
 import WelcomePage from "./pages/WelcomePage";
@@ -94,8 +94,8 @@ function App() {
           />
           <Route path="/dashboard/templates/error" element={<ErrorPage />} />
           <Route
-            path="/dashboard/templates/skeleton"
-            element={<SkeletonPage />}
+            path="/dashboard/templates/Load"
+            element={<LoadPage />}
           />
           <Route path="/dashboard/templates/test" element={<TestPage />} />
           {/* etc */}
