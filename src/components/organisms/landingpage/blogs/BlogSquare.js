@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Image from "../../../elements/image/Image";
 
 const BlogSquare = ({ hide = {} }) => {
   const { description = false, author = false, date = false } = hide;
@@ -7,13 +8,13 @@ const BlogSquare = ({ hide = {} }) => {
     <div className="rounded-lg border bg-white p-6 shadow-sm border-gray-300 dark:bg-gray-800 dark:border-gray-500">
       <div className="h-56 w-full">
         <Link to={"/blog/detail/"}>
-          <img
-            className="mx-auto h-full dark:hidden"
+          <Image
+            classname="mx-auto h-full dark:hidden"
             src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
             alt=""
           />
-          <img
-            className="mx-auto hidden h-full dark:block"
+          <Image
+            classname="mx-auto hidden h-full dark:block"
             src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
             alt=""
           />
@@ -40,10 +41,10 @@ const BlogSquare = ({ hide = {} }) => {
 
         {!author && !date && (
           <div className="flex items-center mt-4">
-            <img
+            <Image
+              classname="w-8 h-8 rounded-full"
               src="https://placehold.co/32x32"
-              alt="Profile picture of Jese Leos"
-              className="w-8 h-8 rounded-full"
+              alt=""
             />
             <div className="ml-2">
               {!author && (

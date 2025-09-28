@@ -1,5 +1,5 @@
 import StoreDetail from "../../../components/templates/landingpage/store/StoreDetail";
-import Layout from "../../Layout";
+import Layout from "../../../components/templates/landingpage/layouts";
 
 const EcommerceDetailPage = () => {
   return (

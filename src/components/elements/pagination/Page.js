@@ -26,7 +26,7 @@ const Page = ({ currentPage, totalPages, onPageChange }) => {
               page === currentPage
                 ? "bg-indigo-600 text-white"
                 : "text-gray-900 hover:bg-gray-50"
-            }`}
+            } dark:text-gray-200`}
         >
           {page}
         </button>

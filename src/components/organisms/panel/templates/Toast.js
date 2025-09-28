@@ -1,5 +1,5 @@
-import Card from "../../../molecules/card/Card";
-import { Alert, AlertList, AlertBorder } from "../../../molecules/toast/Alert";
+import Card from "../../../elements/card/Card";
+import { Alert, AlertList, AlertBorder } from "../../../elements/toast/Alert";
 
 const Toast = () => {
   return (

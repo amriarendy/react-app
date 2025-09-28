@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DashboardPage from "./pages/panel/DashboardPage";
-import Profile from "./pages/panel/Profile";
+import ProfilePage from "./pages/panel/ProfilePage";
 import BlankPage from "./pages/panel/tamplates/BlankPage";
 import BlogPage from "./pages/panel/blog/BlogPage";
 import AddBlogPage from "./pages/panel/blog/AddBlogPage";
@@ -12,7 +12,6 @@ import TestPage from "./pages/panel/tamplates/TestPage";
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import ResetPasswordPage from "./pages/auth/ResetPasswordPage";
-import Error from "./pages/panel/Error";
 import GridColsPage from "./pages/panel/tamplates/GridColsPage";
 import ToastPage from "./pages/panel/tamplates/ToastPage";
 import FormPage from "./pages/panel/tamplates/FormPage";
@@ -54,7 +53,7 @@ function App() {
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           {/* dashboard */}
           <Route path="/Dashboard" element={<DashboardPage />} />
-          <Route path="/dashboard/profile" element={<Profile />} />
+          <Route path="/dashboard/profile" element={<ProfilePage />} />
           {/* blog */}
           <Route path="/dashboard/blogs" element={<BlogPage />} />
           <Route path="/dashboard/blogs/add" element={<AddBlogPage />} />
@@ -93,13 +92,9 @@ function App() {
             element={<LayoutCardPage />}
           />
           <Route path="/dashboard/templates/error" element={<ErrorPage />} />
-          <Route
-            path="/dashboard/templates/Load"
-            element={<LoadPage />}
-          />
+          <Route path="/dashboard/templates/Load" element={<LoadPage />} />
           <Route path="/dashboard/templates/test" element={<TestPage />} />
           {/* etc */}
-          <Route path="error" element={<Error />} />
         </Routes>
       </BrowserRouter>
     </>

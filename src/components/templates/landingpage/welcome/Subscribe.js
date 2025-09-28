@@ -1,4 +1,4 @@
-import TitleDescription from "../../../molecules/title/TitleDescription";
+import TitleDescription from "../../../elements/title/TitleDescription";
 
 const Subscribe = () => {
   return (

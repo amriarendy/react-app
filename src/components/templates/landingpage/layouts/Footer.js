@@ -1,4 +1,4 @@
-import Logo from "../../../molecules/logo/Logo";
+import Logo from "../../../elements/logo/Logo";
 import BottomMenu from "../../../organisms/landingpage/layouts/BottomMenu";
 import BottomMoreDetail from "../../../organisms/landingpage/layouts/BottomMoreDetail";
 import { FaFacebookF, FaDiscord, FaTwitter, FaGithub } from "react-icons/fa";

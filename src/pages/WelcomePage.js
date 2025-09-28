@@ -1,6 +1,6 @@
 import Heading from "../components/templates/landingpage/welcome/Heading";
 import Pricing from "../components/templates/landingpage/welcome/Pricing";
-import Layout from "./Layout";
+import Layout from "../components/templates/landingpage/layouts";
 import Subscribe from "../components/templates/landingpage/welcome/Subscribe";
 import WelcomeArticle from "../components/templates/landingpage/welcome/WelcomeArticle";
 

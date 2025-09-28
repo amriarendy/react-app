@@ -1,9 +1,15 @@
 import { SIDEBAR_MENU_ITEMS } from "../../../../libs/constants/navigations";
-import MenuList from "../../../molecules/menu/MenuList";
-import MenuBottom from "../../../molecules/menu/MenuButton";
-import { FaSignOutAlt } from "react-icons/fa";
+import MenuList from "../../../organisms/panel/layouts/sidebar/MenuList";
+import { FaSignOutAlt, FaBookmark, FaCog, FaBook } from "react-icons/fa";
+import Href from "../../../elements/href/Href";
+import Button from "../../../elements/button/Button";
+import { useState } from "react";
 
 const Sidebar = ({ logout }) => {
+  const [useOpen, setOpen] = useState(false);
+  const toggleSidebar = () => {
+    setOpen(!useOpen);
+  };
   return (
     <>
       <aside
@@ -19,19 +25,54 @@ const Sidebar = ({ logout }) => {
                   <MenuList key={item.key} item={item} />
                 ))}
                 <li>
-                  <button
+                  <Button
                     onClick={logout}
-                    className="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700"
+                    classname={
+                      "flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700"
+                    }
                   >
                     <FaSignOutAlt className="w-6 h-6 text-red-500 transition duration-75 group-hover:text-red-900 dark:text-red-400 dark:group-hover:text-white" />
                     <span className="ml-3 font-bold">SignOut</span>
-                  </button>
+                  </Button>
                 </li>
               </ul>
             </div>
           </div>
           <div className="absolute bottom-0 left-0 justify-center hidden w-full p-4 space-x-4 bg-white lg:flex dark:bg-gray-800">
-            <MenuBottom />
+            <div>
+              <Href
+                route=""
+                classname={
+                  "inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                }
+              >
+                <FaBookmark className="w-6 h-6" fill="currentColor" />
+              </Href>
+              <Href
+                route=""
+                classname={
+                  "inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                }
+              >
+                <FaCog className="w-6 h-6" fill="currentColor" />
+              </Href>
+              <div
+                id="tooltip-settings"
+                role="tooltip"
+                className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+              >
+                Settings page
+                <div className="tooltip-arrow" data-popper-arrow></div>
+              </div>
+              <Button
+                route={"button"}
+                classname={
+                  "inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                }
+              >
+                <FaBook className="w-6 h-6" fill="currentColor" />
+              </Button>
+            </div>
           </div>
         </div>
       </aside>

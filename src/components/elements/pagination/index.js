@@ -6,7 +6,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <div className="sm:flex sm:flex-1 sm:items-center sm:justify-center">
         <nav
           aria-label="Pagination"
-          className="isolate inline-flex -space-x-px rounded-md shadow-xs"
+          className="isolate inline-flex -space-x-px rounded-md shadow-xn"
         >
           <Page
             currentPage={currentPage}

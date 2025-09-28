@@ -1,8 +1,8 @@
 import { WELCOME_MENU_ITEMS } from "../../../../libs/constants/navigations";
-import MenuItem from "../../../molecules/menu/MenuItem";
-import DarkMode from "../../../molecules/darkmode/DarkMode";
+import DarkMode from "../../../elements/darkmode/DarkMode";
 import { Link } from "react-router-dom";
-import Logo from "../../../molecules/logo/Logo";
+import Logo from "../../../elements/logo/Logo";
+import Href from "../../../elements/href/Href";
 
 const TopMenu = () => {
   return (
@@ -16,12 +16,16 @@ const TopMenu = () => {
           <ul className="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
             {" "}
             {WELCOME_MENU_ITEMS.map((item) => (
-              <MenuItem
+              <Href
                 key={item.key}
                 route={item.route}
-                label={item.label}
-                icon={item.icon}
-              />
+                classname={
+                  "flex text-md font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500"
+                }
+              >
+                {item.icon}
+                <span className="ml-2">{item.label}</span>
+              </Href>
             ))}
           </ul>
         </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AboutView from "../../components/templates/landingpage/AboutView";
-import Layout from "../Layout";
+import Layout from "../../components/templates/landingpage/layouts";
 
 const AboutPage = () => {
   const [useDark, setUseDark] = useState(

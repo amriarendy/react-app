@@ -1,14 +1,14 @@
-import PanelLayout from "../PanelLayout";
+import Layout from "../../../components/templates/panel/layouts";
 import TagView from "../../../components/templates/panel/master/TagView";
 
 const TagPage = () => {
   return (
     <>
-      <PanelLayout>
+      <Layout>
         <section className="min-h-screen bg-gray-100 dark:bg-gray-900">
           <TagView />
         </section>
-      </PanelLayout>
+      </Layout>
     </>
   );
 };

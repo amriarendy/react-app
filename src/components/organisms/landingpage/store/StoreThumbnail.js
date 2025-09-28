@@ -1,4 +1,4 @@
-import { Button, ButtonDynamic } from "../../../atoms/Button";
+import Image from "../../../elements/image/Image";
 
 const StoreThumbnail = ({ image, alt }) => {
   return (
@@ -9,10 +9,10 @@ const StoreThumbnail = ({ image, alt }) => {
         role="tabpanel"
         tabindex="0"
       >
-        <img
+        <Image
           src={image}
           alt={alt}
-          className="h-full w-full object-cover object-center sm:rounded-lg"
+          classname="h-full w-full object-cover object-center sm:rounded-lg"
         />
       </div>
     </>

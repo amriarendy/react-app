@@ -1,4 +1,4 @@
-import RegisterForm from "../../organisms/auth/RegisterForm";
+import Register from "../../organisms/auth/Register";
 
 const RegisterView = () => {
   return (
@@ -7,7 +7,7 @@ const RegisterView = () => {
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
           Create a Free Account
         </h2>
-        <RegisterForm />
+        <Register />
       </div>
     </>
   );

@@ -1,12 +1,12 @@
 import Layout from "../../components/templates/panel/layouts";
-import Banner from "../../components/molecules/profile/Banner";
+import DashboardView from "../../components/templates/panel/DashboardView";
 
 const DashboardPage = () => {
   return (
     <>
       <Layout>
         <section className="bg-white dark:bg-gray-900">
-          <Banner />
+          <DashboardView />
         </section>
       </Layout>
     </>

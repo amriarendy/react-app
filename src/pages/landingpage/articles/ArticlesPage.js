@@ -1,4 +1,4 @@
-import Layout from "../../Layout";
+import Layout from "../../../components/templates/landingpage/layouts";
 import BlogList from "../../../components/templates/landingpage/blogs/BlogList";
 
 const ArticlesPage = () => {

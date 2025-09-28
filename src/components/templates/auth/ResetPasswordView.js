@@ -1,4 +1,4 @@
-import ResetPasswordForm from "../../organisms/auth/ResetPasswordForm";
+import ResetPassword from "../../organisms/auth/ResetPassword";
 
 const ResetPasswordView = () => {
   return (
@@ -7,7 +7,7 @@ const ResetPasswordView = () => {
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
           Create a Free Account
         </h2>
-        <ResetPasswordForm />
+        <ResetPassword />
       </div>
     </>
   );

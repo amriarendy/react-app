@@ -1,4 +1,3 @@
-import { useState } from "react";
 import InputGroup from "../../../elements/input";
 import Button from "../../../elements/button/Button";
 import OptionGroup from "../../../elements/input/OptionGroup";
@@ -12,8 +11,6 @@ const AddUser = ({ onSubmit, props }) => {
     setEmail,
     password,
     setPassword,
-    confirmPassword,
-    setConfirmPassword,
     dob,
     setDob,
     phone,

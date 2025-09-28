@@ -1,9 +1,11 @@
+import Dashboard from "../../organisms/panel/Dashboard";
+
 const DashboardView = () => {
-    return (
-        <>
-        
-        </>
-    )
-}
+  return (
+    <>
+      <Dashboard />
+    </>
+  );
+};
 
 export default DashboardView;

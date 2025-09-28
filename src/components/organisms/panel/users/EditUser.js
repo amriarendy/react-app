@@ -3,7 +3,6 @@ import Button from "../../../elements/button/Button";
 import OptionGroup from "../../../elements/input/OptionGroup";
 import TextAreaGroup from "../../../elements/textarea";
 import FormGroup from "../../../elements/form";
-import CheckBoxGroup from "../../../elements/checkbox";
 
 const EditUser = ({ onSubmit, props }) => {
   const {

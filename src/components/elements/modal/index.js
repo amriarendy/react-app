@@ -7,10 +7,8 @@ const Modal = ({ children, label, toggleModal, footerButton }) => {
   return (
     <>
       <ModalGroup toggleModal>
-          <ModalLabel label={label} toggleModal={toggleModal} />
-        <ModalBody>
-          {children}
-        </ModalBody>
+        <ModalLabel label={label} toggleModal={toggleModal} />
+        <ModalBody>{children}</ModalBody>
         <ModalFooter footerButton={footerButton} />
       </ModalGroup>
     </>

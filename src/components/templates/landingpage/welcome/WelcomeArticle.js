@@ -1,6 +1,6 @@
 import BlogSquare from "../../../organisms/landingpage/blogs/BlogSquare";
-import { Button } from "../../../atoms/Button";
-import TitleDescription from "../../../molecules/title/TitleDescription";
+import Button from "../../../elements/button/Button";
+import TitleDescription from "../../../elements/title/TitleDescription";
 
 const WelcomeArticle = () => {
   return (
@@ -20,8 +20,10 @@ const WelcomeArticle = () => {
           id={"btnShowMore"}
           type={"button"}
           label={"Show More"}
-          color={"blue"}
-        />
+          classname="inline-flex items-center px-3 py-2 text-white bg-indigo-700 hover:bg-indigo-500"
+        >
+          Show More..
+        </Button>
       </div>
     </div>
   );

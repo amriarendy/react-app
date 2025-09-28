@@ -1,5 +1,5 @@
-import TextArea from "../../atoms/TextArea";
-import { Button } from "../../atoms/Button";
+import Button from "../../../elements/button/Button";
+import TextAreaGroup from "../../../elements/textarea";
 
 const CommentInput = () => {
   return (
@@ -15,14 +15,14 @@ const CommentInput = () => {
               tabindex="0"
             >
               <label for="comment" className="sr-only">
-                Comment
+                Comments
               </label>
               <div>
-                <TextArea
+                <TextAreaGroup
                   id={"textarea"}
                   name={"textarea"}
                   rows={5}
-                  placeholder={"Add your comment..."}
+                  placeholder={"Add your comments..."}
                 />
               </div>
             </div>
@@ -30,11 +30,14 @@ const CommentInput = () => {
         </div>
         <div className="mt-2 flex justify-end">
           <Button
-            id={"btnSave"}
+            id={"btnSubmit"}
             type={"submit"}
-            label={"Post"}
-            color={"indigo"}
-          />
+            classname={
+              "rounded rounded-lg inline-flex items-center px-2 py-1 text-white bg-blue-700 hover:bg-blue-500"
+            }
+          >
+            Submit
+          </Button>
         </div>
       </form>
     </div>

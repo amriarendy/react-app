@@ -1,6 +1,5 @@
 import StoreList from "../../../components/templates/landingpage/store/StoreList";
-import Layout from "../../Layout";
-import BlogList from "../../../components/templates/landingpage/blogs/BlogList";
+import Layout from "../../../components/templates/landingpage/layouts";
 
 const EcommercePage = () => {
   return (

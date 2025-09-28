@@ -1,14 +1,14 @@
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
-import Notification from "../../../molecules/panel/Notification";
-import ProfileMenu from "../../../molecules/panel/ProfileMenu";
-import DarkMode from "../../../molecules/darkmode/DarkMode";
-import { Image } from "../../../atoms/Image";
-import { Link, useNavigate } from "react-router-dom";
+import Notification from "../../../organisms/panel/layouts/topbar/Notification";
+import ProfileMenu from "../../../organisms/panel/layouts/topbar/ProfileMenu";
+import DarkMode from "../../../elements/darkmode/DarkMode";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
-import Logo from "../../../molecules/logo/Logo";
+import Logo from "../../../elements/logo/Logo";
+import Button from "../../../elements/button/Button";
 
 const TopBar = () => {
   const [name, setName] = useState("");
@@ -69,11 +69,9 @@ const TopBar = () => {
         <div className="px-3 py-3 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start">
-              <button
-                id="toggleSidebarMobile"
-                aria-expanded="true"
-                aria-controls="sidebar"
-                className="p-2 text-gray-600 rounded cursor-pointer lg:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              <Button
+                type="button"
+                classname="p-2 text-gray-600 rounded cursor-pointer lg:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               >
                 <GiHamburgerMenu className="w-6 h-6" fill="currentColor" />
                 <MdClose
@@ -81,15 +79,19 @@ const TopBar = () => {
                   className="hidden w-6 h-6"
                   fill="currentColor"
                 />
-              </button>
+              </Button>
               <Logo route={"/"}>React.JS</Logo>
             </div>
             <div className="flex items-center">
-              {/* <!-- Notifications --> */}
-              <Notification />
+              <div className="mr-2">
+                {/* <!-- Notifications --> */}
+                <Notification />
+              </div>
 
-              {/* <!-- Dark Mode --> */}
-              <DarkMode />
+              <div className="mr-2">
+                {/* <!-- Dark Mode --> */}
+                <DarkMode />
+              </div>
 
               {/* <!-- Profile Menu --> */}
               <div className="flex items-center ml-3">

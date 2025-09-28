@@ -6,7 +6,7 @@ const Button = (props) => {
         id={id}
         type={type}
         onClick={onClick}
-        className={`rounded rounded-lg font-semibold shadow-sm ${classname} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2`}
+        className={`font-semibold shadow-sm ${classname} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2`}
       >
         {children}
       </button>

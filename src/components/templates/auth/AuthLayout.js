@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Logo from "../../molecules/logo/Logo";
+import Logo from "../../elements/logo/Logo";
 
 const AuthLayout = ({ children }) => {
   const navigate = useNavigate();

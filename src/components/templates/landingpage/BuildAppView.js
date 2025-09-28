@@ -1,5 +1,5 @@
 import React from "react";
-import TitleDescription from "../../molecules/title/TitleDescription";
+import TitleDescription from "../../elements/title/TitleDescription";
 import GetStarted from "../../organisms/landingpage/buildapp/GetStarted";
 import ScreenShotApp from "../../organisms/landingpage/buildapp/ScreenShotApp";
 import SpecTools from "../../organisms/landingpage/buildapp/SpecTools";

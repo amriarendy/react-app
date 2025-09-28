@@ -8,16 +8,16 @@ const Load = () => {
   return (
     <>
       <div className="grid grid-cols-2 px-4 pt-6 lg:grid-cols-1 gap-4 mb-4">
-          <CardGroup header="Loading">
-            <Loading />
-          </CardGroup>
-          <CardGroup header="Skeleton Text & Image" cols={2}>
-            <SkeletonText />
-            <SkeletonImage />
-          </CardGroup>
-          <CardGroup header="Skeleton Card">
-            <Skeleton />
-          </CardGroup>
+        <CardGroup header="Loading">
+          <Loading />
+        </CardGroup>
+        <CardGroup header="Skeleton Text & Image" cols={2}>
+          <SkeletonText />
+          <SkeletonImage />
+        </CardGroup>
+        <CardGroup header="Skeleton Card">
+          <Skeleton />
+        </CardGroup>
       </div>
     </>
   );

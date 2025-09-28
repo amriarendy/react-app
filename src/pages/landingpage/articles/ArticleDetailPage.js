@@ -1,5 +1,5 @@
 import BlogDetail from "../../../components/templates/landingpage/blogs/BlogDetail";
-import Layout from "../../Layout";
+import Layout from "../../../components/templates/landingpage/layouts";
 
 const ArticleDetailPage = () => {
   return (

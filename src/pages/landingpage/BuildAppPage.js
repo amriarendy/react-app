@@ -1,5 +1,5 @@
 import BuildAppView from "../../components/templates/landingpage/BuildAppView";
-import Layout from "../Layout";
+import Layout from "../../components/templates/landingpage/layouts";
 
 const BuildAppPage = () => {
   return (

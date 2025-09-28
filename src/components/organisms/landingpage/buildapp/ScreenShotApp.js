@@ -1,4 +1,4 @@
-import { ImageCaption } from "../../../atoms/Image";
+import Image from "../../../elements/image/Image";
 
 const ScreenShotApp = () => {
   return (
@@ -9,7 +9,7 @@ const ScreenShotApp = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-3 px-4 pt-6 gap-4 mb-4 dark:bg-gray-900">
         <div className="flex items-center justify-center">
-          <ImageCaption
+          <Image
             id="dashboard-screenshot"
             src="/Dashboard.png"
             alt="Dashboard Screenshot"
@@ -18,7 +18,7 @@ const ScreenShotApp = () => {
         </div>
 
         <div className="flex items-center justify-center">
-          <ImageCaption
+          <Image
             id="home-screenshot"
             src="/Home.png"
             alt="Home Screenshot"
@@ -27,7 +27,7 @@ const ScreenShotApp = () => {
         </div>
 
         <div className="flex items-center justify-center">
-          <ImageCaption
+          <Image
             id="blog-screenshot"
             src="/Blog.png"
             alt="Blog Screenshot"

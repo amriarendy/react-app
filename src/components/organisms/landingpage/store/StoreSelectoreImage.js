@@ -1,9 +1,10 @@
-import { ButtonDynamic } from "../../../atoms/Button";
+import Button from "../../../elements/button/Button";
+import Image from "../../../elements/image/Image";
 
 const StoreSelectoreImage = ({ image }) => {
   return (
     <>
-      <ButtonDynamic
+      <Button
         id={"selectImageStore"}
         type={"button"}
         className={
@@ -12,17 +13,17 @@ const StoreSelectoreImage = ({ image }) => {
       >
         <span className="sr-only">Angled view</span>
         <span className="absolute inset-0 overflow-hidden rounded-md">
-          <img
+          <Image
             src={image}
             alt=""
-            className="h-full w-full object-cover object-center"
+            classname="h-full w-full object-cover object-center"
           />
         </span>
         <span
           className="pointer-events-none absolute inset-0 rounded-md ring-2 ring-transparent ring-offset-2"
           aria-hidden="true"
         ></span>
-      </ButtonDynamic>
+      </Button>
     </>
   );
 };

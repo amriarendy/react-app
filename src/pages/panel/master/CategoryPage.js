@@ -1,14 +1,14 @@
-import PanelLayout from "../PanelLayout";
+import Layout from "../../../components/templates/panel/layouts";
 import CategoryView from "../../../components/templates/panel/master/CategoryView";
 
 const CategoryPage = () => {
   return (
     <>
-      <PanelLayout>
+      <Layout>
         <section className="min-h-screen bg-gray-100 dark:bg-gray-900">
           <CategoryView />
         </section>
-      </PanelLayout>
+      </Layout>
     </>
   );
 };

@@ -28,7 +28,7 @@ const InputGroup = ({
           name={name}
           value={value}
           onChange={onChange}
-          className={`${classname}`}
+          className={classname}
           placeholder={placeholder}
           {...(required ? { required: true } : {})}
           {...(readonly ? { readOnly: true } : {})}
