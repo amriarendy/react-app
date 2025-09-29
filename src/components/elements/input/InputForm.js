@@ -26,10 +26,11 @@ const InputForm = ({
         <div className="flex items-center">
           <div className="relative w-full">
             <Input
+              value={value}
+              onChange={onChange}
               id={id}
               type={type}
               name={name}
-              value={value}
               className={classname}
               placeholder={placeholder}
               {...(required ? { required: true } : {})}

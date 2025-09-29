@@ -95,6 +95,16 @@ export const SIDEBAR_MENU_ITEMS = [
         route: "/dashboard/elements/input",
       },
       {
+        key: "option",
+        label: "Option",
+        route: "/dashboard/elements/option",
+      },
+      {
+        key: "checkbox",
+        label: "Checkbox",
+        route: "/dashboard/elements/checkbox",
+      },
+      {
         key: "textarea",
         label: "Textarea",
         route: "/dashboard/elements/textarea",

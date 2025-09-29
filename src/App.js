@@ -33,6 +33,11 @@ import EcommercePage from "./pages/landingpage/ecommerce/EcommercePage";
 import EcommerceDetailPage from "./pages/landingpage/ecommerce/EcommerceDetailPage";
 import BuildAppPage from "./pages/landingpage/BuildAppPage";
 import TablePage from "./pages/panel/tamplates/TablePage";
+import ButtonPage from "./pages/panel/elements/ButtonPage";
+import InputPage from "./pages/panel/elements/InputPage";
+import OptionPage from "./pages/panel/elements/OptionPage";
+import CheckBoxPage from "./pages/panel/elements/CheckBoxPage";
+import TextAreaPage from "./pages/panel/elements/TextAreaPage";
 
 function App() {
   return (
@@ -94,7 +99,12 @@ function App() {
           <Route path="/dashboard/templates/error" element={<ErrorPage />} />
           <Route path="/dashboard/templates/Load" element={<LoadPage />} />
           <Route path="/dashboard/templates/test" element={<TestPage />} />
-          {/* etc */}
+          {/* elemets */}
+          <Route path="/dashboard/elements/button" element={<ButtonPage />} />
+          <Route path="/dashboard/elements/input" element={<InputPage />} />
+          <Route path="/dashboard/elements/option" element={<OptionPage />} />
+          <Route path="/dashboard/elements/checkbox" element={<CheckBoxPage />} />
+          <Route path="/dashboard/elements/textarea" element={<TextAreaPage />} />
         </Routes>
       </BrowserRouter>
     </>

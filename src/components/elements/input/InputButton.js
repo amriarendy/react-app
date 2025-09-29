@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { FaRegEye, FaRegEyeSlash, FaSearch } from "react-icons/fa";
 import Label from "./Label";
 import Input from "./Input";
 import Button from "../button/Button";
@@ -31,6 +29,7 @@ const InputButton = ({
             type={type}
             name={name}
             value={value}
+            onChange={onChange}
             classname={classname}
             placeholder={placeholder}
             {...(required ? { required: true } : {})}
