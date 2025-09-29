@@ -1,4 +1,4 @@
-const CheckBox = ({ id, type, value, onChange }) => {
+const CheckBox = ({ id, type, value, onChange, classname }) => {
   return (
     <>
       <input
@@ -6,7 +6,7 @@ const CheckBox = ({ id, type, value, onChange }) => {
         type={type}
         value={value}
         onChange={onChange}
-        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+        className={`${classname} h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600`}
       />
     </>
   );

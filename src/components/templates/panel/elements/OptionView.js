@@ -1,5 +1,5 @@
 import Breadcrumbs from "../../../elements/breadcrumbs/Breadcrumbs";
-import OptionElement from "../../../organisms/panel/elements/option/OptionElement";
+import Option from "../../../organisms/panel/elements/option";
 
 const OptionView = () => {
   const breadCrumbs = {
@@ -12,7 +12,7 @@ const OptionView = () => {
   return (
     <>
       <Breadcrumbs breadCrumbs={breadCrumbs} />
-      <OptionElement />
+      <Option />
     </>
   );
 };

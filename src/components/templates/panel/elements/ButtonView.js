@@ -1,5 +1,5 @@
 import Breadcrumbs from "../../../elements/breadcrumbs/Breadcrumbs";
-import ButtonElement from "../../../organisms/panel/elements/button/ButtonElement";
+import Button from "../../../organisms/panel/elements/button";
 
 const ButtonView = () => {
   const breadCrumbs = {
@@ -12,7 +12,7 @@ const ButtonView = () => {
   return (
     <>
       <Breadcrumbs breadCrumbs={breadCrumbs} />
-      <ButtonElement />
+      <Button />
     </>
   );
 };

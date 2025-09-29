@@ -9,7 +9,7 @@ const ProfileMenu = () => {
     setOpen(!useOpen);
   };
   const menuItems = [
-    { label: "Dashboard", route: "/dashboard" },
+    { label: "Profil", route: "/dashboard/profile" },
     { label: "Inbox", route: "/inbox" },
     { label: "Settings", route: "/setting" },
     { label: "Change Password", route: "/dashboard/change-password" },

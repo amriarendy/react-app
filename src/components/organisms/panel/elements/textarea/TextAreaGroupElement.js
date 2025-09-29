@@ -2,12 +2,12 @@ import Card from "../../../../elements/card/Card";
 import TextArea from "../../../../elements/textarea/TextArea";
 import TextAreaGroup from "../../../../elements/textarea";
 
-const TextAreaElement = () => {
+const TextAreaGroupElement = () => {
   return (
     <>
       <div className="w-full">
-        <Card header={"Textarea"}>
-          <TextArea
+        <Card header={"Textarea Group"}>
+          <TextAreaGroup
             value={""}
             onChange={""}
             id="input-text"
@@ -20,12 +20,12 @@ const TextAreaElement = () => {
         </Card>
       </div>
       <div className="w-full">
-        <Card header={"Textarea Code"}>
+        <Card header={"Textarea Group Code"}>
           <pre className="flex overflow-auto rounded-b-lg p-4 text-sm/6 sm:rounded-t-lg language-html">
             <code>
-              {`import TextArea from "@/src/components/elements/textarea/TextArea";
+              {`import TextAreaGroup from "@/src/components/elements/textarea/TextAreaGroup";
 
-<TextArea
+<TextAreaGroup
   value={value}
   onChange={onChange}
   id="id-input"
@@ -33,6 +33,7 @@ const TextAreaElement = () => {
   rows={5}
   placeholder={"Type here"}
   classname={classname}
+  caption="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
   required
   readonly
   disabled
@@ -45,4 +46,4 @@ const TextAreaElement = () => {
   );
 };
 
-export default TextAreaElement;
+export default TextAreaGroupElement;

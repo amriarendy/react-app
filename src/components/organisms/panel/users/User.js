@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Table from "../../../elements/tables/index";
 import Thead from "../../../elements/tables/Thead";
 import Tbody from "../../../elements/tables/Tbody";
@@ -62,7 +62,7 @@ const User = ({ data, onDelete }) => {
                 </Td>
                 <Td
                   classname={
-                    "font-medium w-24 flex-auto flex items-center justify-center"
+                    "font-medium w-14 flex-auto flex items-center justify-center"
                   }
                 >
                   <Image

@@ -1,18 +1,18 @@
 import Breadcrumbs from "../../../elements/breadcrumbs/Breadcrumbs";
-import CheckBoxElement from "../../../organisms/panel/elements/checkbox/CheckBoxElement";
+import CheckBox from "../../../organisms/panel/elements/checkbox";
 
 const CheckBoxView = () => {
   const breadCrumbs = {
-    page: "Blank",
+    page: "Checkbox",
     data: [
-      { page: "Elements", route: "/dashboard/elements/blank" },
-      { page: "Blank", route: "/dashboard/elements/blank" },
+      { page: "Elements", route: "/dashboard/elements/checkbox" },
+      { page: "Checkbox", route: "/dashboard/elements/checkbox" },
     ],
   };
   return (
     <>
       <Breadcrumbs breadCrumbs={breadCrumbs} />
-      <CheckBoxElement />
+      <CheckBox />
     </>
   );
 };

@@ -1,5 +1,5 @@
 import Breadcrumbs from "../../../elements/breadcrumbs/Breadcrumbs";
-import TextAreaElement from "../../../organisms/panel/elements/textarea/TextAreaElement";
+import TextArea from "../../../organisms/panel/elements/textarea";
 
 const TextAreaView = () => {
   const breadCrumbs = {
@@ -12,7 +12,7 @@ const TextAreaView = () => {
   return (
     <>
       <Breadcrumbs breadCrumbs={breadCrumbs} />
-      <TextAreaElement />
+      <TextArea />
     </>
   );
 };

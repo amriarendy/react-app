@@ -1,5 +1,5 @@
 import Breadcrumbs from "../../../elements/breadcrumbs/Breadcrumbs";
-import InputElement from "../../../organisms/panel/elements/input/InputElement";
+import Input from "../../../organisms/panel/elements/input";
 
 const InputView = () => {
   const breadCrumbs = {
@@ -12,7 +12,7 @@ const InputView = () => {
   return (
     <>
       <Breadcrumbs breadCrumbs={breadCrumbs} />
-      <InputElement />
+      <Input />
     </>
   );
 };

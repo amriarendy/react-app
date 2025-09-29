@@ -109,11 +109,6 @@ export const SIDEBAR_MENU_ITEMS = [
         label: "Textarea",
         route: "/dashboard/elements/textarea",
       },
-      {
-        key: "tables",
-        label: "Tables",
-        route: "/dashboard/elements/tables",
-      },
     ],
   },
   {

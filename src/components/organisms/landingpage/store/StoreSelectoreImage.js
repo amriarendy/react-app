@@ -7,7 +7,7 @@ const StoreSelectoreImage = ({ image }) => {
       <Button
         id={"selectImageStore"}
         type={"button"}
-        className={
+        classname={
           "relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
         }
       >

@@ -1,7 +1,4 @@
-import InputGroup from "../input";
-import Input from "../input/Input";
 import Label from "./Label";
-import Radio from "./CheckBox";
 import CheckBox from "./CheckBox";
 
 const CheckBoxGroup = ({
@@ -35,6 +32,7 @@ const CheckBoxGroup = ({
               value={value}
               onChange={onChange}
               placeholder={placeholder}
+              classname={classname}
               {...(required ? { required: true } : {})}
               {...(readonly ? { readOnly: true } : {})}
               {...(disabled ? { disabled: true } : {})}
@@ -47,7 +45,9 @@ const CheckBoxGroup = ({
           </div>
         </div>
         {caption && (
-          <p className="text-sm text-gray-500 dark:text-gray-300">{caption}</p>
+          <p className="mt-2 text-xs text-gray-400 dark:text-gray-300">
+            {caption}
+          </p>
         )}
         {validate && (
           <p className="font-semibold text-red-600 mt-2 text-sm">{validate}</p>
