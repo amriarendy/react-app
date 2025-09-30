@@ -1,29 +1,11 @@
-import Heading from "../components/templates/landingpage/welcome/Heading";
-import Pricing from "../components/templates/landingpage/welcome/Pricing";
 import Layout from "../components/templates/landingpage/layouts";
-import Subscribe from "../components/templates/landingpage/welcome/Subscribe";
-import WelcomeArticle from "../components/templates/landingpage/welcome/WelcomeArticle";
+import WelcomeView from "../components/templates/landingpage/WelcomeView";
 
 const WelcomePage = () => {
   return (
     <>
       <Layout>
-        {/* Heading */}
-        <section className="bg-gray-200 dark:bg-gray-900">
-          <Heading />
-        </section>
-        {/* Articles */}
-        <section className="bg-gray-50 py-8 md:py-12 antialiased dark:bg-gray-800">
-          <WelcomeArticle />
-        </section>
-        {/* Subscribes */}
-        <section class="bg-gray-50 dark:bg-gray-800">
-          <Subscribe />
-        </section>
-        {/* Customer Logo */}
-        <section className="bg-gray-50 dark:bg-gray-800">
-          <Pricing />
-        </section>
+        <WelcomeView />
       </Layout>
     </>
   );

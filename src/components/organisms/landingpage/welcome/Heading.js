@@ -1,4 +1,5 @@
 import { FaArrowRight } from "react-icons/fa";
+import Image from "../../../elements/image/Image";
 
 const Heading = () => {
   return (
@@ -27,7 +28,7 @@ const Heading = () => {
           </a>
         </div>
         <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-          <img
+          <Image
             src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png"
             alt="mockup"
           />

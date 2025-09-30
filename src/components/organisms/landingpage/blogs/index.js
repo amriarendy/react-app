@@ -1,12 +1,9 @@
-import BlogSearch from "../../../organisms/landingpage/blogs/BlogSearch";
-import BlogSquare from "../../../organisms/landingpage/blogs/BlogSquare";
+import BlogSearch from "./BlogSearch";
+import BlogSquare from "./BlogSquare";
 import TitleDescription from "../../../elements/title/TitleDescription";
 import Pagination from "../../../elements/pagination";
-import { useState } from "react";
 
-const BlogList = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10;
+const Blog = ({ props, pagination }) => {
   return (
     <>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -35,9 +32,9 @@ const BlogList = () => {
         <div className="w-full text-center">
           <div className="px-4 py-5 sm:p-6">
             <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={(page) => setCurrentPage(page)}
+              currentPage={pagination.currentPage}
+              totalPages={pagination.totalPages}
+              onPageChange={(page) => pagination.setCurrentPage(page)}
             />
           </div>
         </div>
@@ -46,4 +43,4 @@ const BlogList = () => {
   );
 };
 
-export default BlogList;
+export default Blog;

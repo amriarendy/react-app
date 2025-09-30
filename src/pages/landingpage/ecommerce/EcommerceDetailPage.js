@@ -1,4 +1,4 @@
-import StoreDetail from "../../../components/templates/landingpage/store/StoreDetail";
+import StoreDetailView from "../../../components/templates/landingpage/store/StoreDetailView";
 import Layout from "../../../components/templates/landingpage/layouts";
 
 const EcommerceDetailPage = () => {
@@ -6,7 +6,7 @@ const EcommerceDetailPage = () => {
     <>
       <Layout>
         <section className="bg-gray-50 antialiased dark:bg-gray-800">
-          <StoreDetail />
+          <StoreDetailView />
         </section>
       </Layout>
     </>

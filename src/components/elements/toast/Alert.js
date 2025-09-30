@@ -1,87 +1,35 @@
-import { RiCloseFill, RiErrorWarningLine } from "react-icons/ri";
-import { FaCheck, FaInfoCircle, FaEye } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
 import { TiWarningOutline } from "react-icons/ti";
-import Button from "../button/Button";
+import { MdError } from "react-icons/md";
 
-const Alert = ({ code, status, message }) => {
-  const { color, icon } = AlertStatus({ code, status });
-  return (
-    <>
-      <div
-        className={`flex items-center p-4 mb-4 text-${color}-800 rounded-lg bg-${color}-50 dark:bg-gray-900 dark:text-${color}-400`}
-        role="alert"
-      >
-        {icon}
-        <span className="sr-only">Info</span>
-        <div className="ms-3 text-sm font-medium">{message}</div>
-        <Button>
-          <RiCloseFill className="w-6 h-6" />
-        </Button>
-      </div>
-    </>
-  );
-};
+const Alert = ({ title, description, status }) => {
+  let styles = "";
+  let Icon = null;
 
-const AlertList = ({ code, status, label, data }) => {
-  const { color, icon } = AlertStatus({ code, status });
+  if (status === "success") {
+    styles = "bg-teal-100 border-t-4 border-teal-500 text-teal-900";
+    Icon = <FaCheck className="fill-current h-6 w-6 text-teal-500 mr-4" />;
+  } else if (status === "error") {
+    styles = "bg-red-100 border-t-4 border-red-500 text-red-900";
+    Icon = <MdError className="fill-current h-6 w-6 text-red-500 mr-4" />;
+  } else if (status === "warning") {
+    styles = "bg-yellow-100 border-t-4 border-yellow-500 text-yellow-900";
+    Icon = (
+      <TiWarningOutline className="fill-current h-6 w-6 text-yellow-500 mr-4" />
+    );
+  }
+
   return (
-    <>
-      <div
-        className={`flex p-4 mb-4 text-sm text-${color}-800 rounded-lg bg-${color}-50 dark:bg-gray-900 dark:text-${color}-400`}
-        role="alert"
-      >
-        {icon}
-        <span className="sr-only">Info</span>
+    <div className={`${styles} rounded-b px-4 py-3 shadow-md`} role="alert">
+      <div className="flex">
+        <div className="py-1">{Icon}</div>
         <div>
-          <span className="font-medium">{label}:</span>
-          <ul className="mt-1.5 list-disc list-inside">
-            {data.map((item, index) => (
-              <li key={index}>{item.message}</li>
-            ))}
-          </ul>
+          <p className="font-bold">{title}</p>
+          <p className="text-sm">{description}</p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
-const AlertBorder = ({ code, status, message }) => {
-  const { color, icon } = AlertStatus({ code, status });
-  return (
-    <>
-      <div
-        className={`flex items-center p-4 mb-4 text-${color}-800 border-t-4 border-${color}-300 bg-${color}-50 dark:text-${color}-400 dark:bg-gray-900 dark:border-${color}-800`}
-        role="alert"
-      >
-        {icon}
-        <div className="ms-3 text-sm font-medium">{message}</div>
-        <Button>
-          <RiCloseFill className="w-6 h-6" />
-        </Button>
-      </div>
-    </>
-  );
-};
-
-export { Alert, AlertList, AlertBorder };
-
-function AlertStatus({ code, status }) {
-  let color;
-  let icon;
-  if (code === 200 || status === "success") {
-    color = "green";
-    icon = <FaCheck className="flex-shrink-0 w-4 h-4 me-2 mt-[2px]" />;
-  } else if (code === 422 || status === "warning") {
-    color = "yellow";
-    icon = (
-      <RiErrorWarningLine className="flex-shrink-0 w-4 h-4 me-2 mt-[2px]" />
-    );
-  } else if (code === 500 || status === "danger") {
-    color = "red";
-    icon = <TiWarningOutline className="flex-shrink-0 w-4 h-4 me-2 mt-[2px]" />;
-  } else {
-    color = "blue";
-    icon = <FaInfoCircle className="flex-shrink-0 w-4 h-4 me-2 mt-[2px]" />;
-  }
-  return { color, icon };
-}
+export default Alert;

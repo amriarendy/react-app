@@ -5,17 +5,19 @@ import BlogContent from "../../../organisms/landingpage/blogs/BlogContent";
 
 const BlogDetail = () => {
   return (
-    <div className="mx-auto max-w-3xl text-base leading-7 text-gray-700 dark:text-white">
-      <BlogContent />
-      <Divider />
-      <CommentInput />
-      <div className="pb-4">
-        <Divider label={"Comments"} />
+    <>
+      <div className="mx-auto max-w-3xl text-base leading-7 text-gray-700 dark:text-white">
+        <BlogContent />
+        <Divider />
+        <CommentInput />
+        <div className="pb-4">
+          <Divider label={"Comments"} />
+        </div>
+        <div className="dark:bg-gray-800">
+          <CommentList />
+        </div>
       </div>
-      <div className="dark:bg-gray-800">
-        <CommentList />
-      </div>
-    </div>
+    </>
   );
 };
 

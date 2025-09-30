@@ -1,4 +1,4 @@
-import BlogDetail from "../../../components/templates/landingpage/blogs/BlogDetail";
+import BlogDetailView from "../../../components/templates/landingpage/blogs/BlogDetailView";
 import Layout from "../../../components/templates/landingpage/layouts";
 
 const ArticleDetailPage = () => {
@@ -6,7 +6,7 @@ const ArticleDetailPage = () => {
     <>
       <Layout>
         <section className="bg-white px-6 py-16 lg:px-8 dark:bg-gray-800">
-          <BlogDetail />
+          <BlogDetailView />
         </section>
       </Layout>
     </>
