@@ -1,4 +1,4 @@
-const TitleDescription = ({ label, description }) => {
+const Heading = ({ label, description }) => {
   return (
     <>
       <div className="mx-auto max-w-2xl text-center">
@@ -13,4 +13,4 @@ const TitleDescription = ({ label, description }) => {
   );
 };
 
-export default TitleDescription;
+export default Heading;

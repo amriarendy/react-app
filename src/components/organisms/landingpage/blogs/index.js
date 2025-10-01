@@ -1,13 +1,13 @@
 import BlogSearch from "./BlogSearch";
 import BlogSquare from "./BlogSquare";
-import TitleDescription from "../../../elements/title/TitleDescription";
+import Heading from "../../../elements/heading/Heading";
 import Pagination from "../../../elements/pagination";
 
 const Blog = ({ props, pagination }) => {
   return (
     <>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <TitleDescription
+        <Heading
           label={"Articles"}
           description={
             "Learn how to grow your business with our expert advice."

@@ -1,4 +1,4 @@
-import TitleDescription from "../../../elements/title/TitleDescription";
+import TitleDescription from "../../../elements/heading/Heading";
 
 const Pricing = () => {
   return (

@@ -1,3 +1,5 @@
+import Image from "../../../elements/image/Image";
+
 const CommentList = () => {
   return (
     <>
@@ -6,11 +8,10 @@ const CommentList = () => {
       <div className="-my-10">
         <div className="flex space-x-4 text-sm text-gray-500">
           <div className="flex-none py-10">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80"
               alt=""
-              className="h-10 w-10 rounded-full bg-gray-100"
-            />
+              classname="h-10 w-10 rounded-full bg-gray-100"/>
           </div>
           <div className="flex-1 py-10">
             <h3 className="font-medium text-gray-900 dark:text-white">
@@ -32,11 +33,10 @@ const CommentList = () => {
         {/* second comment */}
         <div className="flex space-x-4 text-sm text-gray-500">
           <div className="flex-none py-10">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80"
               alt=""
-              className="h-10 w-10 rounded-full bg-gray-100"
-            />
+              classname="h-10 w-10 rounded-full bg-gray-100"/>
           </div>
           <div className="flex-1 border-t border-gray-200 py-10">
             <h3 className="font-medium text-gray-900 dark:text-white">

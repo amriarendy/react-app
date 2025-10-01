@@ -31,7 +31,7 @@ const CommentInput = () => {
         <div className="mt-2 flex justify-end">
           <Button
             id={"btnSubmit"}
-            type={"submit"}
+            type={"button"}
             classname={
               "rounded rounded-lg inline-flex items-center px-2 py-1 text-white bg-blue-700 hover:bg-blue-500"
             }

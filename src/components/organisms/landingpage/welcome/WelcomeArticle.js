@@ -1,6 +1,6 @@
 import BlogSquare from "../../../organisms/landingpage/blogs/BlogSquare";
 import Button from "../../../elements/button/Button";
-import TitleDescription from "../../../elements/title/TitleDescription";
+import TitleDescription from "../../../elements/heading/Heading";
 
 const WelcomeArticle = () => {
   return (

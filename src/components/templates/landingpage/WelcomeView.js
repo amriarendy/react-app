@@ -1,4 +1,4 @@
-import Heading from "../../organisms/landingpage/welcome/Heading";
+import Hero from "../../organisms/landingpage/welcome/Hero";
 import WelcomeArticle from "../../organisms/landingpage/welcome/WelcomeArticle";
 import Subscribe from "../../organisms/landingpage/welcome/Subsribe";
 import Pricing from "../../organisms/landingpage/welcome/Pricing";
@@ -8,7 +8,7 @@ const WelcomeView = () => {
     <>
       {/* Heading */}
       <section className="bg-gray-200 dark:bg-gray-900">
-        <Heading />
+        <Hero />
       </section>
       {/* Articles */}
       <section className="bg-gray-50 py-8 md:py-12 antialiased dark:bg-gray-800">

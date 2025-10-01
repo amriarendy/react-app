@@ -1,7 +1,7 @@
 import { FaArrowRight } from "react-icons/fa";
 import Image from "../../../elements/image/Image";
 
-const Heading = () => {
+const Hero = () => {
   return (
     <>
       <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
@@ -38,4 +38,4 @@ const Heading = () => {
   );
 };
 
-export default Heading;
+export default Hero;

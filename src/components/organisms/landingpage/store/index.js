@@ -1,4 +1,4 @@
-import TitleDescription from "../../../elements/title/TitleDescription";
+import Heading from "../../../elements/heading/Heading";
 import StoreSquare from "../../../organisms/landingpage/store/StoreSquare";
 import Pagination from "../../../elements/pagination";
 import StoreSearch from "../../../organisms/landingpage/store/StoreSearch";
@@ -8,7 +8,7 @@ const Store = ({ props, pagination }) => {
     <>
       <div>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <TitleDescription
+          <Heading
             label={"Ecommerce"}
             description={
               "Learn how to grow your business with our expert advice."
