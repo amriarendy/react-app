@@ -1,93 +1,9 @@
-import React, { useState } from "react";
-import Table from "../../../elements/tables";
-import Thead from "../../../elements/tables/Thead";
-import Tbody from "../../../elements/tables/Tbody";
-import Trow from "../../../elements/tables/Trow";
-import Td from "../../../elements/tables/Td";
-import Th from "../../../elements/tables/Th";
-import Taction from "../../../elements/tables/Taction";
-import Terrors from "../../../elements/tables/Terrors";
-import Modal from "../../../elements/modal/";
-import ModalForm from "../../../elements/modal/ModalForm";
-import InputGroup from "../../../elements/input";
+import WYSIWYG from "../../../elements/WYSIWYG";
 
 const Test = ({ data }) => {
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-
-  const toggleModal = () => {
-    setIsAddModalOpen(!isAddModalOpen);
-  };
-
   return (
     <>
-      <Table attribute={"null"} toggleModal={toggleModal}>
-        <Thead>
-          <Trow>
-            <Th classname={"pr-1 sm:pl-6"}>No</Th>
-            <Th>Product</Th>
-            <Th>Category</Th>
-            <Th>Brand</Th>
-            <Th>Price</Th>
-            <Th>Action</Th>
-          </Trow>
-        </Thead>
-        <Tbody>
-          {data.length > 0 ? (
-            data.map((item, index) => (
-              <Trow classname={"border-b"} key={item.index}>
-                <Td classname={"pl-4 pr-1 font-medium sm:pl-6"}>{index + 1}</Td>
-                <Td>{item.product}</Td>
-                <Td>{item.category}</Td>
-                <Td>{item.technology}</Td>
-                <Td>${item.price}</Td>
-                <Td classname={"space-x-2"}>
-                  <Taction />
-                </Td>
-              </Trow>
-            ))
-          ) : (
-            <Trow>
-              <Terrors colSpan={7}>Data Not Found</Terrors>
-            </Trow>
-          )}
-        </Tbody>
-      </Table>
-        {/* <ModalTest /> */}
-      {isAddModalOpen && (
-        // <ModalTest />
-        <Modal label={"Create Data"} toggleModal={toggleModal}>
-          <ModalForm onSubmit={"Testing"}>
-            <InputGroup
-              id={"product"}
-              name={"product"}
-              label={"Product"}
-              type={"text"}
-              required={true}
-            />
-            <InputGroup
-              id={"category"}
-              name={"category"}
-              label={"Category"}
-              type={"text"}
-              required={true}
-            />
-            <InputGroup
-              id={"brand"}
-              name={"brand"}
-              label={"Brand"}
-              type={"text"}
-              required={true}
-            />
-            <InputGroup
-              id={"price"}
-              name={"price"}
-              label={"Price"}
-              type={"number"}
-              required={true}
-            />
-          </ModalForm>
-        </Modal>
-      )}
+      <WYSIWYG />
     </>
   );
 };

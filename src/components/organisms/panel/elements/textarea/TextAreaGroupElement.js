@@ -21,9 +21,10 @@ const TextAreaGroupElement = () => {
       </div>
       <div className="w-full">
         <Card header={"Textarea Group Code"}>
-          <pre className="flex overflow-auto rounded-b-lg p-4 text-sm/6 sm:rounded-t-lg language-html">
-            <code>
-              {`import TextAreaGroup from "@/src/components/elements/textarea/TextAreaGroup";
+          <div className="rounded rounded-lg bg-gray-200 dark:bg-gray-900">
+            <pre className="flex overflow-auto rounded-b-lg p-4 text-sm/6 sm:rounded-t-lg language-html">
+              <code>
+                {`import TextAreaGroup from "@/src/components/elements/textarea/TextAreaGroup";
 
 <TextAreaGroup
   value={value}
@@ -38,8 +39,9 @@ const TextAreaGroupElement = () => {
   readonly
   disabled
 />`}
-            </code>
-          </pre>
+              </code>
+            </pre>
+          </div>
         </Card>
       </div>
     </>

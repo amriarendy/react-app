@@ -21,9 +21,10 @@ const RadioElement = () => {
       </div>
       <div className="w-full">
         <Card header={"Radio Group Code"}>
-          <pre className="flex overflow-auto rounded-b-lg p-4 text-sm/6 sm:rounded-t-lg language-html">
-            <code>
-              {`import CheckboxGroup from "@/src/components/elements/checkbox/CheckboxGroup";
+          <div className="rounded rounded-lg bg-gray-200 dark:bg-gray-900">
+            <pre className="flex overflow-auto rounded-b-lg p-4 text-sm/6 sm:rounded-t-lg language-html">
+              <code>
+                {`import CheckboxGroup from "@/src/components/elements/checkbox/CheckboxGroup";
 <CheckBoxGroup
   value={""}
   onChange={""}
@@ -36,8 +37,9 @@ const RadioElement = () => {
   validate={""}
   required
 />`}
-            </code>
-          </pre>
+              </code>
+            </pre>
+          </div>
         </Card>
       </div>
     </>

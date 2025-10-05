@@ -62,9 +62,10 @@ const InputElement = () => {
       </div>
       <div className="w-full">
         <Card header={"Input Code"}>
-          <pre className="flex overflow-auto rounded-b-lg p-4 text-sm/6 sm:rounded-t-lg language-html">
-            <code>
-              {`import Input from "@/src/components/elements/input/Input";
+          <div className="rounded rounded-lg bg-gray-200 dark:bg-gray-900">
+            <pre className="flex overflow-auto rounded-b-lg p-4 text-sm/6 sm:rounded-t-lg language-html">
+              <code>
+                {`import Input from "@/src/components/elements/input/Input";
 
 <Input
   id="id-input"
@@ -78,8 +79,9 @@ const InputElement = () => {
   readonly
   disabled
 />`}
-            </code>
-          </pre>
+              </code>
+            </pre>
+          </div>
         </Card>
       </div>
     </>

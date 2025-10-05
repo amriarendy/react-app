@@ -44,9 +44,10 @@ const InputButtonElement = () => {
       </div>
       <div className="w-full">
         <Card header={"Input Button Code"}>
-          <pre className="flex overflow-auto rounded-b-lg p-4 text-sm/6 sm:rounded-t-lg language-html">
-            <code>
-              {`import InputButton from "@/src/components/elements/input/InputButton";
+          <div className="rounded rounded-lg bg-gray-200 dark:bg-gray-900">
+            <pre className="flex overflow-auto rounded-b-lg p-4 text-sm/6 sm:rounded-t-lg language-html">
+              <code>
+                {`import InputButton from "@/src/components/elements/input/InputButton";
 
 const [isReadOnly, setReadOnly] = useState(true);
 const toggleReadOnly = () => {
@@ -73,8 +74,9 @@ const toggleReadOnly = () => {
     <FaRegEye className="w-4 h-4" />
   )}
 </InputButton>`}
-            </code>
-          </pre>
+              </code>
+            </pre>
+          </div>
         </Card>
       </div>
     </>

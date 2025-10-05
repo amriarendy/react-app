@@ -25,9 +25,10 @@ const OptionStaticElement = () => {
       </div>
       <div className="w-full">
         <Card header={"Option Data Statistic Code"}>
-          <pre className="flex overflow-auto rounded-b-lg p-4 text-sm/6 sm:rounded-t-lg language-html">
-            <code>
-              {`import OptionGroup from "../../../../elements/input/OptionGroup";
+          <div className="rounded rounded-lg bg-gray-200 dark:bg-gray-900">
+            <pre className="flex overflow-auto rounded-b-lg p-4 text-sm/6 sm:rounded-t-lg language-html">
+              <code>
+                {`import OptionGroup from "../../../../elements/input/OptionGroup";
 
 <OptionGroup
   id={"input-option"}
@@ -44,8 +45,9 @@ const OptionStaticElement = () => {
     { key: "option-3", value: "option-3", label: "Option 3" },
   ]}
 />`}
-            </code>
-          </pre>
+              </code>
+            </pre>
+          </div>
         </Card>
       </div>
     </>

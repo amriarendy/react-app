@@ -1,12 +1,5 @@
-import { useState } from "react";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { FaSearch } from "react-icons/fa";
 import Card from "../../../../elements/card/Card";
-import Input from "../../../../elements/input/Input";
 import InputGroup from "../../../../elements/input";
-import InputButton from "../../../../elements/input/InputButton";
-import InputForm from "../../../../elements/input/InputForm";
-import Button from "../../../../elements/button/Button";
 
 const InputGroupElement = () => {
   return (
@@ -95,9 +88,10 @@ const InputGroupElement = () => {
       </div>
       <div className="w-full">
         <Card header={"Input Group Code"}>
-          <pre className="flex overflow-auto rounded-b-lg p-4 text-sm/6 sm:rounded-t-lg language-html">
-            <code>
-              {`import InputGroup from "@/src/components/elements/input/InputGroup";
+          <div className="rounded rounded-lg bg-gray-200 dark:bg-gray-900">
+            <pre className="flex overflow-auto rounded-b-lg p-4 text-sm/6 sm:rounded-t-lg language-html">
+              <code>
+                {`import InputGroup from "@/src/components/elements/input/InputGroup";
 
 <Input
   value={value}
@@ -111,8 +105,9 @@ const InputGroupElement = () => {
   readonly
   disabled
 />`}
-            </code>
-          </pre>
+              </code>
+            </pre>
+          </div>
         </Card>
       </div>
     </>

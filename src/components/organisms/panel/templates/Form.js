@@ -6,6 +6,7 @@ import CheckBoxGroup from "../../../elements/checkbox";
 import TextAreaGroup from "../../../elements/textarea";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import Button from "../../../elements/button/Button";
+import WYSIWYG from "../../../elements/WYSIWYG";
 
 const Form = () => {
   const [isReadOnly, setReadOnly] = useState(true);
@@ -172,6 +173,9 @@ const Form = () => {
                 rows={4}
                 required
               />
+            </div>
+            <div className="sm:col-span-2">
+              <WYSIWYG />
             </div>
           </div>
           <div className="mt-3">
